@@ -7,9 +7,7 @@ import { useEffect, useRef } from "react";
 type Stat = {
     display: string;
     label: string[];
-    /** Numeric value to count up to (omit for non-numeric like "24/7"). */
     countTo?: number;
-    /** How to format the number while animating. */
     format?: (value: number) => string;
 };
 
@@ -63,30 +61,30 @@ function StatCircle({ stat, index }: { stat: Stat; index: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center gap-6 lg:gap-10"
+            className="flex flex-col items-center gap-[26px] lg:gap-10"
         >
-            <div className="relative size-[180px] lg:size-[260px]">
+            <div className="relative size-[166px] lg:size-[260px]">
                 <span
-                    className="absolute inset-0 rounded-full border-[3px] border-white/80"
+                    className="absolute inset-0 rounded-full border-[2px] border-white/85"
                     aria-hidden
                 />
                 <span
-                    className="absolute inset-[18px] rounded-full border border-white/60"
+                    className="absolute inset-[11px] rounded-full border border-white/55 lg:inset-[18px]"
                     aria-hidden
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                     {stat.countTo !== undefined ? (
-                        <motion.span className="font-nimbus text-[44px] leading-none text-white lg:text-[64px]">
+                        <motion.span className="font-nimbus text-[42px] leading-none text-white lg:text-[64px]">
                             {display}
                         </motion.span>
                     ) : (
-                        <span className="font-nimbus text-[44px] leading-none text-white lg:text-[64px]">
+                        <span className="font-nimbus text-[42px] leading-none text-white lg:text-[64px]">
                             {stat.display}
                         </span>
                     )}
                 </div>
             </div>
-            <p className="font-nimbus text-center text-[18px] font-bold leading-[24px] tracking-[1px] text-white lg:text-[26px] lg:leading-[32px]">
+            <p className="font-nimbus text-center text-[16px] font-bold leading-tight tracking-[0.6px] text-white lg:text-[26px] lg:leading-[32px] lg:tracking-[1px]">
                 {stat.label.map((line) => (
                     <span key={line} className="block">
                         {line}
@@ -100,8 +98,8 @@ function StatCircle({ stat, index }: { stat: Stat; index: number }) {
 export default function PowerAutonomySection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-12 lg:py-[60px]">
-                <div className="relative w-full overflow-hidden rounded-[24px] lg:h-[831px] lg:rounded-[40px]">
+            <div className="page-px py-4 lg:py-[60px]">
+                <div className="relative w-full overflow-hidden rounded-[16px] lg:h-[831px] lg:rounded-[40px]">
                     <Image
                         src="/figma/technology/power-bg.png"
                         alt=""
@@ -111,18 +109,18 @@ export default function PowerAutonomySection() {
                     />
                     <div className="absolute inset-0 bg-black/30" />
 
-                    <div className="relative px-5 py-10 lg:px-[125px] lg:py-[92px]">
+                    <div className="relative flex flex-col items-center px-4 py-12 lg:items-start lg:px-[125px] lg:py-[92px]">
                         <motion.h2
                             initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-60px" }}
                             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            className="font-nevera text-center text-[32px] leading-[1.1] text-white lg:text-left lg:text-[56px] lg:leading-[64px]"
+                            className="font-nevera text-center text-[28px] leading-tight text-white lg:text-left lg:text-[56px] lg:leading-[64px]"
                         >
                             Power & Autonomy
                         </motion.h2>
 
-                        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-[124px] lg:flex lg:items-center lg:justify-between lg:gap-[66px]">
+                        <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-[124px] lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-[66px]">
                             {STATS.map((stat, i) => (
                                 <StatCircle key={stat.label.join(" ")} stat={stat} index={i} />
                             ))}

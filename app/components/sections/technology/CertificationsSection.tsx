@@ -12,7 +12,7 @@ const CERTS = [
 
 export default function CertificationsSection() {
     return (
-        <section className="w-full bg-[#0d1f00]">
+        <section className="hidden w-full bg-[#0d1f00] lg:block">
             <div className="page-px py-12 lg:py-[120px]">
                 <motion.h2
                     initial={{ opacity: 0, y: 16 }}

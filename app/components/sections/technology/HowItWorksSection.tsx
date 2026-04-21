@@ -41,7 +41,7 @@ const stepGradient =
 
 export default function HowItWorksSection() {
     return (
-        <section className="w-full bg-white">
+        <section className="hidden w-full bg-white lg:block">
             <div className="page-px py-12 lg:py-[120px]">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
