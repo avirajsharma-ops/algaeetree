@@ -1,7 +1,7 @@
 export default function StoryHeaderSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px flex flex-col gap-8 py-8 lg:gap-12 lg:py-[60px]">
+            <div className="page-px flex flex-col gap-8 py-8 lg:gap-0 lg:py-[60px]">
                 {/* Heading row */}
                 <div className="flex flex-col items-start gap-4 px-0 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-4">
                     <h2 className="font-nevera whitespace-nowrap text-[40px] leading-[40px] text-black lg:text-[56px] lg:leading-[72px]">
@@ -18,8 +18,8 @@ export default function StoryHeaderSection() {
                     </p>
                 </div>
 
-                {/* Story banner — notched grey shape (Figma placeholder for forthcoming hero photo) */}
-                <div className="relative w-full">
+                {/* Story banner — top-left notch tucks under the heading on desktop. */}
+                <div className="relative w-full lg:-mt-4">
                     <svg
                         viewBox="0 0 1488 400"
                         preserveAspectRatio="none"
