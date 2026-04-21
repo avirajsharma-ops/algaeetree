@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Button from "./Button";
 
 const QUICK_LINKS = [
@@ -25,9 +26,9 @@ export default function Footer() {
                         <div className="relative h-10 w-[221.333px] overflow-hidden">
                             <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
                         </div>
-                        <button className="rounded-[32px] bg-[#2d5a27] px-4 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-white">
+                        <Link href="/contact" className="rounded-[32px] bg-[#2d5a27] px-4 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-white transition-colors hover:bg-[#234820]">
                             Get Involved
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -87,7 +88,7 @@ export default function Footer() {
                         <div className="relative h-[45px] w-[249px] overflow-clip">
                             <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={209} height={45} className="absolute bottom-0 left-0 h-[45px] w-auto" />
                         </div>
-                        <Button>Get Involved</Button>
+                        <Button href="/contact">Get Involved</Button>
                     </div>
                 </div>
 

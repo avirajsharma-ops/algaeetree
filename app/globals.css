@@ -44,6 +44,14 @@ body {
     font-family: "Nimbus Sans L", "Nimbus Sans", "Helvetica Neue", Arial, sans-serif;
   }
 
+  .font-space-grotesk {
+    font-family: var(--font-space-grotesk), "Space Grotesk", var(--font-inter), Arial, sans-serif;
+  }
+
+  .font-manrope {
+    font-family: var(--font-manrope), "Manrope", var(--font-inter), Arial, sans-serif;
+  }
+
   .page-px {
     padding-left: clamp(20px, 6.94vw, 120px);
     padding-right: clamp(20px, 6.94vw, 120px);

@@ -45,6 +45,7 @@ npm run start
 - `/technology` technology page
 - `/about` about page
 - `/team` team page
+- `/contact` contact page
 
 ## Project Structure
 
@@ -53,6 +54,7 @@ npm run start
 - `app/components/sections/technology/` technology page sections
 - `app/components/sections/about/` about page sections
 - `app/components/sections/team/` team page sections
+- `app/components/sections/contact/` contact page sections
 - `public/figma/` exported design assets downloaded from Figma MCP
 
 ## Notes
@@ -60,5 +62,9 @@ npm run start
 - The About page is implemented against the Figma source for both desktop and mobile variants.
 - Assets used by the About page are stored under `public/figma/about/` and `public/figma/about/mobile/`.
 - Assets used by the Team page are stored under `public/figma/team/`.
+- Assets used by the Contact page are stored under `public/figma/contact/`.
+- Assets used by the CCUS technology page are stored under `public/figma/technology/ccus/`.
 - The selected mobile Figma frame does not expose prototype animation data through MCP, so the page matches the static design rather than inventing non-source interactions.
 - The Team page Figma source only exposes a desktop frame and does not include Team-specific mobile or prototype variants, so responsive behavior and motion are inferred conservatively from the desktop composition.
+- The selected Contact page Figma source exposes a desktop frame only, so tablet and mobile behavior are inferred conservatively from the desktop composition.
+- The selected CCUS technology frame exposes a desktop layout only, so tablet and mobile behavior are inferred conservatively from the desktop composition.
