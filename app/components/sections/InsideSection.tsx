@@ -1,19 +1,14 @@
-import Image from "next/image";
-
 export default function InsideSection() {
     return (
         <section className="w-full overflow-hidden bg-white">
-            <div className="page-px lg:hidden py-16">
-                <div className="flex flex-col items-center gap-10">
-                    <h2 className="font-nevera text-center text-[38px] leading-[1.1] text-black">Inside the Algaetree</h2>
-                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[32px] bg-[#d9d9d9]">
-                        <Image
-                            src="/figma/inside-photo.png"
-                            alt="Inside the Algaetree"
-                            fill
-                            sizes="(min-width: 1024px) 0px, 100vw"
-                            className="object-cover"
-                        />
+            <div className="px-4 py-6 lg:hidden">
+                <div className="flex flex-col items-center gap-6">
+                    <h2 className="font-nevera text-center text-[28px] uppercase leading-[38px] text-black">
+                        <span className="block">Inside the</span>
+                        <span className="block">Algaetree</span>
+                    </h2>
+                    <div className="relative h-[272px] w-full overflow-hidden rounded-[24px] bg-[#d9d9d9]">
+                        <img src="/figma/inside-photo.png" alt="Inside the Algaetree" className="block size-full object-cover" />
                     </div>
                 </div>
             </div>

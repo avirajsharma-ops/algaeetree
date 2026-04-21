@@ -106,48 +106,42 @@ export default function FeatureShowcaseSection() {
 
     return (
         <section className="relative w-full overflow-hidden bg-[#193100]">
-            <div className="relative min-h-[780px] w-full lg:h-[1136px]">
+            <div className="relative h-[875px] w-full lg:h-[1136px]">
                 <div className="absolute inset-0 lg:hidden">
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `url(${backgroundSrc})`,
-                            backgroundPosition,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: "cover",
-                        }}
-                    />
-                    <div className="absolute inset-0" style={{ backgroundColor: overlayColor }} />
-                    <div className="page-px relative flex h-full flex-col gap-8 py-16">
-                        <div className="flex max-w-[680px] flex-col gap-4 text-white">
-                            <h2 className="font-nimbus text-[34px] font-bold leading-[1.08] sm:text-[44px]">
-                                {current.title}
-                                {current.subtitle && (
-                                    <>
-                                        <br />
-                                        {current.subtitle}
-                                    </>
-                                )}
-                            </h2>
-                            <div className="font-nimbus text-[18px] leading-[28px] text-white">
-                                <p>{current.bodyTop}</p>
-                                {current.bodyBottom && <p>{current.bodyBottom}</p>}
-                            </div>
-                        </div>
+                    <div className="absolute left-[-532px] top-0 h-[843px] w-[1504px]">
+                        <img src={backgroundSrc} alt="" className="block size-full max-w-none object-cover" />
+                    </div>
+                    <div className="absolute inset-x-0 top-0 h-[843px] bg-black/56" />
 
-                        <div className="relative aspect-square w-full max-w-[520px] overflow-hidden rounded-[13.6px] bg-white">
-                            <Image
+                    <div className="relative flex h-full flex-col items-center gap-6 px-4 py-6">
+                        <div className="relative h-[539px] w-full max-w-[408px] overflow-hidden rounded-[24px] bg-[#f3f4f6]">
+                            <img
                                 src="/figma/slider-product.png"
                                 alt={current.title}
-                                fill
-                                sizes="(min-width: 640px) 520px, 90vw"
-                                className="object-cover"
+                                className="absolute max-w-none object-cover"
+                                style={{ left: "48.5%", top: "52.4%", width: "221.4%", height: "104.7%", transform: "translate(-50%, -50%)" }}
                             />
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex w-full max-w-[408px] items-center gap-2">
                             <ArrowButton direction="left" onClick={prev} />
                             <ArrowButton direction="right" onClick={next} />
+                        </div>
+
+                        <div className="relative h-[6px] w-[calc(100%+32px)] overflow-hidden">
+                            <div className="absolute left-0 right-0 top-1/2 h-0 border-t border-dashed border-white/90 -translate-y-1/2" />
+                            <div className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 bg-[#9fe884]" style={{ width: `${((index + 1) / total) * 100}%` }} />
+                        </div>
+
+                        <div className="min-h-[138px] w-full max-w-[408px] text-left text-white">
+                            <div className="font-nimbus text-[clamp(34px,10vw,40px)] font-bold leading-[1]">
+                                <p>{current.title}</p>
+                                {current.subtitle && <p>{current.subtitle}</p>}
+                            </div>
+                            <div className="mt-2 font-nimbus text-[14px] leading-normal">
+                                <p>{current.bodyTop}</p>
+                                {current.bodyBottom && <p>{current.bodyBottom}</p>}
+                            </div>
                         </div>
                     </div>
                 </div>

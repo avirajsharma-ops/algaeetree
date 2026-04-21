@@ -55,6 +55,46 @@ function StatCard({
     );
 }
 
+function MobileStatCard({
+    value,
+    suffix,
+    color,
+    labelTop,
+    labelBottom,
+    showTrend = false,
+}: {
+    value: string;
+    suffix?: string;
+    color: string;
+    labelTop: string;
+    labelBottom: string;
+    showTrend?: boolean;
+}) {
+    return (
+        <div className="flex h-32 w-full flex-col items-start gap-8 rounded-[12px] border border-[#D9D9D9] bg-white p-[17px]">
+            <div className="flex items-center gap-2">
+                <div className="font-nimbus" style={{ color }}>
+                    {suffix ? (
+                        <p className="leading-[56px] whitespace-nowrap">
+                            <span className="text-[48px] font-bold leading-[56px]">{value}</span>
+                            <span className="text-[24px] font-bold leading-[56px]">{suffix}</span>
+                        </p>
+                    ) : (
+                        <p className="text-[48px] font-bold leading-[56px]">{value}</p>
+                    )}
+                </div>
+                {showTrend && (
+                    <img src="/figma/arrow-drop-up.svg" alt="" className="size-6" />
+                )}
+            </div>
+            <div className="font-nimbus text-[14px] text-[#6B7280]">
+                <p>{labelTop}</p>
+                <p>{labelBottom}</p>
+            </div>
+        </div>
+    );
+}
+
 function DesktopChart() {
     return (
         <div className="relative h-[640px] w-[1488px] rounded-[16px] bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[#F3F4F6]">
@@ -153,69 +193,62 @@ function DesktopChart() {
 
 function MobileChart() {
     return (
-        <div className="rounded-[16px] bg-white p-5 shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[#F3F4F6] lg:hidden">
+        <div className="w-full rounded-[16px] border border-[#F3F4F6] bg-white px-[17px] py-[25px] shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
             <div className="flex flex-col gap-2">
-                <h2 className="text-[22px] font-bold leading-[28px] text-[#1E293B]">
-                    Atmospheric CO2 Concentration (2000 - 2050)
+                <h2 className="text-[24px] font-bold leading-[28px] tracking-[-0.75px] text-[#1E293B]">
+                    <span className="block">Atmospheric CO2</span>
+                    <span className="block">Concentration (2000 - 2050)</span>
                 </h2>
-                <p className="text-[14px] leading-6 text-[#6B7280]">
-                    Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
-                </p>
+                <div className="text-[14px] leading-normal text-[#6B7280]">
+                    <p>Historical and projected global average CO2 levels</p>
+                    <p>showing the accelerating Keeling Curve trend.</p>
+                </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-6">
+            <div className="mt-4 flex items-start gap-6">
                 <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-[#14B8A6]" />
-                    <span className="whitespace-nowrap text-[14px] font-medium text-[#4B5563] md:text-[15px]">Historical (2000-2024)</span>
+                    <span className="text-[14px] font-medium leading-5 text-[#4B5563]">Historical (2000-2024)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <div className="h-1 w-4 border-t-2 border-[#14B8A6] opacity-70" />
-                    <span className="whitespace-nowrap text-[14px] font-medium text-[#4B5563] md:text-[15px]">Projected (2025-2050)</span>
+                    <div className="h-1 w-4 border-t-2 border-dashed border-[#14B8A6] opacity-70" />
+                    <span className="text-[14px] font-medium leading-5 text-[#4B5563]">Projected (2025-2050)</span>
                 </div>
             </div>
 
-            <div className="mt-8 flex gap-3">
-                <div className="flex flex-col justify-between pb-8 pt-2 text-[11px] font-medium text-[#6B7280]">
-                    <span>500</span>
-                    <span>470</span>
-                    <span>440</span>
-                    <span>410</span>
-                    <span>380</span>
+            <div className="relative mt-4 h-[386px] w-full">
+                <div className="absolute left-[34px] top-[325px] flex w-[351px] items-center justify-between text-[14px] text-[#6B7280]">
+                    {X_YEARS.map((year) => (
+                        <span key={year}>{year}</span>
+                    ))}
                 </div>
 
-                <div className="relative flex-1">
-                    <div className="relative h-[260px] w-full">
-                        <div className="absolute inset-0 flex flex-col justify-between">
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                            <div className="h-px w-full bg-[#E4E6E9]" />
-                        </div>
-                        <div className="absolute left-[4%] top-[56%] h-[47%] w-[44%]">
-                            <img
-                                alt="Historical CO2 trend"
-                                src="/figma/chart-historical.svg"
-                                className="block size-full max-w-none"
-                            />
-                        </div>
-                        <div className="absolute left-[50%] top-[14%] h-[61%] w-[48%] opacity-70">
-                            <img
-                                alt="Projected CO2 trend"
-                                src="/figma/chart-projected.svg"
-                                className="block size-full max-w-none"
-                            />
-                        </div>
-                    </div>
-                    <div className="mt-3 flex justify-between text-[12px] text-[#6B7280]">
-                        {X_YEARS.map((year) => (
-                            <span key={year}>{year}</span>
-                        ))}
-                    </div>
-                    <div className="mt-2 text-center text-[11px] font-bold uppercase tracking-[1.2px] text-[#9CA3AF] md:text-[12px]">
-                        Time Period (2000 - 2050)
-                    </div>
+                <div className="absolute left-[25px] top-0 text-[11px] font-medium text-[#6B7280]">500</div>
+                <div className="absolute left-[25px] top-[61px] text-[11px] font-medium text-[#6B7280]">470</div>
+                <div className="absolute left-[25px] top-[122px] text-[11px] font-medium text-[#6B7280]">440</div>
+                <div className="absolute left-[25px] top-[183px] text-[11px] font-medium text-[#6B7280]">410</div>
+                <div className="absolute left-[25px] top-[244px] text-[11px] font-medium text-[#6B7280]">380</div>
+
+                <div className="absolute left-[49.85px] top-[6.5px] h-px w-[318px] bg-[#E4E6E9]" />
+                <div className="absolute left-[49.85px] top-[67.5px] h-px w-[318px] bg-[#E4E6E9]" />
+                <div className="absolute left-[49.85px] top-[128.5px] h-px w-[318px] bg-[#E4E6E9]" />
+                <div className="absolute left-[49.85px] top-[189.5px] h-px w-[318px] bg-[#E4E6E9]" />
+                <div className="absolute left-[49.85px] top-[250.5px] h-px w-[318px] bg-[#E4E6E9]" />
+                <div className="absolute left-[50px] top-[312px] h-px w-[318px] bg-[#E4E6E9]" />
+
+                <div className="absolute left-0 top-[298px] origin-left -rotate-90 text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+                    CO2 Concentration (ppm)
+                </div>
+
+                <div className="absolute left-1/2 top-[371px] -translate-x-1/2 text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+                    Time Period (2000 - 2050)
+                </div>
+
+                <div className="absolute left-[49.72px] top-[182px] h-[123px] w-[145.76px]">
+                    <img src="/figma/chart-historical.svg" alt="Historical CO2 trend" className="block size-full max-w-none" />
+                </div>
+                <div className="absolute left-[196.45px] top-[21px] h-[159px] w-[156.31px] opacity-70">
+                    <img src="/figma/chart-projected.svg" alt="Projected CO2 trend" className="block size-full max-w-none" />
                 </div>
             </div>
         </div>
@@ -224,68 +257,122 @@ function MobileChart() {
 
 export default function CO2Section() {
     return (
-        <section className="page-px w-full bg-white py-[60px]">
-            <div className="inline-flex w-full flex-col items-center justify-center gap-10">
-                <div className="hidden lg:block">
-                    <DesktopChart />
-                </div>
+        <section className="w-full bg-white">
+            <div className="flex flex-col gap-6 px-4 py-4 lg:hidden">
                 <MobileChart />
 
-                <div className="flex w-full flex-col items-start justify-between gap-6 lg:w-[1488px] lg:flex-row lg:items-start lg:gap-0">
-                    <div className="relative inline-flex h-auto w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-[12px] bg-[#2D5A27] p-8 lg:h-[336px] lg:w-[987px]">
-                        <Image
-                            src="/figma/co2-card-bg.png"
-                            alt=""
-                            width={1302}
-                            height={869}
-                            sizes="987px"
-                            className="absolute left-[-65px] top-[-266px] h-[869px] w-[1302px] max-w-none"
-                        />
-                        <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
-                            Why This Matters
-                        </div>
-                        <div className="relative font-nimbus flex w-full flex-col justify-center text-[30px] font-normal leading-[36px] text-white md:text-[40px] md:leading-[44px] lg:text-[40px] lg:leading-[44px]">
-                            <p>Rising greenhouse gases such as CO₂ are</p>
-                            <p>driving climate change and warming the planet.</p>
-                        </div>
-                        <div className="relative font-nimbus flex w-full flex-col justify-center text-[16px] font-normal text-white">
-                            <p>
-                                Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
-                                <br />
-                                According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
-                            </p>
-                        </div>
-                    </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <MobileStatCard
+                        value="75%"
+                        color="#CA0000"
+                        labelTop="CO2 Percentage"
+                        labelBottom="Increases Since Year 2000"
+                        showTrend
+                    />
+                    <MobileStatCard
+                        value="75%"
+                        color="#CA0000"
+                        labelTop="CO2 Percentage"
+                        labelBottom="Increases Since Year 2000"
+                        showTrend
+                    />
+                    <MobileStatCard
+                        value="369"
+                        suffix="ppm"
+                        color="#2D5A27"
+                        labelTop="CO2 Concentartion"
+                        labelBottom="Year 2000"
+                    />
+                    <MobileStatCard
+                        value="495"
+                        suffix="ppm"
+                        color="#CA0000"
+                        labelTop="CO2 Concentartion"
+                        labelBottom="Year 2050 (Projected)"
+                    />
+                </div>
 
-                    <div className="flex w-full flex-wrap content-start items-start justify-start gap-4 lg:w-[485px]">
-                        <StatCard
-                            value="75%"
-                            color="#CA0000"
-                            labelTop="CO2 Percentage"
-                            labelBottom="Increases Since Year 2000"
-                            showTrend
-                        />
-                        <StatCard
-                            value="75%"
-                            color="#CA0000"
-                            labelTop="CO2 Percentage"
-                            labelBottom="Increases Since Year 2000"
-                            showTrend
-                        />
-                        <StatCard
-                            value="369"
-                            suffix="ppm"
-                            color="#2D5A27"
-                            labelTop="CO2 Concentartion"
-                            labelBottom="Year 2000"
-                        />
-                        <StatCard
-                            value="495"
-                            suffix="ppm"
-                            color="#CA0000"
-                            labelTop="CO2 Concentartion"
-                            labelBottom="Year 2050 (Projected)"
-                        />
+                <div className="relative w-full overflow-hidden rounded-[12px] bg-[#2D5A27] px-4 py-8">
+                    <Image
+                        src="/figma/co2-card-bg.png"
+                        alt=""
+                        width={581}
+                        height={383}
+                        sizes="408px"
+                        className="absolute left-[-41px] top-0 h-[383px] w-[581px] max-w-none"
+                    />
+                    <div className="relative font-nimbus text-[20px] text-white">Why This Matters</div>
+                    <div className="relative mt-4 font-nimbus text-[26px] leading-[1.2] text-white">
+                        <p>Rising greenhouse gases</p>
+                        <p>such as CO₂ are driving climate change and warming the planet.</p>
+                    </div>
+                    <div className="relative mt-4 font-nimbus text-[14px] text-white">
+                        <p>Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.</p>
+                        <p>According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="page-px hidden py-[60px] lg:block">
+                <div className="inline-flex w-full flex-col items-center justify-center gap-10">
+                    <DesktopChart />
+
+                    <div className="flex w-[1488px] items-start justify-between gap-0">
+                        <div className="relative inline-flex h-[336px] w-[987px] flex-col items-start justify-center gap-4 overflow-hidden rounded-[12px] bg-[#2D5A27] p-8">
+                            <Image
+                                src="/figma/co2-card-bg.png"
+                                alt=""
+                                width={1302}
+                                height={869}
+                                sizes="987px"
+                                className="absolute left-[-65px] top-[-266px] h-[869px] w-[1302px] max-w-none"
+                            />
+                            <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
+                                Why This Matters
+                            </div>
+                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-[44px] text-white">
+                                <p>Rising greenhouse gases such as CO₂ are</p>
+                                <p>driving climate change and warming the planet.</p>
+                            </div>
+                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[16px] font-normal text-white">
+                                <p>
+                                    Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
+                                    <br />
+                                    According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex w-[485px] flex-wrap content-start items-start justify-start gap-4">
+                            <StatCard
+                                value="75%"
+                                color="#CA0000"
+                                labelTop="CO2 Percentage"
+                                labelBottom="Increases Since Year 2000"
+                                showTrend
+                            />
+                            <StatCard
+                                value="75%"
+                                color="#CA0000"
+                                labelTop="CO2 Percentage"
+                                labelBottom="Increases Since Year 2000"
+                                showTrend
+                            />
+                            <StatCard
+                                value="369"
+                                suffix="ppm"
+                                color="#2D5A27"
+                                labelTop="CO2 Concentartion"
+                                labelBottom="Year 2000"
+                            />
+                            <StatCard
+                                value="495"
+                                suffix="ppm"
+                                color="#CA0000"
+                                labelTop="CO2 Concentartion"
+                                labelBottom="Year 2050 (Projected)"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

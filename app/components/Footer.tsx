@@ -15,29 +15,35 @@ export default function Footer() {
     return (
         <footer className="w-full">
             <div className="lg:hidden">
-                <div className="page-px flex w-full flex-col items-center justify-between gap-6 bg-gradient-to-r from-white to-[#5e9357] py-6">
-                    <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={209} height={45} className="h-[45px] w-auto" />
-                    <Button>Get Involved</Button>
+                <div className="bg-gradient-to-r from-white to-[#5e9357] px-4 py-6">
+                    <div className="mx-auto flex w-full max-w-[440px] items-center justify-between">
+                        <div className="relative h-10 w-[221.333px] overflow-hidden">
+                            <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
+                        </div>
+                        <button className="rounded-[32px] bg-[#2d5a27] px-4 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-white">
+                            Get Involved
+                        </button>
+                    </div>
                 </div>
 
-                <div className="page-px flex w-full flex-col gap-8 bg-[#0d1f00] py-12">
-                    <div className="flex flex-col gap-10">
-                        <div className="flex flex-col gap-6">
-                            <div className="font-nimbus max-w-[384px] text-[16px] leading-[26px] text-[#94a3b8]">
-                                <p>Engineering biology to restore the air we breathe.</p>
-                                <p className="font-bold">Together, we can restore the air we share.</p>
+                <div className="bg-[#0d1f00] px-4 py-8">
+                    <div className="mx-auto flex w-full max-w-[440px] flex-col gap-8">
+                        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-4 [grid-template-rows:170px_auto]">
+                            <div className="col-start-1 row-start-1 flex flex-col gap-6 self-start pb-[10px]">
+                                <div className="w-full max-w-[384px] font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
+                                    <p>Engineering biology to restore the air we breathe.</p>
+                                    <p className="font-bold">Together, we can restore the air we share.</p>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    {SOCIALS.map((social) => (
+                                        <a key={social.alt} href="#" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
+                                            <img src={social.src} alt="" className="size-[26.88px]" />
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                {SOCIALS.map((social) => (
-                                    <a key={social.alt} href="#" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border border-[#94a3b8]">
-                                        <img src={social.src} alt="" className="size-[26.88px]" />
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
 
-                        <div className="grid grid-cols-1 gap-8">
-                            <div className="flex flex-col gap-4">
+                            <div className="col-start-1 row-start-2 flex flex-col gap-4 self-start">
                                 <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Quick Links</h4>
                                 <div className="flex flex-col items-start">
                                     {QUICK_LINKS.map((link) => (
@@ -46,7 +52,7 @@ export default function Footer() {
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-4">
+                            <div className="col-start-2 row-start-2 flex flex-col gap-4 self-start pb-[34px]">
                                 <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Contact</h4>
                                 <div className="flex flex-col gap-2">
                                     {CONTACTS.map((contact) => (
@@ -55,16 +61,18 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="h-px w-full bg-[#1e1e1e]" />
+                        <div className="h-px w-full bg-[#5e5e5e]" />
 
-                    <div className="flex flex-col gap-4">
-                        <p className="text-[16px] leading-[25.6px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
-                        <div className="flex flex-wrap items-center gap-2">
-                            {LEGAL.map((item) => (
-                                <a key={item} href="#" className="rounded-[40px] px-2 py-4 text-[14px] leading-[21px] text-[#94a3b8]">{item}</a>
-                            ))}
+                        <div className="flex flex-col items-center gap-3">
+                            <div className="flex h-12 w-full items-center justify-center">
+                                <div className="flex min-w-0 flex-1 items-center justify-between pr-2 text-[14px] leading-[21px] text-[#94a3b8]">
+                                    {LEGAL.map((item) => (
+                                        <a key={item} href="#" className="flex h-12 items-center justify-center px-2 whitespace-nowrap">{item}</a>
+                                    ))}
+                                </div>
+                            </div>
+                            <p className="w-full text-[16px] leading-[25.6px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
