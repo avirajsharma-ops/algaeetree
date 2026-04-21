@@ -21,7 +21,8 @@ export default function TechHero() {
                         sizes="(max-width: 1024px) 100vw, 1488px"
                         className="object-cover object-[78%_center] lg:object-center"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
+                    {/* Desktop-only subtle overlay to keep text legible */}
+                    <div className="absolute inset-0 hidden bg-gradient-to-r from-black/55 via-black/25 to-transparent lg:block" />
                     {/* Mobile heading */}
                     <motion.h1
                         initial={{ opacity: 0, y: 16 }}

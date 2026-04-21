@@ -61,30 +61,30 @@ function StatCircle({ stat, index }: { stat: Stat; index: number }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center gap-[26px] lg:gap-10"
+            className="flex flex-col items-center gap-4 lg:gap-10"
         >
-            <div className="relative size-[166px] lg:size-[260px]">
+            <div className="relative size-[128px] sm:size-[148px] lg:size-[260px]">
                 <span
                     className="absolute inset-0 rounded-full border-[2px] border-white/85"
                     aria-hidden
                 />
                 <span
-                    className="absolute inset-[11px] rounded-full border border-white/55 lg:inset-[18px]"
+                    className="absolute inset-[8px] rounded-full border border-white/55 sm:inset-[10px] lg:inset-[18px]"
                     aria-hidden
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                     {stat.countTo !== undefined ? (
-                        <motion.span className="font-nimbus text-[42px] leading-none text-white lg:text-[64px]">
+                        <motion.span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
                             {display}
                         </motion.span>
                     ) : (
-                        <span className="font-nimbus text-[42px] leading-none text-white lg:text-[64px]">
+                        <span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
                             {stat.display}
                         </span>
                     )}
                 </div>
             </div>
-            <p className="font-nimbus text-center text-[16px] font-bold leading-tight tracking-[0.6px] text-white lg:text-[26px] lg:leading-[32px] lg:tracking-[1px]">
+            <p className="font-nimbus text-center text-[14px] font-bold leading-tight tracking-[0.6px] text-white sm:text-[16px] lg:text-[26px] lg:leading-[32px] lg:tracking-[1px]">
                 {stat.label.map((line) => (
                     <span key={line} className="block">
                         {line}
@@ -120,7 +120,7 @@ export default function PowerAutonomySection() {
                             Power & Autonomy
                         </motion.h2>
 
-                        <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 lg:mt-[124px] lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-[66px]">
+                        <div className="mt-12 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 lg:mt-[124px] lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-[66px]">
                             {STATS.map((stat, i) => (
                                 <StatCircle key={stat.label.join(" ")} stat={stat} index={i} />
                             ))}

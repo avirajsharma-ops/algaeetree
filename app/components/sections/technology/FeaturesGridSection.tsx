@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 const FEATURES = [
     {
@@ -60,6 +60,7 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
 
 function MobileCarousel() {
     const [index, setIndex] = useState(0);
+    const [paused, setPaused] = useState(false);
 
     const next = useCallback(() => setIndex((i) => (i + 1) % FEATURES.length), []);
     const prev = useCallback(
@@ -67,10 +68,26 @@ function MobileCarousel() {
         [],
     );
 
+    // Autoplay (pauses on hover / touch)
+    useEffect(() => {
+        if (paused) return;
+        const id = window.setInterval(next, 4000);
+        return () => window.clearInterval(id);
+    }, [paused, next]);
+
     const card = FEATURES[index];
 
+    const pause = () => setPaused(true);
+    const resume = () => setPaused(false);
+
     return (
-        <div className="flex w-full flex-col items-center gap-4">
+        <div
+            className="flex w-full flex-col items-center gap-4"
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={resume}
+        >
             <div className="relative h-[436px] w-full overflow-hidden rounded-[16px] bg-white shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
                 <AnimatePresence mode="wait" initial={false}>
                     <motion.article
@@ -115,11 +132,10 @@ function MobileCarousel() {
                                 className="relative flex items-center justify-center"
                             >
                                 <span
-                                    className={`block rounded-full transition-all ${
-                                        active
+                                    className={`block rounded-full transition-all ${active
                                             ? "size-[11px] bg-[#2d5a27]"
                                             : "size-[8px] border border-[#2d5a27]/60 bg-transparent"
-                                    }`}
+                                        }`}
                                 />
                             </button>
                         );
