@@ -11,7 +11,7 @@ export const metadata = {
     title: "Technology — AlgaeTree",
     description:
         "How the AlgaeTree system captures CO₂, purifies air, and operates autonomously using microalgae and renewable energy.",
-};
+};   
 
 export default function TechnologyPage() {
     return (

@@ -20,8 +20,11 @@ const DESKTOP_NAV_ITEMS = [
     { label: "Technology", href: "/technology" },
     {
         label: "Solutions",
-        href: "/solutions/ccus",
-        children: [{ label: "CCUS", href: "/solutions/ccus" }],
+        href: "/solutions/b2c",
+        children: [
+            { label: "B2C", href: "/solutions/b2c" },
+            { label: "CCUS", href: "/solutions/ccus" },
+        ],
     },
     { label: "About Us", href: "/about" },
     { label: "News & Events", href: "#" },
@@ -32,8 +35,11 @@ const MOBILE_NAV_ITEMS = [
     { label: "Technology", href: "/technology" },
     {
         label: "Solutions",
-        href: "/solutions/ccus",
-        children: [{ label: "CCUS", href: "/solutions/ccus" }],
+        href: "/solutions/b2c",
+        children: [
+            { label: "B2C", href: "/solutions/b2c" },
+            { label: "CCUS", href: "/solutions/ccus" },
+        ],
     },
     { label: "About Us", href: "/about" },
     { label: "News & Events", href: "#" },
