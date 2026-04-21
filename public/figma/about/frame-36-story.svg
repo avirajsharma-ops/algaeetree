@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 1488 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 36">
+<path id="Subtract" opacity="0.8" d="M1488 232C1488 245.255 1477.25 256 1464 256H1416C1376.24 256 1344 288.235 1344 328V376C1344 389.255 1333.25 400 1320 400H24C10.7452 400 0 389.255 0 376V103C0 89.7452 10.7452 79 24 79H364C377.255 79 388 68.2548 388 55V24C388 10.7452 398.745 0 412 0H1464C1477.25 0 1488 10.7452 1488 24V232Z" fill="var(--fill-0, #D9D9D9)"/>
+<g id="Frame 37">
+<circle id="Ellipse 4" cx="1423" cy="335" r="65" fill="var(--fill-0, #D9D9D9)"/>
+<g id="arrow_downward">
+<mask id="mask0_0_825" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1397" y="309" width="52" height="52">
+<rect id="Bounding box" x="1397" y="309" width="52" height="52" fill="var(--fill-0, #D9D9D9)"/>
+</mask>
+<g mask="url(#mask0_0_825)">
+<path id="arrow_downward_2" d="M1420.83 317.667V344.046L1408.7 331.912L1405.67 335L1423 352.333L1440.33 335L1437.3 331.912L1425.17 344.046V317.667H1420.83Z" fill="var(--fill-0, #1C1B1F)"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
