@@ -4,7 +4,7 @@ export default function StoryHeaderSection() {
             <div className="page-px flex flex-col gap-4 py-8 lg:gap-0 lg:py-[60px]">
                 {/* Heading row */}
                 <div className="flex flex-col items-start gap-4 px-0 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-4">
-                    <h2 className="font-nevera whitespace-nowrap text-[34px] leading-[40px] text-black sm:text-[40px] lg:text-[56px] lg:leading-[72px]">
+                    <h2 className="font-nimbus whitespace-nowrap text-[40px] font-normal leading-[40px] text-black lg:font-nevera lg:text-[56px] lg:leading-[72px]">
                         {/* Mobile: "Our Story," / "Vision, and Value" */}
                         <span className="block lg:hidden">Our Story,</span>
                         <span className="block lg:hidden">Vision, and Value</span>

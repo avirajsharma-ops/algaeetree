@@ -5,7 +5,7 @@ export default function AlignmentSection() {
         <section className="w-full bg-white">
             <div className="page-px flex flex-col items-center gap-4 pb-8 lg:flex-row lg:justify-between lg:gap-12 lg:py-[60px]">
                 <div className="order-2 flex w-full flex-col gap-4 lg:order-1 lg:w-[678px]">
-                    <h2 className="font-nevera text-[40px] leading-[40px] text-black lg:text-[56px] lg:leading-[72px]">
+                    <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black lg:font-nevera lg:text-[56px] lg:leading-[72px]">
                         <span className="block">Alignment with</span>
                         <span className="block">Government Goals</span>
                     </h2>

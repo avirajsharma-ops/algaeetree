@@ -27,8 +27,8 @@ const mobile = [
 export default function GallerySection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px flex flex-col items-center gap-6 py-4 lg:gap-20 lg:py-[60px]">
-                <h2 className="font-nevera text-[28px] leading-[40px] text-black lg:text-[56px] lg:leading-[64px]">
+            <div className="page-px flex flex-col gap-6 py-4 lg:items-center lg:gap-20 lg:py-[60px]">
+                <h2 className="font-nevera self-start text-[28px] leading-[40px] text-black lg:self-auto lg:text-[56px] lg:leading-[64px]">
                     Gallery
                 </h2>
 

@@ -9,7 +9,7 @@ export default function MissionSection() {
                     className="block h-[408px] w-full lg:h-[800px] lg:w-[736px]"
                 />
                 <div className="flex w-full flex-col gap-4 lg:w-[678px]">
-                    <h2 className="font-nevera text-[40px] leading-[40px] text-black lg:text-[56px] lg:leading-[72px]">
+                    <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black lg:font-nevera lg:text-[56px] lg:leading-[72px]">
                         Mission
                     </h2>
                     <div className="font-nimbus space-y-3 text-[14px] leading-[normal] text-[#686868] lg:text-[20px] lg:leading-[28px]">
