@@ -41,7 +41,7 @@ export default function Header() {
                     {DESKTOP_NAV_ITEMS.map((item) => (
                         <a
                             key={item.label}
-                            href="#"
+                            href={item.label === "Technology" ? "/technology" : "#"}
                             className="inline-flex items-center gap-1 text-[14px] font-normal uppercase leading-[21px] text-[#212121] hover:text-[#2D5A27]"
                         >
                             {item.label}
@@ -87,7 +87,7 @@ export default function Header() {
                     {MOBILE_NAV_ITEMS.map((item) => (
                         <a
                             key={item.label}
-                            href="#"
+                            href={item.label === "Technology" ? "/technology" : "#"}
                             className="flex items-center justify-between rounded-[8px] border border-[#2d5a27]/50 bg-white px-3 py-2.5"
                         >
                             <span className="text-[14px] font-medium uppercase leading-[21px] text-[#212121]">
