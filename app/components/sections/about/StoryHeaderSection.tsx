@@ -1,9 +1,9 @@
 export default function StoryHeaderSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px flex flex-col gap-4 py-8 lg:gap-0 lg:py-[60px]">
+            <div className="flex flex-col gap-4 px-4 pt-8 pb-12 lg:px-[120px] lg:gap-0 lg:pt-[60px] lg:pb-12">
                 {/* Heading row */}
-                <div className="flex flex-col items-start gap-4 px-0 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-4">
+                <div className="flex flex-col items-start gap-4 px-4 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-4">
                     <h2 className="font-nimbus whitespace-nowrap text-[40px] font-normal leading-[40px] text-black lg:font-nevera lg:text-[56px] lg:leading-[72px]">
                         {/* Mobile: "Our Story," / "Vision, and Value" */}
                         <span className="block lg:hidden">Our Story,</span>
@@ -20,24 +20,16 @@ export default function StoryHeaderSection() {
 
                 {/* Story banner — top-left notch tucks under the heading on desktop. */}
                 <div className="relative w-full lg:-mt-14">
-                    <svg
-                        viewBox="0 0 1488 400"
-                        preserveAspectRatio="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="block h-[160px] w-full lg:h-[400px]"
+                    <div className="relative lg:hidden">
+                        <img src="/figma/about/mobile/story-shape.svg" alt="" aria-hidden="true" className="block h-auto w-full" />
+                        <img src="/figma/about/mobile/story-arrow.svg" alt="" aria-hidden="true" className="absolute right-0 bottom-0 size-9" />
+                    </div>
+                    <img
+                        src="/figma/about/frame-36-story.svg"
+                        alt=""
                         aria-hidden="true"
-                    >
-                        <path
-                            opacity="0.8"
-                            d="M1488 232C1488 245.255 1477.25 256 1464 256H1416C1376.24 256 1344 288.235 1344 328V376C1344 389.255 1333.25 400 1320 400H24C10.7452 400 0 389.255 0 376V103C0 89.7452 10.7452 79 24 79H364C377.255 79 388 68.2548 388 55V24C388 10.7452 398.745 0 412 0H1464C1477.25 0 1488 10.7452 1488 24V232Z"
-                            fill="#d9d9d9"
-                        />
-                        <circle cx="1423" cy="335" r="65" fill="#d9d9d9" />
-                        <path
-                            d="M1420.83 317.667V344.046L1408.7 331.912L1405.67 335L1423 352.333L1440.33 335L1437.3 331.912L1425.17 344.046V317.667H1420.83Z"
-                            fill="#1C1B1F"
-                        />
-                    </svg>
+                        className="hidden h-[400px] w-full lg:block"
+                    />
                 </div>
             </div>
         </section>
