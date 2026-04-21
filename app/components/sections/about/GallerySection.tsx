@@ -27,17 +27,17 @@ const mobile = [
 export default function GallerySection() {
     return (
         <section className="w-full bg-white">
-            <div className="flex flex-col items-center gap-6 px-4 py-4 lg:gap-20 lg:px-[120px] lg:py-[60px]">
-                <h2 className="font-nevera text-[28px] leading-[40px] text-black lg:text-[56px] lg:leading-[64px]">
+            <div className="flex flex-col items-center gap-6 px-4 py-4 sm:px-6 sm:py-8 xl:gap-20 xl:px-[120px] xl:py-[60px]">
+                <h2 className="font-nevera text-[28px] leading-[40px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
                     Gallery
                 </h2>
 
                 {/* Mobile / tablet grid (2 columns) */}
-                <div className="grid w-full grid-cols-2 gap-4 lg:hidden">
+                <div className="grid w-full grid-cols-2 gap-4 md:gap-6 xl:hidden">
                     {mobile.map((img, i) => (
                         <div
                             key={`m-${i}`}
-                            className={`${img.col} relative h-[200px] overflow-hidden rounded-[16px] bg-[#d9d9d9]`}
+                            className={`${img.col} relative h-[200px] overflow-hidden rounded-[16px] bg-[#d9d9d9] md:h-[260px] md:rounded-[24px]`}
                         >
                             {img.crop === "cover" ? (
                                 <Image src={img.src} alt={img.alt} fill sizes="50vw" className="object-cover" />
@@ -71,7 +71,7 @@ export default function GallerySection() {
                 </div>
 
                 {/* Desktop grid (4 columns) */}
-                <div className="hidden w-full grid-cols-4 gap-6 lg:grid">
+                <div className="hidden w-full grid-cols-4 gap-6 xl:grid">
                     {desktop.map((img, i) => (
                         <div
                             key={`d-${i}`}

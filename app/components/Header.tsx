@@ -26,6 +26,8 @@ function navHref(label: string) {
             return "/technology";
         case "About Us":
             return "/about";
+        case "Team":
+            return "/team";
         default:
             return "#";
     }
@@ -36,7 +38,7 @@ export default function Header() {
 
     return (
         <header className="relative z-50 w-full border-b border-[#2d5a27]/50 bg-white">
-            <div className="mx-auto flex h-[72px] w-full items-center justify-between px-6 lg:h-[83px] lg:px-8 xl:px-[120px]">
+            <div className="mx-auto flex h-[72px] w-full items-center justify-between px-4 sm:px-6 xl:h-[83px] xl:px-[120px]">
                 <Link href="/" className="flex items-center">
                     <Image
                         src="/Logo_Main 1.png"
@@ -48,7 +50,7 @@ export default function Header() {
                     />
                 </Link>
 
-                <nav className="hidden items-center gap-10 lg:flex">
+                <nav className="hidden items-center gap-10 xl:flex">
                     {DESKTOP_NAV_ITEMS.map((item) => (
                         <a
                             key={item.label}
@@ -78,14 +80,14 @@ export default function Header() {
                     ))}
                 </nav>
 
-                <div className="hidden lg:block">
+                <div className="hidden xl:block">
                     <Button>Contact Us</Button>
                 </div>
 
                 <button
                     onClick={() => setOpen((value) => !value)}
                     aria-label="Toggle navigation"
-                    className="relative size-12 rounded-[8px] lg:hidden"
+                    className="relative size-12 rounded-[8px] xl:hidden"
                 >
                     <span className="absolute left-2 top-[11.5px] h-[3px] w-8 rounded-[2px] bg-[#2d5a27]" />
                     <span className="absolute left-2 top-[22px] h-[3px] w-8 rounded-[2px] bg-[#2d5a27]" />
@@ -94,7 +96,7 @@ export default function Header() {
             </div>
 
             {open && (
-                <div className="absolute left-0 right-0 top-full z-50 flex flex-col gap-2 border-b border-[#2d5a27]/50 bg-white p-4 lg:hidden">
+                <div className="absolute left-0 right-0 top-full z-50 flex flex-col gap-2 border-b border-[#2d5a27]/50 bg-white p-4 xl:hidden">
                     {MOBILE_NAV_ITEMS.map((item) => (
                         <a
                             key={item.label}

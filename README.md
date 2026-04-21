@@ -44,6 +44,7 @@ npm run start
 - `/` home page
 - `/technology` technology page
 - `/about` about page
+- `/team` team page
 
 ## Project Structure
 
@@ -51,10 +52,13 @@ npm run start
 - `app/components/` shared UI such as header, footer, and buttons
 - `app/components/sections/technology/` technology page sections
 - `app/components/sections/about/` about page sections
+- `app/components/sections/team/` team page sections
 - `public/figma/` exported design assets downloaded from Figma MCP
 
 ## Notes
 
 - The About page is implemented against the Figma source for both desktop and mobile variants.
 - Assets used by the About page are stored under `public/figma/about/` and `public/figma/about/mobile/`.
+- Assets used by the Team page are stored under `public/figma/team/`.
 - The selected mobile Figma frame does not expose prototype animation data through MCP, so the page matches the static design rather than inventing non-source interactions.
+- The Team page Figma source only exposes a desktop frame and does not include Team-specific mobile or prototype variants, so responsive behavior and motion are inferred conservatively from the desktop composition.

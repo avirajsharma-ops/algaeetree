@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Button from "./Button";
 
-const QUICK_LINKS = ["Technology", "About Us", "Team", "Reads"];
+const QUICK_LINKS = [
+    { label: "Technology", href: "/technology" },
+    { label: "About Us", href: "/about" },
+    { label: "Team", href: "/team" },
+    { label: "Reads", href: "#" },
+];
 const CONTACTS = ["hello@algaetree.tech", "Bhopal, IN", "+91 xx xxxx xxxx"];
 const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
@@ -14,9 +19,9 @@ const SOCIALS = [
 export default function Footer() {
     return (
         <footer className="w-full">
-            <div className="lg:hidden">
+            <div className="xl:hidden">
                 <div className="bg-gradient-to-r from-white to-[#5e9357] px-4 py-6">
-                    <div className="mx-auto flex w-full max-w-[440px] items-center justify-between">
+                    <div className="mx-auto flex w-full max-w-[440px] items-center justify-between md:max-w-[720px]">
                         <div className="relative h-10 w-[221.333px] overflow-hidden">
                             <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
                         </div>
@@ -27,7 +32,7 @@ export default function Footer() {
                 </div>
 
                 <div className="bg-[#0d1f00] px-4 py-8">
-                    <div className="mx-auto flex w-full max-w-[440px] flex-col gap-8">
+                    <div className="mx-auto flex w-full max-w-[440px] flex-col gap-8 md:max-w-[720px]">
                         <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8">
                             <div className="col-span-2 row-start-1 flex flex-col gap-6">
                                 <div className="w-full max-w-[384px] font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
@@ -47,7 +52,7 @@ export default function Footer() {
                                 <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Quick Links</h4>
                                 <div className="flex flex-col items-start">
                                     {QUICK_LINKS.map((link) => (
-                                        <a key={link} href="#" className="py-[6px] text-[16px] leading-[25.6px] text-[#94a3b8]">{link}</a>
+                                        <a key={link.label} href={link.href} className="py-[6px] text-[16px] leading-[25.6px] text-[#94a3b8]">{link.label}</a>
                                     ))}
                                 </div>
                             </div>
@@ -76,7 +81,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="hidden lg:block w-full">
+            <div className="hidden xl:block w-full">
                 <div className="w-full bg-gradient-to-r from-white to-[#5e9357]">
                     <div className="mx-auto flex w-full max-w-[1728px] items-center justify-between px-[120px] py-[24px]">
                         <div className="relative h-[45px] w-[249px] overflow-clip">
@@ -109,8 +114,8 @@ export default function Footer() {
                                 <div className="font-nimbus w-full text-[16px] leading-[26px] text-white">Quick Links</div>
                                 <div className="flex w-full flex-col items-start">
                                     {QUICK_LINKS.map((link) => (
-                                        <div key={link} className="relative overflow-clip py-[6px]">
-                                            <a href="#" className="text-[16px] leading-[25.6px] text-[#94a3b8]">{link}</a>
+                                        <div key={link.label} className="relative overflow-clip py-[6px]">
+                                            <a href={link.href} className="text-[16px] leading-[25.6px] text-[#94a3b8]">{link.label}</a>
                                         </div>
                                     ))}
                                 </div>
