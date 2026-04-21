@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
 
 const STEPS = [
     {
@@ -43,13 +40,7 @@ export default function HowItWorksSection() {
     return (
         <section className="hidden w-full bg-white lg:block">
             <div className="page-px py-12 lg:py-[120px]">
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex w-full items-start gap-6 lg:gap-12"
-                >
+                <div className="flex w-full items-start gap-6 lg:gap-12">
                     <div className="self-stretch w-[5px] shrink-0 rounded-[8px] bg-black lg:w-[7px]" />
                     <div className="flex flex-col gap-3 lg:gap-4">
                         <h2 className="font-nevera text-[32px] leading-[1.1] text-black lg:text-[56px] lg:leading-[64px]">
@@ -59,7 +50,7 @@ export default function HowItWorksSection() {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris ligula consectetur, ultrices mauris.
                         </p>
                     </div>
-                </motion.div>
+                </div>
 
                 <div className="relative mt-10 lg:mt-20">
                     <div
@@ -71,17 +62,9 @@ export default function HowItWorksSection() {
                         }}
                     />
                     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-16 lg:gap-y-10">
-                        {STEPS.map((step, i) => (
-                            <motion.div
+                        {STEPS.map((step) => (
+                            <div
                                 key={step.number}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-60px" }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: i * 0.08,
-                                    ease: [0.22, 1, 0.36, 1],
-                                }}
                                 className="flex flex-col items-center gap-4 text-center"
                             >
                                 <div className="relative aspect-square w-full max-w-[246px]">
@@ -93,16 +76,14 @@ export default function HowItWorksSection() {
                                         className="object-cover"
                                     />
                                 </div>
-                                <motion.div
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                                <div
                                     className="relative flex size-[100px] items-center justify-center rounded-full shadow-[0px_30px_37.5px_-7.5px_rgba(0,0,0,0.1),0px_12px_15px_-9px_rgba(0,0,0,0.1)] lg:size-[120px]"
                                     style={{ backgroundImage: stepGradient }}
                                 >
                                     <span className="font-bold text-white text-[36px] leading-none lg:text-[45px]">
                                         {step.number}
                                     </span>
-                                </motion.div>
+                                </div>
                                 <h3 className="text-[20px] font-bold leading-[26px] text-black lg:text-[24px] lg:leading-[28px]">
                                     {step.title.map((line) => (
                                         <span key={line} className="block">
@@ -113,7 +94,7 @@ export default function HowItWorksSection() {
                                 <p className="text-[15px] leading-[22px] text-black lg:text-[18px] lg:leading-[24px]">
                                     {step.description}
                                 </p>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </div>

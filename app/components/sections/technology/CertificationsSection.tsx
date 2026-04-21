@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "motion/react";
 
 const CERTS = [
     { src: "/figma/technology/cert-1.png", alt: "Patent eFiling — NPA filing receipt" },
@@ -14,29 +11,14 @@ export default function CertificationsSection() {
     return (
         <section className="hidden w-full bg-[#0d1f00] lg:block">
             <div className="page-px py-12 lg:py-[120px]">
-                <motion.h2
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="font-nevera text-[32px] leading-[1.1] text-white lg:text-[56px] lg:leading-[72px]"
-                >
+                <h2 className="font-nevera text-[32px] leading-[1.1] text-white lg:text-[56px] lg:leading-[72px]">
                     Our Certifications
-                </motion.h2>
+                </h2>
 
                 <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-10">
-                    {CERTS.map((cert, i) => (
-                        <motion.div
+                    {CERTS.map((cert) => (
+                        <div
                             key={cert.alt}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-60px" }}
-                            transition={{
-                                duration: 0.5,
-                                delay: i * 0.08,
-                                ease: [0.22, 1, 0.36, 1],
-                            }}
-                            whileHover={{ scale: 1.02 }}
                             className="flex aspect-[2479/3508] w-full items-center justify-center bg-white p-3"
                         >
                             <div className="relative size-full">
@@ -48,7 +30,7 @@ export default function CertificationsSection() {
                                     className="object-cover"
                                 />
                             </div>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

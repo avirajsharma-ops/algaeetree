@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "motion/react";
-
 const STATS = [
     {
         title: ["CO₂ Captured", "Per Year"],
@@ -27,13 +23,7 @@ const STATS = [
 
 function HeaderBlock() {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex w-full flex-col gap-6 lg:flex-row lg:items-start lg:justify-between"
-        >
+        <div className="flex w-full flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex items-start gap-4 lg:gap-12">
                 <div className="w-[6px] shrink-0 self-stretch rounded-[8px] bg-white lg:w-[7px]" />
                 <h2 className="font-nevera text-[28px] leading-[32px] text-white lg:font-medium lg:uppercase lg:text-[56px] lg:leading-[64px]">
@@ -48,19 +38,13 @@ function HeaderBlock() {
                 closed-loop nutrient system. This enables long-term carbon capture with
                 minimal environmental footprint.
             </p>
-        </motion.div>
+        </div>
     );
 }
 
 function RealLifeDataCard() {
     return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex w-full flex-col items-start justify-center rounded-[16px] bg-white px-4 py-8 lg:h-[400px] lg:items-center lg:rounded-[40px] lg:p-10 lg:text-center"
-        >
+        <div className="flex w-full flex-col items-start justify-center rounded-[16px] bg-white px-4 py-8 lg:h-[400px] lg:items-center lg:rounded-[40px] lg:p-10 lg:text-center">
             <h3 className="font-nimbus text-[40px] leading-tight text-black lg:text-[56px] lg:leading-[64px]">
                 Real Life Data
             </h3>
@@ -71,25 +55,16 @@ function RealLifeDataCard() {
                 CO₂ per day, equivalent to approximately 650&ndash;700 kg annually, while
                 also helping reduce particulate pollution in the surrounding air.
             </p>
-        </motion.div>
+        </div>
     );
 }
 
 function StatGrid() {
     return (
         <div className="grid w-full grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
-            {STATS.map((stat, i) => (
-                <motion.div
+            {STATS.map((stat) => (
+                <div
                     key={stat.title.join(" ")}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{
-                        duration: 0.5,
-                        delay: i * 0.08,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    whileHover={{ y: -6 }}
                     className="flex h-[200px] flex-col gap-2 rounded-[24px] bg-white p-4 lg:h-[400px] lg:rounded-[40px] lg:p-10"
                 >
                     <h4 className="font-nimbus text-[16px] font-bold leading-[24px] text-[#3c3c3c] lg:text-[24px] lg:leading-[34px]">
@@ -107,7 +82,7 @@ function StatGrid() {
                             {stat.unit}
                         </span>
                     </div>
-                </motion.div>
+                </div>
             ))}
         </div>
     );

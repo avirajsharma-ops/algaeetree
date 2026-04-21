@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
 import { useState, useCallback, useEffect } from "react";
 
 const FEATURES = [
@@ -68,7 +67,7 @@ function MobileCarousel() {
         [],
     );
 
-    // Autoplay (pauses on hover / touch)
+    // Auto-advance (pauses on hover / touch)
     useEffect(() => {
         if (paused) return;
         const id = window.setInterval(next, 4000);
@@ -88,35 +87,24 @@ function MobileCarousel() {
             onTouchStart={pause}
             onTouchEnd={resume}
         >
-            <div className="relative h-[436px] w-full overflow-hidden rounded-[16px] bg-white shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
-                <AnimatePresence mode="wait" initial={false}>
-                    <motion.article
-                        key={index}
-                        initial={{ opacity: 0, x: 24 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -24 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute inset-0 flex flex-col items-start gap-6 px-4 pb-6"
-                    >
-                        <div className="h-[256px] w-full bg-[#d9d9d9]" />
-                        <div className="flex w-full flex-col gap-2 text-black">
-                            <h3 className="font-nimbus text-[24px] font-bold leading-tight">
-                                {card.title}
-                            </h3>
-                            <p className="font-nimbus text-[16px] leading-[24px]">
-                                {card.description}
-                            </p>
-                        </div>
-                    </motion.article>
-                </AnimatePresence>
-            </div>
+            <article className="flex h-[436px] w-full flex-col items-start gap-6 overflow-hidden rounded-[16px] bg-white px-4 pb-6 shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="h-[256px] w-full bg-[#d9d9d9]" />
+                <div className="flex w-full flex-col gap-2 text-black">
+                    <h3 className="font-nimbus text-[24px] font-bold leading-tight">
+                        {card.title}
+                    </h3>
+                    <p className="font-nimbus text-[16px] leading-[24px]">
+                        {card.description}
+                    </p>
+                </div>
+            </article>
 
             <div className="flex items-center gap-1.5">
                 <button
                     type="button"
                     onClick={prev}
                     aria-label="Previous feature"
-                    className="size-7 transition-transform active:scale-95"
+                    className="size-7"
                 >
                     <ArrowIcon direction="left" />
                 </button>
@@ -132,9 +120,9 @@ function MobileCarousel() {
                                 className="relative flex items-center justify-center"
                             >
                                 <span
-                                    className={`block rounded-full transition-all ${active
-                                            ? "size-[11px] bg-[#2d5a27]"
-                                            : "size-[8px] border border-[#2d5a27]/60 bg-transparent"
+                                    className={`block rounded-full ${active
+                                        ? "size-[11px] bg-[#2d5a27]"
+                                        : "size-[8px] border border-[#2d5a27]/60 bg-transparent"
                                         }`}
                                 />
                             </button>
@@ -145,7 +133,7 @@ function MobileCarousel() {
                     type="button"
                     onClick={next}
                     aria-label="Next feature"
-                    className="size-7 transition-transform active:scale-95"
+                    className="size-7"
                 >
                     <ArrowIcon direction="right" />
                 </button>
@@ -158,15 +146,9 @@ export default function FeaturesGridSection() {
     return (
         <section className="w-full bg-white">
             <div className="page-px py-8 lg:py-[60px]">
-                <motion.h2
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="font-nevera text-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]"
-                >
+                <h2 className="font-nevera text-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]">
                     Features
-                </motion.h2>
+                </h2>
 
                 {/* Mobile / tablet: carousel */}
                 <div className="mt-4 lg:hidden">
@@ -175,18 +157,9 @@ export default function FeaturesGridSection() {
 
                 {/* Desktop: 3x2 grid */}
                 <div className="mt-12 hidden grid-cols-3 gap-8 lg:grid">
-                    {FEATURES.map((feature, i) => (
-                        <motion.article
+                    {FEATURES.map((feature) => (
+                        <article
                             key={feature.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-60px" }}
-                            transition={{
-                                duration: 0.5,
-                                delay: (i % 3) * 0.08,
-                                ease: [0.22, 1, 0.36, 1],
-                            }}
-                            whileHover={{ y: -6 }}
                             className="flex flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#f3f4f6] px-8 pb-10"
                         >
                             <div className="h-[280px] w-full rounded-[16px] bg-[#d9d9d9]" />
@@ -198,7 +171,7 @@ export default function FeaturesGridSection() {
                                     {feature.description}
                                 </p>
                             </div>
-                        </motion.article>
+                        </article>
                     ))}
                 </div>
             </div>

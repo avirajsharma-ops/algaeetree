@@ -1,68 +1,20 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useInView, useMotionValue, useTransform, animate } from "motion/react";
-import { useEffect, useRef } from "react";
 
 type Stat = {
     display: string;
     label: string[];
-    countTo?: number;
-    format?: (value: number) => string;
 };
 
 const STATS: Stat[] = [
-    {
-        display: "12",
-        countTo: 12,
-        label: ["Hours Backup", "(Battery)"],
-        format: (v) => Math.round(v).toString(),
-    },
-    {
-        display: "24/7",
-        label: ["Telemetry &", "System Uptime"],
-    },
-    {
-        display: "2.5",
-        countTo: 2.5,
-        label: ["KWh/day", "Typical Draw*"],
-        format: (v) => v.toFixed(1),
-    },
-    {
-        display: "1",
-        countTo: 1,
-        label: ["Sources", "(Solar)"],
-        format: (v) => Math.round(v).toString(),
-    },
+    { display: "12", label: ["Hours Backup", "(Battery)"] },
+    { display: "24/7", label: ["Telemetry &", "System Uptime"] },
+    { display: "2.5", label: ["KWh/day", "Typical Draw*"] },
+    { display: "1", label: ["Sources", "(Solar)"] },
 ];
 
-function StatCircle({ stat, index }: { stat: Stat; index: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
-    const value = useMotionValue(0);
-    const display = useTransform(value, (v) =>
-        stat.format ? stat.format(v) : v.toString(),
-    );
-
-    useEffect(() => {
-        if (!inView || stat.countTo === undefined) return;
-        const controls = animate(value, stat.countTo, {
-            duration: 1.4,
-            delay: index * 0.1,
-            ease: [0.22, 1, 0.36, 1],
-        });
-        return () => controls.stop();
-    }, [inView, stat.countTo, index, value]);
-
+function StatCircle({ stat }: { stat: Stat }) {
     return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center gap-4 lg:gap-10"
-        >
+        <div className="flex flex-col items-center gap-4 lg:gap-10">
             <div className="relative size-[128px] sm:size-[148px] lg:size-[260px]">
                 <span
                     className="absolute inset-0 rounded-full border-[2px] border-white/85"
@@ -73,15 +25,9 @@ function StatCircle({ stat, index }: { stat: Stat; index: number }) {
                     aria-hidden
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    {stat.countTo !== undefined ? (
-                        <motion.span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
-                            {display}
-                        </motion.span>
-                    ) : (
-                        <span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
-                            {stat.display}
-                        </span>
-                    )}
+                    <span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
+                        {stat.display}
+                    </span>
                 </div>
             </div>
             <p className="font-nimbus text-center text-[14px] font-bold leading-tight tracking-[0.6px] text-white sm:text-[16px] lg:text-[26px] lg:leading-[32px] lg:tracking-[1px]">
@@ -91,7 +37,7 @@ function StatCircle({ stat, index }: { stat: Stat; index: number }) {
                     </span>
                 ))}
             </p>
-        </motion.div>
+        </div>
     );
 }
 
@@ -110,19 +56,13 @@ export default function PowerAutonomySection() {
                     <div className="absolute inset-0 bg-black/30" />
 
                     <div className="relative flex flex-col items-center px-4 py-12 lg:items-start lg:px-[125px] lg:py-[92px]">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-60px" }}
-                            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                            className="font-nevera text-center text-[28px] leading-tight text-white lg:text-left lg:text-[56px] lg:leading-[64px]"
-                        >
+                        <h2 className="font-nevera text-center text-[28px] leading-tight text-white lg:text-left lg:text-[56px] lg:leading-[64px]">
                             Power & Autonomy
-                        </motion.h2>
+                        </h2>
 
                         <div className="mt-12 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 lg:mt-[124px] lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-[66px]">
-                            {STATS.map((stat, i) => (
-                                <StatCircle key={stat.label.join(" ")} stat={stat} index={i} />
+                            {STATS.map((stat) => (
+                                <StatCircle key={stat.label.join(" ")} stat={stat} />
                             ))}
                         </div>
                     </div>
