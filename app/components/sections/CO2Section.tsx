@@ -71,23 +71,23 @@ function MobileStatCard({
     showTrend?: boolean;
 }) {
     return (
-        <div className="flex h-32 w-full flex-col items-start gap-8 rounded-[12px] border border-[#D9D9D9] bg-white p-[17px]">
+        <div className="flex w-full flex-col items-start gap-3 rounded-[12px] border border-[#D9D9D9] bg-white p-[17px]">
             <div className="flex items-center gap-2">
                 <div className="font-nimbus" style={{ color }}>
                     {suffix ? (
-                        <p className="leading-[56px] whitespace-nowrap">
-                            <span className="text-[48px] font-bold leading-[56px]">{value}</span>
-                            <span className="text-[24px] font-bold leading-[56px]">{suffix}</span>
+                        <p className="leading-[48px] whitespace-nowrap">
+                            <span className="text-[40px] font-bold leading-[48px]">{value}</span>
+                            <span className="text-[18px] font-bold leading-[48px]">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[48px] font-bold leading-[56px]">{value}</p>
+                        <p className="text-[40px] font-bold leading-[48px]">{value}</p>
                     )}
                 </div>
                 {showTrend && (
                     <img src="/figma/arrow-drop-up.svg" alt="" className="size-6" />
                 )}
             </div>
-            <div className="font-nimbus text-[14px] text-[#6B7280]">
+            <div className="font-nimbus text-[13px] leading-[18px] text-[#6B7280]">
                 <p>{labelTop}</p>
                 <p>{labelBottom}</p>
             </div>
@@ -193,62 +193,69 @@ function DesktopChart() {
 
 function MobileChart() {
     return (
-        <div className="w-full rounded-[16px] border border-[#F3F4F6] bg-white px-[17px] py-[25px] shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
+        <div className="w-full overflow-hidden rounded-[16px] border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
             <div className="flex flex-col gap-2">
-                <h2 className="text-[24px] font-bold leading-[28px] tracking-[-0.75px] text-[#1E293B]">
-                    <span className="block">Atmospheric CO2</span>
-                    <span className="block">Concentration (2000 - 2050)</span>
+                <h2 className="text-[22px] font-bold leading-[28px] tracking-[-0.5px] text-[#1E293B]">
+                    Atmospheric CO2 Concentration (2000 - 2050)
                 </h2>
-                <div className="text-[14px] leading-normal text-[#6B7280]">
-                    <p>Historical and projected global average CO2 levels</p>
-                    <p>showing the accelerating Keeling Curve trend.</p>
-                </div>
+                <p className="text-[13px] leading-[18px] text-[#6B7280]">
+                    Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
+                </p>
             </div>
 
-            <div className="mt-4 flex items-start gap-6">
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-[#14B8A6]" />
-                    <span className="text-[14px] font-medium leading-5 text-[#4B5563]">Historical (2000-2024)</span>
+                    <span className="text-[13px] font-medium leading-5 text-[#4B5563]">Historical (2000-2024)</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="h-1 w-4 border-t-2 border-dashed border-[#14B8A6] opacity-70" />
-                    <span className="text-[14px] font-medium leading-5 text-[#4B5563]">Projected (2025-2050)</span>
+                    <span className="text-[13px] font-medium leading-5 text-[#4B5563]">Projected (2025-2050)</span>
                 </div>
             </div>
 
-            <div className="relative mt-4 h-[386px] w-full">
-                <div className="absolute left-[34px] top-[325px] flex w-[351px] items-center justify-between text-[14px] text-[#6B7280]">
-                    {X_YEARS.map((year) => (
-                        <span key={year}>{year}</span>
-                    ))}
-                </div>
-
-                <div className="absolute left-[25px] top-0 text-[11px] font-medium text-[#6B7280]">500</div>
-                <div className="absolute left-[25px] top-[61px] text-[11px] font-medium text-[#6B7280]">470</div>
-                <div className="absolute left-[25px] top-[122px] text-[11px] font-medium text-[#6B7280]">440</div>
-                <div className="absolute left-[25px] top-[183px] text-[11px] font-medium text-[#6B7280]">410</div>
-                <div className="absolute left-[25px] top-[244px] text-[11px] font-medium text-[#6B7280]">380</div>
-
-                <div className="absolute left-[49.85px] top-[6.5px] h-px w-[318px] bg-[#E4E6E9]" />
-                <div className="absolute left-[49.85px] top-[67.5px] h-px w-[318px] bg-[#E4E6E9]" />
-                <div className="absolute left-[49.85px] top-[128.5px] h-px w-[318px] bg-[#E4E6E9]" />
-                <div className="absolute left-[49.85px] top-[189.5px] h-px w-[318px] bg-[#E4E6E9]" />
-                <div className="absolute left-[49.85px] top-[250.5px] h-px w-[318px] bg-[#E4E6E9]" />
-                <div className="absolute left-[50px] top-[312px] h-px w-[318px] bg-[#E4E6E9]" />
-
-                <div className="absolute left-0 top-[298px] origin-left -rotate-90 text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+            <div className="relative mt-4 h-[360px] w-full">
+                {/* Y-axis title (rotated) */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
                     CO2 Concentration (ppm)
                 </div>
 
-                <div className="absolute left-1/2 top-[371px] -translate-x-1/2 text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
-                    Time Period (2000 - 2050)
-                </div>
+                {/* Y labels */}
+                <div className="absolute left-[18px] top-0 text-[11px] font-medium text-[#6B7280]">500</div>
+                <div className="absolute left-[18px] top-[60px] text-[11px] font-medium text-[#6B7280]">470</div>
+                <div className="absolute left-[18px] top-[120px] text-[11px] font-medium text-[#6B7280]">440</div>
+                <div className="absolute left-[18px] top-[180px] text-[11px] font-medium text-[#6B7280]">410</div>
+                <div className="absolute left-[18px] top-[240px] text-[11px] font-medium text-[#6B7280]">380</div>
 
-                <div className="absolute left-[49.72px] top-[182px] h-[123px] w-[145.76px]">
-                    <img src="/figma/chart-historical.svg" alt="Historical CO2 trend" className="block size-full max-w-none" />
-                </div>
-                <div className="absolute left-[196.45px] top-[21px] h-[159px] w-[156.31px] opacity-70">
-                    <img src="/figma/chart-projected.svg" alt="Projected CO2 trend" className="block size-full max-w-none" />
+                {/* Chart canvas (fluid) */}
+                <div className="absolute left-[44px] right-0 top-0 h-[300px]">
+                    {/* Grid lines */}
+                    <div className="absolute left-0 right-0 top-[6px] h-px bg-[#E4E6E9]" />
+                    <div className="absolute left-0 right-0 top-[66px] h-px bg-[#E4E6E9]" />
+                    <div className="absolute left-0 right-0 top-[126px] h-px bg-[#E4E6E9]" />
+                    <div className="absolute left-0 right-0 top-[186px] h-px bg-[#E4E6E9]" />
+                    <div className="absolute left-0 right-0 top-[246px] h-px bg-[#E4E6E9]" />
+                    <div className="absolute left-0 right-0 bottom-0 h-px bg-[#E4E6E9]" />
+
+                    {/* Trend SVGs positioned relative to canvas */}
+                    <div className="absolute left-0 top-[176px] h-[118px] w-[45.84%]">
+                        <img src="/figma/chart-historical.svg" alt="Historical CO2 trend" className="block size-full max-w-none" />
+                    </div>
+                    <div className="absolute left-[46.10%] top-[15px] h-[153px] w-[49.15%] opacity-70">
+                        <img src="/figma/chart-projected.svg" alt="Projected CO2 trend" className="block size-full max-w-none" />
+                    </div>
+
+                    {/* X labels */}
+                    <div className="absolute left-0 right-0 top-[306px] flex items-center justify-between text-[12px] text-[#6B7280]">
+                        {X_YEARS.map((year) => (
+                            <span key={year}>{year}</span>
+                        ))}
+                    </div>
+
+                    {/* X-axis title */}
+                    <div className="absolute left-1/2 top-[340px] -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+                        Time Period (2000 - 2050)
+                    </div>
                 </div>
             </div>
         </div>
@@ -292,23 +299,25 @@ export default function CO2Section() {
                     />
                 </div>
 
-                <div className="relative w-full overflow-hidden rounded-[12px] bg-[#2D5A27] px-4 py-8">
+                <div className="relative w-full overflow-hidden rounded-[12px] bg-[#2D5A27] px-5 py-8">
                     <Image
                         src="/figma/co2-card-bg.png"
                         alt=""
-                        width={581}
-                        height={383}
-                        sizes="408px"
-                        className="absolute left-[-41px] top-0 h-[383px] w-[581px] max-w-none"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 987px"
+                        className="object-cover"
                     />
-                    <div className="relative font-nimbus text-[20px] text-white">Why This Matters</div>
-                    <div className="relative mt-4 font-nimbus text-[26px] leading-[1.2] text-white">
-                        <p>Rising greenhouse gases</p>
-                        <p>such as CO₂ are driving climate change and warming the planet.</p>
+                    <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
+                    <div className="relative mt-3 font-nimbus text-[22px] leading-[1.25] text-white">
+                        Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
                     </div>
-                    <div className="relative mt-4 font-nimbus text-[14px] text-white">
-                        <p>Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.</p>
-                        <p>According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.</p>
+                    <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-[1.5] text-white">
+                        <p>
+                            Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
+                        </p>
+                        <p>
+                            According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
+                        </p>
                     </div>
                 </div>
             </div>

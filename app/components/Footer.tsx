@@ -28,8 +28,8 @@ export default function Footer() {
 
                 <div className="bg-[#0d1f00] px-4 py-8">
                     <div className="mx-auto flex w-full max-w-[440px] flex-col gap-8">
-                        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-4 [grid-template-rows:170px_auto]">
-                            <div className="col-start-1 row-start-1 flex flex-col gap-6 self-start pb-[10px]">
+                        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8">
+                            <div className="col-span-2 row-start-1 flex flex-col gap-6">
                                 <div className="w-full max-w-[384px] font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
                                     <p>Engineering biology to restore the air we breathe.</p>
                                     <p className="font-bold">Together, we can restore the air we share.</p>
@@ -52,7 +52,7 @@ export default function Footer() {
                                 </div>
                             </div>
 
-                            <div className="col-start-2 row-start-2 flex flex-col gap-4 self-start pb-[34px]">
+                            <div className="col-start-2 row-start-2 flex flex-col gap-4 self-start">
                                 <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Contact</h4>
                                 <div className="flex flex-col gap-2">
                                     {CONTACTS.map((contact) => (
@@ -65,14 +65,12 @@ export default function Footer() {
                         <div className="h-px w-full bg-[#5e5e5e]" />
 
                         <div className="flex flex-col items-center gap-3">
-                            <div className="flex h-12 w-full items-center justify-center">
-                                <div className="flex min-w-0 flex-1 items-center justify-between pr-2 text-[14px] leading-[21px] text-[#94a3b8]">
-                                    {LEGAL.map((item) => (
-                                        <a key={item} href="#" className="flex h-12 items-center justify-center px-2 whitespace-nowrap">{item}</a>
-                                    ))}
-                                </div>
+                            <div className="flex w-full flex-wrap items-center justify-between gap-x-2 gap-y-1 text-[12px] leading-[18px] text-[#94a3b8]">
+                                {LEGAL.map((item) => (
+                                    <a key={item} href="#" className="whitespace-nowrap py-1">{item}</a>
+                                ))}
                             </div>
-                            <p className="w-full text-[16px] leading-[25.6px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
+                            <p className="w-full text-[14px] leading-[20px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
