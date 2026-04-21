@@ -4,9 +4,13 @@ export default function StoryHeaderSection() {
             <div className="page-px flex flex-col gap-8 py-8 lg:gap-12 lg:py-[60px]">
                 {/* Heading row */}
                 <div className="flex flex-col items-start gap-4 px-0 lg:flex-row lg:items-start lg:justify-between lg:gap-8 lg:px-4">
-                    <h2 className="font-nevera text-[40px] leading-[40px] text-black lg:text-[56px] lg:leading-[72px]">
-                        <span className="block">Our Story,</span>
-                        <span className="block lg:inline"> Vision, and Value</span>
+                    <h2 className="font-nevera whitespace-nowrap text-[40px] leading-[40px] text-black lg:text-[56px] lg:leading-[72px]">
+                        {/* Mobile: "Our Story," / "Vision, and Value" */}
+                        <span className="block lg:hidden">Our Story,</span>
+                        <span className="block lg:hidden">Vision, and Value</span>
+                        {/* Desktop: "Our Story, Vision," / "and Value" */}
+                        <span className="hidden lg:block">Our Story, Vision,</span>
+                        <span className="hidden lg:block">and Value</span>
                     </h2>
                     <p className="font-nimbus text-[14px] leading-[normal] text-[#686868] lg:w-[651px] lg:text-[20px] lg:leading-[28px]">
                         There is always a thought behind actions, but we have a revolution mindset
