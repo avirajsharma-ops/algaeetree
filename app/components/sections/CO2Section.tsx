@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 type EmissionPoint = {
     year: number;
@@ -159,16 +162,16 @@ function StatCard({
     showTrend?: boolean;
 }) {
     return (
-        <div className="inline-flex h-[160px] w-full flex-col items-start justify-between rounded-[12px] bg-white p-4 outline outline-1 outline-offset-[-1px] outline-[#D9D9D9] lg:w-[234px]">
+        <div className="inline-flex h-40 w-full flex-col items-start justify-between rounded-xl bg-white p-4 outline-1 -outline-offset-1 outline-[#D9D9D9] lg:w-58.5">
             <div className="inline-flex items-center justify-start gap-2 self-stretch">
                 <div className="font-nimbus flex flex-col justify-center" style={{ color }}>
                     {suffix ? (
-                        <p className="leading-[56px]">
-                            <span className="text-[56px] font-bold leading-[56px]">{value}</span>
-                            <span className="text-[24px] font-bold leading-[56px]">{suffix}</span>
+                        <p className="leading-14">
+                            <span className="text-[56px] font-bold leading-14">{value}</span>
+                            <span className="text-[24px] font-bold leading-14">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[56px] font-bold leading-[56px]">{value}</p>
+                        <p className="text-[56px] font-bold leading-14">{value}</p>
                     )}
                 </div>
                 {showTrend && (
@@ -205,23 +208,23 @@ function MobileStatCard({
     showTrend?: boolean;
 }) {
     return (
-        <div className="flex w-full flex-col items-start gap-3 rounded-[12px] border border-[#D9D9D9] bg-white p-[17px]">
+        <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-[#D9D9D9] bg-white p-4.25">
             <div className="flex items-center gap-2">
                 <div className="font-nimbus" style={{ color }}>
                     {suffix ? (
-                        <p className="leading-[48px] whitespace-nowrap">
-                            <span className="text-[40px] font-bold leading-[48px]">{value}</span>
-                            <span className="text-[18px] font-bold leading-[48px]">{suffix}</span>
+                        <p className="leading-12 whitespace-nowrap">
+                            <span className="text-[40px] font-bold leading-12">{value}</span>
+                            <span className="text-[18px] font-bold leading-12">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[40px] font-bold leading-[48px]">{value}</p>
+                        <p className="text-[40px] font-bold leading-12">{value}</p>
                     )}
                 </div>
                 {showTrend && (
                     <img src="/figma/arrow-drop-up.svg" alt="" className="size-6" />
                 )}
             </div>
-            <div className="font-nimbus text-[13px] leading-[18px] text-[#6B7280]">
+            <div className="font-nimbus text-[13px] leading-4.5 text-[#6B7280]">
                 <p>{labelTop}</p>
                 <p>{labelBottom}</p>
             </div>
@@ -232,27 +235,36 @@ function MobileStatCard({
 function DesktopChart() {
     const chartWidth = 1315;
     const chartHeight = 300;
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+    const activeIndex = hoveredIndex ?? selectedIndex;
+    const activePoint = activeIndex !== null ? INDIA_CO2_EMISSION_DATA[activeIndex] : null;
+    const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
+    const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
+    const activeXRatio = activeX / chartWidth;
+    const activeTranslateX = activeXRatio < 0.12 ? "0%" : activeXRatio > 0.88 ? "-100%" : "-50%";
 
     return (
-        <div className="relative h-[640px] w-[1488px] rounded-[16px] bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline outline-1 outline-offset-[-1px] outline-[#F3F4F6]">
-            <div className="absolute left-[56px] top-[40px] inline-flex w-[926px] flex-col items-start justify-start gap-2">
+        <div className="relative h-160 w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
+            <div className="absolute left-14 top-10 inline-flex w-231.5 flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
-                    <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-[36px] text-[#1E293B]">
-                       Atmospheric CO2 Concentration (2000 - 2050)
+                    <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
+                        Atmospheric CO2 Concentration (2000 - 2024)
                     </h2>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                    <p className="flex w-full flex-col justify-center text-[16px] leading-[24px] text-[#6B7280]">
+                    <p className="flex w-full flex-col justify-center text-[16px] leading-6 text-[#6B7280]">
                         Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
                     </p>
                 </div>
             </div>
 
-            <div className="absolute left-[56px] top-[136px] inline-flex w-[926px] items-start justify-start gap-6">
+            <div className="absolute left-14 top-34 inline-flex w-231.5 items-start justify-start gap-6">
                 <div className="flex items-center justify-start gap-2 self-stretch">
                     <div className="size-3 rounded-[9999px] bg-[#14B8A6]" />
                     <div className="inline-flex flex-col items-start justify-start">
-                        <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-[22px] text-[#4B5563]">
+                        <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
                             Historical (2000-2024)
                         </div>
                     </div>
@@ -260,14 +272,14 @@ function DesktopChart() {
                 <div className="flex items-center justify-start gap-2 self-stretch">
                     <div className="h-1 w-4 border-t-2 border-[#14B8A6] opacity-70" />
                     <div className="inline-flex flex-col items-start justify-start">
-                        <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-[22px] text-[#4B5563]">
+                        <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
                             Projected (2025-2050)
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="absolute left-[117px] top-[227px] h-[300px] w-[1315px]">
+            <div className="absolute left-29.25 top-56.75 h-75 w-328.75">
                 <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="h-full w-full" aria-label="India CO2 emission chart">
                     {Y_TICKS.map((tick) => {
                         const y = yForValue(tick, chartHeight);
@@ -292,10 +304,54 @@ function DesktopChart() {
                         strokeLinejoin="round"
                         strokeLinecap="round"
                     />
+
+                    {INDIA_CO2_EMISSION_DATA.map((point, index) => {
+                        const cx = xForYear(point.year, chartWidth);
+                        const cy = yForValue(point.valueBillion, chartHeight);
+                        const isActive = activeIndex === index;
+
+                        return (
+                            <g key={point.year}>
+                                <circle
+                                    cx={cx}
+                                    cy={cy}
+                                    r={isActive ? 4.5 : 2.5}
+                                    fill={isActive ? "#0F766E" : "#14B8A6"}
+                                    opacity={isActive ? 1 : 0.35}
+                                />
+                                <circle
+                                    cx={cx}
+                                    cy={cy}
+                                    r={8}
+                                    fill="transparent"
+                                    className="cursor-pointer"
+                                    onMouseEnter={() => setHoveredIndex(index)}
+                                    onMouseLeave={() => setHoveredIndex(null)}
+                                    onClick={(event) => {
+                                        event.stopPropagation();
+                                        setSelectedIndex((prev) => (prev === index ? null : index));
+                                    }}
+                                />
+                            </g>
+                        );
+                    })}
                 </svg>
+
+                {activePoint && (
+                    <div
+                        className="pointer-events-none absolute z-20 rounded-md border border-[#0f766e]/30 bg-white/95 px-2.5 py-1.5 text-[12px] font-medium text-[#0f172a] shadow-[0_8px_20px_rgba(2,8,23,0.14)]"
+                        style={{
+                            left: `${activeXRatio * 100}%`,
+                            top: `${(activeY / chartHeight) * 100}%`,
+                            transform: `translate(${activeTranslateX}, calc(-100% - 10px))`,
+                        }}
+                    >
+                        {activePoint.year}: {formatBillion(activePoint.valueBillion)}
+                    </div>
+                )}
             </div>
 
-            <div className="absolute left-[117px] top-[539px] h-5 w-[1315px]">
+            <div className="absolute left-29.25 top-134.75 h-5 w-328.75">
                 {X_TICKS.map((year) => (
                     <div
                         key={year}
@@ -310,21 +366,21 @@ function DesktopChart() {
             {Y_TICKS.map((tick) => (
                 <div
                     key={tick}
-                    className="absolute left-[58px] -translate-y-1/2 text-[12px] font-medium text-[#6B7280] lg:text-[13px]"
+                    className="absolute left-14.5 -translate-y-1/2 text-[12px] font-medium text-[#6B7280] lg:text-[13px]"
                     style={{ top: `${227 + (yForValue(tick, chartHeight) / chartHeight) * 300}px` }}
                 >
                     {formatBillion(tick)}
                 </div>
             ))}
 
-            <div className="absolute left-[18px] top-1/2 -translate-y-1/2">
-                <div className="origin-left -rotate-90 whitespace-nowrap text-[12px] font-bold uppercase leading-[1] tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
+            <div className="absolute left-0 top-1/2 -translate-y-1/2">
+                <div className="origin-center -rotate-90 whitespace-nowrap bg-white px-1 text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
                     CO2 Emission (Billion Tonnes)
                 </div>
             </div>
 
-            <div className="absolute bottom-[22px] left-1/2 -translate-x-1/2">
-                <div className="whitespace-nowrap text-center text-[12px] font-bold uppercase leading-[1] tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
+            <div className="absolute bottom-5.5 left-1/2 -translate-x-1/2">
+                <div className="whitespace-nowrap text-center text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
                     Time Period ({START_YEAR} - {END_YEAR})
                 </div>
             </div>
@@ -332,39 +388,53 @@ function DesktopChart() {
     );
 }
 
+
 function MobileChart() {
     const chartWidth = 100;
     const chartHeight = 300;
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+    const activeIndex = hoveredIndex ?? selectedIndex;
+    const activePoint = activeIndex !== null ? INDIA_CO2_EMISSION_DATA[activeIndex] : null;
+    const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
+    const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
+    const activeXRatio = activeX / chartWidth;
+    const activeTranslateX = activeXRatio < 0.12 ? "0%" : activeXRatio > 0.88 ? "-100%" : "-50%";
 
     return (
-        <div className="w-full overflow-hidden rounded-[16px] border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
+        <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
             <div className="flex flex-col gap-2">
-                <h2 className="text-[22px] font-bold leading-[28px] tracking-[-0.5px] text-[#1E293B]">
-                  Atmospheric CO2 <br /> Concentration (2000 - 2050)
+                <h2 className="text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
+                    Atmospheric CO2 <br /> Concentration (2000 - 2024)
                 </h2>
-                <p className="text-[13px] leading-[18px] text-[#6B7280]">
-Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
+                <p className="text-[13px] leading-4.5 text-[#6B7280]">
+                    Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
                 </p>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-[#14B8A6]" />
-                    <span className="text-[13px] font-medium leading-5 text-[#4B5563]">India CO2 Emissions </span>
+                    <span className="text-[13px] font-medium leading-5 text-[#4B5563]">
+                        Historical (2000-2024)    -  Projected (2025-2050)
+                    </span>
                 </div>
             </div>
 
-            <div className="relative mt-4 h-[360px] w-full">
+            <div className="relative mt-4 h-90 w-full">
                 {/* Y-axis title (rotated) */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
-                    CO2 Emission (Billion Tonnes)
+                <div className="absolute -left-8 top-1/2 -translate-y-1/2">
+                    <div className="origin-center -rotate-90 whitespace-nowrap bg-white px-0.5 text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+                        CO2 Emission (Billion Tonnes)
+                    </div>
                 </div>
 
                 {/* Y labels */}
                 {Y_TICKS.map((tick) => (
                     <div
                         key={tick}
-                        className="absolute left-[8px] -translate-y-1/2 text-[11px] font-medium text-[#6B7280]"
+                        className="absolute left-2 -translate-y-1/2 text-[11px] font-medium text-[#6B7280]"
                         style={{ top: `${(yForValue(tick, chartHeight) / chartHeight) * 300}px` }}
                     >
                         {formatBillion(tick)}
@@ -372,7 +442,7 @@ Historical and projected global average CO2 levels showing the accelerating Keel
                 ))}
 
                 {/* Chart canvas (fluid) */}
-                <div className="absolute left-[44px] right-0 top-0 h-[300px]">
+                <div className="absolute left-11 right-0 top-0 h-75">
                     <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="h-full w-full" preserveAspectRatio="none" aria-label="India CO2 emission chart mobile">
                         {Y_TICKS.map((tick) => {
                             const y = yForValue(tick, chartHeight);
@@ -387,18 +457,62 @@ Historical and projected global average CO2 levels showing the accelerating Keel
                             strokeLinejoin="round"
                             strokeLinecap="round"
                         />
+
+                        {INDIA_CO2_EMISSION_DATA.map((point, index) => {
+                            const cx = xForYear(point.year, chartWidth);
+                            const cy = yForValue(point.valueBillion, chartHeight);
+                            const isActive = activeIndex === index;
+
+                            return (
+                                <g key={`mobile-${point.year}`}>
+                                    <circle
+                                        cx={cx}
+                                        cy={cy}
+                                        r={isActive ? 2.2 : 1.4}
+                                        fill={isActive ? "#0F766E" : "#14B8A6"}
+                                        opacity={isActive ? 1 : 0.35}
+                                    />
+                                    <circle
+                                        cx={cx}
+                                        cy={cy}
+                                        r={3.8}
+                                        fill="transparent"
+                                        className="cursor-pointer"
+                                        onMouseEnter={() => setHoveredIndex(index)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                        onClick={(event) => {
+                                            event.stopPropagation();
+                                            setSelectedIndex((prev) => (prev === index ? null : index));
+                                        }}
+                                    />
+                                </g>
+                            );
+                        })}
                     </svg>
 
+                    {activePoint && (
+                        <div
+                            className="pointer-events-none absolute z-20 rounded-md border border-[#0f766e]/30 bg-white/95 px-2 py-1 text-[10px] font-medium text-[#0f172a] shadow-[0_8px_20px_rgba(2,8,23,0.14)]"
+                            style={{
+                                left: `${activeXRatio * 100}%`,
+                                top: `${(activeY / chartHeight) * 100}%`,
+                                transform: `translate(${activeTranslateX}, calc(-100% - 8px))`,
+                            }}
+                        >
+                            {activePoint.year}: {formatBillion(activePoint.valueBillion)}
+                        </div>
+                    )}
+
                     {/* X labels */}
-                    <div className="absolute left-0 right-0 top-[306px] text-[11px] text-[#6B7280]">
+                    <div className="absolute left-0 right-0 top-76.5 text-[11px] text-[#6B7280]">
                         {X_TICKS_MOBILE.map((year, index) => (
                             <span
                                 key={year}
                                 className={`absolute ${index === 0
-                                        ? "translate-x-0 text-left"
-                                        : index === X_TICKS_MOBILE.length - 1
-                                            ? "-translate-x-full text-right"
-                                            : "-translate-x-1/2 text-center"
+                                    ? "translate-x-0 text-left"
+                                    : index === X_TICKS_MOBILE.length - 1
+                                        ? "-translate-x-full text-right"
+                                        : "-translate-x-1/2 text-center"
                                     } text-[10px] sm:text-[11px]`}
                                 style={{ left: `${((year - START_YEAR) / YEAR_SPAN) * 100}%` }}
                             >
@@ -408,7 +522,7 @@ Historical and projected global average CO2 levels showing the accelerating Keel
                     </div>
 
                     {/* X-axis title */}
-                    <div className="absolute left-1/2 top-[340px] -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
+                    <div className="absolute left-1/2 top-85 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold uppercase tracking-[1px] text-[#9CA3AF]">
                         Time Period ({START_YEAR} - {END_YEAR})
                     </div>
                 </div>
@@ -427,34 +541,34 @@ export default function CO2Section() {
                     <MobileStatCard
                         value="75%"
                         color="#CA0000"
-                        labelTop="CO2 Percentage"
-                        labelBottom="Increases Since Year 2000"
+                        labelTop="CO2 Emission"
+                        labelBottom="In Year 2000"
                         showTrend
                     />
                     <MobileStatCard
                         value="75%"
                         color="#CA0000"
-                        labelTop="CO2 Percentage"
-                        labelBottom="Increases Since Year 2000"
+                        labelTop="CO2 Emission"
+                        labelBottom="In Year 2025"
                         showTrend
                     />
                     <MobileStatCard
-                        value="369"
+                        value="160"
                         suffix="ppm"
                         color="#2D5A27"
-                        labelTop="CO2 Concentartion"
+                        labelTop="AQI"
                         labelBottom="Year 2000"
                     />
                     <MobileStatCard
-                        value="495"
+                        value="230"
                         suffix="ppm"
                         color="#CA0000"
-                        labelTop="CO2 Concentartion"
-                        labelBottom="Year 2050 (Projected)"
+                        labelTop="AQI"
+                        labelBottom="Year 2025"
                     />
                 </div>
 
-                <div className="relative w-full overflow-hidden rounded-[12px] bg-[#2D5A27] px-5 py-8">
+                <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
                     <Image
                         src="/figma/co2-card-bg.png"
                         alt=""
@@ -463,10 +577,10 @@ export default function CO2Section() {
                         className="object-cover"
                     />
                     <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
-                    <div className="relative mt-3 font-nimbus text-[22px] leading-[1.25] text-white">
+                    <div className="relative mt-3 font-nimbus text-[22px] leading-tight text-white">
                         Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
                     </div>
-                    <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-[1.5] text-white">
+                    <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-normal text-white">
                         <p>
                             Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
                         </p>
@@ -477,24 +591,24 @@ export default function CO2Section() {
                 </div>
             </div>
 
-            <div className="page-px hidden py-[60px] lg:block">
+            <div className="page-px hidden py-15 lg:block">
                 <div className="inline-flex w-full flex-col items-center justify-center gap-10">
                     <DesktopChart />
 
-                    <div className="flex w-[1488px] items-start justify-between gap-0">
-                        <div className="relative inline-flex h-[336px] w-[987px] flex-col items-start justify-center gap-4 overflow-hidden rounded-[12px] bg-[#2D5A27] p-8">
+                    <div className="flex w-372 items-start justify-between gap-0">
+                        <div className="relative inline-flex h-84 w-246.75 flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-8">
                             <Image
                                 src="/figma/co2-card-bg.png"
                                 alt=""
                                 width={1302}
                                 height={869}
                                 sizes="987px"
-                                className="absolute left-[-65px] top-[-266px] h-[869px] w-[1302px] max-w-none"
+                                className="absolute -left-16.25 -top-66.5 h-217.25 w-325.5 max-w-none"
                             />
                             <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
                                 Why This Matters
                             </div>
-                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-[44px] text-white">
+                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-11 text-white">
                                 <p>Rising greenhouse gases such as CO₂ are</p>
                                 <p>driving climate change and warming the planet.</p>
                             </div>
@@ -507,34 +621,34 @@ export default function CO2Section() {
                             </div>
                         </div>
 
-                        <div className="flex w-[485px] flex-wrap content-start items-start justify-start gap-4">
+                        <div className="flex w-121.25 flex-wrap content-start items-start justify-start gap-4">
                             <StatCard
                                 value="75%"
                                 color="#CA0000"
-                                labelTop="CO2 Percentage"
-                                labelBottom="Increases Since Year 2000"
+                                labelTop="CO2 Emission"
+                                labelBottom="In Year 2000"
                                 showTrend
                             />
                             <StatCard
                                 value="75%"
                                 color="#CA0000"
-                                labelTop="CO2 Percentage"
-                                labelBottom="Increases Since Year 2000"
+                                labelTop="CO2 Emission"
+                                labelBottom="In Year 2025"
                                 showTrend
                             />
                             <StatCard
-                                value="369"
+                                value="160"
                                 suffix="ppm"
                                 color="#2D5A27"
-                                labelTop="CO2 Concentartion"
+                                labelTop="AQI"
                                 labelBottom="Year 2000"
                             />
                             <StatCard
-                                value="495"
+                                value="230"
                                 suffix="ppm"
                                 color="#CA0000"
-                                labelTop="CO2 Concentartion"
-                                labelBottom="Year 2050 (Projected)"
+                                labelTop="AQI"
+                                labelBottom="Year 2025"
                             />
                         </div>
                     </div>

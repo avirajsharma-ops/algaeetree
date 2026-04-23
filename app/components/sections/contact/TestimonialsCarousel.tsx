@@ -82,7 +82,14 @@ export default function TestimonialsCarousel() {
                         onClick={() => setCurrentIndex((index) => (index - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
                         className="flex h-[42px] w-[36px] items-center justify-center rounded-l-[6px] bg-white transition-colors hover:bg-[#f0f0f0]"
                     >
-                        <Image src="/figma/contact/arrow-left.svg" alt="" aria-hidden width={18} height={18} />
+                        <Image
+                            src="/figma/contact/arrow-left.svg"
+                            alt=""
+                            aria-hidden
+                            width={18}
+                            height={18}
+                            className="-rotate-90"
+                        />
                     </button>
 
                     <button
@@ -91,7 +98,14 @@ export default function TestimonialsCarousel() {
                         onClick={() => setCurrentIndex((index) => (index + 1) % TESTIMONIALS.length)}
                         className="flex h-[42px] w-[36px] items-center justify-center rounded-r-[6px] bg-white transition-colors hover:bg-[#f0f0f0]"
                     >
-                        <Image src="/figma/contact/arrow-right.svg" alt="" aria-hidden width={18} height={18} />
+                        <Image
+                            src="/figma/contact/arrow-right.svg"
+                            alt=""
+                            aria-hidden
+                            width={18}
+                            height={18}
+                            className="rotate-90"
+                        />
                     </button>
                 </div>
 

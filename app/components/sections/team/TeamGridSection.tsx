@@ -7,37 +7,43 @@ const TEAM_MEMBERS = [
         src: "/figma/team/member-1.jpg",
         alt: "AlgaeTree team member portrait 1",
         name: "Sameer Sagar",
-        role: "Head Researcher",
+        designation: "Managing Director",
+        bio: "Visionary entrepreneur and strategic leader driving the AlgaeTree mission, focused on scaling climate-tech innovation and building impactful, sustainable infrastructure solutions.",
     },
     {
         src: "/figma/team/member-2.jpg",
         alt: "AlgaeTree team member portrait 2",
         name: "Shakti Sagar",
-        role: "Chief Scientist",
+        designation: "Managing Director",
+        bio: "Financial strategist and co-leader ensuring strong governance, efficient capital deployment, and long-term sustainability of the AlgaeTree initiative.",
     },
     {
         src: "/figma/team/member-3.jpg",
         alt: "AlgaeTree team member portrait 3",
         name: "Prateek Maheshwari",
-        role: "Engineering Lead",
+        designation: "Chief Technical Officer",
+        bio: "Technology and innovation lead overseeing product development, system optimization, and integration of advanced engineering in AlgaeTree.",
     },
     {
         src: "/figma/team/member-4.jpg",
         alt: "AlgaeTree team member portrait 4",
         name: "Vaibhav Shrivastava",
-        role: "Operations Director",
+        designation: "Chief Operation Officer",
+        bio: "Operations expert managing execution, deployment, and scalability of AlgaeTree across diverse environments with efficiency and precision.",
     },
     {
         src: "/figma/team/member-5.jpg",
         alt: "AlgaeTree team member portrait 5",
         name: "Tanupriya Patel",
-        role: "Strategy Advisor",
+        designation: "Research Scientist",
+        bio: "Driving experimental research, data analysis, and process optimization to enhance the biological efficiency and real-world impact of AlgaeTree.",
     },
     {
         src: "/figma/team/member-6.jpg",
         alt: "AlgaeTree team member portrait 6",
         name: "Naresh Babu Mallampati",
-        role: "Research Associate",
+        designation: "Principal Research Scientist",
+        bio: "Leading scientific research and innovation in microalgae systems, ensuring performance, efficiency, and continuous advancement of the core technology.",
     },
 ];
 
@@ -54,7 +60,8 @@ export default function TeamGridSection() {
                         src={member.src}
                         alt={member.alt}
                         name={member.name}
-                        role={member.role}
+                        designation={member.designation}
+                        bio={member.bio}
                     />
                 ))}
             </div>

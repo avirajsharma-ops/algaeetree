@@ -1,10 +1,44 @@
+const mobileMissionMask = {
+    WebkitMaskImage: "url('/figma/about/mobile/subtract-mission.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/mobile/subtract-mission.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
+const desktopMissionMask = {
+    WebkitMaskImage: "url('/figma/about/subtract-mission.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/subtract-mission.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
 export default function MissionSection() {
     return (
         <section className="w-full bg-white">
             <div className="flex flex-col items-center gap-4 px-4 pb-12 sm:px-6 md:gap-6 xl:flex-row xl:justify-between xl:gap-12 xl:px-[120px] xl:pb-12">
                 <div className="w-full xl:w-[736px]">
-                    <img src="/figma/about/mobile/subtract-mission.svg" alt="" aria-hidden="true" className="block h-auto w-full xl:hidden" />
-                    <img src="/figma/about/subtract-mission.svg" alt="" aria-hidden="true" className="hidden h-[800px] w-full xl:block" />
+                    <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileMissionMask}>
+                        <img
+                            src="/figma/about/About Us Image 2.png"
+                            alt="Mission"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
+                    <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopMissionMask}>
+                        <img
+                            src="/figma/about/About Us Image 2.png"
+                            alt="Mission"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
                 </div>
                 <div className="flex w-full flex-col gap-0 xl:w-[678px]">
                     <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-nevera xl:text-[56px] xl:leading-[72px]">

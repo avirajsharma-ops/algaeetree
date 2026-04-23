@@ -6,13 +6,13 @@ export default function CcusHeroSection() {
             <div className="px-4 py-4 md:px-6 md:py-8 xl:px-[120px] xl:py-[113px]">
                 <div className="relative mx-auto h-[852px] w-full max-w-[408px] overflow-hidden rounded-[16px] bg-[#0f1514] md:h-[680px] md:max-w-[1488px] md:rounded-[24px] xl:h-[808px] xl:rounded-[40px]">
                     <img
-                        src="/figma/technology/ccus/hero.png"
+                        src="/figma/technology/ccus/Hero Image - Mobile (1).png"
                         alt="Urban CCUS Infrastructure with AlgaeTree"
                         className="absolute left-[-736px] top-0 h-[900px] w-[1276px] max-w-none md:hidden"
                     />
 
                     <Image
-                        src="/figma/technology/ccus/hero.png"
+                        src="/figma/technology/ccus/Hero Image - Desktop.png"
                         alt="Urban CCUS Infrastructure with AlgaeTree"
                         fill
                         priority

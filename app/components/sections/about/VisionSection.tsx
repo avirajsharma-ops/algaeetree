@@ -1,3 +1,25 @@
+const mobileVisionMask = {
+    WebkitMaskImage: "url('/figma/about/mobile/subtract-vision.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/mobile/subtract-vision.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
+const desktopVisionMask = {
+    WebkitMaskImage: "url('/figma/about/subtract-vision.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/subtract-vision.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
 export default function VisionSection() {
     return (
         <section className="w-full bg-white">
@@ -26,8 +48,20 @@ export default function VisionSection() {
                     </div>
                 </div>
                 <div className="order-1 w-full xl:order-2 xl:w-[736px]">
-                    <img src="/figma/about/mobile/subtract-vision.svg" alt="" aria-hidden="true" className="block h-auto w-full xl:hidden" />
-                    <img src="/figma/about/subtract-vision.svg" alt="" aria-hidden="true" className="hidden h-[800px] w-full xl:block" />
+                    <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileVisionMask}>
+                        <img
+                            src="/figma/about/About Us Image 1.png"
+                            alt="Vision"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
+                    <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopVisionMask}>
+                        <img
+                            src="/figma/about/About Us Image 1.png"
+                            alt="Vision"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
                 </div>
             </div>
         </section>

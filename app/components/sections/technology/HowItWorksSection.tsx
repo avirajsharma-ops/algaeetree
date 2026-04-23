@@ -38,8 +38,9 @@ const stepGradient =
 
 export default function HowItWorksSection() {
     return (
-        <section className="hidden w-full bg-white lg:block">
+        <section className="w-full bg-white">
             <div className="page-px py-12 lg:py-[120px]">
+                {/* Header */}
                 <div className="flex w-full items-start gap-6 lg:gap-12">
                     <div className="self-stretch w-[5px] shrink-0 rounded-[8px] bg-black lg:w-[7px]" />
                     <div className="flex flex-col gap-3 lg:gap-4">
@@ -47,21 +48,22 @@ export default function HowItWorksSection() {
                             How AlgaeTree Works
                         </h2>
                         <p className="font-nimbus max-w-[593px] text-[15px] leading-[22px] text-[#686868] lg:text-[20px] lg:leading-[28px]">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula consectetur, ultrices mauris ligula consectetur, ultrices mauris.
+                            AlgaeTree works by drawing polluted urban air into the system through a controlled intake, where harmful particles like PM2.5 and PM10 are first filtered out. The cleaned air then enters the bioreactor chamber, where microalgae absorb CO₂ through photosynthesis and convert it into biomass.
                         </p>
                     </div>
                 </div>
 
-                <div className="relative mt-10 lg:mt-20">
+                {/* Desktop layout */}
+                <div className="relative mt-10 hidden lg:mt-20 lg:block">
                     <div
                         aria-hidden
-                        className="pointer-events-none absolute left-[6%] right-[6%] top-[calc(246px+60px)] hidden h-[3px] lg:block"
+                        className="pointer-events-none absolute left-[6%] right-[6%] top-[calc(246px+60px)] h-[3px]"
                         style={{
                             background:
                                 "linear-gradient(to right, rgba(0,244,208,0) 0%, #00f4d0 50%, rgba(0,244,208,0) 100%)",
                         }}
                     />
-                    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-16 lg:gap-y-10">
+                    <div className="grid grid-cols-5 gap-x-16 gap-y-10">
                         {STEPS.map((step) => (
                             <div
                                 key={step.number}
@@ -72,28 +74,75 @@ export default function HowItWorksSection() {
                                         src={step.image}
                                         alt={step.title.join(" ")}
                                         fill
-                                        sizes="(max-width: 1024px) 50vw, 246px"
-                                        className="object-cover"
+                                        sizes="246px"
+                                        className="object-contain"
                                     />
                                 </div>
                                 <div
-                                    className="relative flex size-[100px] items-center justify-center rounded-full shadow-[0px_30px_37.5px_-7.5px_rgba(0,0,0,0.1),0px_12px_15px_-9px_rgba(0,0,0,0.1)] lg:size-[120px]"
+                                    className="relative flex size-[120px] items-center justify-center rounded-full shadow-[0px_30px_37.5px_-7.5px_rgba(0,0,0,0.1),0px_12px_15px_-9px_rgba(0,0,0,0.1)]"
                                     style={{ backgroundImage: stepGradient }}
                                 >
-                                    <span className="font-bold text-white text-[36px] leading-none lg:text-[45px]">
+                                    <span className="font-bold text-white text-[45px] leading-none">
                                         {step.number}
                                     </span>
                                 </div>
-                                <h3 className="text-[20px] font-bold leading-[26px] text-black lg:text-[24px] lg:leading-[28px]">
+                                <h3 className="text-[24px] font-bold leading-[28px] text-black">
                                     {step.title.map((line) => (
                                         <span key={line} className="block">
                                             {line}
                                         </span>
                                     ))}
                                 </h3>
-                                <p className="text-[15px] leading-[22px] text-black lg:text-[18px] lg:leading-[24px]">
+                                <p className="text-[18px] leading-[24px] text-black">
                                     {step.description}
                                 </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Mobile layout */}
+                <div className="relative mt-8 lg:hidden">
+                    {/* Vertical connecting line */}
+                    <div
+                        aria-hidden
+                        className="pointer-events-none absolute bottom-4 left-[27px] top-4 w-[3px] rounded-full"
+                        style={{
+                            background:
+                                "linear-gradient(to bottom, rgba(0,244,208,0) 0%, #00f4d0 20%, #00f4d0 80%, rgba(0,244,208,0) 100%)",
+                        }}
+                    />
+                    <div className="flex flex-col gap-6">
+                        {STEPS.map((step) => (
+                            <div key={step.number} className="flex items-start gap-4">
+                                {/* Number circle */}
+                                <div
+                                    className="relative z-10 flex size-[56px] shrink-0 items-center justify-center rounded-full shadow-[0px_12px_20px_-4px_rgba(0,0,0,0.15)]"
+                                    style={{ backgroundImage: stepGradient }}
+                                >
+                                    <span className="font-bold text-white text-[22px] leading-none">
+                                        {step.number}
+                                    </span>
+                                </div>
+                                {/* Image */}
+                                <div className="relative size-[72px] shrink-0">
+                                    <Image
+                                        src={step.image}
+                                        alt={step.title.join(" ")}
+                                        fill
+                                        sizes="72px"
+                                        className="object-contain"
+                                    />
+                                </div>
+                                {/* Text */}
+                                <div className="flex flex-col gap-1 pt-1">
+                                    <h3 className="text-[16px] font-bold leading-[20px] text-black">
+                                        {step.title.join(" ")}
+                                    </h3>
+                                    <p className="text-[13px] leading-[18px] text-[#686868]">
+                                        {step.description}
+                                    </p>
+                                </div>
                             </div>
                         ))}
                     </div>

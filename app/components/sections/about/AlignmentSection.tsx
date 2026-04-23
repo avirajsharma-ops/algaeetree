@@ -1,3 +1,25 @@
+const mobileAlignmentMask = {
+    WebkitMaskImage: "url('/figma/about/mobile/subtract-alignment.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/mobile/subtract-alignment.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
+const desktopAlignmentMask = {
+    WebkitMaskImage: "url('/figma/about/subtract-vision.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/about/subtract-vision.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
 export default function AlignmentSection() {
     return (
         <section className="w-full bg-white">
@@ -34,8 +56,20 @@ export default function AlignmentSection() {
                     </div>
                 </div>
                 <div className="order-1 w-full xl:order-2 xl:w-[736px]">
-                    <img src="/figma/about/mobile/subtract-alignment.svg" alt="" aria-hidden="true" className="block h-auto w-full xl:hidden" />
-                    <img src="/figma/about/subtract-vision.svg" alt="" aria-hidden="true" className="hidden h-[800px] w-full xl:block" />
+                    <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileAlignmentMask}>
+                        <img
+                            src="/figma/about/About Us Image 3.png"
+                            alt="Alignment with Government Goals"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
+                    <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopAlignmentMask}>
+                        <img
+                            src="/figma/about/About Us Image 3.png"
+                            alt="Alignment with Government Goals"
+                            className="absolute inset-0 h-full w-full object-cover"
+                        />
+                    </div>
                 </div>
             </div>
         </section>

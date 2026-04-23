@@ -6,12 +6,13 @@ type TeamMemberCardProps = {
     alt: string;
     src: string;
     name: string;
-    role: string;
+    designation: string;
+    bio: string;
 };
 
-export default function TeamMemberCard({ alt, src, name, role }: TeamMemberCardProps) {
+export default function TeamMemberCard({ alt, src, name, designation, bio }: TeamMemberCardProps) {
     const reduceMotion = useReducedMotion();
-    const transitionMs = reduceMotion ? "1ms" : "800ms";
+    const transitionMs = reduceMotion ? "1ms" : "650ms";
 
     return (
         <article
@@ -25,7 +26,7 @@ export default function TeamMemberCard({ alt, src, name, role }: TeamMemberCardP
 
             <div className="pointer-events-none absolute left-4 top-4 z-10">
                 <h2
-                    className="m-0 max-w-[80%] font-nimbus text-[clamp(20px,2.4vw,42px)] leading-[1.1] tracking-[0.5px] text-white opacity-0 transition-opacity duration-600 ease-out group-hover:opacity-100"
+                    className="m-0 max-w-[84%] font-nimbus text-[clamp(20px,2.4vw,42px)] leading-[1.1] tracking-[0.5px] text-white opacity-0 transition-opacity duration-600 ease-out group-hover:opacity-100 group-focus-within:opacity-100"
                     style={{ transitionDuration: reduceMotion ? "1ms" : "600ms" }}
                 >
                     {name.toUpperCase()}
@@ -33,11 +34,14 @@ export default function TeamMemberCard({ alt, src, name, role }: TeamMemberCardP
             </div>
 
             <div
-                className="pointer-events-none absolute bottom-4 left-4 z-10 translate-y-1 text-white opacity-0 transition-[opacity,transform] duration-600 ease-out group-hover:translate-y-0 group-hover:opacity-100"
+                className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 translate-y-2 text-white opacity-0 transition-[opacity,transform] duration-600 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
                 style={{ transitionDuration: reduceMotion ? "1ms" : "600ms" }}
             >
                 <p className="font-nimbus text-[clamp(10px,1vw,14px)] leading-[1.2] font-medium tracking-[0.04em] uppercase">
-                    {role}
+                    {designation}
+                </p>
+                <p className="mt-2 max-w-[95%] font-nimbus text-[clamp(9px,0.85vw,12px)] leading-tight text-white/90">
+                    {bio}
                 </p>
             </div>
         </article>

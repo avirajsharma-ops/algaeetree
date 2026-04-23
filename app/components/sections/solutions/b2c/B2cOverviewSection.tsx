@@ -2,12 +2,49 @@
 
 import { motion } from "motion/react";
 
+const imageFrameMask = {
+    WebkitMaskImage: "url('/figma/solutions/b2c/subtract.svg')",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskPosition: "center",
+    WebkitMaskSize: "100% 100%",
+    maskImage: "url('/figma/solutions/b2c/subtract.svg')",
+    maskRepeat: "no-repeat",
+    maskPosition: "center",
+    maskSize: "100% 100%",
+};
+
+function OverviewImage({
+    src,
+    alt,
+    wrapperClassName,
+    imageClassName,
+}: {
+    src: string;
+    alt: string;
+    wrapperClassName: string;
+    imageClassName?: string;
+}) {
+    return (
+        <div className={wrapperClassName}>
+            <div className="relative h-full w-full overflow-hidden bg-[#d9d9d9]" style={imageFrameMask}>
+                <img
+                    src={src}
+                    alt={alt}
+                    aria-hidden="true"
+                    className={`absolute inset-0 h-full w-full object-cover ${imageClassName ?? "object-center"}`}
+                />
+            </div>
+        </div>
+    );
+}
+
 const contentBlocks = [
     {
         title: ["Microalgae", "Powered Clean Air", "for Everyday Spaces"],
         mobileHeight: "649px",
         mobileTextHeight: "225px",
         bodyWrapperClassName: "min-w-full w-[min-content] whitespace-pre-wrap",
+        image: "/figma/solutions/b2c/Image 1.png",
         body: [
             "AlgaeTree combines microalgae carbon capture, air purification, and intelligent monitoring to create healthier environments.",
             "Instead of simply filtering air, the system actively regenerates it by absorbing carbon dioxide and releasing oxygen.",
@@ -19,6 +56,7 @@ const contentBlocks = [
         mobileHeight: "666px",
         mobileTextHeight: "242px",
         bodyWrapperClassName: "w-full",
+        image: "/figma/solutions/b2c/Image 2.png",
         body: [
             "AlgaeTree transforms ordinary environments into living climate infrastructure.",
             "Microalgae capture carbon, release oxygen, and help reduce particulate pollution while smart sensors monitor air quality continuously.",
@@ -34,14 +72,11 @@ export default function B2cOverviewSection() {
                 <div className="mx-auto flex max-w-[408px] flex-col gap-[56px] md:hidden">
                     {contentBlocks.map((block) => (
                         <motion.div key={block.title[0]} className="flex flex-col gap-4" style={{ height: block.mobileHeight }}>
-                            <div className="relative h-[408px] w-full">
-                                <img
-                                    src="/figma/solutions/b2c/subtract.svg"
-                                    alt=""
-                                    aria-hidden="true"
-                                    className="absolute inset-0 h-full w-full object-contain"
-                                />
-                            </div>
+                            <OverviewImage
+                                src={block.image}
+                                alt={block.title.join(" ")}
+                                wrapperClassName="h-[408px] w-full"
+                            />
 
                             <div className="flex flex-col gap-2" style={{ height: block.mobileTextHeight }}>
                                 <h2 className="font-nevera text-[28px] leading-[normal] text-black">
@@ -88,25 +123,20 @@ export default function B2cOverviewSection() {
                             </div>
                         </div>
 
-                        <div className="relative h-[650px] w-[650px] shrink-0">
-                            <img
-                                src="/figma/solutions/b2c/subtract.svg"
-                                alt=""
-                                aria-hidden="true"
-                                className="absolute inset-0 h-full w-full object-contain"
-                            />
-                        </div>
+                        <OverviewImage
+                            src="/figma/solutions/b2c/Image 1.png"
+                            alt="Microalgae Powered Clean Air for Everyday Spaces"
+                            wrapperClassName="h-[650px] w-[650px] shrink-0"
+                        />
                     </motion.div>
 
                     <motion.div className="flex items-center gap-12">
-                        <div className="relative h-[650px] w-[650px] shrink-0">
-                            <img
-                                src="/figma/solutions/b2c/subtract.svg"
-                                alt=""
-                                aria-hidden="true"
-                                className="absolute inset-0 h-full w-full object-contain"
-                            />
-                        </div>
+                        <OverviewImage
+                            src="/figma/solutions/b2c/Image 2.png"
+                            alt="Living Climate Technology for People and Places"
+                            wrapperClassName="h-[650px] w-[650px] shrink-0"
+                            imageClassName="object-center"
+                        />
 
                         <div className="flex min-w-0 flex-1 flex-col gap-4">
                             <h2 className="font-nevera text-[48px] leading-[72px] text-black">
