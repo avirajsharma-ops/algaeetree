@@ -6,12 +6,21 @@ export default function TechHero() {
             <div className="page-px py-4 lg:py-[113px]">
                 <div className="relative h-[860px] w-full overflow-hidden rounded-[16px] bg-[#d9d9d9] lg:h-[808px] lg:rounded-[40px]">
                     <Image
-                        src="/figma/technology/hero.png"
+                        src="/figma/technology/Technology%20Hero%20Image%20Mobile.png"
                         alt="AlgaeTree Technology"
                         fill
                         priority
-                        sizes="(max-width: 1024px) 100vw, 1488px"
-                        className="object-cover object-[78%_center] lg:object-center"
+                        sizes="(max-width: 1023px) 100vw"
+                        className="object-cover object-center lg:hidden"
+                    />
+                    <Image
+                        src="/figma/technology/Technology%20Hero%20Image%20Desktop.png"
+                        alt=""
+                        aria-hidden
+                        fill
+                        priority
+                        sizes="(min-width: 1024px) 1488px, 100vw"
+                        className="hidden object-cover object-center lg:block"
                     />
                     {/* Desktop-only subtle overlay to keep text legible */}
                     <div className="absolute inset-0 hidden bg-gradient-to-r from-black/55 via-black/25 to-transparent lg:block" />

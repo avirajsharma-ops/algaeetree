@@ -3,11 +3,18 @@ export default function AboutHero() {
         <section className="w-full bg-white">
             <div className="px-4 py-4 sm:px-6 sm:py-6 xl:px-[120px] xl:py-[113px]">
                 <div className="flex w-full flex-col items-center gap-6 overflow-hidden rounded-[24px] border-[0.5px] border-[#6c6c6c] bg-white pb-6 sm:pb-8 xl:gap-10 xl:pb-10">
-                    {/* Video placeholder */}
+                    {/* Video */}
                     <div className="relative aspect-[408/501] w-full overflow-hidden bg-[#e0e0e0] md:aspect-[720/460] xl:h-[600px] xl:aspect-auto">
-                        <div className="font-nimbus absolute inset-0 flex items-center justify-center text-[18px] leading-[28px] text-[#9ca3af]">
-                            Journey Video Placeholder
-                        </div>
+                        <video
+                            className="h-full w-full object-cover"
+                            controls
+                            autoPlay
+                            muted
+                            loop
+                        >
+                            <source src="/figma/about/Hero Section Video.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
 
                     {/* Title + body */}

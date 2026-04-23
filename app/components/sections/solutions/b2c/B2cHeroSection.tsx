@@ -15,16 +15,16 @@ export default function B2cHeroSection() {
                     className="relative mx-auto h-[852px] w-full max-w-[408px] overflow-hidden rounded-[16px] bg-[#0f1514] md:h-[808px] md:max-w-[1488px] md:rounded-[40px]"
                 >
                     <Image
-                        src="/figma/solutions/b2c/hero.png"
+                        src="/figma/solutions/b2c/Hero%20Mobile.png"
                         alt="B2C climate solution photobioreactor in a nighttime urban setting"
-                        width={1276}
-                        height={900}
+                        fill
                         priority
-                        className="absolute left-[-736px] top-0 h-[900px] w-[1276px] max-w-none md:hidden"
+                        sizes="(max-width: 767px) 100vw"
+                        className="object-cover object-center md:hidden"
                     />
 
                     <Image
-                        src="/figma/solutions/b2c/hero.png"
+                        src="/figma/solutions/b2c/Hero%20Destop.png"
                         alt=""
                         aria-hidden
                         fill

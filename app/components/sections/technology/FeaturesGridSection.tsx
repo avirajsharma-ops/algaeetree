@@ -1,35 +1,42 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useCallback, useEffect } from "react";
 
 const FEATURES = [
     {
         title: "Solar Powered",
+        image: "/figma/technology/Feature%20Image%201.png",
         description:
             "Runs on integrated solar energy, enabling clean and sustainable operation without constant external power.",
     },
     {
         title: "Biological Carbon Capture",
+        image: "/figma/technology/Feature%20Image%202.png",
         description:
             "Living microalgae naturally absorb carbon dioxide and transform it into oxygen through photosynthesis.",
     },
     {
         title: "Smart Air Purification",
+        image: "/figma/technology/Feature%20Image%203.png",
         description:
             "Multi-stage filtration reduces harmful airborne particles before air enters the system.",
     },
     {
         title: "Smart Environmental Monitoring",
+        image: "/figma/technology/Feature%20Image%204.png",
         description:
             "Advanced sensors continuously monitor air quality, temperature, and surrounding conditions.",
     },
     {
         title: "AI-Driven System Control",
+        image: "/figma/technology/Feature%20Image%205.png",
         description:
             "Adaptive algorithms optimize airflow, lighting, and nutrients for stable algae growth.",
     },
     {
         title: "Connected Monitoring Platform",
+        image: "/figma/technology/Feature%20Image%206.png",
         description:
             "Cloud connectivity enables remote performance tracking and environmental insights.",
     },
@@ -88,7 +95,15 @@ function MobileCarousel() {
             onTouchEnd={resume}
         >
             <article className="flex h-[436px] w-full flex-col items-start gap-6 overflow-hidden rounded-[16px] bg-white px-4 pb-6 shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
-                <div className="h-[256px] w-full bg-[#d9d9d9]" />
+                <div className="relative h-[256px] w-full overflow-hidden rounded-[16px]">
+                    <Image
+                        src={card.image}
+                        alt={card.title}
+                        fill
+                        sizes="(max-width: 1023px) 100vw"
+                        className="object-cover object-center"
+                    />
+                </div>
                 <div className="flex w-full flex-col gap-2 text-black">
                     <h3 className="font-nimbus text-[24px] font-bold leading-tight">
                         {card.title}
@@ -162,7 +177,15 @@ export default function FeaturesGridSection() {
                             key={feature.title}
                             className="flex flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#f3f4f6] px-8 pb-10"
                         >
-                            <div className="h-[280px] w-full rounded-[16px] bg-[#d9d9d9]" />
+                            <div className="relative h-[280px] w-full overflow-hidden rounded-[16px]">
+                                <Image
+                                    src={feature.image}
+                                    alt={feature.title}
+                                    fill
+                                    sizes="(max-width: 1279px) 33vw, 480px"
+                                    className="object-cover object-center"
+                                />
+                            </div>
                             <div className="flex w-full flex-col gap-2">
                                 <h3 className="font-nimbus text-[26px] font-bold leading-[34px] text-black">
                                     {feature.title}
