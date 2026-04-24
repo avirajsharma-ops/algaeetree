@@ -248,7 +248,7 @@ export default function FeatureShowcaseSection() {
                     </div>
                     <div className="absolute inset-x-0 top-0 h-210.75 bg-black/56" />
 
-                    <div className="relative flex h-full flex-col items-center gap-6 px-4 py-6">
+                    <div className="page-px relative flex h-full flex-col items-center gap-6 py-6">
                         <div className="relative h-134.75 w-full max-w-102 overflow-hidden rounded-3xl bg-[#f3f4f6]">
                             <video
                                 key={productVideoSrc}

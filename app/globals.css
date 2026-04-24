@@ -29,9 +29,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 /* Shared horizontal page padding (matches Figma 120px desktop gutters) */
@@ -53,7 +56,21 @@ body {
   }
 
   .page-px {
-    padding-left: clamp(20px, 6.94vw, 120px);
-    padding-right: clamp(20px, 6.94vw, 120px);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .page-px {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page-px {
+      padding-left: 120px;
+      padding-right: 120px;
+    }
   }
 }

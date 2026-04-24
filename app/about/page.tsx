@@ -5,7 +5,7 @@ import StoryHeaderSection from "../components/sections/about/StoryHeaderSection"
 import VisionSection from "../components/sections/about/VisionSection";
 import MissionSection from "../components/sections/about/MissionSection";
 import AlignmentSection from "../components/sections/about/AlignmentSection";
-import InsideAlgaetreeSection from "../components/sections/about/InsideAlgaetreeSection";
+// import InsideAlgaetreeSection from "../components/sections/about/InsideAlgaetreeSection";
 import GallerySection from "../components/sections/about/GallerySection";
 
 export const metadata = {
@@ -24,7 +24,7 @@ export default function AboutPage() {
                 <VisionSection />
                 <MissionSection />
                 <AlignmentSection />
-                <InsideAlgaetreeSection />
+                {/* <InsideAlgaetreeSection /> */}
                 <GallerySection />
             </main>
             <Footer />

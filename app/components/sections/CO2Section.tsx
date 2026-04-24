@@ -403,7 +403,7 @@ function MobileChart() {
     const activeTranslateX = activeXRatio < 0.12 ? "0%" : activeXRatio > 0.88 ? "-100%" : "-50%";
 
     return (
-        <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)] lg:hidden">
+        <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)]">
             <div className="flex flex-col gap-2">
                 <h2 className="text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
                     Atmospheric CO2 <br /> Concentration (2000 - 2024)
@@ -534,65 +534,67 @@ function MobileChart() {
 export default function CO2Section() {
     return (
         <section className="w-full bg-white">
-            <div className="flex flex-col gap-6 px-4 py-4 lg:hidden">
-                <MobileChart />
+            <div className="page-px py-4 min-[1728px]:hidden">
+                <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-6">
+                    <MobileChart />
 
-                <div className="grid grid-cols-2 gap-4">
-                    <MobileStatCard
-                        value="75%"
-                        color="#CA0000"
-                        labelTop="CO2 Emission"
-                        labelBottom="In Year 2000"
-                        showTrend
-                    />
-                    <MobileStatCard
-                        value="75%"
-                        color="#CA0000"
-                        labelTop="CO2 Emission"
-                        labelBottom="In Year 2025"
-                        showTrend
-                    />
-                    <MobileStatCard
-                        value="160"
-                        suffix="ppm"
-                        color="#2D5A27"
-                        labelTop="AQI"
-                        labelBottom="Year 2000"
-                    />
-                    <MobileStatCard
-                        value="230"
-                        suffix="ppm"
-                        color="#CA0000"
-                        labelTop="AQI"
-                        labelBottom="Year 2025"
-                    />
-                </div>
-
-                <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
-                    <Image
-                        src="/figma/co2-card-bg.png"
-                        alt=""
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 987px"
-                        className="object-cover"
-                    />
-                    <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
-                    <div className="relative mt-3 font-nimbus text-[22px] leading-tight text-white">
-                        Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
+                    <div className="grid grid-cols-2 gap-4">
+                        <MobileStatCard
+                            value="75%"
+                            color="#CA0000"
+                            labelTop="CO2 Emission"
+                            labelBottom="In Year 2000"
+                            showTrend
+                        />
+                        <MobileStatCard
+                            value="75%"
+                            color="#CA0000"
+                            labelTop="CO2 Emission"
+                            labelBottom="In Year 2025"
+                            showTrend
+                        />
+                        <MobileStatCard
+                            value="160"
+                            suffix="ppm"
+                            color="#2D5A27"
+                            labelTop="AQI"
+                            labelBottom="Year 2000"
+                        />
+                        <MobileStatCard
+                            value="230"
+                            suffix="ppm"
+                            color="#CA0000"
+                            labelTop="AQI"
+                            labelBottom="Year 2025"
+                        />
                     </div>
-                    <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-normal text-white">
-                        <p>
-                            Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
-                        </p>
-                        <p>
-                            According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
-                        </p>
+
+                    <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
+                        <Image
+                            src="/figma/co2-card-bg.png"
+                            alt=""
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 987px"
+                            className="object-cover"
+                        />
+                        <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
+                        <div className="relative mt-3 font-nimbus text-[22px] leading-tight text-white">
+                            Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
+                        </div>
+                        <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-normal text-white">
+                            <p>
+                                Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
+                            </p>
+                            <p>
+                                According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="page-px hidden py-15 lg:block">
-                <div className="inline-flex w-full flex-col items-center justify-center gap-10">
+            <div className="page-px hidden py-15 min-[1728px]:block">
+                <div className="mx-auto inline-flex w-full max-w-[1488px] flex-col items-center justify-center gap-10">
                     <DesktopChart />
 
                     <div className="flex w-372 items-start justify-between gap-0">

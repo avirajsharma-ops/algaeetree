@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function IntroducingSection() {
     return (
         <section className="w-full overflow-hidden bg-white lg:h-[1117px]">
-            <div className="flex flex-col items-center px-4 py-6 lg:hidden">
+            <div className="page-px flex flex-col items-center py-6 lg:hidden">
                 <div className="flex w-full flex-col gap-6">
                     <div className="relative h-[539px] w-full overflow-hidden rounded-[24px] bg-[#f3f4f6]">
                         <img

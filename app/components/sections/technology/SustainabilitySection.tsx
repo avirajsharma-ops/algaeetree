@@ -92,7 +92,7 @@ export default function SustainabilitySection() {
     return (
         <>
             {/* Mobile: dark inner card with all content nested */}
-            <section className="w-full bg-white px-4 py-4 lg:hidden">
+            <section className="page-px w-full bg-white py-4 lg:hidden">
                 <div className="relative flex w-full flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#0d1f00] px-4 py-8">
                     {/* decorative ellipse */}
                     <div

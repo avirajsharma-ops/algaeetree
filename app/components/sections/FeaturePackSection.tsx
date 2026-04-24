@@ -48,9 +48,16 @@ function MobileMosaicCard({
                     }}
                 />
             )}
-            <div className="absolute left-[10px] top-[10px] flex flex-col gap-[2px] font-nimbus text-[#3c3c3c]" style={{ width: textWidth }}>
-                <p className="text-[10px] leading-[10px] tracking-[0.274px]">{title}</p>
-                <p className="text-[6px] leading-[8px] text-[#686868]">{description}</p>
+            <div
+                className="absolute left-[10px] top-[10px] flex flex-col gap-[2px] font-nimbus text-[#3c3c3c] md:left-[14px] md:top-[14px] md:gap-[4px] lg:left-[18px] lg:top-[18px] lg:gap-[6px]"
+                style={{ width: textWidth }}
+            >
+                <p className="text-[10px] leading-[10px] tracking-[0.274px] md:text-[13px] md:leading-[14px] lg:text-[18px] lg:leading-[20px]">
+                    {title}
+                </p>
+                <p className="text-[6px] leading-[8px] text-[#686868] md:text-[9px] md:leading-[11px] lg:text-[13px] lg:leading-[16px]">
+                    {description}
+                </p>
             </div>
         </article>
     );
@@ -58,25 +65,26 @@ function MobileMosaicCard({
 
 export default function FeaturePackSection() {
     return (
-        <section className="w-full bg-white lg:py-[60px]">
-            <div className="px-4 py-6 lg:hidden">
-                <div className="flex flex-col items-center gap-4">
-                    <div className="w-full rounded-[16px] py-4">
-                        <div className="flex w-full items-start gap-4">
-                            <div className="h-[177px] w-[6px] shrink-0 rounded-[8px] bg-black" />
-                            <div className="flex flex-1 flex-col gap-4">
-                                <h2 className="font-nevera text-[28px] uppercase leading-[38px] text-black">
+        <section className="w-full bg-white">
+            <div className="page-px py-6 lg:py-10 min-[1728px]:hidden">
+                <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center gap-6 lg:gap-10">
+                    <div className="w-full rounded-[16px] py-2 lg:py-4">
+                        <div className="flex w-full items-start gap-4 lg:gap-8">
+                            <div className="h-[120px] w-[6px] shrink-0 rounded-[8px] bg-black lg:h-[128px] lg:w-[7px]" />
+                            <div className="flex flex-1 flex-col gap-3 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+                                <h2 className="font-nevera text-[28px] uppercase leading-[38px] text-black sm:text-[36px] sm:leading-[44px] lg:text-[48px] lg:leading-[56px]">
                                     <span className="block">Feature Pack</span>
-                                    <span className="block">Power Deck</span>
+                                    <span className="block lg:hidden">Power Deck</span>
+                                    <span className="hidden lg:block">AlgaeTree System</span>
                                 </h2>
-                                <p className="font-nimbus text-[14px] leading-normal text-[#686868]">
+                                <p className="font-nimbus text-[14px] leading-normal text-[#686868] sm:text-[16px] sm:leading-[24px] lg:max-w-[651px] lg:text-[18px] lg:leading-[28px]">
                                     AlgaeTree™ is built as an integrated biological carbon capture system combining renewable energy, intelligent controls, and advanced microalgae cultivation. Each component works together to maintain optimal algae growth while enabling continuous carbon capture and clean air generation.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="relative aspect-[408/633.9355] w-full max-w-[408px]">
+                    <div className="relative aspect-[408/633.9355] w-full max-w-[408px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[980px] xl:max-w-[1180px]">
                         <MobileMosaicCard
                             style={{ left: "0%", top: "0%", width: "59.88%", height: "29.15%" }}
                             title="Solar Power System"
@@ -155,8 +163,8 @@ export default function FeaturePackSection() {
                 </div>
             </div>
 
-            <div className="hidden lg:flex w-full flex-col items-center justify-center">
-                <div className="flex w-[1488px] flex-col items-center justify-center gap-[80px]">
+            <div className="page-px hidden py-[60px] min-[1728px]:block">
+                <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center justify-center gap-[80px]">
                     <div className="flex w-full items-start justify-between">
                         <div className="flex items-center gap-[48px]">
                             <div className="h-[128px] w-[7px] rounded-[8px] bg-black" />
