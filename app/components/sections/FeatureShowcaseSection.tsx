@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Feature = {
     title: string;
@@ -64,6 +64,9 @@ const FEATURES: Feature[] = [
     },
 ];
 
+const SLIDE_INTERVAL_MS = 3500;
+const MEDIA_TRANSITION_MS = 1200;
+
 function ArrowButton({
     direction,
     onClick,
@@ -77,7 +80,7 @@ function ArrowButton({
         <button
             onClick={onClick}
             aria-label={direction === "left" ? "Previous" : "Next"}
-            className="relative block size-10 overflow-hidden rounded-[4px] border border-white bg-[#2d5a27]"
+            className="relative block size-10 overflow-hidden rounded-sm border border-white bg-[#2d5a27]"
         >
             <Image
                 src="/figma/arrow-bg.png"
@@ -95,46 +98,184 @@ function ArrowButton({
 
 export default function FeatureShowcaseSection() {
     const [index, setIndex] = useState(0);
+    const [isDesktopViewport, setIsDesktopViewport] = useState(false);
     const total = FEATURES.length;
+    const directionRef = useRef<1 | -1>(1);
+    const previousIndexRef = useRef(0);
+    const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
+    const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
+    const videoRafMapRef = useRef(new WeakMap<HTMLVideoElement, number>());
+    const productVideoSrc = "/Algae%20Cylender%20Shape%201800x2796.mp4";
     const current = FEATURES[index];
     const backgroundSrc = current.backgroundSrc ?? "/figma/bloom-micro-algae.png";
     const backgroundPosition = current.backgroundPosition ?? "center center";
-    const overlayColor = current.overlayColor ?? "rgba(0, 0, 0, 0.6)";
+    const overlayColor = "rgba(0, 0, 0, 0.56)";
+    const progressRatio = total > 1 ? index / (total - 1) : 0;
 
-    const prev = () => setIndex((i) => (i - 1 + total) % total);
-    const next = () => setIndex((i) => (i + 1) % total);
+    const move = useCallback(
+        (manualDirection?: 1 | -1) => {
+            setIndex((currentIndex) => {
+                if (total <= 1) {
+                    return currentIndex;
+                }
+
+                if (manualDirection) {
+                    directionRef.current = manualDirection;
+                }
+
+                let direction = directionRef.current;
+                let nextIndex = currentIndex + direction;
+
+                if (nextIndex >= total || nextIndex < 0) {
+                    direction = direction === 1 ? -1 : 1;
+                    directionRef.current = direction;
+                    nextIndex = currentIndex + direction;
+                }
+
+                return nextIndex;
+            });
+        },
+        [total],
+    );
+
+    useEffect(() => {
+        const autoplay = window.setInterval(() => {
+            move();
+        }, SLIDE_INTERVAL_MS);
+
+        return () => {
+            window.clearInterval(autoplay);
+        };
+    }, [move]);
+
+    const prev = () => move(-1);
+    const next = () => move(1);
+
+    const clearVideoAnimation = useCallback((video: HTMLVideoElement) => {
+        const rafId = videoRafMapRef.current.get(video);
+        if (rafId !== undefined) {
+            window.cancelAnimationFrame(rafId);
+            videoRafMapRef.current.delete(video);
+        }
+    }, []);
+
+    const clearAllVideoAnimations = useCallback(() => {
+        if (desktopVideoRef.current) {
+            clearVideoAnimation(desktopVideoRef.current);
+        }
+        if (mobileVideoRef.current) {
+            clearVideoAnimation(mobileVideoRef.current);
+        }
+    }, [clearVideoAnimation]);
+
+    const animateVideoToSlide = useCallback(
+        (video: HTMLVideoElement, transitionDirection: 1 | -1) => {
+            if (!Number.isFinite(video.duration) || video.duration <= 0) {
+                return;
+            }
+
+            clearVideoAnimation(video);
+            video.pause();
+            const segmentDuration = video.duration / total;
+            const segmentStart = index * segmentDuration;
+            const segmentEnd = Math.min(video.duration, segmentStart + segmentDuration);
+            const fromTime = transitionDirection === 1 ? segmentStart : segmentEnd;
+            const toTime = transitionDirection === 1 ? segmentEnd : segmentStart;
+            const startTs = performance.now();
+
+            const easeInOutCubic = (t: number) =>
+                t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+            const tick = (now: number) => {
+                const elapsed = now - startTs;
+                const progress = Math.min(elapsed / MEDIA_TRANSITION_MS, 1);
+                const eased = easeInOutCubic(progress);
+                video.currentTime = fromTime + (toTime - fromTime) * eased;
+
+                if (progress < 1) {
+                    const rafId = window.requestAnimationFrame(tick);
+                    videoRafMapRef.current.set(video, rafId);
+                    return;
+                }
+
+                video.currentTime = toTime;
+                videoRafMapRef.current.delete(video);
+            };
+
+            const rafId = window.requestAnimationFrame(tick);
+            videoRafMapRef.current.set(video, rafId);
+        },
+        [clearVideoAnimation, index, total],
+    );
+
+    const syncVideosWithSlide = useCallback((transitionDirection: 1 | -1) => {
+        const activeVideo = isDesktopViewport ? desktopVideoRef.current : mobileVideoRef.current;
+        if (activeVideo) {
+            animateVideoToSlide(activeVideo, transitionDirection);
+        }
+    }, [animateVideoToSlide, isDesktopViewport]);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(min-width: 1024px)");
+        const applyViewport = () => {
+            setIsDesktopViewport(mediaQuery.matches);
+        };
+
+        applyViewport();
+        mediaQuery.addEventListener("change", applyViewport);
+
+        return () => {
+            mediaQuery.removeEventListener("change", applyViewport);
+        };
+    }, []);
+
+    useEffect(() => {
+        const transitionDirection: 1 | -1 = index >= previousIndexRef.current ? 1 : -1;
+        syncVideosWithSlide(transitionDirection);
+        previousIndexRef.current = index;
+    }, [index, syncVideosWithSlide]);
+
+    useEffect(() => {
+        return () => {
+            clearAllVideoAnimations();
+        };
+    }, [clearAllVideoAnimations]);
 
     return (
         <section className="relative w-full overflow-hidden bg-[#193100]">
-            <div className="relative h-[875px] w-full lg:h-[1136px]">
+            <div className="relative h-218.75 w-full lg:h-284">
                 <div className="absolute inset-0 lg:hidden">
-                    <div className="absolute left-[-532px] top-0 h-[843px] w-[1504px]">
+                    <div className="absolute -left-133 top-0 h-210.75 w-376">
                         <img src={backgroundSrc} alt="" className="block size-full max-w-none object-cover" />
                     </div>
-                    <div className="absolute inset-x-0 top-0 h-[843px] bg-black/56" />
+                    <div className="absolute inset-x-0 top-0 h-210.75 bg-black/56" />
 
                     <div className="relative flex h-full flex-col items-center gap-6 px-4 py-6">
-                        <div className="relative h-[539px] w-full max-w-[408px] overflow-hidden rounded-[24px] bg-[#f3f4f6]">
-                            <img
-                                src="/figma/slider-product.png"
-                                alt={current.title}
-                                className="absolute max-w-none object-cover"
-                                style={{ left: "48.5%", top: "52.4%", width: "221.4%", height: "104.7%", transform: "translate(-50%, -50%)" }}
+                        <div className="relative h-134.75 w-full max-w-102 overflow-hidden rounded-3xl bg-[#f3f4f6]">
+                            <video
+                                key={productVideoSrc}
+                                ref={mobileVideoRef}
+                                src={productVideoSrc}
+                                muted
+                                playsInline
+                                preload="metadata"
+                                onLoadedMetadata={() => syncVideosWithSlide(directionRef.current)}
+                                className="h-full w-full transform-gpu object-contain"
                             />
                         </div>
 
-                        <div className="flex w-full max-w-[408px] items-center gap-2">
+                        <div className="flex w-full max-w-102 items-center gap-2">
                             <ArrowButton direction="left" onClick={prev} />
                             <ArrowButton direction="right" onClick={next} />
                         </div>
 
-                        <div className="relative h-[6px] w-[calc(100%+32px)] overflow-hidden">
+                        <div className="relative h-1.5 w-[calc(100%+32px)] overflow-hidden">
                             <div className="absolute left-0 right-0 top-1/2 h-0 border-t border-dashed border-white/90 -translate-y-1/2" />
-                            <div className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 bg-[#9fe884]" style={{ width: `${((index + 1) / total) * 100}%` }} />
+                            <div className="absolute left-0 top-1/2 h-0.5 -translate-y-1/2 bg-[#9fe884]" style={{ width: `${progressRatio * 100}%` }} />
                         </div>
 
-                        <div className="min-h-[138px] w-full max-w-[408px] text-left text-white">
-                            <div className="font-nimbus text-[clamp(34px,10vw,40px)] font-bold leading-[1]">
+                        <div className="min-h-34.5 w-full max-w-102 text-left text-white">
+                            <div className="font-nimbus text-[clamp(34px,10vw,40px)] font-bold leading-none">
                                 <p>{current.title}</p>
                                 {current.subtitle && <p>{current.subtitle}</p>}
                             </div>
@@ -158,9 +299,9 @@ export default function FeatureShowcaseSection() {
                     />
                     <div className="absolute inset-0" style={{ backgroundColor: overlayColor }} />
 
-                    <div className="absolute left-[122px] top-0 flex h-[1136px] w-0 items-center justify-center">
+                    <div className="absolute left-30.5 top-0 flex h-284 w-0 items-center justify-center">
                         <div className="-rotate-90">
-                            <div className="relative h-0 w-[1136px]">
+                            <div className="relative h-0 w-284">
                                 <div className="absolute inset-[-2px_0_0_0]">
                                     <img src="/figma/line1.svg" alt="" className="block size-full max-w-none" />
                                 </div>
@@ -168,36 +309,40 @@ export default function FeatureShowcaseSection() {
                         </div>
                     </div>
 
-                    <div className="absolute left-[117px] top-[80px] h-[80px] w-[8px] rounded-[8px] bg-white" />
+                    <div
+                        className="absolute left-29.25 h-20 w-2 rounded-lg bg-white transition-all duration-500 ease-in-out"
+                        style={{ top: `${80 + progressRatio * 976}px` }}
+                    />
 
-                    <div className="absolute left-[calc(50%+376px)] top-1/2 size-[736px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[13.6px] bg-white">
-                        <div className="absolute left-[-223px] top-0 h-[736px] w-[1177.6px]">
-                            <Image
-                                src="/figma/slider-product.png"
-                                alt={current.title}
-                                fill
-                                sizes="1177px"
-                                className="object-cover"
-                            />
-                        </div>
+                    <div className="absolute left-[calc(50%+376px)] top-1/2 size-184 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[13.6px] bg-white">
+                        <video
+                            key={`${productVideoSrc}-desktop`}
+                            ref={desktopVideoRef}
+                            src={productVideoSrc}
+                            muted
+                            playsInline
+                            preload="metadata"
+                            onLoadedMetadata={() => syncVideosWithSlide(directionRef.current)}
+                            className="h-full w-full transform-gpu object-contain"
+                        />
                     </div>
 
-                    <div className="absolute left-[189px] top-1/2 h-[200px] w-[659px] -translate-y-1/2 overflow-hidden">
-                        <div className="absolute left-0 top-0 flex w-[678px] flex-col items-start gap-[56px] text-left text-white">
+                    <div className="absolute left-47.25 top-1/2 h-50 w-164.75 -translate-y-1/2 overflow-hidden">
+                        <div className="absolute left-0 top-0 flex w-169.5 flex-col items-start gap-14 text-left text-white">
                             <div className="flex w-full flex-col items-start justify-center gap-4">
                                 <div className="font-nimbus flex flex-col justify-center text-[56px] font-bold text-white">
-                                    <p className="leading-[64px]">{current.title}</p>
-                                    {current.subtitle && <p className="leading-[64px]">{current.subtitle}</p>}
+                                    <p className="leading-16">{current.title}</p>
+                                    {current.subtitle && <p className="leading-16">{current.subtitle}</p>}
                                 </div>
                                 <div className="font-nimbus flex min-w-full flex-col justify-center text-[24px] text-white">
-                                    <p className={`leading-[28px] ${current.bodyBottom ? "mb-0" : ""}`}>{current.bodyTop}</p>
-                                    {current.bodyBottom && <p className="leading-[28px]">{current.bodyBottom}</p>}
+                                    <p className={`leading-7 ${current.bodyBottom ? "mb-0" : ""}`}>{current.bodyTop}</p>
+                                    {current.bodyBottom && <p className="leading-7">{current.bodyBottom}</p>}
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="absolute left-[189px] top-[748px] flex items-center gap-4">
+                    <div className="absolute left-47.25 top-187 flex items-center gap-4">
                         <ArrowButton direction="left" onClick={prev} />
                         <ArrowButton direction="right" onClick={next} />
                     </div>
