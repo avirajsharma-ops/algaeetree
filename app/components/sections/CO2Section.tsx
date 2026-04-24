@@ -162,7 +162,7 @@ function StatCard({
     showTrend?: boolean;
 }) {
     return (
-        <div className="inline-flex h-40 w-full flex-col items-start justify-between rounded-xl bg-white p-4 outline-1 -outline-offset-1 outline-[#D9D9D9] lg:w-58.5">
+        <div className="inline-flex h-40 w-full flex-col items-start justify-between rounded-xl bg-white p-4 outline-1 -outline-offset-1 outline-[#D9D9D9]">
             <div className="inline-flex items-center justify-start gap-2 self-stretch">
                 <div className="font-nimbus flex flex-col justify-center" style={{ color }}>
                     {suffix ? (
@@ -246,8 +246,8 @@ function DesktopChart() {
     const activeTranslateX = activeXRatio < 0.12 ? "0%" : activeXRatio > 0.88 ? "-100%" : "-50%";
 
     return (
-        <div className="relative h-160 w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
-            <div className="absolute left-14 top-10 inline-flex w-231.5 flex-col items-start justify-start gap-2">
+        <div className="relative aspect-[1488/640] w-full max-w-[1488px] rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
+            <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
                     <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
                         Atmospheric CO2 Concentration (2000 - 2024)
@@ -260,7 +260,7 @@ function DesktopChart() {
                 </div>
             </div>
 
-            <div className="absolute left-14 top-34 inline-flex w-231.5 items-start justify-start gap-6">
+            <div className="absolute left-[3.763%] top-[21.25%] inline-flex w-[62.231%] items-start justify-start gap-6">
                 <div className="flex items-center justify-start gap-2 self-stretch">
                     <div className="size-3 rounded-[9999px] bg-[#14B8A6]" />
                     <div className="inline-flex flex-col items-start justify-start">
@@ -279,7 +279,7 @@ function DesktopChart() {
                 </div>
             </div>
 
-            <div className="absolute left-29.25 top-56.75 h-75 w-328.75">
+            <div className="absolute left-[7.863%] top-[35.469%] h-[46.875%] w-[88.373%]">
                 <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="h-full w-full" aria-label="India CO2 emission chart">
                     {Y_TICKS.map((tick) => {
                         const y = yForValue(tick, chartHeight);
@@ -351,7 +351,7 @@ function DesktopChart() {
                 )}
             </div>
 
-            <div className="absolute left-29.25 top-134.75 h-5 w-328.75">
+            <div className="absolute left-[7.863%] top-[84.219%] h-[3.125%] w-[88.373%]">
                 {X_TICKS.map((year) => (
                     <div
                         key={year}
@@ -366,8 +366,8 @@ function DesktopChart() {
             {Y_TICKS.map((tick) => (
                 <div
                     key={tick}
-                    className="absolute left-14.5 -translate-y-1/2 text-[12px] font-medium text-[#6B7280] lg:text-[13px]"
-                    style={{ top: `${227 + (yForValue(tick, chartHeight) / chartHeight) * 300}px` }}
+                    className="absolute left-[3.898%] -translate-y-1/2 text-[12px] font-medium text-[#6B7280] lg:text-[13px]"
+                    style={{ top: `${35.46875 + (yForValue(tick, chartHeight) / chartHeight) * 46.875}%` }}
                 >
                     {formatBillion(tick)}
                 </div>
@@ -379,7 +379,7 @@ function DesktopChart() {
                 </div>
             </div>
 
-            <div className="absolute bottom-5.5 left-1/2 -translate-x-1/2">
+            <div className="absolute bottom-[3.4375%] left-1/2 -translate-x-1/2">
                 <div className="whitespace-nowrap text-center text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
                     Time Period ({START_YEAR} - {END_YEAR})
                 </div>
@@ -534,7 +534,7 @@ function MobileChart() {
 export default function CO2Section() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-4 min-[1728px]:hidden">
+            <div className="page-px py-4 lg:hidden">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-6">
                     <MobileChart />
 
@@ -593,12 +593,12 @@ export default function CO2Section() {
                 </div>
             </div>
 
-            <div className="page-px hidden py-15 min-[1728px]:block">
-                <div className="mx-auto inline-flex w-full max-w-[1488px] flex-col items-center justify-center gap-10">
+            <div className="page-px hidden py-10 lg:block xl:py-15">
+                <div className="mx-auto inline-flex w-full max-w-[1488px] flex-col items-center justify-center gap-6 xl:gap-10">
                     <DesktopChart />
 
-                    <div className="flex w-372 items-start justify-between gap-0">
-                        <div className="relative inline-flex h-84 w-246.75 flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-8">
+                    <div className="flex w-full flex-col items-start justify-between gap-4 lg:flex-row lg:gap-4">
+                        <div className="relative inline-flex h-auto min-h-84 w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-6 lg:w-[66.33%] xl:p-8">
                             <Image
                                 src="/figma/co2-card-bg.png"
                                 alt=""
@@ -623,7 +623,7 @@ export default function CO2Section() {
                             </div>
                         </div>
 
-                        <div className="flex w-121.25 flex-wrap content-start items-start justify-start gap-4">
+                        <div className="grid w-full grid-cols-2 gap-4 lg:w-[32.59%]">
                             <StatCard
                                 value="75%"
                                 color="#CA0000"
