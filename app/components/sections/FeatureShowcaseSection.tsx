@@ -65,7 +65,6 @@ const FEATURES: Feature[] = [
 ];
 
 const SLIDE_INTERVAL_MS = 3500;
-const MEDIA_TRANSITION_MS = 1200;
 
 function ArrowButton({
     direction,
@@ -101,10 +100,11 @@ export default function FeatureShowcaseSection() {
     const [isDesktopViewport, setIsDesktopViewport] = useState(false);
     const total = FEATURES.length;
     const directionRef = useRef<1 | -1>(1);
-    const previousIndexRef = useRef(0);
     const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
     const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
-    const videoRafMapRef = useRef(new WeakMap<HTMLVideoElement, number>());
+    const autoplayTimeoutRef = useRef<number | null>(null);
+    const videoPauseTimeoutRef = useRef<number | null>(null);
+    const playAttemptRef = useRef(0);
     const productVideoSrc = "/Algae%20Cylender%20Shape%201800x2796.mp4";
     const current = FEATURES[index];
     const backgroundSrc = current.backgroundSrc ?? "/figma/bloom-micro-algae.png";
@@ -138,82 +138,80 @@ export default function FeatureShowcaseSection() {
         [total],
     );
 
-    useEffect(() => {
-        const autoplay = window.setInterval(() => {
-            move();
-        }, SLIDE_INTERVAL_MS);
-
-        return () => {
-            window.clearInterval(autoplay);
-        };
-    }, [move]);
-
-    const prev = () => move(-1);
-    const next = () => move(1);
-
-    const clearVideoAnimation = useCallback((video: HTMLVideoElement) => {
-        const rafId = videoRafMapRef.current.get(video);
-        if (rafId !== undefined) {
-            window.cancelAnimationFrame(rafId);
-            videoRafMapRef.current.delete(video);
+    const clearAutoplayTimer = useCallback(() => {
+        if (autoplayTimeoutRef.current !== null) {
+            window.clearTimeout(autoplayTimeoutRef.current);
+            autoplayTimeoutRef.current = null;
         }
     }, []);
 
-    const clearAllVideoAnimations = useCallback(() => {
-        if (desktopVideoRef.current) {
-            clearVideoAnimation(desktopVideoRef.current);
+    const clearVideoPauseTimer = useCallback(() => {
+        if (videoPauseTimeoutRef.current !== null) {
+            window.clearTimeout(videoPauseTimeoutRef.current);
+            videoPauseTimeoutRef.current = null;
         }
-        if (mobileVideoRef.current) {
-            clearVideoAnimation(mobileVideoRef.current);
-        }
-    }, [clearVideoAnimation]);
+    }, []);
 
-    const animateVideoToSlide = useCallback(
-        (video: HTMLVideoElement, transitionDirection: 1 | -1) => {
+    const playVideoForCurrentSlide = useCallback(
+        (video: HTMLVideoElement) => {
             if (!Number.isFinite(video.duration) || video.duration <= 0) {
                 return;
             }
 
-            clearVideoAnimation(video);
+            const attemptId = ++playAttemptRef.current;
+            clearVideoPauseTimer();
             video.pause();
+
             const segmentDuration = video.duration / total;
             const segmentStart = index * segmentDuration;
             const segmentEnd = Math.min(video.duration, segmentStart + segmentDuration);
-            const fromTime = transitionDirection === 1 ? segmentStart : segmentEnd;
-            const toTime = transitionDirection === 1 ? segmentEnd : segmentStart;
-            const startTs = performance.now();
 
-            const easeInOutCubic = (t: number) =>
-                t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            video.currentTime = Math.min(segmentStart + 0.01, segmentEnd);
 
-            const tick = (now: number) => {
-                const elapsed = now - startTs;
-                const progress = Math.min(elapsed / MEDIA_TRANSITION_MS, 1);
-                const eased = easeInOutCubic(progress);
-                video.currentTime = fromTime + (toTime - fromTime) * eased;
+            const segmentMs = Math.max(1, (segmentEnd - segmentStart) * 1000);
+            video.playbackRate = Math.max(0.5, Math.min(segmentMs / SLIDE_INTERVAL_MS, 2.5));
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(() => {
+                    // Ignore expected interruption errors from rapid slide changes.
+                });
+            }
 
-                if (progress < 1) {
-                    const rafId = window.requestAnimationFrame(tick);
-                    videoRafMapRef.current.set(video, rafId);
+            const pauseAfterMs = Math.max(300, Math.min(SLIDE_INTERVAL_MS - 30, (segmentMs / video.playbackRate)));
+            videoPauseTimeoutRef.current = window.setTimeout(() => {
+                if (playAttemptRef.current !== attemptId) {
                     return;
                 }
-
-                video.currentTime = toTime;
-                videoRafMapRef.current.delete(video);
-            };
-
-            const rafId = window.requestAnimationFrame(tick);
-            videoRafMapRef.current.set(video, rafId);
+                video.currentTime = segmentEnd;
+                video.pause();
+            }, pauseAfterMs);
         },
-        [clearVideoAnimation, index, total],
+        [clearVideoPauseTimer, index, total],
     );
 
-    const syncVideosWithSlide = useCallback((transitionDirection: 1 | -1) => {
+    const syncVideosWithSlide = useCallback(() => {
         const activeVideo = isDesktopViewport ? desktopVideoRef.current : mobileVideoRef.current;
         if (activeVideo) {
-            animateVideoToSlide(activeVideo, transitionDirection);
+            playVideoForCurrentSlide(activeVideo);
         }
-    }, [animateVideoToSlide, isDesktopViewport]);
+    }, [isDesktopViewport, playVideoForCurrentSlide]);
+
+    const scheduleAutoplay = useCallback(() => {
+        clearAutoplayTimer();
+        autoplayTimeoutRef.current = window.setTimeout(() => {
+            move();
+        }, SLIDE_INTERVAL_MS);
+    }, [clearAutoplayTimer, move]);
+
+    const prev = () => {
+        move(-1);
+        scheduleAutoplay();
+    };
+
+    const next = () => {
+        move(1);
+        scheduleAutoplay();
+    };
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -230,16 +228,16 @@ export default function FeatureShowcaseSection() {
     }, []);
 
     useEffect(() => {
-        const transitionDirection: 1 | -1 = index >= previousIndexRef.current ? 1 : -1;
-        syncVideosWithSlide(transitionDirection);
-        previousIndexRef.current = index;
-    }, [index, syncVideosWithSlide]);
+        syncVideosWithSlide();
+        scheduleAutoplay();
+    }, [index, scheduleAutoplay, syncVideosWithSlide]);
 
     useEffect(() => {
         return () => {
-            clearAllVideoAnimations();
+            clearAutoplayTimer();
+            clearVideoPauseTimer();
         };
-    }, [clearAllVideoAnimations]);
+    }, [clearAutoplayTimer, clearVideoPauseTimer]);
 
     return (
         <section className="relative w-full overflow-hidden bg-[#193100]">
@@ -259,7 +257,7 @@ export default function FeatureShowcaseSection() {
                                 muted
                                 playsInline
                                 preload="metadata"
-                                onLoadedMetadata={() => syncVideosWithSlide(directionRef.current)}
+                                onLoadedMetadata={syncVideosWithSlide}
                                 className="h-full w-full transform-gpu object-contain"
                             />
                         </div>
@@ -322,7 +320,7 @@ export default function FeatureShowcaseSection() {
                             muted
                             playsInline
                             preload="metadata"
-                            onLoadedMetadata={() => syncVideosWithSlide(directionRef.current)}
+                            onLoadedMetadata={syncVideosWithSlide}
                             className="h-full w-full transform-gpu object-contain"
                         />
                     </div>
