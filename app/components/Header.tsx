@@ -26,7 +26,7 @@ const DESKTOP_NAV_ITEMS = [
             { label: "CCUS", href: "/solutions/ccus" },
         ],
     },
-    { label: "About Us", href: "/about" },
+    // { label: "About Us", href: "/about" },
     { label: "News & Events", href: "#" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];
@@ -41,7 +41,7 @@ const MOBILE_NAV_ITEMS = [
             { label: "CCUS", href: "/solutions/ccus" },
         ],
     },
-    { label: "About Us", href: "/about" },
+    // { label: "About Us", href: "/about" },
     { label: "News & Events", href: "#" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];

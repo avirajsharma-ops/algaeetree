@@ -11,10 +11,9 @@ const QUICK_LINKS = [
 const CONTACTS = ["hello@algaetree.tech", "Bhopal, IN", "+91 xx xxxx xxxx"];
 const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
-    { src: "/figma/linkedin.svg", alt: "LinkedIn" },
-    { src: "/figma/instagram.svg", alt: "Instagram" },
-    { src: "/figma/facebook.svg", alt: "Facebook" },
-    { src: "/figma/youtube.svg", alt: "YouTube" },
+    { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
+    { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algae_tree/" },
+    { src: "/figma/youtube.svg", alt: "YouTube", href: "https://youtube.com/@algaetree" },
 ];
 
 export default function Footer() {
@@ -42,7 +41,7 @@ export default function Footer() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     {SOCIALS.map((social) => (
-                                        <a key={social.alt} href="#" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
+                                        <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
                                             <img src={social.src} alt="" className="size-[26.88px]" />
                                         </a>
                                     ))}
@@ -104,7 +103,7 @@ export default function Footer() {
                                 </div>
                                 <div className="flex items-center gap-[8px]">
                                     {SOCIALS.map((social) => (
-                                        <a key={social.alt} href="#" aria-label={social.alt} className="flex size-[32px] items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
+                                        <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-[32px] items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
                                             <img src={social.src} alt="" className="size-[26.88px]" />
                                         </a>
                                     ))}

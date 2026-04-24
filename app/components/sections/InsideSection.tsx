@@ -1,3 +1,5 @@
+const HOMEPAGE_VIDEO_EMBED_URL = "https://www.youtube.com/embed/Uar9PYreEOQ?si=yuj0YpS2xKIlqHoN";
+
 export default function InsideSection() {
     return (
         <section className="w-full overflow-hidden bg-white">
@@ -7,8 +9,15 @@ export default function InsideSection() {
                         <span className="block">Inside the</span>
                         <span className="block">Algaetree</span>
                     </h2>
-                    <div className="relative h-[272px] w-full overflow-hidden rounded-[24px] bg-[#d9d9d9]">
-                        <img src="/figma/inside-photo.png" alt="Inside the Algaetree" className="block size-full object-cover" />
+                    <div className="relative h-[272px] w-full overflow-hidden rounded-[24px] bg-black">
+                        <iframe
+                            src={HOMEPAGE_VIDEO_EMBED_URL}
+                            title="AlgaeTree homepage video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            className="block size-full border-0"
+                        />
                     </div>
                 </div>
             </div>
@@ -18,8 +27,15 @@ export default function InsideSection() {
                     <div className="font-nevera flex w-full flex-col justify-center text-center text-[56px] leading-[64px] text-black">
                         <p>Inside the Algaetree</p>
                     </div>
-                    <div className="relative h-[831px] w-full overflow-hidden rounded-[40px] bg-[#d9d9d9]">
-                        <img src="/figma/inside-photo.png" alt="Inside the Algaetree" className="absolute left-1/2 top-0 h-[992px] w-[1488px] -translate-x-1/2 object-cover" />
+                    <div className="relative h-[831px] w-full overflow-hidden rounded-[40px] bg-black">
+                        <iframe
+                            src={HOMEPAGE_VIDEO_EMBED_URL}
+                            title="AlgaeTree homepage video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                            className="block size-full border-0"
+                        />
                     </div>
                 </div>
             </div>

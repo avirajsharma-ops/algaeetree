@@ -5,22 +5,22 @@ import { motion } from "motion/react";
 
 const SOCIAL_CARDS = [
     {
-        href: "https://www.linkedin.com",
+        href: "https://in.linkedin.com/company/algaetree",
         icon: "/figma/contact/linkedin-fill.svg",
         iconAlt: "LinkedIn icon",
-        title: "LinkedIn",
+        title: "LinkedIn · algaetree",
     },
     {
-        href: "https://www.instagram.com",
+        href: "https://www.instagram.com/algae_tree/",
         icon: "/figma/contact/instagram.svg",
         iconAlt: "Instagram icon",
-        title: "Instagram",
+        title: "Instagram · algae_tree",
     },
     {
-        href: "https://www.facebook.com",
-        icon: "/figma/contact/facebook.png",
-        iconAlt: "Facebook icon",
-        title: "Facebook",
+        href: "https://youtube.com/@algaetree",
+        icon: "/figma/youtube.svg",
+        iconAlt: "YouTube icon",
+        title: "YouTube · @AlgaeTree",
     },
 ];
 
