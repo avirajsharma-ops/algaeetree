@@ -312,7 +312,7 @@ export default function FeatureShowcaseSection() {
                         style={{ top: `${80 + progressRatio * 976}px` }}
                     />
 
-                    <div className="absolute left-[calc(50%+376px)] top-1/2 size-184 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[13.6px] bg-white">
+                    <div className="absolute left-[calc(50%+376px)] top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[40px]">
                         <video
                             key={`${productVideoSrc}-desktop`}
                             ref={desktopVideoRef}
