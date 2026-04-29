@@ -11,10 +11,10 @@ const SOCIAL_CARDS = [
         title: "LinkedIn · algaetree",
     },
     {
-        href: "https://www.instagram.com/algae_tree/",
+        href: "https://www.instagram.com/algae.tree_official/",
         icon: "/figma/contact/instagram.svg",
         iconAlt: "Instagram icon",
-        title: "Instagram · algae_tree",
+        title: "Instagram · algae.tree_official",
     },
     {
         href: "https://youtube.com/@algaetree",

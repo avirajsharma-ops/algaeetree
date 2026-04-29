@@ -27,7 +27,7 @@ const DESKTOP_NAV_ITEMS = [
         ],
     },
     { label: "About Us", href: "/about" },
-    { label: "News & Events", href: "#" },
+    { label: "News & Events", href: "/news-events" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];
 
@@ -42,7 +42,7 @@ const MOBILE_NAV_ITEMS = [
         ],
     },
     { label: "About Us", href: "/about" },
-    { label: "News & Events", href: "#" },
+    { label: "News & Events", href: "/news-events" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];
 

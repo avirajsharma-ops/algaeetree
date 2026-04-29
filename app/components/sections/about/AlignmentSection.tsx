@@ -58,14 +58,14 @@ export default function AlignmentSection() {
                 <div className="order-1 w-full xl:order-2 xl:w-[736px]">
                     <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileAlignmentMask}>
                         <img
-                            src="/figma/about/About Us Image 3.png"
+                            src="/About%20Us%20Image%204.png"
                             alt="Alignment with Government Goals"
                             className="absolute inset-0 h-full w-full object-cover"
                         />
                     </div>
                     <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopAlignmentMask}>
                         <img
-                            src="/figma/about/About Us Image 3.png"
+                            src="/About%20Us%20Image%204.png"
                             alt="Alignment with Government Goals"
                             className="absolute inset-0 h-full w-full object-cover"
                         />

@@ -6,13 +6,13 @@ const QUICK_LINKS = [
     { label: "Technology", href: "/technology" },
     { label: "About Us", href: "/about" },
     { label: "Team", href: "/team" },
-    { label: "Reads", href: "#" },
+    { label: "Reads", href: "/news-events" },
 ];
 const CONTACTS = ["hello@algaetree.tech", "Bhopal, IN", "+91 xx xxxx xxxx"];
 const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
-    { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algae_tree/" },
+    { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algae.tree_official/" },
     { src: "/figma/youtube.svg", alt: "YouTube", href: "https://youtube.com/@algaetree" },
 ];
 
