@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function NewsEventsPage() {
     return (
-        <div className="flex w-full flex-col bg-white">
+        <div className="font-nimbus flex w-full flex-col bg-white">
             <Header />
             <main>
                 <NewsEventsSection />
