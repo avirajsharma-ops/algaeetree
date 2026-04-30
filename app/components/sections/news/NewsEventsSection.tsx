@@ -5,7 +5,7 @@ type StoryCard = {
     category: string;
     title: string;
     excerpt: string;
-    date: string;
+        date: string;
     image: string;
 };
 
