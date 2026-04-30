@@ -22,7 +22,7 @@ export default function NaturesGeniusSection() {
                         <p className="font-nimbus text-[18px] font-bold leading-normal lg:text-[20px]">
                             Nature&apos;s Genius
                         </p>
-                        <h2 className="font-nimbus text-[34px] font-normal leading-[1.1] sm:text-[46px] lg:text-[64px] lg:leading-[56px]">
+                        <h2 className="font-space-grotesk text-[34px] font-normal leading-[1.1] sm:text-[46px] lg:text-[64px] lg:leading-[56px]">
                             Algae: The Earth&apos;s Original Filter
                         </h2>
                         <div className="font-nimbus max-w-[994px] text-[14px] font-normal leading-normal lg:text-[16px]">
@@ -61,7 +61,7 @@ export default function NaturesGeniusSection() {
                 <div className="page-px absolute left-0 right-0 top-1/2 -translate-y-1/2">
                     <div className="mx-auto flex w-full max-w-[408px] flex-col items-center gap-2 text-center text-black">
                         <p className="font-nimbus text-[18px] font-bold leading-normal">Nature&apos;s Genius</p>
-                        <h2 className="font-nimbus text-[36px] leading-[40px]">
+                        <h2 className="font-space-grotesk text-[36px] leading-[40px]">
                             <span className="block">Algae: The Earth&apos;s</span>
                             <span className="block">Original Filter</span>
                         </h2>

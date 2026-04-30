@@ -11,7 +11,7 @@ export default function TeamHeroSection() {
                             <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-4">
                                 <h1
                                     id="team-makers-heading"
-                                    className="font-nevera text-[28px] leading-[32px] whitespace-nowrap text-[#2d5a27] md:text-[36px] md:leading-[40px]"
+                                    className="font-space-grotesktext-[28px] leading-[32px] whitespace-nowrap text-[#2d5a27] md:text-[36px] md:leading-[40px]"
                                 >
                                     Team &amp; Makers
                                 </h1>
@@ -30,7 +30,7 @@ export default function TeamHeroSection() {
                                 <div className="h-[128px] w-[7px] shrink-0 rounded-[8px] bg-[#2d5a27]" />
                                 <h1
                                     id="team-makers-heading-desktop"
-                                    className="font-nevera text-[56px] leading-[56px] text-[#2d5a27]"
+                                    className="font-space-grotesktext-[56px] leading-[56px] text-[#2d5a27]"
                                 >
                                     <span className="block">Team</span>
                                     <span className="block">&amp; Makers</span>

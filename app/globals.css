@@ -39,7 +39,7 @@ body {
 
 /* Shared horizontal page padding (matches Figma 120px desktop gutters) */
 @layer utilities {
-  .font-nevera {
+  .font-space-grotesk {
     font-family: "Nevera", "Nimbus Sans L", "Helvetica Neue", Arial, sans-serif;
   }
 
@@ -53,6 +53,19 @@ body {
 
   .font-manrope {
     font-family: var(--font-manrope), "Manrope", var(--font-inter), Arial, sans-serif;
+  }
+
+  .home-page-typography h1,
+  .home-page-typography h2,
+  .home-page-typography h3,
+  .home-page-typography h4,
+  .home-page-typography h5,
+  .home-page-typography h6 {
+    font-family: var(--font-space-grotesk), "Space Grotesk", var(--font-inter), Arial, sans-serif !important;
+  }
+
+  .home-page-typography p {
+    font-family: "Nimbus Sans L", "Nimbus Sans", "Helvetica Neue", Arial, sans-serif !important;
   }
 
   .page-px {

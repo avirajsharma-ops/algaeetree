@@ -31,7 +31,7 @@ export default function SocialHandlesSection() {
                 <div className="flex flex-col gap-4 px-4 sm:px-8 xl:flex-row xl:items-center xl:justify-between xl:px-[64px]">
                     <div className="flex items-center gap-4 xl:gap-[48px]">
                         <div className="h-[96px] w-[6px] shrink-0 rounded-[8px] bg-[#2d5a27] xl:h-[128px] xl:w-[7px]" />
-                        <h2 className="font-nevera text-[32px] leading-[36px] text-[#2d5a27] sm:text-[40px] sm:leading-[44px] xl:text-[56px] xl:leading-[64px]">
+                        <h2 className="font-space-grotesktext-[32px] leading-[36px] text-[#2d5a27] sm:text-[40px] sm:leading-[44px] xl:text-[56px] xl:leading-[64px]">
                             Social Handles
                         </h2>
                     </div>

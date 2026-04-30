@@ -30,7 +30,7 @@ const FEATURES = [
     },
     {
         title: "AI-Driven System Control",
-        image: "/figma/technology/Feature%20Image%206.png", 
+        image: "/figma/technology/Feature%20Image%206.png",
         description:
             "Adaptive algorithms optimize airflow, lighting, and nutrients for stable algae growth.",
     },
@@ -162,7 +162,7 @@ export default function FeaturesGridSection() {
         <section className="w-full bg-white">
             <div className="page-px py-8 lg:py-[60px]">
                 <div className="mx-auto w-full max-w-[1488px]">
-                    <h2 className="font-nevera text-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]">
+                    <h2 className="font-space-grotesktext-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]">
                         Features
                     </h2>
 

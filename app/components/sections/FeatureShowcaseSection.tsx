@@ -273,10 +273,10 @@ export default function FeatureShowcaseSection() {
                         </div>
 
                         <div className="min-h-34.5 w-full max-w-102 text-left text-white">
-                            <div className="font-nimbus text-[clamp(34px,10vw,40px)] font-bold leading-none">
-                                <p>{current.title}</p>
-                                {current.subtitle && <p>{current.subtitle}</p>}
-                            </div>
+                            <h2 className="font-space-grotesk text-[clamp(34px,10vw,40px)] font-bold leading-none">
+                                <span className="block">{current.title}</span>
+                                {current.subtitle && <span className="block">{current.subtitle}</span>}
+                            </h2>
                             <div className="mt-2 font-nimbus text-[14px] leading-normal">
                                 <p>{current.bodyTop}</p>
                                 {current.bodyBottom && <p>{current.bodyBottom}</p>}
@@ -328,10 +328,10 @@ export default function FeatureShowcaseSection() {
                     <div className="absolute left-47.25 top-1/2 h-50 w-164.75 -translate-y-1/2 overflow-hidden">
                         <div className="absolute left-0 top-0 flex w-169.5 flex-col items-start gap-14 text-left text-white">
                             <div className="flex w-full flex-col items-start justify-center gap-4">
-                                <div className="font-nimbus flex flex-col justify-center text-[56px] font-bold text-white">
-                                    <p className="leading-16">{current.title}</p>
-                                    {current.subtitle && <p className="leading-16">{current.subtitle}</p>}
-                                </div>
+                                <h2 className="font-space-grotesk flex flex-col justify-center text-[56px] font-bold text-white">
+                                    <span className="leading-16">{current.title}</span>
+                                    {current.subtitle && <span className="leading-16">{current.subtitle}</span>}
+                                </h2>
                                 <div className="font-nimbus flex min-w-full flex-col justify-center text-[24px] text-white">
                                     <p className={`leading-7 ${current.bodyBottom ? "mb-0" : ""}`}>{current.bodyTop}</p>
                                     {current.bodyBottom && <p className="leading-7">{current.bodyBottom}</p>}

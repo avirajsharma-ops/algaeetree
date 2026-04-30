@@ -45,7 +45,7 @@ export default function HowItWorksSection() {
                     <div className="flex w-full items-start gap-6 lg:gap-12">
                         <div className="self-stretch w-[5px] shrink-0 rounded-[8px] bg-black lg:w-[7px]" />
                         <div className="flex flex-col gap-3 lg:gap-4">
-                            <h2 className="font-nevera text-[32px] leading-[1.1] text-black lg:text-[56px] lg:leading-[64px]">
+                            <h2 className="font-space-grotesk text-[32px] leading-[1.1] text-black text-bold lg:text-[56px] lg:leading-[64px]">
                                 How AlgaeTree Works
                             </h2>
                             <p className="font-nimbus max-w-[593px] text-[15px] leading-[22px] text-[#686868] lg:text-[20px] lg:leading-[28px]">

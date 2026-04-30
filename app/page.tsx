@@ -12,13 +12,15 @@ export default function HomePage() {
   return (
     <div className="flex w-full flex-col bg-white">
       <Header />
-      <HeroSection />
-      <CO2Section />
-      <NaturesGeniusSection />
-      <IntroducingSection />
-      <FeatureShowcaseClientOnly />
-      <FeaturePackSection />
-      <InsideSection />
+      <main className="home-page-typography flex w-full flex-col bg-white">
+        <HeroSection />
+        <CO2Section />
+        <NaturesGeniusSection />
+        <IntroducingSection />
+        <FeatureShowcaseClientOnly />
+        <FeaturePackSection />
+        <InsideSection />
+      </main>
       <Footer />
     </div>
   );

@@ -15,7 +15,7 @@ export default function TeamInspirationSection() {
                 <div className="flex flex-col gap-2 px-4 xl:flex-row xl:items-start xl:justify-between xl:gap-6 xl:px-4">
                     <h2
                         id="team-inspiration-heading"
-                        className="font-nevera text-[28px] leading-[40px] text-black md:text-[36px] md:leading-[44px] xl:text-[48px] xl:leading-[64px]"
+                        className="font-space-grotesktext-[28px] leading-[40px] text-black md:text-[36px] md:leading-[44px] xl:text-[48px] xl:leading-[64px]"
                     >
                         <span className="block xl:hidden">Team Inspiration</span>
                         <span className="hidden xl:block">Team</span>
@@ -52,7 +52,7 @@ export default function TeamInspirationSection() {
                             className="shrink-0 self-start"
                         />
 
-                        <p className="flex-1 font-nevera text-center text-[16px] uppercase leading-[20px] text-white">
+                        <p className="flex-1 font-space-grotesktext-center text-[16px] uppercase leading-[20px] text-white">
                             Nature’s smallest organisms can restore the planet’s greatest need. clean air.
                         </p>
 
@@ -75,7 +75,7 @@ export default function TeamInspirationSection() {
                                 className="size-7 shrink-0 sm:size-10 xl:size-14"
                             />
 
-                            <p className="max-w-[1079px] font-nevera text-center text-[18px] uppercase leading-[24px] text-white sm:text-[24px] sm:leading-[30px] xl:text-[40px] xl:leading-[48px]">
+                            <p className="max-w-[1079px] font-space-grotesktext-center text-[18px] uppercase leading-[24px] text-white sm:text-[24px] sm:leading-[30px] xl:text-[40px] xl:leading-[48px]">
                                 Nature’s smallest organisms can restore the planet’s greatest need. clean air.
                             </p>
 

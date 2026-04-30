@@ -5,7 +5,7 @@ export default function InsideAlgaetreeSection() {
         <section className="w-full bg-white">
             <div className="page-px flex flex-col items-center gap-6 py-4 sm:py-8 xl:gap-[54px] xl:py-[152px]">
                 <div className="mx-auto w-full max-w-[1488px]">
-                    <h2 className="font-nevera text-center text-[28px] leading-[38px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
+                    <h2 className="font-space-grotesktext-center text-[28px] leading-[38px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
                         <span className="block xl:inline">Inside</span>{" "}
                         <span className="block xl:inline">the Algaetree</span>
                     </h2>

@@ -12,7 +12,7 @@ export default function CcusDifferentiatorsSection() {
             <div className="page-px py-4 md:hidden">
                 <div className="mx-auto flex w-full max-w-[408px] flex-col gap-4">
                     <div className="px-2">
-                        <h2 className="font-nevera text-[28px] leading-[36px] text-black">
+                        <h2 className="font-space-grotesktext-[28px] leading-[36px] text-black">
                             <span className="block">Why AlgaeTree</span>
                             <span className="block">Carbon Capture</span>
                             <span className="block">is Different</span>
@@ -145,7 +145,7 @@ export default function CcusDifferentiatorsSection() {
 
             <div className="page-px hidden py-8 sm:py-10 md:block xl:py-[120px]">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-10 xl:gap-12">
-                    <h2 className="font-nevera text-[32px] leading-[40px] text-black md:max-w-[760px] md:text-[42px] md:leading-[50px] xl:max-w-[1018px] xl:text-[56px] xl:leading-[72px]">
+                    <h2 className="font-space-grotesktext-[32px] leading-[40px] text-black md:max-w-[760px] md:text-[42px] md:leading-[50px] xl:max-w-[1018px] xl:text-[56px] xl:leading-[72px]">
                         <span className="block">Why AlgaeTree</span>
                         <span className="block">Carbon Capture is Different</span>
                     </h2>

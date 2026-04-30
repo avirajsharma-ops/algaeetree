@@ -26,7 +26,7 @@ export default function AlignmentSection() {
             <div className="page-px pb-8 xl:pb-[60px]">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center gap-4 md:gap-6 xl:flex-row xl:justify-between xl:gap-12">
                     <div className="order-2 flex w-full flex-col gap-0 xl:order-1 xl:w-[678px]">
-                        <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-nevera xl:text-[56px] xl:leading-[72px]">
+                        <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
                             <span className="block">Alignment with</span>
                             <span className="block">Government Goals</span>
                         </h2>

@@ -23,7 +23,7 @@ export default function TechHero() {
                         className="hidden object-cover object-center lg:block"
                     />
                     {/* Desktop-only subtle overlay to keep text legible */}
-                    <div className="absolute inset-0 hidden bg-gradient-to-r from-black/55 via-black/25 to-transparent lg:block" />
+                    <div className="absolute inset-0 hidden to-transparent lg:block" />
                     {/* Mobile heading */}
                     <h1 className="font-nimbus absolute left-4 top-6 text-[26px] font-bold leading-[32px] text-[#2D5A27] lg:hidden">
                         <span className="block">Living hardware for</span>
@@ -31,8 +31,8 @@ export default function TechHero() {
                     </h1>
                     {/* Desktop heading */}
                     <h1 className="font-nimbus absolute left-[clamp(24px,5vw,106px)] top-1/2 hidden max-w-[min(68vw,564px)] -translate-y-1/2 text-[clamp(30px,2.8vw,40px)] font-bold leading-[1.25] text-white lg:block">
-                        <span className="block">A SOLUTION THIS</span>
-                        <span className="block">PLANET IS LOOKING FOR!</span>
+                        <span className="block font-space-grotesk bold  text-[#055453] ">A SOLUTION THIS</span>
+                        <span className="block font-space-grotesk bold text-[#055453]  ">PLANET IS LOOKING FOR!</span>
                     </h1>
                 </div>
             </div>

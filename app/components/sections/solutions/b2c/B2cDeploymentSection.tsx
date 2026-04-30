@@ -10,7 +10,7 @@ export default function B2cDeploymentSection() {
             <div className="page-px py-[60px] md:hidden">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-10">
                     <div className="flex justify-center">
-                        <h2 className="font-nevera text-center text-[28px] leading-[normal] text-white">
+                        <h2 className="font-space-grotesktext-center text-[28px] leading-[normal] text-white">
                             <span className="block">Deployment</span>
                             <span className="block">Environments</span>
                         </h2>
@@ -52,7 +52,7 @@ export default function B2cDeploymentSection() {
             <div className="page-px hidden py-16 md:block xl:py-[120px]">
                 <div className="mx-auto flex max-w-[1440px] flex-col gap-20">
                     <div className="flex flex-col items-center gap-4">
-                        <h2 className="font-nevera text-[48px] leading-[72px] text-white">
+                        <h2 className="font-space-grotesktext-[48px] leading-[72px] text-white">
                             Deployment Environments
                         </h2>
                         <p className="font-manrope text-[18px] leading-[28px] text-[#a0acb9]">

@@ -233,7 +233,7 @@ export default function MushroomWorldGroupSection() {
         <section className="w-full bg-white">
             <div className="page-px pb-8 lg:pb-10 xl:pb-[60px]">
                 <div className="mx-auto w-full max-w-[1488px] overflow-hidden rounded-[24px] border border-[#d7d7d7] bg-white px-4 py-8 sm:px-6 sm:py-10 lg:rounded-[32px] lg:px-12 lg:py-12 xl:px-16">
-                    <h2 className="font-nevera mx-auto max-w-[980px] text-center text-[34px] leading-[36px] tracking-[-0.03em] text-[#0d646a] uppercase sm:text-[46px] sm:leading-[46px] lg:text-[72px] lg:leading-[72px]">
+                    <h2 className="font-space-groteskmx-auto max-w-[980px] text-center text-[34px] leading-[36px] tracking-[-0.03em] text-[#0d646a] uppercase sm:text-[46px] sm:leading-[46px] lg:text-[72px] lg:leading-[72px]">
                         Mushroom World Group
                     </h2>
 
@@ -255,7 +255,7 @@ export default function MushroomWorldGroupSection() {
                                                 </span>
                                             ))}
                                         </p>
-                                        <h3 className="font-nevera mt-2 text-[24px] leading-[24px] text-[#0d646a] sm:text-[28px] sm:leading-[28px]">
+                                        <h3 className="font-space-groteskmt-2 text-[24px] leading-[24px] text-[#0d646a] sm:text-[28px] sm:leading-[28px]">
                                             {title.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
@@ -266,7 +266,7 @@ export default function MushroomWorldGroupSection() {
                                 ) : (
                                     <>
                                         <VentureIconMark icon={icon} className="size-8 text-[#0d646a] sm:size-9" strokeWidth={1.9} />
-                                        <h3 className="font-nevera mt-3 text-[24px] leading-[24px] text-[#2a2a2a] sm:text-[28px] sm:leading-[28px]">
+                                        <h3 className="font-space-groteskmt-3 text-[24px] leading-[24px] text-[#2a2a2a] sm:text-[28px] sm:leading-[28px]">
                                             {title.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
@@ -290,7 +290,7 @@ export default function MushroomWorldGroupSection() {
                         <div className="flex items-start gap-4 sm:gap-5 lg:gap-7">
                             <div className="mt-1 h-auto min-h-[220px] w-[4px] shrink-0 rounded-full bg-[#346633] sm:min-h-[188px] lg:min-h-[176px]" />
                             <div className="flex-1">
-                                <h3 className="font-nevera text-[28px] leading-[32px] text-[#346633] uppercase sm:text-[40px] sm:leading-[42px] lg:max-w-[860px] lg:text-[56px] lg:leading-[58px]">
+                                <h3 className="font-space-grotesktext-[28px] leading-[32px] text-[#346633] uppercase sm:text-[40px] sm:leading-[42px] lg:max-w-[860px] lg:text-[56px] lg:leading-[58px]">
                                     <span className="block">AlgaeTree - A Green Vision</span>
                                     <span className="block">by Mushroom World Group</span>
                                 </h3>

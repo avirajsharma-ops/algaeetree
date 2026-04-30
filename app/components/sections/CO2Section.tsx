@@ -288,7 +288,7 @@ function DesktopChart() {
         <div className="relative aspect-1488/640 w-full max-w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
             <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
-                    <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
+                    <h2 className="font-space-grotesk flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
                         Atmospheric CO2 Concentration (2015 - 2050)
                     </h2>
                 </div>
@@ -454,7 +454,7 @@ function MobileChart() {
     return (
         <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)]">
             <div className="flex flex-col gap-2">
-                <h2 className="text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
+                <h2 className="font-space-grotesk text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
                     Atmospheric CO2 <br /> Concentration (2000 - 2050)
                 </h2>
                 <p className="text-[13px] leading-4.5 text-[#6B7280]">

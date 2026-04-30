@@ -72,7 +72,7 @@ export default function FeaturePackSection() {
                         <div className="flex w-full items-start gap-4 lg:gap-8">
                             <div className="h-[120px] w-[6px] shrink-0 rounded-[8px] bg-black lg:h-[128px] lg:w-[7px]" />
                             <div className="flex flex-1 flex-col gap-3 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-                                <h2 className="font-nevera text-[28px] uppercase leading-[38px] text-black sm:text-[36px] sm:leading-[44px] lg:text-[48px] lg:leading-[56px]">
+                                <h2 className="font-space-grotesk text-[28px] uppercase leading-[38px] text-black sm:text-[36px] sm:leading-[44px] lg:text-[48px] lg:leading-[56px]">
                                     <span className="block">Feature Pack</span>
                                     <span className="block lg:hidden">Power Deck</span>
                                     <span className="hidden lg:block">AlgaeTree System</span>
@@ -169,7 +169,7 @@ export default function FeaturePackSection() {
                         <div className="flex items-center gap-[48px]">
                             <div className="h-[128px] w-[7px] rounded-[8px] bg-black" />
                             <div className="flex flex-col items-start justify-center">
-                                <h2 className="font-nevera text-[56px] leading-[72px] text-black">
+                                <h2 className="font-space-grotesk text-[56px] leading-[72px] text-black">
                                     <span className="block">Feature Pack</span>
                                     <span className="block">AlgaeTree System</span>
                                 </h2>
@@ -190,7 +190,7 @@ export default function FeaturePackSection() {
                                 </div>
                             </div>
                             <div className="absolute left-[40px] top-[40px] flex w-[651px] flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                <p className="text-[36px] leading-[42px] tracking-[1px]">Solar Power System</p>
+                                <p className=" font-space-grotesk text-[36px] leading-[42px] tracking-[1px]">Solar Power System</p>
                                 <div className="text-[18px] leading-[24px] text-[#686868]">
                                     <p>High-efficiency solar panels power the system, enabling</p>
                                     <p>sustainable and low-energy operation in urban environments.</p>
@@ -202,7 +202,7 @@ export default function FeaturePackSection() {
                             <div className="absolute left-0 top-0 h-[435px] w-[573px] rounded-[40px] bg-[#f3f4f6]" />
                             <img src="/figma/feature-core-bioreactor-base.png" alt="" className="absolute bottom-[-299px] left-0 h-[734px] w-[690px] object-cover" />
                             <div className="absolute left-[40px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                <p className="text-[36px] leading-[42px] tracking-[1px]">Core Bio-Reactor</p>
+                                <p className=" font-space-grotesk text-[36px] leading-[42px] tracking-[1px]">Core Bio-Reactor</p>
                                 <div className="w-[454px] text-[18px] leading-[24px] text-[#686868]">
                                     <p>The central chamber where microalgae grow and naturally capture carbon dioxide while releasing oxygen.</p>
                                 </div>
@@ -215,7 +215,7 @@ export default function FeaturePackSection() {
                             <img src="/figma/feature-nutrient-overlay.png" alt="" className="absolute left-[-1px] top-[-3px] h-[692px] w-[576px] object-cover" />
                             <div className="absolute left-0 top-0 h-[209px] w-[573px]" style={{ backgroundImage: "linear-gradient(174.227deg, rgb(217, 218, 221) 57.445%, rgba(217, 218, 221, 0) 69.155%)" }} />
                             <div className="absolute left-[40px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                <p className="max-w-[415px] text-[36px] leading-[42px] tracking-[1px]">Automatic Nutrient Dosing System</p>
+                                <p className="max-w-[415px] text-[36px] leading-[42px] tracking-[1px] font-space-grotesk">Automatic Nutrient Dosing System</p>
                                 <div className="w-[415px] text-[18px] leading-[24px] text-[#686868]">
                                     <p>Smart nutrient delivery system that automatically supplies essential nutrients to the algae culture, maintaining optimal growth and system stability.</p>
                                 </div>
@@ -227,7 +227,7 @@ export default function FeaturePackSection() {
                             <img src="/figma/feature-led.png" alt="" className="absolute bottom-[-46px] left-0 h-[514px] w-[891px] object-cover" />
                             <img src="/figma/feature-led-overlay.png" alt="" className="absolute left-0 top-0 h-[448px] w-[910px] object-cover" />
                             <div className="absolute left-[48px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                <p className="text-[36px] leading-[42px] tracking-[1px]">LED Grow Light System</p>
+                                <p className="text-[36px] leading-[42px] tracking-[1px] font-space-grotesk ">LED Grow Light System</p>
                                 <div className="w-[415px] text-[18px] leading-[24px] text-[#686868]">
                                     <p>Specialized grow lights provide specific wavelengths of light to support healthy microalgae growth and efficient photosynthesis.</p>
                                 </div>
@@ -240,7 +240,7 @@ export default function FeaturePackSection() {
                                 <img src="/figma/feature-neuro.png" alt="" className="absolute left-[-13px] top-0 size-[748px] object-cover" />
                                 <img src="/figma/feature-neuro-overlay.png" alt="" className="absolute left-0 top-0 h-[560px] w-[593px] object-cover" />
                                 <div className="absolute left-[48px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                    <p className="text-[36px] leading-[42px] tracking-[1px]">NeuroControl AI Engine</p>
+                                    <p className="text-[36px] leading-[42px] tracking-[1px]  font-space-grotesk ">NeuroControl AI Engine</p>
                                     <div className="w-[415px] text-[18px] leading-[24px] text-[#686868]">
                                         <p>Intelligent control system that continuously adjusts system parameters to maintain healthy algae growth and efficient carbon capture.</p>
                                     </div>
@@ -265,7 +265,7 @@ export default function FeaturePackSection() {
                                 <div className="absolute left-0 top-0 h-[560px] w-[891px] rounded-[40px] bg-[#f3f4f6]" />
                                 <img src="/figma/feature-intake.png" alt="" className="absolute left-0 top-[-14px] h-[629px] w-[964px] object-cover" />
                                 <div className="absolute left-[48px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                    <div className="text-[36px] leading-[42px] tracking-[1px]">
+                                    <div className="text-[36px] leading-[42px] tracking-[1px] font-space-grotesk">
                                         <p>Atmospheric Intake</p>
                                         <p>&amp; Air Filtration</p>
                                     </div>
@@ -279,7 +279,7 @@ export default function FeaturePackSection() {
                                 <div className="absolute left-0 top-0 h-[560px] w-[573px] rounded-[40px] bg-[#f3f4f6]" />
                                 <img src="/figma/feature-iot.png" alt="" className="absolute left-0 top-0 size-[621px] object-cover" />
                                 <div className="absolute left-[48px] top-[40px] flex flex-col gap-1 font-nimbus text-[#3c3c3c]">
-                                    <p className="text-[36px] leading-[42px] tracking-[1px]">IoT Connectivity Hub</p>
+                                    <p className="text-[36px] leading-[42px] tracking-[1px] font-space-grotesk ">IoT Connectivity Hub</p>
                                     <div className="w-[415px] text-[18px] leading-[24px] text-[#686868]">
                                         <p>Enables remote monitoring, performance tracking, and data analytics through connected platforms.</p>
                                     </div>

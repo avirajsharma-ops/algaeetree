@@ -10,7 +10,7 @@ export default function B2cWhyChooseSection() {
             <div className="page-px py-10 md:hidden">
                 <div className="mx-auto grid max-w-[408px] grid-cols-1 gap-[60px]">
                     <div className="flex flex-col gap-10">
-                        <h2 className="font-nevera text-[28px] leading-[normal] text-black">
+                        <h2 className="font-space-grotesktext-[28px] leading-[normal] text-black">
                             <span className="block">Why Organizations</span>
                             <span className="block">Choose AlgaeTree</span>
                         </h2>
@@ -90,7 +90,7 @@ export default function B2cWhyChooseSection() {
                         </motion.div>
 
                         <motion.div className="flex flex-col gap-10 pb-6">
-                            <h2 className="font-nevera text-[48px] leading-[72px] text-black">
+                            <h2 className="font-space-grotesktext-[48px] leading-[72px] text-black">
                                 <span className="block">Why Organizations</span>
                                 <span className="block">Choose AlgaeTree</span>
                             </h2>

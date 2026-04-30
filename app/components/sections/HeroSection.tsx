@@ -196,7 +196,7 @@ export default function HeroSection() {
                                     <AnimatedHeadline
                                         key="desktop-video-headline"
                                         text={VIDEO_HEADLINES[videoLineIndex]}
-                                        className="font-nimbus flex w-full flex-col justify-center text-3xl font-bold leading-tight text-white xl:text-[40px] xl:leading-14"
+                                        className="font-space-grotesk flex w-full flex-col justify-center text-3xl font-bold leading-tight text-white xl:text-[40px] xl:leading-14"
                                     />
                                 ) : heroContentPhase === "image" ? (
                                     <motion.h1
@@ -205,7 +205,7 @@ export default function HeroSection() {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -32 }}
                                         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                                        className="font-nimbus flex w-full flex-col justify-center text-3xl font-bold leading-tight text-white xl:text-[40px] xl:leading-14"
+                                        className="font-space-grotesk flex w-full flex-col justify-center text-3xl font-bold leading-tight text-white xl:text-[40px] xl:leading-14"
                                     >
                                         {IMAGE_HEADLINE}
                                     </motion.h1>
@@ -268,7 +268,7 @@ export default function HeroSection() {
                     <div className="max-w-[min(88vw,350px)]">
                         <AnimatedHeadline
                             text={VIDEO_HEADLINES[mobileVideoLineIndex]}
-                            className="font-nimbus text-[clamp(30px,6.6vw,36px)] font-bold leading-[1.2] text-white"
+                            className="font-space-grotesk text-[clamp(30px,6.6vw,36px)] font-bold leading-[1.2] text-white"
                         />
                     </div>
                 </div>

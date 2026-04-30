@@ -8,7 +8,7 @@ export default function ContactHeroSection() {
                 <div className="flex flex-col gap-8 xl:flex-row xl:items-center xl:gap-[48px]">
                     <div className="flex w-full flex-col gap-8 xl:min-h-[646px] xl:w-[596px] xl:justify-between">
                         <div className="flex flex-col gap-4">
-                            <h1 className="font-nevera text-[40px] leading-[40px] text-black sm:text-[48px] sm:leading-[48px] xl:text-[56px] xl:leading-[56px]">
+                            <h1 className="font-space-grotesktext-[40px] leading-[40px] text-black sm:text-[48px] sm:leading-[48px] xl:text-[56px] xl:leading-[56px]">
                                 <span className="block">Let’s Work</span>
                                 <span className="block">Together</span>
                             </h1>
