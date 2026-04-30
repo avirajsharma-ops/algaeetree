@@ -105,13 +105,18 @@ const PROJECTED_CO2_EMISSION_DATA: EmissionPoint[] = [
     { year: 2050, valueBillion: 4.95 },
 ];
 
+const PROJECTED_LINE_START_YEAR = 2015;
+
+const DISPLAY_HISTORICAL_CO2_EMISSION_DATA: EmissionPoint[] =
+    HISTORICAL_CO2_EMISSION_DATA.filter((point) => point.year < PROJECTED_LINE_START_YEAR);
+
 const ALL_CO2_EMISSION_DATA: EmissionPoint[] = [
     ...HISTORICAL_CO2_EMISSION_DATA,
     ...PROJECTED_CO2_EMISSION_DATA,
 ];
 
 const PROJECTED_LINE_DATA: EmissionPoint[] = [
-    HISTORICAL_CO2_EMISSION_DATA[HISTORICAL_CO2_EMISSION_DATA.length - 1],
+    ...HISTORICAL_CO2_EMISSION_DATA.filter((point) => point.year >= PROJECTED_LINE_START_YEAR),
     ...PROJECTED_CO2_EMISSION_DATA,
 ];
 
@@ -278,7 +283,7 @@ function DesktopChart() {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const activeIndex = hoveredIndex ?? selectedIndex;
-    const activePoint = activeIndex !== null ? HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
+    const activePoint = activeIndex !== null ? DISPLAY_HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
     const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
     const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
     const activeXRatio = activeX / chartWidth;
@@ -289,7 +294,7 @@ function DesktopChart() {
             <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
                     <h2 className="font-space-grotesk flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
-                        Atmospheric CO2 Concentration (2015 - 2050)
+                        Atmospheric CO2 Concentration (1960 - 2050)
                     </h2>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
@@ -304,7 +309,7 @@ function DesktopChart() {
                     <div className="size-3 rounded-[9999px] bg-[#14B8A6]" />
                     <div className="inline-flex flex-col items-start justify-start">
                         <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
-                            Historical (2015-2024)
+                            Historical (1960-2014)
                         </div>
                     </div>
                 </div>
@@ -312,7 +317,7 @@ function DesktopChart() {
                     <div className="h-1 w-4 border-t-2 border-dashed border-[#EF4444]" />
                     <div className="inline-flex flex-col items-start justify-start">
                         <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
-                            Projected (2025-2050)
+                            Projected (2015-2050)
                         </div>
                     </div>
                 </div>
@@ -336,7 +341,7 @@ function DesktopChart() {
                     })}
 
                     <polyline
-                        points={linePoints(HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
+                        points={linePoints(DISPLAY_HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
                         fill="none"
                         stroke="#14B8A6"
                         strokeWidth="3"
@@ -354,7 +359,7 @@ function DesktopChart() {
                         strokeLinecap="round"
                     />
 
-                    {HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
+                    {DISPLAY_HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
                         const cx = xForYear(point.year, chartWidth);
                         const cy = yForValue(point.valueBillion, chartHeight);
                         const isActive = activeIndex === index;
@@ -445,7 +450,7 @@ function MobileChart() {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const activeIndex = hoveredIndex ?? selectedIndex;
-    const activePoint = activeIndex !== null ? HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
+    const activePoint = activeIndex !== null ? DISPLAY_HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
     const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
     const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
     const activeXRatio = activeX / chartWidth;
@@ -455,7 +460,7 @@ function MobileChart() {
         <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)]">
             <div className="flex flex-col gap-2">
                 <h2 className="font-space-grotesk text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
-                    Atmospheric CO2 <br /> Concentration (2000 - 2050)
+                    Atmospheric CO2 <br /> Concentration (1960 - 2050)
                 </h2>
                 <p className="text-[13px] leading-4.5 text-[#6B7280]">
                     Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
@@ -466,13 +471,13 @@ function MobileChart() {
                 <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-[#14B8A6]" />
                     <span className="text-[13px] font-medium leading-5 text-[#4B5563]">
-                        Historical (2000-2024)
+                        Historical (1960-2014)
                     </span>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className="h-0.5 w-4 border-t border-dashed border-[#EF4444]" />
                     <span className="text-[13px] font-medium leading-5 text-[#4B5563]">
-                        Projected (2025-2050)
+                        Projected (2015-2050)
                     </span>
                 </div>
             </div>
@@ -503,9 +508,8 @@ function MobileChart() {
                             const y = yForValue(tick, chartHeight);
                             return <line key={tick} x1={0} y1={y} x2={chartWidth} y2={y} stroke="#E4E6E9" strokeWidth="1" />;
                         })}
-
                         <polyline
-                            points={linePoints(HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
+                            points={linePoints(DISPLAY_HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
                             fill="none"
                             stroke="#14B8A6"
                             strokeWidth="1.8"
@@ -523,7 +527,7 @@ function MobileChart() {
                             strokeLinecap="round"
                         />
 
-                        {HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
+                        {DISPLAY_HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
                             const cx = xForYear(point.year, chartWidth);
                             const cy = yForValue(point.valueBillion, chartHeight);
                             const isActive = activeIndex === index;

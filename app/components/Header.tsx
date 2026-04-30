@@ -22,8 +22,8 @@ const DESKTOP_NAV_ITEMS = [
         label: "Solutions",
         href: "/solutions/b2c",
         children: [
-            { label: "B2C", href: "/solutions/b2c" },
-            { label: "CCUS", href: "/solutions/ccus" },
+            { label: "B2C Climate Solution", href: "/solutions/b2c" },
+            { label: "Urban CCUS Infrastructure", href: "/solutions/ccus" },
         ],
     },
     { label: "About Us", href: "/about" },
@@ -37,8 +37,8 @@ const MOBILE_NAV_ITEMS = [
         label: "Solutions",
         href: "/solutions/b2c",
         children: [
-            { label: "B2C", href: "/solutions/b2c" },
-            { label: "CCUS", href: "/solutions/ccus" },
+            { label: "B2C Climate Solution", href: "/solutions/b2c" },
+            { label: "Urban CCUS Infrastructure", href: "/solutions/ccus" },
         ],
     },
     { label: "About Us", href: "/about" },
@@ -128,13 +128,13 @@ function DesktopNavLink({ item }: { item: NavItem }) {
             <div
                 className={`${isOpen ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-full z-50 pt-4 transition-all duration-150`}
             >
-                <div className="min-w-45 rounded-[14px] border border-[#055453]/15 bg-white p-2 shadow-[0_18px_40px_rgba(1,45,29,0.12)]">
+                <div className="min-w-64 rounded-[14px] border border-[#055453]/15 bg-white p-2 shadow-[0_18px_40px_rgba(1,45,29,0.12)]">
                     {item.children.map((child) => (
                         <Link
                             key={child.href}
                             href={child.href}
                             onClick={() => setIsOpen(false)}
-                            className="block rounded-[10px] px-3 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27]"
+                            className="block rounded-[10px] px-3 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27] xl:whitespace-nowrap"
                         >
                             {child.label}
                         </Link>
