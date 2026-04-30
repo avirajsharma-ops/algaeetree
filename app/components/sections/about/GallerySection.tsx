@@ -8,40 +8,41 @@ type GalleryTile = {
     /** column span on the 2-col mobile grid (defaults to 1; 2 = full width) */
     mobileSpan?: 1 | 2;
     objectPosition?: string;
+    fitMode?: "cover" | "contain";
 };
 
 const tiles: GalleryTile[] = [
     // Row 1
     {
-        src: "/figma/about/gallery-28.png",
+        src: "/figma/about/Frame 28.png",
         alt: "AlgaeTree team gathered together outdoors",
         desktopSpan: 2,
         mobileSpan: 2,
-        objectPosition: "object-bottom",
+        fitMode: "contain",
     },
     {
-        src: "/figma/about/gallery-29.png",
+        src: "/figma/about/Frame 29.png",
         alt: "Team members presenting an AlgaeTree unit outdoors",
         objectPosition: "object-bottom",
     },
     {
-        src: "/figma/about/gallery-30.png",
+        src: "/figma/about/Frame 30.png",
         alt: "Visitor posing beside an AlgaeTree prototype indoors",
-        objectPosition: "object-[40%_45%]",
+        fitMode: "contain",
     },
     // Row 2
     {
-        src: "/figma/about/gallery-34.png",
+        src: "/figma/about/Frame 34.png",
         alt: "AlgaeTree installation showcased outdoors",
         objectPosition: "object-center",
     },
     {
-        src: "/figma/about/gallery-33.png",
+        src: "/figma/about/Frame 33.png",
         alt: "AlgaeTree unit at sunset",
-        objectPosition: "object-center",
+        fitMode: "contain",
     },
     {
-        src: "/figma/about/gallery-31.png",
+        src: "/figma/about/Frame 31.png",
         alt: "AlgaeTree team during an indoor presentation with partners",
         desktopSpan: 2,
         mobileSpan: 2,
@@ -49,32 +50,32 @@ const tiles: GalleryTile[] = [
     },
     // Row 3
     {
-        src: "/figma/about/gallery-38.png",
+        src: "/figma/about/Frame 37.png",
         alt: "AlgaeTree team standing together indoors",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-[center_30%]",
     },
     {
-        src: "/figma/about/gallery-32.png",
+        src: "/figma/about/Frame 32.png",
         alt: "Close view of an operating AlgaeTree device on display",
-        objectPosition: "object-center",
+        fitMode: "contain",
     },
     {
-        src: "/figma/about/gallery-37.png",
+        src: "/figma/about/Frame 35.png",
         alt: "AlgaeTree concept installed along an urban roadway",
         objectPosition: "object-center",
     },
     // Row 4
     {
-        src: "/figma/about/gallery-39.png",
+        src: "/figma/about/Frame 39.png",
         alt: "Team gathered around a working AlgaeTree prototype indoors",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-[center_60%]",
     },
     {
-        src: "/figma/about/gallery-40.png",
+        src: "/figma/about/Frame 40.png",
         alt: "Visitors looking closely at the AlgaeTree technology",
         desktopSpan: 2,
         mobileSpan: 2,
@@ -82,14 +83,14 @@ const tiles: GalleryTile[] = [
     },
     // Row 5
     {
-        src: "/figma/about/gallery-41.png",
+        src: "/figma/about/Frame 41.png",
         alt: "AlgaeTree team photographed at night with the unit",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-bottom",
     },
     {
-        src: "/figma/about/gallery-42.png",
+        src: "/figma/about/Frame 42.png",
         alt: "Team members presenting an AlgaeTree unit at a public park",
         desktopSpan: 2,
         mobileSpan: 2,
@@ -128,14 +129,14 @@ export default function GallerySection() {
                             return (
                                 <div
                                     key={`gallery-tile-${index}`}
-                                    className={`relative h-[180px] overflow-hidden rounded-2xl bg-[#d9d9d9] sm:h-[240px] sm:rounded-3xl md:h-[300px] md:rounded-[32px] lg:h-[360px] xl:h-[400px] xl:rounded-[40px] ${mobileSpanClasses[mobileSpan]} ${desktopSpanClasses[desktopSpan]}`}
+                                    className={`relative h-[180px] overflow-hidden rounded-2xl ${tile.fitMode === "contain" ? "bg-white" : "bg-[#d9d9d9]"} sm:h-[240px] sm:rounded-3xl md:h-[300px] md:rounded-[32px] lg:h-[360px] xl:h-[400px] xl:rounded-[40px] ${mobileSpanClasses[mobileSpan]} ${desktopSpanClasses[desktopSpan]}`}
                                 >
                                     <Image
                                         src={tile.src}
                                         alt={tile.alt}
                                         fill
                                         sizes={sizes}
-                                        className={`object-cover ${tile.objectPosition ?? "object-center"}`}
+                                        className={tile.fitMode === "contain" ? "object-contain object-center" : `object-cover ${tile.objectPosition ?? "object-center"}`}
                                     />
                                 </div>
                             );
