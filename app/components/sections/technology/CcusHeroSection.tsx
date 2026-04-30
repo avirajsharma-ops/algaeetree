@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function CcusHeroSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-4 md:py-8 xl:py-[50px]">
+            <div className="page-px py-4 lg:py-10 xl:py-14">
                 <div className="relative mx-auto aspect-[816/1704] w-full max-w-[1488px] overflow-hidden rounded-[16px] bg-[#0f1514] sm:aspect-[2976/1616] md:rounded-[24px] xl:rounded-[40px]">
                     <Image
                         src="/figma/technology/ccus/Hero Image - Mobile (1).png"

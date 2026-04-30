@@ -9,7 +9,7 @@ export default function TeamInspirationSection() {
     return (
         <section
             aria-labelledby="team-inspiration-heading"
-            className="w-full px-4 pb-4 sm:px-6 sm:pb-8 xl:px-[120px] xl:pb-[60px]"
+            className="page-px w-full pb-4 sm:pb-8 xl:pb-[60px]"
         >
             <div className="mx-auto flex w-full max-w-[408px] flex-col gap-4 md:max-w-none xl:max-w-[1488px] xl:gap-0">
                 <div className="flex flex-col gap-2 px-4 xl:flex-row xl:items-start xl:justify-between xl:gap-6 xl:px-4">

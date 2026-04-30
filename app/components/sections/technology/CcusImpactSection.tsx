@@ -24,7 +24,7 @@ export default function CcusImpactSection() {
 
     return (
         <section className="w-full bg-white">
-            <div className="px-4 py-4 md:px-6 md:py-10 xl:px-[120px] xl:py-[120px]">
+            <div className="page-px py-4 md:py-10 xl:py-[120px]">
                 <div
                     className="relative mx-auto flex w-full max-w-[408px] flex-col gap-12 overflow-hidden rounded-[24px] p-12 md:max-w-[1488px] md:gap-8 xl:gap-12 xl:p-[48px]"
                     style={{ backgroundImage: "linear-gradient(114.874deg, #172129 0%, #121a22 100%)" }}

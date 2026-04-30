@@ -7,7 +7,7 @@ import { WHY_CHOOSE_ITEMS } from "./b2cContent";
 export default function B2cWhyChooseSection() {
     return (
         <section className="w-full overflow-hidden bg-white">
-            <div className="px-4 py-10 md:hidden">
+            <div className="page-px py-10 md:hidden">
                 <div className="mx-auto grid max-w-[408px] grid-cols-1 gap-[60px]">
                     <div className="flex flex-col gap-10">
                         <h2 className="font-nevera text-[28px] leading-[normal] text-black">
@@ -60,7 +60,7 @@ export default function B2cWhyChooseSection() {
                 </div>
             </div>
 
-            <div className="hidden px-6 py-16 md:block xl:px-[120px] xl:py-[120px]">
+            <div className="page-px hidden py-16 md:block xl:py-[120px]">
                 <div className="relative mx-auto max-w-[1488px]">
                     <div className="pointer-events-none absolute inset-y-0 left-[66.67%] right-0 opacity-10">
                         <div className="h-full w-full bg-[radial-gradient(circle_at_top_right,rgba(45,90,39,0.25),transparent_60%)]" />

@@ -242,7 +242,7 @@ function TallStoryCard() {
 
 export default function NewsEventsSection() {
     return (
-        <section className="page-px font-nimbus w-full bg-[#07131d] py-2 sm:bg-white sm:py-12 xl:py-14">
+        <section className="page-px font-nimbus w-full bg-[#07131d] py-4 sm:bg-white lg:py-10 xl:py-14">
             <div className="mx-auto w-full max-w-[1488px]">
                 <HeroCard />
 

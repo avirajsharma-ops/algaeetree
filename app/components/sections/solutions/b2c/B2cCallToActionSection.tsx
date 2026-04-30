@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 export default function B2cCallToActionSection() {
     return (
         <section className="w-full bg-white">
-            <div className="px-4 py-[60px] md:px-6 md:py-16 xl:px-[120px] xl:py-[120px]">
+            <div className="page-px py-[60px] md:py-16 xl:py-[120px]">
                 <motion.div className="relative mx-auto h-[408px] max-w-[408px] overflow-hidden rounded-[32px] bg-[#151e26] p-[80px] md:h-auto md:max-w-[1488px] md:p-[80px]">
                     <div className="absolute left-[-80px] top-[-80px] size-[256px] rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px]" />
                     <div className="absolute bottom-[-80px] right-[-80px] size-[256px] rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px]" />

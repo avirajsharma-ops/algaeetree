@@ -49,9 +49,9 @@ const TEAM_MEMBERS = [
 
 export default function TeamGridSection() {
     return (
-        <section className="w-full px-4 pt-4 pb-12 sm:px-6 sm:pb-16 xl:px-30 xl:py-15">
+        <section className="page-px w-full pt-4 pb-12 sm:pb-16 xl:py-15">
             <div
-                className="mx-auto grid w-full max-w-300 grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3"
+                className="mx-auto grid w-full max-w-372 grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3"
                 aria-label="AlgaeTree team portraits"
             >
                 {TEAM_MEMBERS.map((member) => (

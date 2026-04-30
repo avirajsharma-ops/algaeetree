@@ -6,7 +6,7 @@ import { CORE_TECHNOLOGY_ITEMS } from "./b2cContent";
 export default function B2cCoreTechnologySection() {
     return (
         <section className="w-full bg-[#0f2200]">
-            <div className="px-4 py-10 md:hidden">
+            <div className="page-px py-10 md:hidden">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-8">
                     <div className="flex justify-center">
                         <h2 className="font-nevera text-[28px] leading-[normal] text-white">
@@ -49,7 +49,7 @@ export default function B2cCoreTechnologySection() {
                 </div>
             </div>
 
-            <div className="hidden px-6 py-16 md:block xl:px-[120px] xl:py-[120px]">
+            <div className="page-px hidden py-16 md:block xl:py-[120px]">
                 <div className="mx-auto flex max-w-[1488px] items-start gap-20">
                     <div className="w-[363px] shrink-0">
                         <h2 className="font-nevera text-[48px] leading-[72px] text-white">

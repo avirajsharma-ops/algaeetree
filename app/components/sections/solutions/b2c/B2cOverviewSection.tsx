@@ -68,7 +68,7 @@ const contentBlocks = [
 export default function B2cOverviewSection() {
     return (
         <section className="w-full bg-white">
-            <div className="px-4 py-10 md:px-6 md:py-14 xl:px-[120px] xl:py-[120px]">
+            <div className="page-px py-10 md:py-14 xl:py-[120px]">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-[56px] md:hidden">
                     {contentBlocks.map((block) => (
                         <motion.div key={block.title[0]} className="flex flex-col gap-4" style={{ height: block.mobileHeight }}>

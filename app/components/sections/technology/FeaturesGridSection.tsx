@@ -30,13 +30,13 @@ const FEATURES = [
     },
     {
         title: "AI-Driven System Control",
-        image: "/figma/technology/Feature%20Image%205.png",
+        image: "/figma/technology/Feature%20Image%206.png", 
         description:
             "Adaptive algorithms optimize airflow, lighting, and nutrients for stable algae growth.",
     },
     {
         title: "Connected Monitoring Platform",
-        image: "/figma/technology/Feature%20Image%206.png",
+        image: "/figma/technology/Feature%20Image%205.png",
         description:
             "Cloud connectivity enables remote performance tracking and environmental insights.",
     },
@@ -161,41 +161,43 @@ export default function FeaturesGridSection() {
     return (
         <section className="w-full bg-white">
             <div className="page-px py-8 lg:py-[60px]">
-                <h2 className="font-nevera text-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]">
-                    Features
-                </h2>
+                <div className="mx-auto w-full max-w-[1488px]">
+                    <h2 className="font-nevera text-center text-[28px] leading-[1.1] text-black lg:text-left lg:text-[56px] lg:leading-[64px]">
+                        Features
+                    </h2>
 
-                {/* Mobile / tablet: carousel */}
-                <div className="mt-4 lg:hidden">
-                    <MobileCarousel />
-                </div>
+                    {/* Mobile / tablet: carousel */}
+                    <div className="mt-4 lg:hidden">
+                        <MobileCarousel />
+                    </div>
 
-                {/* Desktop: 3x2 grid */}
-                <div className="mt-12 hidden grid-cols-3 gap-8 lg:grid">
-                    {FEATURES.map((feature) => (
-                        <article
-                            key={feature.title}
-                            className="flex flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#f3f4f6] px-8 pb-10"
-                        >
-                            <div className="relative h-[280px] w-full overflow-hidden rounded-[16px]">
-                                <Image
-                                    src={feature.image}
-                                    alt={feature.title}
-                                    fill
-                                    sizes="(max-width: 1279px) 33vw, 480px"
-                                    className="object-cover object-center"
-                                />
-                            </div>
-                            <div className="flex w-full flex-col gap-2">
-                                <h3 className="font-nimbus text-[26px] font-bold leading-[34px] text-black">
-                                    {feature.title}
-                                </h3>
-                                <p className="font-nimbus text-[22px] leading-[30px] text-black">
-                                    {feature.description}
-                                </p>
-                            </div>
-                        </article>
-                    ))}
+                    {/* Desktop: 3x2 grid */}
+                    <div className="mt-12 hidden grid-cols-3 gap-8 lg:grid">
+                        {FEATURES.map((feature) => (
+                            <article
+                                key={feature.title}
+                                className="flex flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#f3f4f6] px-8 pb-10"
+                            >
+                                <div className="relative h-[280px] w-full overflow-hidden rounded-[16px]">
+                                    <Image
+                                        src={feature.image}
+                                        alt={feature.title}
+                                        fill
+                                        sizes="(max-width: 1279px) 33vw, 480px"
+                                        className="object-cover object-center"
+                                    />
+                                </div>
+                                <div className="flex w-full flex-col gap-2">
+                                    <h3 className="font-nimbus text-[26px] font-bold leading-[34px] text-black">
+                                        {feature.title}
+                                    </h3>
+                                    <p className="font-nimbus text-[22px] leading-[30px] text-black">
+                                        {feature.description}
+                                    </p>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

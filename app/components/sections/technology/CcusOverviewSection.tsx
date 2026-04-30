@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function CcusOverviewSection() {
     return (
         <section className="w-full bg-white">
-            <div className="px-4 md:px-6 xl:px-[120px] xl:py-[79px]">
+            <div className="page-px xl:py-[79px]">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-4 py-10 md:hidden">
                     <div className="relative h-[408px] w-full">
                         <img

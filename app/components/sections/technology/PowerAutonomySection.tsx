@@ -45,12 +45,12 @@ export default function PowerAutonomySection() {
     return (
         <section className="w-full bg-white">
             <div className="page-px py-4 lg:py-[60px]">
-                <div className="relative w-full overflow-hidden rounded-[16px] lg:h-[831px] lg:rounded-[40px]">
+                <div className="relative mx-auto w-full max-w-[1488px] overflow-hidden rounded-[16px] lg:h-[831px] lg:rounded-[40px]">
                     <Image
                         src="/figma/technology/power-bg.png"
                         alt=""
                         fill
-                        sizes="(max-width: 1024px) 100vw, 1488px"
+                        sizes="(max-width: 1024px) calc(100vw - 32px), (max-width: 1279px) calc(100vw - 48px), 1488px"
                         className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/30" />

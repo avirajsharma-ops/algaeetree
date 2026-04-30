@@ -27,99 +27,101 @@ const mobile = [
 export default function GallerySection() {
     return (
         <section className="w-full bg-white">
-            <div className="flex flex-col items-center gap-6 px-4 py-4 sm:px-6 sm:py-8 xl:gap-20 xl:px-[120px] xl:py-[60px]">
-                <h2 className="font-nevera text-[28px] leading-[40px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
-                    Gallery
-                </h2>
+            <div className="page-px flex flex-col items-center gap-6 py-4 sm:py-8 xl:gap-20 xl:py-[60px]">
+                <div className="mx-auto w-full max-w-[1488px]">
+                    <h2 className="font-nevera text-center text-[28px] leading-[40px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
+                        Gallery
+                    </h2>
 
-                {/* Mobile / tablet grid (2 columns) */}
-                <div className="grid w-full grid-cols-2 gap-4 md:gap-6 xl:hidden">
-                    {mobile.map((img, i) => (
-                        <div
-                            key={`m-${i}`}
-                            className={`${img.col} relative h-[200px] overflow-hidden rounded-[16px] bg-[#d9d9d9] md:h-[260px] md:rounded-[24px]`}
-                        >
-                            {img.crop === "cover" ? (
-                                <Image src={img.src} alt={img.alt} fill sizes="50vw" className="object-cover" />
-                            ) : img.crop === "frame34" ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
-                                    />
-                                </div>
-                            ) : img.crop === "frame30" ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[116.18%] max-w-none top-[-16.18%] left-[-0.1%] w-[158.77%]"
-                                    />
-                                </div>
-                            ) : (
-                                <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
-                                    />
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                    {/* Mobile / tablet grid (2 columns) */}
+                    <div className="mt-6 grid w-full grid-cols-2 gap-4 md:mt-8 md:gap-6 xl:hidden">
+                        {mobile.map((img, i) => (
+                            <div
+                                key={`m-${i}`}
+                                className={`${img.col} relative h-[200px] overflow-hidden rounded-[16px] bg-[#d9d9d9] md:h-[260px] md:rounded-[24px]`}
+                            >
+                                {img.crop === "cover" ? (
+                                    <Image src={img.src} alt={img.alt} fill sizes="50vw" className="object-cover" />
+                                ) : img.crop === "frame34" ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
+                                        />
+                                    </div>
+                                ) : img.crop === "frame30" ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[116.18%] max-w-none top-[-16.18%] left-[-0.1%] w-[158.77%]"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
 
-                {/* Desktop grid (4 columns) */}
-                <div className="hidden w-full grid-cols-4 gap-6 xl:grid">
-                    {desktop.map((img, i) => (
-                        <div
-                            key={`d-${i}`}
-                            className={`${img.col} relative h-[400px] overflow-hidden rounded-[40px] bg-[#d9d9d9]`}
-                        >
-                            {img.src.endsWith("frame-29.png") ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                    <img
+                    {/* Desktop grid (4 columns) */}
+                    <div className="mt-6 hidden w-full grid-cols-4 gap-6 xl:grid">
+                        {desktop.map((img, i) => (
+                            <div
+                                key={`d-${i}`}
+                                className={`${img.col} relative h-[400px] overflow-hidden rounded-[40px] bg-[#d9d9d9]`}
+                            >
+                                {img.src.endsWith("frame-29.png") ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[102%] max-w-none top-0 left-[-32.99%] w-[172.86%]"
+                                        />
+                                    </div>
+                                ) : img.src.endsWith("frame-30.png") ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[121.75%] max-w-none top-[-15.25%] left-[-10.31%] w-[184.25%]"
+                                        />
+                                    </div>
+                                ) : img.src.endsWith("frame-34.png") ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
+                                        />
+                                    </div>
+                                ) : img.src.endsWith("frame-37.jpg") ? (
+                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
+                                        <img
+                                            src={img.src}
+                                            alt={img.alt}
+                                            className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
+                                        />
+                                    </div>
+                                ) : (
+                                    <Image
                                         src={img.src}
                                         alt={img.alt}
-                                        className="absolute h-[102%] max-w-none top-0 left-[-32.99%] w-[172.86%]"
+                                        fill
+                                        sizes="(max-width: 1024px) 100vw, 25vw"
+                                        className="object-cover"
                                     />
-                                </div>
-                            ) : img.src.endsWith("frame-30.png") ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[121.75%] max-w-none top-[-15.25%] left-[-10.31%] w-[184.25%]"
-                                    />
-                                </div>
-                            ) : img.src.endsWith("frame-34.png") ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
-                                    />
-                                </div>
-                            ) : img.src.endsWith("frame-37.jpg") ? (
-                                <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                    <img
-                                        src={img.src}
-                                        alt={img.alt}
-                                        className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
-                                    />
-                                </div>
-                            ) : (
-                                <Image
-                                    src={img.src}
-                                    alt={img.alt}
-                                    fill
-                                    sizes="(max-width: 1024px) 100vw, 25vw"
-                                    className="object-cover"
-                                />
-                            )}
-                        </div>
-                    ))}
+                                )}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

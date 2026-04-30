@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 export default function B2cHeroSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-4 md:py-8 xl:py-[50px]">
+            <div className="page-px py-4 lg:py-10 xl:py-14">
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}

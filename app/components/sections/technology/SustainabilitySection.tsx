@@ -90,47 +90,22 @@ function StatGrid() {
 
 export default function SustainabilitySection() {
     return (
-        <>
-            {/* Mobile: dark inner card with all content nested */}
-            <section className="page-px w-full bg-white py-4 lg:hidden">
-                <div className="relative flex w-full flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#0d1f00] px-4 py-8">
-                    {/* decorative ellipse */}
-                    <div
-                        aria-hidden
-                        className="pointer-events-none absolute -left-32 -top-32 size-[420px] rounded-full"
-                        style={{
-                            background:
-                                "radial-gradient(circle, rgba(0,168,166,0.28) 0%, rgba(13,31,0,0) 70%)",
-                        }}
-                    />
-                    <div className="relative w-full">
-                        <HeaderBlock />
-                    </div>
-                    <div className="relative w-full">
-                        <RealLifeDataCard />
-                    </div>
-                    <div className="relative w-full">
-                        <StatGrid />
-                    </div>
-                </div>
-            </section>
-
-            {/* Desktop: full-bleed dark section */}
-            <section className="relative hidden w-full overflow-hidden bg-[#0d1f00] lg:block">
-                <div
-                    aria-hidden
-                    className="pointer-events-none absolute -left-[40%] top-[-15%] size-[1076px] rounded-full opacity-50"
-                    style={{
-                        background:
-                            "radial-gradient(circle at 30% 30%, rgba(0,168,166,0.35) 0%, rgba(13,31,0,0) 70%)",
-                    }}
-                />
-                <div className="page-px relative flex flex-col gap-20 py-[60px]">
+        <section className="relative w-full overflow-hidden bg-[#0d1f00] py-4 lg:py-[60px]">
+            <div
+                aria-hidden
+                className="pointer-events-none absolute -left-[40%] top-[-15%] size-[1076px] rounded-full opacity-50"
+                style={{
+                    background:
+                        "radial-gradient(circle at 30% 30%, rgba(0,168,166,0.35) 0%, rgba(13,31,0,0) 70%)",
+                }}
+            />
+            <div className="page-px relative">
+                <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-10 lg:gap-20">
                     <HeaderBlock />
                     <RealLifeDataCard />
                     <StatGrid />
                 </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
 }

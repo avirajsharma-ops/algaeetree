@@ -9,7 +9,7 @@ const SMALL_CARD_BASE =
 export default function CcusDifferentiatorsSection() {
     return (
         <section className="w-full bg-white">
-            <div className="px-4 py-4 md:hidden">
+            <div className="page-px py-4 md:hidden">
                 <div className="mx-auto flex w-full max-w-[408px] flex-col gap-4">
                     <div className="px-2">
                         <h2 className="font-nevera text-[28px] leading-[36px] text-black">
@@ -143,7 +143,7 @@ export default function CcusDifferentiatorsSection() {
                 </div>
             </div>
 
-            <div className="hidden px-4 py-8 sm:px-6 sm:py-10 md:block xl:px-[120px] xl:py-[120px]">
+            <div className="page-px hidden py-8 sm:py-10 md:block xl:py-[120px]">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-10 xl:gap-12">
                     <h2 className="font-nevera text-[32px] leading-[40px] text-black md:max-w-[760px] md:text-[42px] md:leading-[50px] xl:max-w-[1018px] xl:text-[56px] xl:leading-[72px]">
                         <span className="block">Why AlgaeTree</span>

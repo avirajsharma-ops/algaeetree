@@ -7,7 +7,7 @@ import { DEPLOYMENT_ITEMS } from "./b2cContent";
 export default function B2cDeploymentSection() {
     return (
         <section className="w-full bg-[#0f2200]">
-            <div className="px-4 py-[60px] md:hidden">
+            <div className="page-px py-[60px] md:hidden">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-10">
                     <div className="flex justify-center">
                         <h2 className="font-nevera text-center text-[28px] leading-[normal] text-white">
@@ -49,7 +49,7 @@ export default function B2cDeploymentSection() {
                 </div>
             </div>
 
-            <div className="hidden px-6 py-16 md:block xl:px-[120px] xl:py-[120px]">
+            <div className="page-px hidden py-16 md:block xl:py-[120px]">
                 <div className="mx-auto flex max-w-[1440px] flex-col gap-20">
                     <div className="flex flex-col items-center gap-4">
                         <h2 className="font-nevera text-[48px] leading-[72px] text-white">

@@ -8,7 +8,7 @@ type EmissionPoint = {
     valueBillion: number;
 };
 
-const INDIA_CO2_EMISSION_DATA: EmissionPoint[] = [
+const HISTORICAL_CO2_EMISSION_DATA: EmissionPoint[] = [
     { year: 1960, valueBillion: 0.11132 },
     { year: 1961, valueBillion: 0.1204 },
     { year: 1962, valueBillion: 0.13258 },
@@ -76,12 +76,51 @@ const INDIA_CO2_EMISSION_DATA: EmissionPoint[] = [
     { year: 2024, valueBillion: 3.19 },
 ];
 
-const START_YEAR = INDIA_CO2_EMISSION_DATA[0].year;
-const END_YEAR = INDIA_CO2_EMISSION_DATA[INDIA_CO2_EMISSION_DATA.length - 1].year;
+const PROJECTED_CO2_EMISSION_DATA: EmissionPoint[] = [
+    { year: 2025, valueBillion: 3.28 },
+    { year: 2026, valueBillion: 3.34 },
+    { year: 2027, valueBillion: 3.39 },
+    { year: 2028, valueBillion: 3.44 },
+    { year: 2029, valueBillion: 3.49 },
+    { year: 2030, valueBillion: 3.55 },
+    { year: 2031, valueBillion: 3.61 },
+    { year: 2032, valueBillion: 3.66 },
+    { year: 2033, valueBillion: 3.71 },
+    { year: 2034, valueBillion: 3.76 },
+    { year: 2035, valueBillion: 3.84 },
+    { year: 2036, valueBillion: 3.9 },
+    { year: 2037, valueBillion: 3.94 },
+    { year: 2038, valueBillion: 4.02 },
+    { year: 2039, valueBillion: 4.08 },
+    { year: 2040, valueBillion: 4.14 },
+    { year: 2041, valueBillion: 4.2 },
+    { year: 2042, valueBillion: 4.25 },
+    { year: 2043, valueBillion: 4.31 },
+    { year: 2044, valueBillion: 4.36 },
+    { year: 2045, valueBillion: 4.42 },
+    { year: 2046, valueBillion: 4.47 },
+    { year: 2047, valueBillion: 4.53 },
+    { year: 2048, valueBillion: 4.59 },
+    { year: 2049, valueBillion: 4.7 },
+    { year: 2050, valueBillion: 4.95 },
+];
+
+const ALL_CO2_EMISSION_DATA: EmissionPoint[] = [
+    ...HISTORICAL_CO2_EMISSION_DATA,
+    ...PROJECTED_CO2_EMISSION_DATA,
+];
+
+const PROJECTED_LINE_DATA: EmissionPoint[] = [
+    HISTORICAL_CO2_EMISSION_DATA[HISTORICAL_CO2_EMISSION_DATA.length - 1],
+    ...PROJECTED_CO2_EMISSION_DATA,
+];
+
+const START_YEAR = ALL_CO2_EMISSION_DATA[0].year;
+const END_YEAR = ALL_CO2_EMISSION_DATA[ALL_CO2_EMISSION_DATA.length - 1].year;
 const YEAR_SPAN = END_YEAR - START_YEAR;
 
-const RAW_MIN = Math.min(...INDIA_CO2_EMISSION_DATA.map((d) => d.valueBillion));
-const RAW_MAX = Math.max(...INDIA_CO2_EMISSION_DATA.map((d) => d.valueBillion));
+const RAW_MIN = Math.min(...ALL_CO2_EMISSION_DATA.map((d) => d.valueBillion));
+const RAW_MAX = Math.max(...ALL_CO2_EMISSION_DATA.map((d) => d.valueBillion));
 const Y_PADDING = (RAW_MAX - RAW_MIN) * 0.08;
 const Y_MIN = Math.max(0, RAW_MIN - Y_PADDING);
 const Y_MAX = RAW_MAX + Y_PADDING;
@@ -92,7 +131,7 @@ const Y_TICKS = Array.from({ length: Y_TICK_COUNT }, (_, i) => {
     return Y_MAX - ratio * (Y_MAX - Y_MIN);
 });
 
-const X_TICKS = INDIA_CO2_EMISSION_DATA
+const X_TICKS = ALL_CO2_EMISSION_DATA
     .filter((d) => d.year === START_YEAR || d.year === END_YEAR || d.year % 5 === 0)
     .map((d) => d.year);
 
@@ -100,7 +139,7 @@ const X_TICKS_MOBILE = (() => {
     const MOBILE_TICK_STEP = 15;
     const MOBILE_MIN_GAP_YEARS = 12;
 
-    const candidates = INDIA_CO2_EMISSION_DATA
+    const candidates = ALL_CO2_EMISSION_DATA
         .filter((d) => d.year === START_YEAR || d.year === END_YEAR || d.year % MOBILE_TICK_STEP === 0)
         .map((d) => d.year)
         .sort((a, b) => a - b);
@@ -136,8 +175,8 @@ function yForValue(valueBillion: number, height: number) {
     return ((Y_MAX - valueBillion) / (Y_MAX - Y_MIN)) * height;
 }
 
-function linePoints(width: number, height: number) {
-    return INDIA_CO2_EMISSION_DATA
+function linePoints(data: EmissionPoint[], width: number, height: number) {
+    return data
         .map((point) => `${xForYear(point.year, width)},${yForValue(point.valueBillion, height)}`)
         .join(" ");
 }
@@ -239,18 +278,18 @@ function DesktopChart() {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const activeIndex = hoveredIndex ?? selectedIndex;
-    const activePoint = activeIndex !== null ? INDIA_CO2_EMISSION_DATA[activeIndex] : null;
+    const activePoint = activeIndex !== null ? HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
     const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
     const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
     const activeXRatio = activeX / chartWidth;
     const activeTranslateX = activeXRatio < 0.12 ? "0%" : activeXRatio > 0.88 ? "-100%" : "-50%";
 
     return (
-        <div className="relative aspect-[1488/640] w-full max-w-[1488px] rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
+        <div className="relative aspect-1488/640 w-full max-w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
             <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
                     <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
-                        Atmospheric CO2 Concentration (2000 - 2024)
+                        Atmospheric CO2 Concentration (2000 - 2050)
                     </h2>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
@@ -270,7 +309,7 @@ function DesktopChart() {
                     </div>
                 </div>
                 <div className="flex items-center justify-start gap-2 self-stretch">
-                    <div className="h-1 w-4 border-t-2 border-[#14B8A6] opacity-70" />
+                    <div className="h-1 w-4 border-t-2 border-dashed border-[#EF4444]" />
                     <div className="inline-flex flex-col items-start justify-start">
                         <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
                             Projected (2025-2050)
@@ -297,7 +336,7 @@ function DesktopChart() {
                     })}
 
                     <polyline
-                        points={linePoints(chartWidth, chartHeight)}
+                        points={linePoints(HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
                         fill="none"
                         stroke="#14B8A6"
                         strokeWidth="3"
@@ -305,7 +344,17 @@ function DesktopChart() {
                         strokeLinecap="round"
                     />
 
-                    {INDIA_CO2_EMISSION_DATA.map((point, index) => {
+                    <polyline
+                        points={linePoints(PROJECTED_LINE_DATA, chartWidth, chartHeight)}
+                        fill="none"
+                        stroke="#EF4444"
+                        strokeWidth="3"
+                        strokeDasharray="8 7"
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                    />
+
+                    {HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
                         const cx = xForYear(point.year, chartWidth);
                         const cy = yForValue(point.valueBillion, chartHeight);
                         const isActive = activeIndex === index;
@@ -396,7 +445,7 @@ function MobileChart() {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
     const activeIndex = hoveredIndex ?? selectedIndex;
-    const activePoint = activeIndex !== null ? INDIA_CO2_EMISSION_DATA[activeIndex] : null;
+    const activePoint = activeIndex !== null ? HISTORICAL_CO2_EMISSION_DATA[activeIndex] : null;
     const activeX = activePoint ? xForYear(activePoint.year, chartWidth) : 0;
     const activeY = activePoint ? yForValue(activePoint.valueBillion, chartHeight) : 0;
     const activeXRatio = activeX / chartWidth;
@@ -406,7 +455,7 @@ function MobileChart() {
         <div className="w-full overflow-hidden rounded-2xl border border-[#F3F4F6] bg-white px-4 py-6 shadow-[0px_1px_2px_rgba(0,0,0,0.25)]">
             <div className="flex flex-col gap-2">
                 <h2 className="text-[22px] font-bold leading-7 tracking-[-0.5px] text-[#1E293B]">
-                    Atmospheric CO2 <br /> Concentration (2000 - 2024)
+                    Atmospheric CO2 <br /> Concentration (2000 - 2050)
                 </h2>
                 <p className="text-[13px] leading-4.5 text-[#6B7280]">
                     Historical and projected global average CO2 levels showing the accelerating Keeling Curve trend.
@@ -417,7 +466,13 @@ function MobileChart() {
                 <div className="flex items-center gap-2">
                     <div className="size-3 rounded-full bg-[#14B8A6]" />
                     <span className="text-[13px] font-medium leading-5 text-[#4B5563]">
-                        Historical (2000-2024)    -  Projected (2025-2050)
+                        Historical (2000-2024)
+                    </span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <div className="h-0.5 w-4 border-t border-dashed border-[#EF4444]" />
+                    <span className="text-[13px] font-medium leading-5 text-[#4B5563]">
+                        Projected (2025-2050)
                     </span>
                 </div>
             </div>
@@ -450,7 +505,7 @@ function MobileChart() {
                         })}
 
                         <polyline
-                            points={linePoints(chartWidth, chartHeight)}
+                            points={linePoints(HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
                             fill="none"
                             stroke="#14B8A6"
                             strokeWidth="1.8"
@@ -458,7 +513,17 @@ function MobileChart() {
                             strokeLinecap="round"
                         />
 
-                        {INDIA_CO2_EMISSION_DATA.map((point, index) => {
+                        <polyline
+                            points={linePoints(PROJECTED_LINE_DATA, chartWidth, chartHeight)}
+                            fill="none"
+                            stroke="#EF4444"
+                            strokeWidth="1.8"
+                            strokeDasharray="4 3"
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                        />
+
+                        {HISTORICAL_CO2_EMISSION_DATA.map((point, index) => {
                             const cx = xForYear(point.year, chartWidth);
                             const cy = yForValue(point.valueBillion, chartHeight);
                             const isActive = activeIndex === index;
@@ -534,124 +599,124 @@ function MobileChart() {
 export default function CO2Section() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-4 lg:hidden">
-                <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-6">
-                    <MobileChart />
+            <div className="page-px py-4 lg:py-10 xl:py-14">
+                <div className="mx-auto flex w-full max-w-372 flex-col gap-6 xl:gap-10">
+                    <div className="lg:hidden">
+                        <div className="flex w-full flex-col gap-6">
+                            <MobileChart />
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <MobileStatCard
-                            value="75%"
-                            color="#CA0000"
-                            labelTop="CO2 Emission"
-                            labelBottom="In Year 2000"
-                            showTrend
-                        />
-                        <MobileStatCard
-                            value="75%"
-                            color="#CA0000"
-                            labelTop="CO2 Emission"
-                            labelBottom="In Year 2025"
-                            showTrend
-                        />
-                        <MobileStatCard
-                            value="160"
-                            suffix="ppm"
-                            color="#2D5A27"
-                            labelTop="AQI"
-                            labelBottom="Year 2000"
-                        />
-                        <MobileStatCard
-                            value="230"
-                            suffix="ppm"
-                            color="#CA0000"
-                            labelTop="AQI"
-                            labelBottom="Year 2025"
-                        />
+                            <div className="grid grid-cols-2 gap-4">
+                                <MobileStatCard
+                                    value="987.07"
+                                    color="#2D5A27"
+                                    labelTop="CO2 Emission"
+                                    labelBottom="In Year 2000"
+                                />
+                                <MobileStatCard
+                                    value="3.19"
+                                    color="#CA0000"
+                                    labelTop="CO2 Emission"
+                                    labelBottom="In Year 2025"
+                                />
+                                <MobileStatCard
+                                    value="160"
+                                    suffix="ppm"
+                                    color="#2D5A27"
+                                    labelTop="AQI"
+                                    labelBottom="Year 2000"
+                                />
+                                <MobileStatCard
+                                    value="230"
+                                    suffix="ppm"
+                                    color="#CA0000"
+                                    labelTop="AQI"
+                                    labelBottom="Year 2025"
+                                />
+                            </div>
+
+                            <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
+                                <Image
+                                    src="/figma/co2-card-bg.png"
+                                    alt=""
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 987px"
+                                    className="object-cover"
+                                />
+                                <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
+                                <div className="relative mt-3 font-nimbus text-[22px] leading-tight text-white">
+                                    Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
+                                </div>
+                                <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-normal text-white">
+                                    <p>
+                                        Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
+                                    </p>
+                                    <p>
+                                        According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
-                        <Image
-                            src="/figma/co2-card-bg.png"
-                            alt=""
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 987px"
-                            className="object-cover"
-                        />
-                        <div className="relative font-nimbus text-[18px] text-white">Why This Matters</div>
-                        <div className="relative mt-3 font-nimbus text-[22px] leading-tight text-white">
-                            Rising greenhouse gases such as CO₂ are driving climate change and warming the planet.
-                        </div>
-                        <div className="relative mt-4 space-y-3 font-nimbus text-[14px] leading-normal text-white">
-                            <p>
-                                Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
-                            </p>
-                            <p>
-                                According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div className="hidden lg:block">
+                        <div className="inline-flex w-full flex-col items-center justify-center gap-6 xl:gap-10">
+                            <DesktopChart />
 
-            <div className="page-px hidden py-10 lg:block xl:py-15">
-                <div className="mx-auto inline-flex w-full max-w-[1488px] flex-col items-center justify-center gap-6 xl:gap-10">
-                    <DesktopChart />
+                            <div className="flex w-full flex-col items-start justify-between gap-4 lg:flex-row lg:gap-4">
+                                <div className="relative inline-flex h-auto min-h-84 w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-6 lg:w-[66.33%] xl:p-8">
+                                    <Image
+                                        src="/figma/co2-card-bg.png"
+                                        alt=""
+                                        width={1302}
+                                        height={869}
+                                        sizes="987px"
+                                        className="absolute -left-16.25 -top-66.5 h-217.25 w-325.5 max-w-none"
+                                    />
+                                    <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
+                                        Why This Matters
+                                    </div>
+                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-11 text-white">
+                                        <p>Rising greenhouse gases such as CO₂ are</p>
+                                        <p>driving climate change and warming the planet.</p>
+                                    </div>
+                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[16px] font-normal text-white">
+                                        <p>
+                                            Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
+                                            <br />
+                                            According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
+                                        </p>
+                                    </div>
+                                </div>
 
-                    <div className="flex w-full flex-col items-start justify-between gap-4 lg:flex-row lg:gap-4">
-                        <div className="relative inline-flex h-auto min-h-84 w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-6 lg:w-[66.33%] xl:p-8">
-                            <Image
-                                src="/figma/co2-card-bg.png"
-                                alt=""
-                                width={1302}
-                                height={869}
-                                sizes="987px"
-                                className="absolute -left-16.25 -top-66.5 h-217.25 w-325.5 max-w-none"
-                            />
-                            <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
-                                Why This Matters
+                                <div className="grid w-full grid-cols-2 gap-4 lg:w-[32.59%]">
+                                    <StatCard
+                                        value="987.07"
+                                        color="#2D5A27"
+                                        labelTop="CO2 Emission"
+                                        labelBottom="In Year 2000"
+                                    />
+                                    <StatCard
+                                        value="3.19"
+                                        color="#CA0000"
+                                        labelTop="CO2 Emission"
+                                        labelBottom="In Year 2025"
+                                    />
+                                    <StatCard
+                                        value="160"
+                                        suffix="ppm"
+                                        color="#2D5A27"
+                                        labelTop="AQI"
+                                        labelBottom="Year 2000"
+                                    />
+                                    <StatCard
+                                        value="230"
+                                        suffix="ppm"
+                                        color="#CA0000"
+                                        labelTop="AQI"
+                                        labelBottom="Year 2025"
+                                    />
+                                </div>
                             </div>
-                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-11 text-white">
-                                <p>Rising greenhouse gases such as CO₂ are</p>
-                                <p>driving climate change and warming the planet.</p>
-                            </div>
-                            <div className="relative font-nimbus flex w-full flex-col justify-center text-[16px] font-normal text-white">
-                                <p>
-                                    Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
-                                    <br />
-                                    According to the World Health Organization (WHO), air pollution contributes to nearly 7 million premature deaths every year worldwide. It is strongly linked to respiratory illnesses, cardiovascular diseases, stroke, and lung cancer, particularly in densely populated urban areas. Reducing carbon emissions and improving air quality is therefore essential to protect public health, environmental stability, and the air that billions of people depend on every day.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="grid w-full grid-cols-2 gap-4 lg:w-[32.59%]">
-                            <StatCard
-                                value="75%"
-                                color="#CA0000"
-                                labelTop="CO2 Emission"
-                                labelBottom="In Year 2000"
-                                showTrend
-                            />
-                            <StatCard
-                                value="75%"
-                                color="#CA0000"
-                                labelTop="CO2 Emission"
-                                labelBottom="In Year 2025"
-                                showTrend
-                            />
-                            <StatCard
-                                value="160"
-                                suffix="ppm"
-                                color="#2D5A27"
-                                labelTop="AQI"
-                                labelBottom="Year 2000"
-                            />
-                            <StatCard
-                                value="230"
-                                suffix="ppm"
-                                color="#CA0000"
-                                labelTop="AQI"
-                                labelBottom="Year 2025"
-                            />
                         </div>
                     </div>
                 </div>
