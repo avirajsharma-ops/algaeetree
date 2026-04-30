@@ -5,12 +5,13 @@ export default function CcusOverviewSection() {
         <section className="w-full bg-white">
             <div className="page-px xl:py-[79px]">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-4 py-10 md:hidden">
-                    <div className="relative h-[408px] w-full">
-                        <img
-                            src="/figma/technology/ccus/subtract.svg"
-                            alt=""
-                            aria-hidden="true"
-                            className="absolute inset-0 h-full w-full object-contain"
+                    <div className="relative aspect-square w-full">
+                        <Image
+                            src="/figma/technology/ccus/overview-shape.png"
+                            alt="AlgaeTree unit illuminated on a city street at night"
+                            fill
+                            sizes="408px"
+                            className="object-contain"
                         />
                     </div>
 
@@ -82,13 +83,11 @@ export default function CcusOverviewSection() {
 
                     <div className="relative hidden h-[360px] w-full md:block xl:h-[650px] xl:w-[650px]">
                         <Image
-                            src="/figma/technology/ccus/subtract.svg"
-                            alt=""
-                            aria-hidden
+                            src="/figma/technology/ccus/overview-shape.png"
+                            alt="AlgaeTree unit illuminated on a city street at night"
                             fill
                             loading="eager"
-                            unoptimized
-                            sizes="(max-width: 1279px) 220px, 650px"
+                            sizes="(max-width: 1279px) 360px, 650px"
                             className="object-contain"
                         />
                     </div>

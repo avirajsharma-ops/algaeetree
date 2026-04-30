@@ -25,7 +25,7 @@ export default function CcusDifferentiatorsSection() {
                     >
                         <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                             <Image
-                                src="/figma/technology/ccus/green-energy.png"
+                                src="/figma/technology/ccus/low-energy-bg.png"
                                 alt=""
                                 aria-hidden
                                 fill
@@ -118,7 +118,7 @@ export default function CcusDifferentiatorsSection() {
                     >
                         <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                             <Image
-                                src="/figma/technology/ccus/green-energy.png"
+                                src="/figma/technology/ccus/oxygen-bg.png"
                                 alt=""
                                 aria-hidden
                                 fill
@@ -157,7 +157,7 @@ export default function CcusDifferentiatorsSection() {
                         >
                             <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                                 <Image
-                                    src="/figma/technology/ccus/green-energy.png"
+                                    src="/figma/technology/ccus/low-energy-bg.png"
                                     alt=""
                                     aria-hidden
                                     fill
@@ -271,7 +271,7 @@ export default function CcusDifferentiatorsSection() {
                         >
                             <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                                 <Image
-                                    src="/figma/technology/ccus/green-energy.png"
+                                    src="/figma/technology/ccus/oxygen-bg.png"
                                     alt=""
                                     aria-hidden
                                     fill
