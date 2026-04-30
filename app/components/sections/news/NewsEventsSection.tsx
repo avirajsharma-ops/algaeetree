@@ -137,14 +137,15 @@ function NewspaperFrame({
 
 function HeroCard() {
     return (
-        <article className="relative overflow-hidden rounded-[18px] border border-[#d7dee7] bg-[#091118] shadow-[0_8px_22px_rgba(0,0,0,0.06)] sm:rounded-[20px] xl:rounded-[22px]">
+        <article className="relative overflow-hidden rounded-[18px] border border-[#d7dee7] 
+         sm:rounded-[20px] xl:rounded-[22px]">
             <Image
                 src="/figma/news/news-hero-mobile.png"
                 alt="Latest updates mobile"
                 width={390}
                 height={844}
                 priority
-                className="h-[520px] w-full object-cover object-center bg-[#0b141d] sm:hidden"
+                className="h-[750px] object-cover object-center  sm:hidden"
             />
             <Image
                 src="/figma/news/news-hero-desktop.png"
@@ -152,10 +153,10 @@ function HeroCard() {
                 width={1728}
                 height={672}
                 priority
-                className="hidden h-[340px] w-full object-cover object-center bg-[#0b141d] sm:block lg:h-[430px]"
+                className="hidden h-[340px] w-full object-cover object-center  sm:block lg:h-[630px]"
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#07111bea] via-[#09131ea6] to-transparent sm:bg-linear-to-r sm:from-[#09131ee8] sm:via-[#09131e91] sm:to-transparent" />
-            <div className="absolute inset-y-0 left-0 flex max-w-[420px] items-end px-4 pb-6 sm:max-w-[500px] sm:px-8 sm:pb-10 lg:max-w-[560px] lg:px-12 lg:pb-14">
+            <div className="absolute inset-y-0 left-0 flex max-w-[420px] items-end px-4 pb-6 sm:inset-0 sm:max-w-[540px] sm:items-center sm:px-12 sm:pb-0 lg:max-w-[600px] lg:px-16">
                 <div className="flex items-start gap-4 lg:gap-5">
                     <span className="mt-1 block h-14 w-[3px] rounded-full bg-white/90 sm:h-16 lg:h-[74px]" />
                     <div>
