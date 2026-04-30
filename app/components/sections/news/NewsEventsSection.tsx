@@ -5,7 +5,7 @@ type StoryCard = {
     category: string;
     title: string;
     excerpt: string;
-        date: string;
+    date: string;
     image: string;
 };
 
@@ -221,13 +221,13 @@ function WideStoryCard({ story }: { story: StoryCard }) {
 
 function TallStoryCard() {
     return (
-        <CardShell className="h-full">
-            <div className="relative flex h-full min-h-[440px] flex-col gap-3 p-3 sm:min-h-[520px] sm:gap-4 sm:p-5 lg:min-h-[520px] lg:gap-4 lg:p-4 xl:min-h-[560px] xl:p-5">
+        <CardShell>
+            <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
                 <div className="relative z-10 flex justify-center">
                     <NewspaperFrame
                         src={validatedStory.image}
                         alt={validatedStory.title}
-                        className="h-[320px] w-full sm:h-[300px] sm:max-w-[260px] lg:h-[380px] lg:w-full lg:max-w-none xl:h-[500px]"
+                        className="h-[320px] w-full sm:h-[300px] sm:max-w-[260px] lg:h-[360px] lg:w-full lg:max-w-none xl:h-[420px]"
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 1023px) 260px, 28vw"
                     />
@@ -256,14 +256,14 @@ export default function NewsEventsSection() {
                         <WideStoryCard story={crossroadsStory} />
                     </div>
 
-                    <div className="hidden space-y-3 sm:space-y-4 lg:grid lg:grid-cols-[1.95fr_0.95fr] lg:gap-3 lg:space-y-0 xl:gap-4">
+                    <div className="hidden space-y-3 sm:space-y-4 lg:grid lg:grid-cols-[1.95fr_0.95fr] lg:items-start lg:gap-3 lg:space-y-0 xl:gap-4">
                         <div className="space-y-3 sm:space-y-4">
                             <WideStoryCard story={cityGreenerStory} />
                             <WideStoryCard story={provenStory} />
                             <WideStoryCard story={crossroadsStory} />
                         </div>
 
-                        <div className="lg:row-span-2">
+                        <div>
                             <TallStoryCard />
                         </div>
                     </div>
