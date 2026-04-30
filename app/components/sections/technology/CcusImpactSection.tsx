@@ -2,7 +2,7 @@ export default function CcusImpactSection() {
     const stats = [
         {
             label: "Carbon Capture",
-            value: "~700 kg",
+            value: "~1.5 kg",
             description: ["CO₂ Captured Per Year per active", "unit."],
         },
         {
@@ -12,7 +12,7 @@ export default function CcusImpactSection() {
         },
         {
             label: "Filtration",
-            value: "45–70%",
+            value: "45-70%",
             description: ["Reduction of PM2.5 and PM10", "pollutants."],
         },
         {
