@@ -79,7 +79,7 @@ export default function B2cOverviewSection() {
                             />
 
                             <div className="flex flex-col gap-2" style={{ height: block.mobileTextHeight }}>
-                                <h2 className="font-space-grotesktext-[28px] leading-[normal] text-black">
+                                <h2 className="font-space-grotesk text-[28px] font-medium leading-[32px] uppercase text-black">
                                     {block.title.map((line) => (
                                         <span key={line} className="block">
                                             {line}
@@ -102,7 +102,7 @@ export default function B2cOverviewSection() {
                 <div className="mx-auto hidden max-w-[1488px] flex-col gap-12 md:flex">
                     <motion.div className="flex items-center gap-12">
                         <div className="flex min-w-0 flex-1 flex-col gap-4">
-                            <h2 className="font-space-grotesktext-[48px] leading-[72px] text-black">
+                            <h2 className="font-space-grotesk text-[40px] font-medium leading-[44px] uppercase text-black xl:text-[56px] xl:leading-[64px]">
                                 <span className="block">Microalgae</span>
                                 <span className="block">Powered Clean Air</span>
                                 <span className="block">for Everyday Spaces</span>
@@ -139,7 +139,7 @@ export default function B2cOverviewSection() {
                         />
 
                         <div className="flex min-w-0 flex-1 flex-col gap-4">
-                            <h2 className="font-space-grotesktext-[48px] leading-[72px] text-black">
+                            <h2 className="font-space-grotesk text-[40px] font-medium leading-[44px] uppercase text-black xl:text-[56px] xl:leading-[64px]">
                                 Living Climate Technology for People and Places
                             </h2>
 

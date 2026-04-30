@@ -10,7 +10,7 @@ export default function B2cWhyChooseSection() {
             <div className="page-px py-10 md:hidden">
                 <div className="mx-auto grid max-w-[408px] grid-cols-1 gap-[60px]">
                     <div className="flex flex-col gap-10">
-                        <h2 className="font-space-grotesktext-[28px] leading-[normal] text-black">
+                        <h2 className="font-space-grotesk text-[28px] font-medium leading-[32px] uppercase text-black">
                             <span className="block">Why Organizations</span>
                             <span className="block">Choose AlgaeTree</span>
                         </h2>
@@ -90,13 +90,13 @@ export default function B2cWhyChooseSection() {
                         </motion.div>
 
                         <motion.div className="flex flex-col gap-10 pb-6">
-                            <h2 className="font-space-grotesktext-[48px] leading-[72px] text-black">
+                            <h2 className="font-space-grotesk text-[40px] font-medium leading-[44px] uppercase text-black xl:text-[56px] xl:leading-[64px]">
                                 <span className="block">Why Organizations</span>
                                 <span className="block">Choose AlgaeTree</span>
                             </h2>
 
                             <div className="flex flex-col gap-8">
-                                {WHY_CHOOSE_ITEMS.map((item, index) => (
+                                {WHY_CHOOSE_ITEMS.map((item) => (
                                     <motion.div
                                         key={item.number}
                                         className="flex items-start gap-6"
