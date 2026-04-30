@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 
 type NavChild = {
@@ -63,6 +63,36 @@ function ChevronIcon() {
 function DesktopNavLink({ item }: { item: NavItem }) {
     const linkClassName =
         "inline-flex items-center gap-1 text-[14px] font-normal uppercase leading-[21px] text-[#212121] transition-colors hover:text-[#2D5A27]";
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        if (!isOpen) {
+            return;
+        }
+
+        const handlePointerDown = (event: MouseEvent) => {
+            if (containerRef.current?.contains(event.target as Node)) {
+                return;
+            }
+
+            setIsOpen(false);
+        };
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handlePointerDown);
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("mousedown", handlePointerDown);
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isOpen]);
 
     if (!item.children?.length) {
         if (!item.href || item.href === "#") {
@@ -81,18 +111,29 @@ function DesktopNavLink({ item }: { item: NavItem }) {
     }
 
     return (
-        <div className="group relative">
-            <Link href={item.href ?? item.children[0].href} className={linkClassName}>
+        <div ref={containerRef} className="relative">
+            <button
+                type="button"
+                className={`${linkClassName} ${isOpen ? "text-[#2D5A27]" : ""}`}
+                aria-expanded={isOpen}
+                aria-haspopup="menu"
+                onClick={() => setIsOpen((value) => !value)}
+            >
                 {item.label}
-                <ChevronIcon />
-            </Link>
+                <span className={`transition-transform duration-150 ${isOpen ? "rotate-180" : ""}`}>
+                    <ChevronIcon />
+                </span>
+            </button>
 
-            <div className="invisible absolute left-0 top-full z-50 pt-4 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            <div
+                className={`${isOpen ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-full z-50 pt-4 transition-all duration-150`}
+            >
                 <div className="min-w-45 rounded-[14px] border border-[#055453]/15 bg-white p-2 shadow-[0_18px_40px_rgba(1,45,29,0.12)]">
                     {item.children.map((child) => (
                         <Link
                             key={child.href}
                             href={child.href}
+                            onClick={() => setIsOpen(false)}
                             className="block rounded-[10px] px-3 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27]"
                         >
                             {child.label}
@@ -107,6 +148,7 @@ function DesktopNavLink({ item }: { item: NavItem }) {
 function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
     const itemClassName =
         "flex items-center justify-between rounded-lg border border-[#2d5a27]/50 bg-white px-3 py-2.5";
+    const [isExpanded, setIsExpanded] = useState(false);
 
     if (!item.children?.length) {
         if (!item.href || item.href === "#") {
@@ -130,29 +172,35 @@ function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => 
 
     return (
         <div className="rounded-lg border border-[#2d5a27]/50 bg-white">
-            <Link
-                href={item.href ?? item.children[0].href}
-                className="flex items-center justify-between px-3 py-2.5"
-                onClick={onNavigate}
+            <button
+                type="button"
+                className="flex w-full items-center justify-between px-3 py-2.5"
+                aria-expanded={isExpanded}
+                aria-haspopup="menu"
+                onClick={() => setIsExpanded((value) => !value)}
             >
                 <span className="text-[14px] font-medium uppercase leading-5.25 text-[#212121]">
                     {item.label}
                 </span>
-                <ChevronIcon />
-            </Link>
+                <span className={`transition-transform duration-150 ${isExpanded ? "rotate-180" : ""}`}>
+                    <ChevronIcon />
+                </span>
+            </button>
 
-            <div className="border-t border-[#2d5a27]/20 px-3 pb-3 pt-2">
-                {item.children.map((child) => (
-                    <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block rounded-lg px-2 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27]"
-                        onClick={onNavigate}
-                    >
-                        {child.label}
-                    </Link>
-                ))}
-            </div>
+            {isExpanded && (
+                <div className="border-t border-[#2d5a27]/20 px-3 pb-3 pt-2">
+                    {item.children.map((child) => (
+                        <Link
+                            key={child.href}
+                            href={child.href}
+                            className="block rounded-lg px-2 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27]"
+                            onClick={onNavigate}
+                        >
+                            {child.label}
+                        </Link>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

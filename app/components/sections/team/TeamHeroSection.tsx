@@ -30,7 +30,7 @@ export default function TeamHeroSection() {
                                 <div className="h-[128px] w-[7px] shrink-0 rounded-[8px] bg-[#2d5a27]" />
                                 <h1
                                     id="team-makers-heading-desktop"
-                                    className="font-space-grotesktext-[56px] leading-[56px] text-[#2d5a27]"
+                                    className="font-space-grotesk text-[56px] leading-[56px] text-[#2d5a27]"
                                 >
                                     <span className="block">Team</span>
                                     <span className="block">&amp; Makers</span>

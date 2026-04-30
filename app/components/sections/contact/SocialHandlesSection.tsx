@@ -11,10 +11,10 @@ const SOCIAL_CARDS = [
         title: "LinkedIn · algaetree",
     },
     {
-        href: "https://www.instagram.com/algae.tree_official/",
+        href: "https://www.instagram.com/algae_tree/",
         icon: "/figma/contact/instagram.svg",
         iconAlt: "Instagram icon",
-        title: "Instagram · algae.tree_official",
+        title: "Instagram · algae_tree",
     },
     {
         href: "https://youtube.com/@algaetree",
@@ -37,7 +37,7 @@ export default function SocialHandlesSection() {
                     </div>
 
                     <p className="max-w-[651px] font-nimbus text-[14px] leading-[21px] text-[#686868] sm:text-[16px] sm:leading-[24px] xl:text-[20px] xl:leading-[28px]">
-              You’ll find more than just updates here. We share what we’re building, what we’re learning, and what’s changing in the world of climate tech and urban design. If this space interests you, you’ll probably enjoy following along.
+                        You’ll find more than just updates here. We share what we’re building, what we’re learning, and what’s changing in the world of climate tech and urban design. If this space interests you, you’ll probably enjoy following along.
                     </p>
                 </div>
 
