@@ -1,118 +1,111 @@
 import Image from "next/image";
+
 type GalleryTile = {
     src: string;
     alt: string;
+    /** column span on the 4-col desktop grid (defaults to 1) */
+    desktopSpan?: 1 | 2;
+    /** column span on the 2-col mobile grid (defaults to 1; 2 = full width) */
+    mobileSpan?: 1 | 2;
     objectPosition?: string;
 };
 
-type GalleryRow = {
-    template: string;
-    height: string;
-    sizes: string;
-    tiles: GalleryTile[];
-};
-
-const galleryRows: GalleryRow[] = [
+const tiles: GalleryTile[] = [
+    // Row 1
     {
-        template: "grid-cols-[1.65fr_1fr_0.92fr] md:grid-cols-[1.8fr_1.04fr_0.98fr]",
-        height: "h-[136px] sm:h-[176px] md:h-[220px] lg:h-[248px] xl:h-[284px]",
-        sizes: "(min-width: 1280px) 360px, (min-width: 768px) 31vw, 33vw",
-        tiles: [
-            {
-                src: "/figma/about/frame-28.png",
-                alt: "AlgaeTree team members standing together outdoors",
-                objectPosition: "object-[center_36%]",
-            },
-            {
-                src: "/figma/about/frame-29.png",
-                alt: "Team members presenting an AlgaeTree unit",
-                objectPosition: "object-[70%_center]",
-            },
-            {
-                src: "/figma/about/frame-30.png",
-                alt: "A visitor posing beside an AlgaeTree prototype",
-                objectPosition: "object-[74%_center]",
-            },
-        ],
+        src: "/figma/about/gallery-28.png",
+        alt: "AlgaeTree team gathered together outdoors",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-bottom",
     },
     {
-        template: "grid-cols-[0.94fr_1fr_1.68fr] md:grid-cols-[0.98fr_1fr_1.82fr]",
-        height: "h-[106px] sm:h-[144px] md:h-[184px] lg:h-[208px] xl:h-[236px]",
-        sizes: "(min-width: 1280px) 370px, (min-width: 768px) 30vw, 32vw",
-        tiles: [
-            {
-                src: "/figma/about/frame-34.png",
-                alt: "AlgaeTree system installed for a public demonstration",
-                objectPosition: "object-[58%_center]",
-            },
-            {
-                src: "/figma/about/About Us Image 2.png",
-                alt: "Concept rendering of an AlgaeTree unit in a future-ready city",
-            },
-            {
-                src: "/figma/about/frame-31.png",
-                alt: "AlgaeTree team with partners during an indoor presentation",
-                objectPosition: "object-[center_28%]",
-            },
-        ],
+        src: "/figma/about/gallery-29.png",
+        alt: "Team members presenting an AlgaeTree unit outdoors",
+        objectPosition: "object-bottom",
     },
     {
-        template: "grid-cols-[1.68fr_1fr_0.94fr] md:grid-cols-[1.84fr_1fr_0.98fr]",
-        height: "h-[108px] sm:h-[146px] md:h-[188px] lg:h-[212px] xl:h-[240px]",
-        sizes: "(min-width: 1280px) 360px, (min-width: 768px) 30vw, 32vw",
-        tiles: [
-            {
-                src: "/figma/about/frame-37.jpg",
-                alt: "AlgaeTree team members standing together indoors",
-                objectPosition: "object-[center_42%]",
-            },
-            {
-                src: "/figma/about/frame-32.png",
-                alt: "Close view of an operating AlgaeTree device indoors",
-                objectPosition: "object-[center_44%]",
-            },
-            {
-                src: "/figma/about/About Us Image 3.png",
-                alt: "AlgaeTree concept installed along an urban roadway",
-                objectPosition: "object-[60%_center]",
-            },
-        ],
+        src: "/figma/about/gallery-30.png",
+        alt: "Visitor posing beside an AlgaeTree prototype indoors",
+        objectPosition: "object-[40%_45%]",
+    },
+    // Row 2
+    {
+        src: "/figma/about/gallery-34.png",
+        alt: "AlgaeTree installation showcased outdoors",
+        objectPosition: "object-center",
     },
     {
-        template: "grid-cols-[1.08fr_1fr]",
-        height: "h-[104px] sm:h-[142px] md:h-[182px] lg:h-[208px] xl:h-[236px]",
-        sizes: "(min-width: 1280px) 540px, (min-width: 768px) 44vw, 46vw",
-        tiles: [
-            {
-                src: "/figma/about/frame-33.png",
-                alt: "AlgaeTree team gathered around a working prototype",
-                objectPosition: "object-[center_42%]",
-            },
-            {
-                src: "/figma/about/frame-35.png",
-                alt: "Visitors looking closely at the AlgaeTree technology",
-                objectPosition: "object-[center_42%]",
-            },
-        ],
+        src: "/figma/about/gallery-33.png",
+        alt: "AlgaeTree unit at sunset",
+        objectPosition: "object-center",
     },
     {
-        template: "grid-cols-[1.08fr_1fr]",
-        height: "h-[104px] sm:h-[142px] md:h-[182px] lg:h-[208px] xl:h-[236px]",
-        sizes: "(min-width: 1280px) 540px, (min-width: 768px) 44vw, 46vw",
-        tiles: [
-            {
-                src: "/figma/about/frame-28.png",
-                alt: "Team members standing beside an outdoor AlgaeTree installation",
-                objectPosition: "object-[center_48%]",
-            },
-            {
-                src: "/figma/about/frame-34.png",
-                alt: "AlgaeTree device being showcased during an outdoor visit",
-                objectPosition: "object-[60%_center]",
-            },
-        ],
+        src: "/figma/about/gallery-31.png",
+        alt: "AlgaeTree team during an indoor presentation with partners",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-bottom",
+    },
+    // Row 3
+    {
+        src: "/figma/about/gallery-38.png",
+        alt: "AlgaeTree team standing together indoors",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-[center_30%]",
+    },
+    {
+        src: "/figma/about/gallery-32.png",
+        alt: "Close view of an operating AlgaeTree device on display",
+        objectPosition: "object-center",
+    },
+    {
+        src: "/figma/about/gallery-37.png",
+        alt: "AlgaeTree concept installed along an urban roadway",
+        objectPosition: "object-center",
+    },
+    // Row 4
+    {
+        src: "/figma/about/gallery-39.png",
+        alt: "Team gathered around a working AlgaeTree prototype indoors",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-[center_60%]",
+    },
+    {
+        src: "/figma/about/gallery-40.png",
+        alt: "Visitors looking closely at the AlgaeTree technology",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-center",
+    },
+    // Row 5
+    {
+        src: "/figma/about/gallery-41.png",
+        alt: "AlgaeTree team photographed at night with the unit",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-bottom",
+    },
+    {
+        src: "/figma/about/gallery-42.png",
+        alt: "Team members presenting an AlgaeTree unit at a public park",
+        desktopSpan: 2,
+        mobileSpan: 2,
+        objectPosition: "object-[40%_35%]",
     },
 ];
+
+const desktopSpanClasses: Record<1 | 2, string> = {
+    1: "md:col-span-1",
+    2: "md:col-span-2",
+};
+
+const mobileSpanClasses: Record<1 | 2, string> = {
+    1: "col-span-1",
+    2: "col-span-2",
+};
 
 export default function GallerySection() {
     return (
@@ -123,25 +116,30 @@ export default function GallerySection() {
                         Gallery
                     </h2>
 
-                    <div className="mt-7 flex w-full flex-col gap-2.5 sm:mt-10 sm:gap-4 md:gap-5 xl:mt-12 xl:gap-6">
-                        {galleryRows.map((row, rowIndex) => (
-                            <div key={`row-${rowIndex}`} className={`grid ${row.template} ${row.height} gap-2.5 sm:gap-4 md:gap-5 xl:gap-6`}>
-                                {row.tiles.map((tile, tileIndex) => (
-                                    <div
-                                        key={`tile-${rowIndex}-${tileIndex}`}
-                                        className="relative h-full overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-[18px] md:rounded-[22px] xl:rounded-[28px]"
-                                    >
-                                        <Image
-                                            src={tile.src}
-                                            alt={tile.alt}
-                                            fill
-                                            sizes={row.sizes}
-                                            className={`object-cover ${tile.objectPosition ?? "object-center"}`}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+                    <div className="mt-7 grid w-full grid-cols-2 gap-3 sm:mt-10 sm:gap-4 md:grid-cols-4 md:gap-5 xl:mt-12 xl:gap-6">
+                        {tiles.map((tile, index) => {
+                            const desktopSpan = tile.desktopSpan ?? 1;
+                            const mobileSpan = tile.mobileSpan ?? 1;
+                            const sizes =
+                                desktopSpan === 2
+                                    ? "(min-width: 1280px) 732px, (min-width: 768px) 50vw, 100vw"
+                                    : "(min-width: 1280px) 354px, (min-width: 768px) 25vw, 50vw";
+
+                            return (
+                                <div
+                                    key={`gallery-tile-${index}`}
+                                    className={`relative h-[180px] overflow-hidden rounded-2xl bg-[#d9d9d9] sm:h-[240px] sm:rounded-3xl md:h-[300px] md:rounded-[32px] lg:h-[360px] xl:h-[400px] xl:rounded-[40px] ${mobileSpanClasses[mobileSpan]} ${desktopSpanClasses[desktopSpan]}`}
+                                >
+                                    <Image
+                                        src={tile.src}
+                                        alt={tile.alt}
+                                        fill
+                                        sizes={sizes}
+                                        className={`object-cover ${tile.objectPosition ?? "object-center"}`}
+                                    />
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

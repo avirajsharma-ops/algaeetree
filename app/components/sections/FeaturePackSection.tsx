@@ -90,9 +90,13 @@ export default function FeaturePackSection() {
                             title="Solar Power System"
                             description="High-efficiency solar panels power the system, enabling sustainable and low-energy operation in urban environments."
                             baseSrc="/figma/feature-solar-base.png"
-                            baseWrapperStyle={{ left: "0%", top: "0%", width: "112.57%", height: "110.24%" }}
+                            baseWrapperStyle={{ right: "-27.39%", bottom: "-48.07%", width: "128.51%", height: "169.88%" }}
                             baseWrapperClassName="absolute flex items-center justify-center"
-                            baseImageClassName="size-full object-cover -scale-y-100 rotate-180"
+                            baseImageClassName="size-full object-cover"
+                            overlaySrc="/figma/feature-solar-overlay.png"
+                            overlayWrapperStyle={{ left: "0%", top: "0%", width: "112.57%", height: "110.24%" }}
+                            overlayWrapperClassName="absolute flex items-center justify-center"
+                            overlayImageClassName="size-full object-cover -scale-y-100 rotate-180"
                             textWidth="73%"
                         />
                         <MobileMosaicCard
