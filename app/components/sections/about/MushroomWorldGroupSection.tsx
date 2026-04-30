@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Venture = {
     title: string[];
     company: string[];
@@ -222,40 +224,47 @@ const overviewParagraphs = [
 function getTileClasses(index: number) {
     const mobileRightBorder = index % 2 === 0 ? "border-r border-[#d7d7d7]" : "";
     const mobileBottomBorder = index < ventures.length - 2 ? "border-b border-[#d7d7d7]" : "";
-    const desktopRightBorder = index % 4 !== 3 ? "lg:border-r lg:border-[#d7d7d7]" : "";
-    const desktopBottomBorder = index < ventures.length - 4 ? "lg:border-b lg:border-[#d7d7d7]" : "";
+    const desktopRightBorder = index % 4 !== 3 ? "lg:border-r lg:border-[#d7d7d7]" : "lg:border-r-0";
 
-    return `${mobileRightBorder} ${mobileBottomBorder} lg:border-r-0 lg:border-b-0 ${desktopRightBorder} ${desktopBottomBorder}`;
+    return `${mobileRightBorder} ${mobileBottomBorder} lg:border-b-0 ${desktopRightBorder}`;
 }
 
 export default function MushroomWorldGroupSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px pb-8 lg:pb-10 xl:pb-[60px]">
-                <div className="mx-auto w-full max-w-[1488px] overflow-hidden rounded-[24px] border border-[#d7d7d7] bg-white px-4 py-8 sm:px-6 sm:py-10 lg:rounded-[32px] lg:px-12 lg:py-12 xl:px-16">
-                    <h2 className="font-space-groteskmx-auto max-w-[980px] text-center text-[34px] leading-[36px] tracking-[-0.03em] text-[#0d646a] uppercase sm:text-[46px] sm:leading-[46px] lg:text-[72px] lg:leading-[72px]">
-                        Mushroom World Group
-                    </h2>
+            <div className="page-px pb-8 lg:pb-10 xl:pb-15">
+                <div className="mx-auto w-full max-w-372 overflow-hidden rounded-3xl border border-[#d7d7d7] bg-white px-4 py-6 sm:px-6 sm:py-8 lg:rounded-4xl lg:px-12 lg:py-12 xl:px-16">
+                    <h2 className="sr-only">Mushroom World Group</h2>
+                    <div className="mx-auto w-full max-w-[1222px]">
+                        <Image
+                            src="/figma/about/Vector.png"
+                            alt="Mushroom World Group"
+                            width={2444}
+                            height={153}
+                            sizes="(min-width: 1280px) 1222px, (min-width: 640px) 90vw, calc(100vw - 48px)"
+                            className="h-auto w-full"
+                        />
+                    </div>
 
-                    <div className="mt-8 grid grid-cols-2 overflow-hidden rounded-[20px]  bg-white lg:mt-10 lg:grid-cols-4 lg:rounded-[28px]">
+                    <div className="mt-6 grid grid-cols-2 overflow-hidden rounded-2xl bg-white lg:mt-10 lg:grid-cols-4 lg:rounded-[28px]">
                         {ventures.map(({ title, company, icon, variant = "default" }, index) => (
                             <div
                                 key={title.join(" ")}
-                                className={`flex min-h-[176px] flex-col items-center justify-center px-4 py-6 text-center sm:min-h-[190px] sm:px-5 lg:min-h-[196px] lg:px-6 ${getTileClasses(index)}`}
+                                className={`flex min-h-44 flex-col items-center justify-center px-4 py-6 text-center sm:min-h-[190px] sm:px-5 lg:min-h-49 lg:px-6 ${getTileClasses(index)}`}
                             >
                                 {variant === "signature" ? (
                                     <>
-                                        <div className="flex size-[62px] items-center justify-center rounded-full border-[3px] border-[#0d646a] text-[#0d646a] sm:size-[72px]">
+                                        <div className="flex size-[62px] items-center justify-center rounded-full border-  border-[3px] border-[#0d646a] text-[#0d646a] sm:size-[72px]">
                                             <VentureIconMark icon={icon} className="size-8 sm:size-9" strokeWidth={2.1} />
                                         </div>
-                                        <p className="font-nimbus mt-3 text-[12px] leading-[15px] text-[#343434] sm:text-[13px] sm:leading-[16px]">
+                                        <p className="mt-3 font-nimbus text-[12px] leading-[15px] text-[#343434] sm:text-[13px] sm:leading-4">
                                             {company.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
                                                 </span>
                                             ))}
                                         </p>
-                                        <h3 className="font-space-groteskmt-2 text-[24px] leading-[24px] text-[#0d646a] sm:text-[28px] sm:leading-[28px]">
+                                        <h3 className="mt-2 font-space-grotesk text-[24px] leading-6 text-[#0d646a] sm:text-[28px] sm:leading-7">
                                             {title.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
@@ -266,14 +275,14 @@ export default function MushroomWorldGroupSection() {
                                 ) : (
                                     <>
                                         <VentureIconMark icon={icon} className="size-8 text-[#0d646a] sm:size-9" strokeWidth={1.9} />
-                                        <h3 className="font-space-groteskmt-3 text-[24px] leading-[24px] text-[#2a2a2a] sm:text-[28px] sm:leading-[28px]">
+                                        <h3 className="mt-3 font-space-grotesk text-[24px] leading-6 text-[#2a2a2a] sm:text-[28px] sm:leading-7">
                                             {title.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
                                                 </span>
                                             ))}
                                         </h3>
-                                        <p className="font-nimbus mt-3 text-[12px] leading-[15px] text-[#3f3f3f] sm:text-[13px] sm:leading-[16px]">
+                                        <p className="mt-3 font-nimbus text-[12px] leading-[15px] text-[#3f3f3f] sm:text-[13px] sm:leading-4">
                                             {company.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
@@ -286,15 +295,15 @@ export default function MushroomWorldGroupSection() {
                         ))}
                     </div>
 
-                    <div className="mt-8 border-t border-[#d7d7d7] pt-8 sm:mt-10 sm:pt-10 lg:mt-12 lg:pt-12">
+                    <div className="mt-8  pt-8 sm:mt-10 sm:pt-10 lg:mt-12 lg:pt-12">
                         <div className="flex items-start gap-4 sm:gap-5 lg:gap-7">
-                            <div className="mt-1 h-auto min-h-[220px] w-[4px] shrink-0 rounded-full bg-[#346633] sm:min-h-[188px] lg:min-h-[176px]" />
+                            <div className="mt-1 h-40 w-1 shrink-0 rounded-full bg-[#346633] sm:h-48 lg:h-[420px] " />
                             <div className="flex-1">
-                                <h3 className="font-space-grotesktext-[28px] leading-[32px] text-[#346633] uppercase sm:text-[40px] sm:leading-[42px] lg:max-w-[860px] lg:text-[56px] lg:leading-[58px]">
-                                    <span className="block">AlgaeTree - A Green Vision</span>
-                                    <span className="block">by Mushroom World Group</span>
+                                <h3 className="font-space-grotesk text-[28px] leading-8 text-[#346633] uppercase tracking-[-0.03em] sm:text-[40px] sm:leading-[42px] lg:max-w-[860px] lg:text-[56px] lg:leading-[58px]">
+                                    <span className="block font-medium ">AlgaeTree - A Green Vision</span>
+                                    <span className="block font-medium ">by Mushroom World Group</span>
                                 </h3>
-                                <div className="font-nimbus mt-4 space-y-4 text-[14px] leading-[22px] text-[#686868] sm:text-[15px] sm:leading-[24px] lg:mt-5 lg:max-w-[1180px] lg:text-[20px] lg:leading-[30px]">
+                                <div className="mt-4 space-y-4 font-nimbus text-[14px] leading-[22px] text-[#686868] sm:text-[15px] sm:leading-6 lg:mt-5 lg:max-w-[1180px] lg:text-[20px] lg:leading-[30px]">
                                     {overviewParagraphs.map((paragraph) => (
                                         <p key={paragraph}>{paragraph}</p>
                                     ))}

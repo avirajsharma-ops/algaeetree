@@ -30,10 +30,16 @@ export default function TeamMemberCard({ alt, src, name, designation, bio }: Tea
                     sizes="(min-width: 1024px) 33vw, 50vw"
                     className="origin-top-left object-cover transition-transform ease-[cubic-bezier(0.23,1,0.32,1)] 
                     will-change-transform 
-                    group-hover:scale-[1.7] group-focus-within:scale-[1.92]"
+                    group-hover:scale-[2] group-focus-within:scale-[1.92]"
                     style={{ transitionDuration: transitionMs }}
                 />
             </div>
+
+            <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-1 bg-[linear-gradient(90deg,rgba(0,0,0,0.84)_0%,rgba(0,0,0,0.48)_34%,rgba(0,0,0,0.1)_58%,rgba(0,0,0,0)_78%),linear-gradient(180deg,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0)_38%,rgba(0,0,0,0.74)_100%)] opacity-0 transition-opacity ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:opacity-100 group-focus-within:opacity-100"
+                style={{ transitionDuration: transitionMs }}
+            />
 
             <div className="pointer-events-none absolute left-4 top-4 z-10">
                 <h2

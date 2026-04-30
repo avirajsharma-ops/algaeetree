@@ -18,7 +18,7 @@ const SOCIAL_CARDS = [
     },
     {
         href: "https://youtube.com/@algaetree",
-        icon: "/figma/youtube.svg",
+        icon: "/figma/contact/g10.png",
         iconAlt: "YouTube icon",
         title: "YouTube · @AlgaeTree",
     },
@@ -31,15 +31,13 @@ export default function SocialHandlesSection() {
                 <div className="flex flex-col gap-4 px-4 sm:px-8 xl:flex-row xl:items-center xl:justify-between xl:px-[64px]">
                     <div className="flex items-center gap-4 xl:gap-[48px]">
                         <div className="h-[96px] w-[6px] shrink-0 rounded-[8px] bg-[#2d5a27] xl:h-[128px] xl:w-[7px]" />
-                        <h2 className="font-space-grotesktext-[32px] leading-[36px] text-[#2d5a27] sm:text-[40px] sm:leading-[44px] xl:text-[56px] xl:leading-[64px]">
+                        <h2 className="font-space-grotesk xl:uppercase text-[32px] leading-[36px] text-[#2d5a27] sm:text-[40px] sm:leading-[44px] xl:text-[56px] xl:leading-[64px]">
                             Social Handles
                         </h2>
                     </div>
 
                     <p className="max-w-[651px] font-nimbus text-[14px] leading-[21px] text-[#686868] sm:text-[16px] sm:leading-[24px] xl:text-[20px] xl:leading-[28px]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
-                        Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla, mattis ligula
-                        consectetur, ultrices mauris ligula consectetur, ultrices mauris.
+              You’ll find more than just updates here. We share what we’re building, what we’re learning, and what’s changing in the world of climate tech and urban design. If this space interests you, you’ll probably enjoy following along.
                     </p>
                 </div>
 

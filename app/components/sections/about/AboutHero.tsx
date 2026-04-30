@@ -20,7 +20,7 @@ export default function AboutHero() {
 
                     {/* Title + body */}
                     <div className="flex min-h-[303px] w-full items-center gap-4 px-4 sm:px-6 xl:min-h-0 xl:gap-12 xl:px-16">
-                        <div className="h-full min-h-[303px] w-[6px] shrink-0 rounded-[8px] bg-[#2d5a27] xl:min-h-0 xl:w-[7px]" />
+                        <div className="h-full min-h-[303px] w-[6px] shrink-0 rounded-[8px] bg-[#2d5a27] xl:min-h-[270px] xl:w-[7px]" />
                         <div className="flex flex-1 flex-col gap-4 py-1">
                             <h1 className="font-space-grotesktext-[28px] leading-[32px] text-[#2d5a27] md:text-[40px] md:leading-[44px] xl:text-[56px] xl:leading-[64px]">
                                 About Us
