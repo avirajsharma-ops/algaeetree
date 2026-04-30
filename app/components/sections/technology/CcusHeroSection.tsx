@@ -25,7 +25,31 @@ export default function CcusHeroSection() {
                         className="hidden object-cover object-[72%_bottom] sm:block"
                     />
 
-                    <div className="absolute inset-y-0 left-0 hidden w-[66%] bg-gradient-to-r from-black/42 via-black/10 to-transparent md:block" />
+                    <div aria-hidden className="pointer-events-none absolute inset-0">
+                        <div
+                            className="absolute inset-0 md:hidden"
+                            style={{
+                                background:
+                                    "linear-gradient(180deg, rgba(5, 9, 9, 0.02) 0%, rgba(5, 9, 9, 0.08) 42%, rgba(5, 9, 9, 0.46) 64%, rgba(5, 9, 9, 0.84) 82%, rgba(4, 7, 7, 0.96) 100%), linear-gradient(90deg, rgba(4, 8, 7, 0.5) 0%, rgba(4, 8, 7, 0.22) 36%, rgba(4, 8, 7, 0) 72%), radial-gradient(120% 78% at 18% 100%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 46%, rgba(0, 0, 0, 0) 74%)",
+                            }}
+                        />
+
+                        <div
+                            className="absolute inset-0 hidden md:block"
+                            style={{
+                                background:
+                                    "linear-gradient(90deg, rgba(4, 7, 7, 0.94) 0%, rgba(6, 11, 10, 0.82) 24%, rgba(8, 15, 14, 0.48) 44%, rgba(8, 15, 14, 0.16) 62%, rgba(8, 15, 14, 0) 78%), linear-gradient(180deg, rgba(4, 7, 7, 0.22) 0%, rgba(4, 7, 7, 0.08) 38%, rgba(4, 7, 7, 0.42) 100%)",
+                            }}
+                        />
+
+                        <div
+                            className="absolute inset-y-0 left-0 hidden w-[58%] md:block"
+                            style={{
+                                background:
+                                    "radial-gradient(circle at 18% 52%, rgba(14, 21, 20, 0.34) 0%, rgba(14, 21, 20, 0.22) 44%, rgba(14, 21, 20, 0) 2%)",
+                            }}
+                        />
+                    </div>
 
                     <div className="absolute inset-x-4 bottom-6 flex max-w-[372px] items-start gap-4 md:hidden">
                         <div className="w-[7px] shrink-0 self-stretch rounded-[8px] bg-white" />
