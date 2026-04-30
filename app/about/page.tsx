@@ -1,6 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutHero from "../components/sections/about/AboutHero";
+import MushroomWorldGroupSection from "../components/sections/about/MushroomWorldGroupSection";
 import StoryHeaderSection from "../components/sections/about/StoryHeaderSection";
 import VisionSection from "../components/sections/about/VisionSection";
 import MissionSection from "../components/sections/about/MissionSection";
@@ -20,6 +21,7 @@ export default function AboutPage() {
             <Header />
             <main>
                 <AboutHero />
+                <MushroomWorldGroupSection />
                 <StoryHeaderSection />
                 <VisionSection />
                 <MissionSection />

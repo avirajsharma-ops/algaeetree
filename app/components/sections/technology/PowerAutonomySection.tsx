@@ -55,8 +55,8 @@ export default function PowerAutonomySection() {
                     />
                     <div className="absolute inset-0 bg-black/30" />
 
-                    <div className="relative flex flex-col items-center px-4 py-12 lg:items-start lg:px-[125px] lg:py-[92px]">
-                        <h2 className="font-nevera text-center text-[28px] leading-tight text-white lg:text-left lg:text-[56px] lg:leading-[64px]">
+                    <div className="relative flex flex-col items-center px-4 py-12 lg:items-center lg:px-[125px] lg:py-[92px]">
+                        <h2 className="font-nevera text-center text-[28px] leading-tight text-white lg:text-[56px] lg:leading-[64px]">
                             Power & Autonomy
                         </h2>
 

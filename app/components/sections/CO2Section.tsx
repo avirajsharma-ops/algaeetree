@@ -289,7 +289,7 @@ function DesktopChart() {
             <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
                     <h2 className="flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
-                        Atmospheric CO2 Concentration (2000 - 2050)
+                        Atmospheric CO2 Concentration (2015 - 2050)
                     </h2>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
@@ -304,7 +304,7 @@ function DesktopChart() {
                     <div className="size-3 rounded-[9999px] bg-[#14B8A6]" />
                     <div className="inline-flex flex-col items-start justify-start">
                         <div className="flex flex-col justify-center whitespace-nowrap text-[15px] font-medium leading-5.5 text-[#4B5563]">
-                            Historical (2000-2024)
+                            Historical (2015-2024)
                         </div>
                     </div>
                 </div>

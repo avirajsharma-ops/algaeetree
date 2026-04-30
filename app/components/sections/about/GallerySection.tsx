@@ -1,124 +1,145 @@
 import Image from "next/image";
+type GalleryTile = {
+    src: string;
+    alt: string;
+    objectPosition?: string;
+};
 
-const desktop = [
-    { src: "/figma/about/frame-28.png", col: "col-span-2", alt: "AlgaeTree gallery 1" },
-    { src: "/figma/about/frame-29.png", col: "col-span-1", alt: "AlgaeTree gallery 2" },
-    { src: "/figma/about/frame-30.png", col: "col-span-1", alt: "AlgaeTree gallery 3" },
-    { src: "/figma/about/frame-34.png", col: "col-span-1", alt: "AlgaeTree gallery 4" },
-    { src: "/figma/about/frame-33.png", col: "col-span-1", alt: "AlgaeTree gallery 5" },
-    { src: "/figma/about/frame-31.png", col: "col-span-2", alt: "AlgaeTree gallery 6" },
-    { src: "/figma/about/frame-37.jpg", col: "col-span-2", alt: "AlgaeTree gallery 7" },
-    { src: "/figma/about/frame-32.png", col: "col-span-1", alt: "AlgaeTree gallery 8" },
-    { src: "/figma/about/frame-35.png", col: "col-span-1", alt: "AlgaeTree gallery 9" },
-];
+type GalleryRow = {
+    template: string;
+    height: string;
+    sizes: string;
+    tiles: GalleryTile[];
+};
 
-const mobile = [
-    { src: "/figma/about/mobile/frame-28.png", col: "col-span-2", alt: "AlgaeTree gallery 1", crop: "cover" },
-    { src: "/figma/about/mobile/frame-34.jpg", col: "col-span-1", alt: "AlgaeTree gallery 4", crop: "frame34" },
-    { src: "/figma/about/mobile/frame-30.png", col: "col-span-1", alt: "AlgaeTree gallery 3", crop: "frame30" },
-    { src: "/figma/about/mobile/frame-33.png", col: "col-span-1", alt: "AlgaeTree gallery 5", crop: "cover" },
-    { src: "/figma/about/mobile/frame-29.jpg", col: "col-span-1", alt: "AlgaeTree gallery 2", crop: "cover" },
-    { src: "/figma/about/mobile/frame-31.png", col: "col-span-2", alt: "AlgaeTree gallery 6", crop: "cover" },
-    { src: "/figma/about/mobile/frame-32.jpg", col: "col-span-1", alt: "AlgaeTree gallery 8", crop: "cover" },
-    { src: "/figma/about/mobile/frame-35.png", col: "col-span-1", alt: "AlgaeTree gallery 9", crop: "cover" },
-    { src: "/figma/about/mobile/frame-38.jpg", col: "col-span-2", alt: "AlgaeTree gallery 7", crop: "frame38" },
+const galleryRows: GalleryRow[] = [
+    {
+        template: "grid-cols-[1.65fr_1fr_0.92fr] md:grid-cols-[1.8fr_1.04fr_0.98fr]",
+        height: "h-[136px] sm:h-[176px] md:h-[220px] lg:h-[248px] xl:h-[284px]",
+        sizes: "(min-width: 1280px) 360px, (min-width: 768px) 31vw, 33vw",
+        tiles: [
+            {
+                src: "/figma/about/frame-28.png",
+                alt: "AlgaeTree team members standing together outdoors",
+                objectPosition: "object-[center_36%]",
+            },
+            {
+                src: "/figma/about/frame-29.png",
+                alt: "Team members presenting an AlgaeTree unit",
+                objectPosition: "object-[70%_center]",
+            },
+            {
+                src: "/figma/about/frame-30.png",
+                alt: "A visitor posing beside an AlgaeTree prototype",
+                objectPosition: "object-[74%_center]",
+            },
+        ],
+    },
+    {
+        template: "grid-cols-[0.94fr_1fr_1.68fr] md:grid-cols-[0.98fr_1fr_1.82fr]",
+        height: "h-[106px] sm:h-[144px] md:h-[184px] lg:h-[208px] xl:h-[236px]",
+        sizes: "(min-width: 1280px) 370px, (min-width: 768px) 30vw, 32vw",
+        tiles: [
+            {
+                src: "/figma/about/frame-34.png",
+                alt: "AlgaeTree system installed for a public demonstration",
+                objectPosition: "object-[58%_center]",
+            },
+            {
+                src: "/figma/about/About Us Image 2.png",
+                alt: "Concept rendering of an AlgaeTree unit in a future-ready city",
+            },
+            {
+                src: "/figma/about/frame-31.png",
+                alt: "AlgaeTree team with partners during an indoor presentation",
+                objectPosition: "object-[center_28%]",
+            },
+        ],
+    },
+    {
+        template: "grid-cols-[1.68fr_1fr_0.94fr] md:grid-cols-[1.84fr_1fr_0.98fr]",
+        height: "h-[108px] sm:h-[146px] md:h-[188px] lg:h-[212px] xl:h-[240px]",
+        sizes: "(min-width: 1280px) 360px, (min-width: 768px) 30vw, 32vw",
+        tiles: [
+            {
+                src: "/figma/about/frame-37.jpg",
+                alt: "AlgaeTree team members standing together indoors",
+                objectPosition: "object-[center_42%]",
+            },
+            {
+                src: "/figma/about/frame-32.png",
+                alt: "Close view of an operating AlgaeTree device indoors",
+                objectPosition: "object-[center_44%]",
+            },
+            {
+                src: "/figma/about/About Us Image 3.png",
+                alt: "AlgaeTree concept installed along an urban roadway",
+                objectPosition: "object-[60%_center]",
+            },
+        ],
+    },
+    {
+        template: "grid-cols-[1.08fr_1fr]",
+        height: "h-[104px] sm:h-[142px] md:h-[182px] lg:h-[208px] xl:h-[236px]",
+        sizes: "(min-width: 1280px) 540px, (min-width: 768px) 44vw, 46vw",
+        tiles: [
+            {
+                src: "/figma/about/frame-33.png",
+                alt: "AlgaeTree team gathered around a working prototype",
+                objectPosition: "object-[center_42%]",
+            },
+            {
+                src: "/figma/about/frame-35.png",
+                alt: "Visitors looking closely at the AlgaeTree technology",
+                objectPosition: "object-[center_42%]",
+            },
+        ],
+    },
+    {
+        template: "grid-cols-[1.08fr_1fr]",
+        height: "h-[104px] sm:h-[142px] md:h-[182px] lg:h-[208px] xl:h-[236px]",
+        sizes: "(min-width: 1280px) 540px, (min-width: 768px) 44vw, 46vw",
+        tiles: [
+            {
+                src: "/figma/about/frame-28.png",
+                alt: "Team members standing beside an outdoor AlgaeTree installation",
+                objectPosition: "object-[center_48%]",
+            },
+            {
+                src: "/figma/about/frame-34.png",
+                alt: "AlgaeTree device being showcased during an outdoor visit",
+                objectPosition: "object-[60%_center]",
+            },
+        ],
+    },
 ];
 
 export default function GallerySection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px flex flex-col items-center gap-6 py-4 sm:py-8 xl:gap-20 xl:py-[60px]">
-                <div className="mx-auto w-full max-w-[1488px]">
-                    <h2 className="font-nevera text-center text-[28px] leading-[40px] text-black md:text-[42px] md:leading-[48px] xl:text-[56px] xl:leading-[64px]">
+            <div className="page-px py-10 sm:py-14 xl:py-18">
+                <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center">
+                    <h2 className="font-nevera text-center text-[24px] leading-none font-normal uppercase tracking-[0.12em] text-black sm:text-[30px] md:text-[38px] xl:text-[48px]">
                         Gallery
                     </h2>
 
-                    {/* Mobile / tablet grid (2 columns) */}
-                    <div className="mt-6 grid w-full grid-cols-2 gap-4 md:mt-8 md:gap-6 xl:hidden">
-                        {mobile.map((img, i) => (
-                            <div
-                                key={`m-${i}`}
-                                className={`${img.col} relative h-[200px] overflow-hidden rounded-[16px] bg-[#d9d9d9] md:h-[260px] md:rounded-[24px]`}
-                            >
-                                {img.crop === "cover" ? (
-                                    <Image src={img.src} alt={img.alt} fill sizes="50vw" className="object-cover" />
-                                ) : img.crop === "frame34" ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
+                    <div className="mt-7 flex w-full flex-col gap-2.5 sm:mt-10 sm:gap-4 md:gap-5 xl:mt-12 xl:gap-6">
+                        {galleryRows.map((row, rowIndex) => (
+                            <div key={`row-${rowIndex}`} className={`grid ${row.template} ${row.height} gap-2.5 sm:gap-4 md:gap-5 xl:gap-6`}>
+                                {row.tiles.map((tile, tileIndex) => (
+                                    <div
+                                        key={`tile-${rowIndex}-${tileIndex}`}
+                                        className="relative h-full overflow-hidden rounded-xl bg-[#d9d9d9] sm:rounded-[18px] md:rounded-[22px] xl:rounded-[28px]"
+                                    >
+                                        <Image
+                                            src={tile.src}
+                                            alt={tile.alt}
+                                            fill
+                                            sizes={row.sizes}
+                                            className={`object-cover ${tile.objectPosition ?? "object-center"}`}
                                         />
                                     </div>
-                                ) : img.crop === "frame30" ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[116.18%] max-w-none top-[-16.18%] left-[-0.1%] w-[158.77%]"
-                                        />
-                                    </div>
-                                ) : (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[16px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
-                                        />
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Desktop grid (4 columns) */}
-                    <div className="mt-6 hidden w-full grid-cols-4 gap-6 xl:grid">
-                        {desktop.map((img, i) => (
-                            <div
-                                key={`d-${i}`}
-                                className={`${img.col} relative h-[400px] overflow-hidden rounded-[40px] bg-[#d9d9d9]`}
-                            >
-                                {img.src.endsWith("frame-29.png") ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[102%] max-w-none top-0 left-[-32.99%] w-[172.86%]"
-                                        />
-                                    </div>
-                                ) : img.src.endsWith("frame-30.png") ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[121.75%] max-w-none top-[-15.25%] left-[-10.31%] w-[184.25%]"
-                                        />
-                                    </div>
-                                ) : img.src.endsWith("frame-34.png") ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[163.02%] max-w-none top-[-63%] left-[-113.23%] w-[276.27%]"
-                                        />
-                                    </div>
-                                ) : img.src.endsWith("frame-37.jpg") ? (
-                                    <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                                        <img
-                                            src={img.src}
-                                            alt={img.alt}
-                                            className="absolute h-[110.79%] max-w-none top-[-10.87%] left-[-0.05%] w-[108.47%]"
-                                        />
-                                    </div>
-                                ) : (
-                                    <Image
-                                        src={img.src}
-                                        alt={img.alt}
-                                        fill
-                                        sizes="(max-width: 1024px) 100vw, 25vw"
-                                        className="object-cover"
-                                    />
-                                )}
+                                ))}
                             </div>
                         ))}
                     </div>
