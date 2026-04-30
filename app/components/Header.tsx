@@ -255,18 +255,27 @@ export default function Header() {
                 </div>
 
                 <button
+                    type="button"
                     onClick={() => setOpen((value) => !value)}
                     aria-label="Toggle navigation"
-                    className="relative size-12 rounded-lg xl:hidden"
+                    aria-expanded={open}
+                    aria-controls="mobile-navigation"
+                    className="relative size-12 rounded-lg transition-colors duration-200 xl:hidden"
                 >
-                    <span className="absolute left-2 top-[11.5px] h-0.75 w-8 rounded-xs bg-[#2d5a27]" />
-                    <span className="absolute left-2 top-5.5 h-0.75 w-8 rounded-xs bg-[#2d5a27]" />
-                    <span className="absolute left-2 top-[32.5px] h-0.75 w-8 rounded-xs bg-[#2d5a27]" />
+                    <span
+                        className={`absolute left-1/2 top-1/2 h-0.75 w-8 -translate-x-1/2 rounded-xs bg-[#2d5a27] transition-all duration-300 ease-out ${open ? "translate-y-0 rotate-45" : "-translate-y-2.5 rotate-0"}`}
+                    />
+                    <span
+                        className={`absolute left-1/2 top-1/2 h-0.75 w-8 -translate-x-1/2 rounded-xs bg-[#2d5a27] transition-all duration-200 ease-out ${open ? "scale-x-0 opacity-0" : "scale-x-100 opacity-100"}`}
+                    />
+                    <span
+                        className={`absolute left-1/2 top-1/2 h-0.75 w-8 -translate-x-1/2 rounded-xs bg-[#2d5a27] transition-all duration-300 ease-out ${open ? "translate-y-0 -rotate-45" : "translate-y-2.5 rotate-0"}`}
+                    />
                 </button>
             </div>
 
             {open && (
-                <div className="absolute left-0 right-0 top-full z-50 flex flex-col gap-2 border-b border-[#2d5a27]/50 bg-white p-4 xl:hidden">
+                <div id="mobile-navigation" className="absolute left-0 right-0 top-full z-50 flex flex-col gap-2 border-b border-[#2d5a27]/50 bg-white p-4 xl:hidden">
                     {MOBILE_NAV_ITEMS.map((item) => (
                         <MobileNavLink
                             key={item.label}
