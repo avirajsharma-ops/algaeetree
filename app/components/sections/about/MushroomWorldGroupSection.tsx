@@ -80,11 +80,24 @@ const overviewParagraphs = [
 ];
 
 function getTileClasses(index: number) {
-    const mobileRightBorder = index % 2 === 0 ? "border-r border-[#d7d7d7]" : "";
-    const mobileBottomBorder = index < ventures.length - 2 ? "border-b border-[#d7d7d7]" : "";
-    const desktopRightBorder = index % 4 !== 3 ? "lg:border-r lg:border-[#d7d7d7]" : "lg:border-r-0";
+    // Right divider (vertical line with inset top/bottom so it doesn't span full cell height)
+    const mobileRight =
+        index % 2 === 0
+            ? "after:absolute after:right-0 after:top-6 after:bottom-6 after:w-px after:bg-[#d7d7d7]"
+            : "";
+    const desktopRight =
+        index % 4 !== 3
+            ? "lg:after:absolute lg:after:right-0 lg:after:top-8 lg:after:bottom-8 lg:after:w-px lg:after:bg-[#d7d7d7]"
+            : "lg:after:hidden";
 
-    return `${mobileRightBorder} ${mobileBottomBorder} lg:border-b-0 ${desktopRightBorder}`;
+    // Bottom divider (horizontal line with inset left/right) - mobile only, hidden on last row
+    const mobileBottom =
+        index < ventures.length - 2
+            ? "before:absolute before:bottom-0 before:left-6 before:right-6 before:h-px before:bg-[#d7d7d7]"
+            : "";
+    const desktopBottom = "lg:before:hidden";
+
+    return `relative ${mobileRight} ${desktopRight} ${mobileBottom} ${desktopBottom}`;
 }
 
 export default function MushroomWorldGroupSection() {
