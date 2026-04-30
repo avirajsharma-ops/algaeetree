@@ -9,7 +9,7 @@ export default function B2cCoreTechnologySection() {
             <div className="page-px py-10 md:hidden">
                 <div className="mx-auto flex max-w-[408px] flex-col gap-8">
                     <div className="flex justify-center">
-                        <h2 className="font-space-grotesktext-[28px] leading-[normal] text-white">
+                        <h2 className="font-space-grotesk text-[28px] leading-[normal] text-white">
                             Core Technology
                         </h2>
                     </div>
