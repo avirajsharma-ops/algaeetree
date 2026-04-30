@@ -4,7 +4,7 @@ export default function AboutHero() {
             <div className="page-px py-4 lg:py-10 xl:py-14">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center gap-6 overflow-hidden rounded-[24px] border-[0.5px] border-[#6c6c6c] bg-white pb-6 sm:pb-8 xl:gap-10 xl:pb-10">
                     {/* Video */}
-                    <div className="relative aspect-[408/501] w-full overflow-hidden bg-[#e0e0e0] md:aspect-[720/460] xl:h-[600px] xl:aspect-auto">
+                    <div className="relative aspect-video w-full overflow-hidden bg-[#e0e0e0]">
                         <video
                             className="h-full w-full object-cover"
                             autoPlay
@@ -15,6 +15,7 @@ export default function AboutHero() {
                             <source src="/figma/about/Hero Section Video.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
+
                     </div>
 
                     {/* Title + body */}

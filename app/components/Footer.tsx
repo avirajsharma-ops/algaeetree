@@ -8,7 +8,11 @@ const QUICK_LINKS = [
     { label: "Team", href: "/team" },
     { label: "Reads", href: "/news-events" },
 ];
-const CONTACTS = ["hello@algaetree.tech", "Bhopal, IN", "+91 xx xxxx xxxx"];
+const CONTACTS = [
+    { label: "algaetree@mushroomworldgroup.com", href: "mailto:algaetree@mushroomworldgroup.com" },
+    { label: "Bhopal, IN" },
+    { label: "+91 989 310 6935, +91 882 300 6730" },
+];
 const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
@@ -42,7 +46,7 @@ export default function Footer() {
                                 <div className="flex items-center gap-2">
                                     {SOCIALS.map((social) => (
                                         <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
-                                            <img src={social.src} alt="" className="size-[26.88px]" />
+                                            <Image src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
                                         </a>
                                     ))}
                                 </div>
@@ -61,7 +65,13 @@ export default function Footer() {
                                 <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Contact</h4>
                                 <div className="flex flex-col gap-2">
                                     {CONTACTS.map((contact) => (
-                                        <p key={contact} className="font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">{contact}</p>
+                                        contact.href ? (
+                                            <a key={contact.label} href={contact.href} className="font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
+                                                {contact.label}
+                                            </a>
+                                        ) : (
+                                            <p key={contact.label} className="font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">{contact.label}</p>
+                                        )
                                     ))}
                                 </div>
                             </div>
@@ -104,7 +114,7 @@ export default function Footer() {
                                 <div className="flex items-center gap-[8px]">
                                     {SOCIALS.map((social) => (
                                         <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-[32px] items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
-                                            <img src={social.src} alt="" className="size-[26.88px]" />
+                                            <Image src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
                                         </a>
                                     ))}
                                 </div>
@@ -125,7 +135,13 @@ export default function Footer() {
                                 <div className="font-nimbus w-full text-[16px] leading-[26px] text-white">Contact</div>
                                 <div className="flex w-full flex-col items-start gap-[8px]">
                                     {CONTACTS.map((contact) => (
-                                        <p key={contact} className="font-nimbus w-full text-[16px] leading-[26px] text-[#94a3b8]">{contact}</p>
+                                        contact.href ? (
+                                            <a key={contact.label} href={contact.href} className="font-nimbus w-full text-[16px] leading-[26px] text-[#94a3b8]">
+                                                {contact.label}
+                                            </a>
+                                        ) : (
+                                            <p key={contact.label} className="font-nimbus w-full text-[16px] leading-[26px] text-[#94a3b8]">{contact.label}</p>
+                                        )
                                     ))}
                                 </div>
                             </div>
