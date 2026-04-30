@@ -182,7 +182,7 @@ function LeadStoryCard() {
                     <NewspaperFrame
                         src={featureStory.image}
                         alt={featureStory.title}
-                        className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[410px] lg:w-full"
+                        className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[410px] lg:w-[450px]"
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 56vw, 48vw"
                     />
