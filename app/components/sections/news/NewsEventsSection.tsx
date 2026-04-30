@@ -14,7 +14,7 @@ const featureStory: StoryCard = {
     title: "Algae Tree: Absorbing in 1 Year What Trees Take 60 Years",
     excerpt:
         "Backed by research and innovation, this breakthrough device captures 1.5 tons of carbon annually while generating oxygen sustainably.",
-    date: "APRIL 30, 2026",
+    date: "APRIL 05, 2026",
     image: "/figma/news/news-3.jpeg",
 };
 
@@ -23,7 +23,7 @@ const cityGreenerStory: StoryCard = {
     title: "Algae Tree: Turning Cities Greener with Advanced Carbon Capture",
     excerpt:
         "A single unit absorbs up to 1.5 tons of carbon annually while enhancing urban livability, positioning Bhopal as a pioneer in clean air innovation.",
-    date: "APRIL 19, 2026",
+    date: "APRIL 12, 2026",
     image: "/figma/news/news-1.png",
 };
 
@@ -32,7 +32,7 @@ const validatedStory: StoryCard = {
     title: "Globally Validated: Algae Tree Technology Earns EKI & DAVV Certification",
     excerpt:
         "Powered by microalgae through photosynthesis, the system converts CO2 into oxygen, offering a scalable proven solution for urban pollution.",
-    date: "APRIL 14, 2026",
+    date: "APRIL 08, 2026",
     image: "/figma/news/news-4.jpeg",
 };
 
@@ -50,7 +50,7 @@ const crossroadsStory: StoryCard = {
     title: "India's First Oxygen Factory at Crossroads: The Rise of Algae Tree",
     excerpt:
         "One Algae Tree matches the carbon absorption power of 75 mature trees, delivering high-impact air purification in compact urban spaces.",
-    date: "MARCH 13, 2026",
+    date: "MARCH 25, 2026",
     image: "/figma/news/news-2.jpeg",
 };
 
@@ -69,9 +69,9 @@ function StoryText({
                 {story.category}
             </p>
             <h3
-                className={`mt-2 font-nimbus text-white ${compact
-                    ? "text-[18px] leading-[22px] sm:text-[22px] sm:leading-[28px]"
-                    : "text-[24px] leading-[30px] sm:text-[28px] sm:leading-[34px] xl:text-[38px] xl:leading-[44px]"
+                className={`mt-2 font-space-grotesk font-bold text-[#e8fff0] ${compact
+                    ? "text-[24px] leading-[30px] sm:text-[26px] sm:leading-[32px] lg:text-[30px] lg:leading-[36px]"
+                    : "text-[26px] leading-[32px] sm:text-[30px] sm:leading-[36px] lg:text-[36px] lg:leading-[42px] xl:text-[40px] xl:leading-[46px]"
                     }`}
             >
                 {story.title}
@@ -137,30 +137,29 @@ function NewspaperFrame({
 
 function HeroCard() {
     return (
-        <article className="relative overflow-hidden rounded-[18px] border border-[#d7dee7] 
-         sm:rounded-[20px] xl:rounded-[22px]">
+        <article className="relative aspect-[816/1704] w-full overflow-hidden rounded-[16px] border border-[#d7dee7] bg-[#d9d9d9] sm:aspect-[4/3] sm:rounded-[20px] lg:aspect-[2976/1616] lg:rounded-[40px]">
             <Image
                 src="/figma/news/news-hero-mobile.png"
                 alt="Latest updates mobile"
-                width={390}
-                height={844}
+                fill
                 priority
-                className="h-[750px] object-cover object-center  sm:hidden"
+                sizes="(max-width: 639px) calc(100vw - 32px), 0px"
+                className="object-cover object-center sm:hidden"
             />
             <Image
                 src="/figma/news/news-hero-desktop.png"
                 alt="Latest updates"
-                width={1728}
-                height={672}
+                fill
                 priority
-                className="hidden h-[340px] w-full object-cover object-center  sm:block lg:h-[630px]"
+                sizes="(min-width: 1728px) 1488px, (min-width: 1280px) calc(100vw - 240px), (min-width: 640px) calc(100vw - 48px), 0px"
+                className="hidden object-cover object-center sm:block"
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#07111bea] via-[#09131ea6] to-transparent sm:bg-linear-to-r sm:from-[#09131ee8] sm:via-[#09131e91] sm:to-transparent" />
-            <div className="absolute inset-y-0 left-0 flex max-w-[420px] items-end px-4 pb-6 sm:inset-0 sm:max-w-[540px] sm:items-center sm:px-12 sm:pb-0 lg:max-w-[600px] lg:px-16">
+            <div className="absolute inset-y-0 left-0 flex max-w-[420px] items-end px-4 pb-6 sm:inset-0 sm:max-w-[540px] sm:items-center sm:px-12 sm:pb-0 lg:left-[clamp(24px,5vw,106px)] lg:max-w-[min(68vw,564px)] lg:px-0">
                 <div className="flex items-start gap-4 lg:gap-5">
-                    <span className="mt-1 block h-14 w-[3px] rounded-full bg-white/90 sm:h-16 lg:h-[74px]" />
+                    <span className="mt-1 block h-14 w-[3px] rounded-full bg-white/90 sm:h-16 lg:h-[130px]" />
                     <div>
-                        <h2 className="font-nimbus text-[24px] leading-[28px] text-white sm:text-[36px] sm:leading-[40px] lg:text-[40px] lg:leading-[44px]">
+                        <h2 className="font-nimbus text-[24px] leading-[28px] text-white sm:text-[36px] sm:leading-[40px] lg:text-[40px] lg:leading-[44px] lg:font-medium">
                             Latest Updates
                         </h2>
                         <p className="mt-2 font-nimbus text-[12px] leading-[18px] text-white/82 sm:mt-3 sm:text-[14px] sm:leading-[22px] lg:text-[16px] lg:leading-[24px]">
@@ -183,7 +182,7 @@ function LeadStoryCard() {
                     <NewspaperFrame
                         src={featureStory.image}
                         alt={featureStory.title}
-                        className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[420px] lg:w-full"
+                        className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[410px] lg:w-full"
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 56vw, 48vw"
                     />
