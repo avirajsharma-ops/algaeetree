@@ -3,214 +3,72 @@ import Image from "next/image";
 type Venture = {
     title: string[];
     company: string[];
-    icon: VentureIconName;
+    image: string;
     variant?: "default" | "signature";
 };
 
-type VentureIconName =
-    | "building"
-    | "clipboard"
-    | "factory"
-    | "film"
-    | "heart"
-    | "leaf"
-    | "monitor"
-    | "pill"
-    | "search"
-    | "shirt"
-    | "soup"
-    | "wine";
-
-function VentureIconMark({
-    icon,
-    className,
-    strokeWidth = 2,
-}: {
-    icon: VentureIconName;
-    className?: string;
-    strokeWidth?: number;
-}) {
-    const props = {
-        className,
-        viewBox: "0 0 24 24",
-        fill: "none",
-        stroke: "currentColor",
-        strokeWidth,
-        strokeLinecap: "round" as const,
-        strokeLinejoin: "round" as const,
-        "aria-hidden": true,
-    };
-
-    switch (icon) {
-        case "factory":
-            return (
-                <svg {...props}>
-                    <path d="M3 21h18" />
-                    <path d="M5 21V10l5 3V8l5 3V6l4 2v13" />
-                    <path d="M9 21v-4" />
-                    <path d="M13 21v-4" />
-                    <path d="M17 21v-4" />
-                </svg>
-            );
-        case "heart":
-            return (
-                <svg {...props}>
-                    <path d="m12 7-.9-.9a2.5 2.5 0 0 0-3.5 3.5L12 14l4.4-4.4a2.5 2.5 0 1 0-3.5-3.5Z" />
-                    <path d="M4 15h4l2 2 2-1h5a2 2 0 0 0 0-4h-3" />
-                </svg>
-            );
-        case "monitor":
-            return (
-                <svg {...props}>
-                    <rect x="3" y="4" width="18" height="12" rx="2" />
-                    <path d="M9 20h6" />
-                    <path d="M12 16v4" />
-                    <path d="M8 9h3" />
-                    <path d="M9.5 7.5v3" />
-                    <circle cx="17" cy="10" r="2" />
-                </svg>
-            );
-        case "clipboard":
-            return (
-                <svg {...props}>
-                    <rect x="6" y="4" width="12" height="16" rx="2" />
-                    <path d="M9 4.5h6" />
-                    <path d="m9 12 2 2 4-4" />
-                </svg>
-            );
-        case "film":
-            return (
-                <svg {...props}>
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="M7 5v14" />
-                    <path d="M17 5v14" />
-                    <path d="M3 9h4" />
-                    <path d="M17 9h4" />
-                    <path d="M3 15h4" />
-                    <path d="M17 15h4" />
-                </svg>
-            );
-        case "pill":
-            return (
-                <svg {...props}>
-                    <path d="M10 6a4 4 0 0 1 5.7 0l2.3 2.3a4 4 0 0 1 0 5.7l-4 4a4 4 0 0 1-5.7 0L6 15.7a4 4 0 0 1 0-5.7l4-4Z" />
-                    <path d="m9 15 6-6" />
-                </svg>
-            );
-        case "search":
-            return (
-                <svg {...props}>
-                    <circle cx="10.5" cy="10.5" r="4.5" />
-                    <path d="m14 14 6 6" />
-                    <path d="m8.5 10.5 1.5 1.5 3-3" />
-                </svg>
-            );
-        case "shirt":
-            return (
-                <svg {...props}>
-                    <path d="m8 6 4-2 4 2 3 3-2 2-2-1v10H9V10l-2 1-2-2 3-3Z" />
-                </svg>
-            );
-        case "wine":
-            return (
-                <svg {...props}>
-                    <path d="M8 3h8v3a4 4 0 0 1-4 4 4 4 0 0 1-4-4V3Z" />
-                    <path d="M12 10v8" />
-                    <path d="M9 21h6" />
-                </svg>
-            );
-        case "building":
-            return (
-                <svg {...props}>
-                    <path d="M4 21V7l8-4 8 4v14" />
-                    <path d="M9 21v-4h6v4" />
-                    <path d="M8 10h.01" />
-                    <path d="M12 10h.01" />
-                    <path d="M16 10h.01" />
-                    <path d="M8 14h.01" />
-                    <path d="M16 14h.01" />
-                </svg>
-            );
-        case "soup":
-            return (
-                <svg {...props}>
-                    <path d="M5 12h12a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4Z" />
-                    <path d="M17 12h1a2 2 0 1 1 0 4h-1" />
-                    <path d="M9 6v2" />
-                    <path d="M12 5v3" />
-                    <path d="M15 6v2" />
-                </svg>
-            );
-        case "leaf":
-            return (
-                <svg {...props}>
-                    <path d="M18 4C11 4 6 8.5 6 14a4 4 0 0 0 4 4c5.5 0 10-4.5 10-14Z" />
-                    <path d="M8 16c2-2 5-4 9-5" />
-                </svg>
-            );
-    }
-}
+const ICON_BASE = "/figma/about/mushroom-world";
 
 const ventures: Venture[] = [
     {
         title: ["Green", "Energy"],
         company: ["Mushroom World", "Umbrella Public Ltd."],
-        icon: "factory",
+        image: `${ICON_BASE}/green-energy.svg`,
     },
     {
         title: ["Health &", "Wellness"],
         company: ["Mushroom World Ayurved", "& Food Pvt. Ltd."],
-        icon: "heart",
+        image: `${ICON_BASE}/health-wellness.svg`,
     },
     {
         title: ["Information", "Technology"],
         company: ["Mushroom World", "FutureTech Pvt. Ltd."],
-        icon: "monitor",
+        image: `${ICON_BASE}/information-technology.svg`,
     },
     {
         title: ["Fitness &", "Nutrition"],
         company: ["Dt. Poonam Sagar Health", "& Nutrition Pvt. Ltd."],
-        icon: "clipboard",
+        image: `${ICON_BASE}/fitness-nutrition.svg`,
     },
     {
         title: ["Films &", "Entertainment"],
         company: ["Mushroom World", "Films Pvt. Ltd."],
-        icon: "film",
+        image: `${ICON_BASE}/films-entertainment.svg`,
     },
     {
         title: ["Homeopathy", "Medicine"],
         company: ["Meethic Golee Homeo-Care", "Pvt. Ltd."],
-        icon: "pill",
+        image: `${ICON_BASE}/homeopathy-medicine.svg`,
     },
     {
         title: ["Treasure", "Hunt"],
         company: ["Mushroom World", "Khojee"],
-        icon: "search",
+        image: `${ICON_BASE}/treasure-hunt.svg`,
     },
     {
         title: ["Fashion", "Industry"],
         company: ["Mobbs & Walter, Mushroom", "World Fashion Pvt. Ltd"],
-        icon: "shirt",
+        image: `${ICON_BASE}/fashion-industry.svg`,
     },
     {
         title: ["Winery &", "Vineyard"],
         company: ["SAVI, Mushroom World", "Wines Pvt. Ltd."],
-        icon: "wine",
+        image: `${ICON_BASE}/winery-vineyard.svg`,
     },
     {
         title: ["Welfare", "Foundation"],
         company: ["Kartavyam Nasha", "Mukti Kendra"],
-        icon: "building",
+        image: `${ICON_BASE}/welfare-foundation.svg`,
     },
     {
         title: ["Food &", "Beverages"],
         company: ["Blackila Food", "& Beverages LLP"],
-        icon: "soup",
+        image: `${ICON_BASE}/food-beverages.svg`,
     },
     {
         title: ["Mushroom World", "Group"],
         company: ["...And these are the", "decisions that make us"],
-        icon: "leaf",
+        image: `${ICON_BASE}/mushroom-world-group.svg`,
         variant: "signature",
     },
 ];
@@ -247,15 +105,21 @@ export default function MushroomWorldGroupSection() {
                     </div>
 
                     <div className="mt-6 grid grid-cols-2 overflow-hidden rounded-2xl bg-white lg:mt-10 lg:grid-cols-4 lg:rounded-[28px]">
-                        {ventures.map(({ title, company, icon, variant = "default" }, index) => (
+                        {ventures.map(({ title, company, image, variant = "default" }, index) => (
                             <div
                                 key={title.join(" ")}
                                 className={`flex min-h-44 flex-col items-center justify-center px-4 py-6 text-center sm:min-h-[190px] sm:px-5 lg:min-h-49 lg:px-6 ${getTileClasses(index)}`}
                             >
                                 {variant === "signature" ? (
                                     <>
-                                        <div className="flex size-[62px] items-center justify-center rounded-full border-  border-[3px] border-[#0d646a] text-[#0d646a] sm:size-[72px]">
-                                            <VentureIconMark icon={icon} className="size-8 sm:size-9" strokeWidth={2.1} />
+                                        <div className="relative size-[62px] sm:size-[72px]">
+                                            <Image
+                                                src={image}
+                                                alt={title.join(" ")}
+                                                fill
+                                                sizes="72px"
+                                                className="object-contain"
+                                            />
                                         </div>
                                         <p className="mt-3 font-nimbus text-[12px] leading-[15px] text-[#343434] sm:text-[13px] sm:leading-4">
                                             {company.map((line) => (
@@ -274,7 +138,15 @@ export default function MushroomWorldGroupSection() {
                                     </>
                                 ) : (
                                     <>
-                                        <VentureIconMark icon={icon} className="size-8 text-[#0d646a] sm:size-9" strokeWidth={1.9} />
+                                        <div className="relative size-12 sm:size-[52px]">
+                                            <Image
+                                                src={image}
+                                                alt={title.join(" ")}
+                                                fill
+                                                sizes="52px"
+                                                className="object-contain"
+                                            />
+                                        </div>
                                         <h3 className="mt-3 font-space-grotesk text-[24px] leading-6 text-[#2a2a2a] sm:text-[28px] sm:leading-7">
                                             {title.map((line) => (
                                                 <span key={line} className="block">
