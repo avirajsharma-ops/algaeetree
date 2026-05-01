@@ -8,9 +8,9 @@ const algaeVisualMaskStyle = {
 export default function NaturesGeniusSection() {
     return (
         <section className="relative w-full overflow-hidden bg-white">
-            <div className="relative hidden h-[1117px] w-full lg:block">
-                <div className="absolute inset-x-0 top-[34px] flex justify-center">
-                    <div className="relative h-[760px] w-[1280px]" style={algaeVisualMaskStyle}>
+            <div className="relative hidden h-279.25 w-full lg:flex lg:flex-col lg:items-center lg:justify-center">
+                <div className="absolute inset-x-0 top-8.5 flex justify-center">
+                    <div className="relative h-190 w-7xl" style={algaeVisualMaskStyle}>
                         <video
                             className="h-full w-full object-cover object-center scale-[1.08]"
                             autoPlay
@@ -30,15 +30,15 @@ export default function NaturesGeniusSection() {
 
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(227,240,217,0.45)_0%,rgba(255,255,255,0.85)_48%,rgba(255,255,255,1)_75%)]" />
 
-                <div className="page-px absolute inset-x-0 bottom-[118px]">
-                    <div className="mx-auto flex max-w-[1488px] flex-col items-center gap-4 text-center text-black">
+                <div className="page-px absolute inset-x-0 top-8.5 h-190 flex flex-col items-center justify-center">
+                    <div className="mx-auto flex max-w-372 flex-col items-center gap-4 text-center text-black">
                         <p className="font-nimbus text-[18px] font-bold leading-normal">
                             Nature&apos;s Genius
                         </p>
-                        <h2 className="font-space-grotesk text-[56px] font-normal leading-[64px] text-black">
+                        <h2 className="font-space-grotesk text-[56px] font-normal leading-16 text-black">
                             Algae: The Earth&apos;s Original Filter
                         </h2>
-                        <div className="font-nimbus max-w-[780px] text-[16px] leading-[24px] text-[#686868]">
+                        <div className="font-nimbus max-w-195 text-[16px] leading-6 text-[#686868]">
                             <p>
                                 Long before trees, algae was the primary source of Earth&apos;s oxygen. Through photosynthesis,
                             </p>
@@ -46,13 +46,14 @@ export default function NaturesGeniusSection() {
                                 these microscopic organisms consume CO2 up to 50 times faster than terrestrial plants.
                             </p>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div className="relative h-[884px] w-full overflow-hidden bg-white lg:hidden">
-                <div className="absolute inset-x-0 top-[84px] flex justify-center">
-                    <div className="relative h-[520px] w-[520px] max-w-[135vw]" style={algaeVisualMaskStyle}>
+            <div className="relative h-221 w-full overflow-hidden bg-white lg:hidden">
+                <div className="absolute inset-x-0 top-21 flex justify-center">
+                    <div className="relative h-130 w-130 max-w-[135vw]" style={algaeVisualMaskStyle}>
                         <video
                             className="h-full w-full object-cover object-center scale-[1.22]"
                             autoPlay
@@ -72,14 +73,14 @@ export default function NaturesGeniusSection() {
 
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_26%,rgba(227,240,217,0.44)_0%,rgba(255,255,255,0.84)_46%,rgba(255,255,255,1)_72%)]" />
 
-                <div className="page-px absolute inset-x-0 bottom-[86px]">
-                    <div className="mx-auto flex w-full max-w-[408px] flex-col items-center gap-2 text-center text-black">
+                <div className="page-px absolute inset-x-0 top-21 h-130 flex flex-col items-center justify-center">
+                    <div className="mx-auto flex w-full max-w-102 flex-col items-center gap-2 text-center text-black">
                         <p className="font-nimbus text-[18px] font-bold leading-normal">Nature&apos;s Genius</p>
-                        <h2 className="font-space-grotesk text-[36px] leading-[40px] text-black">
+                        <h2 className="font-space-grotesk text-[36px] leading-10 text-black">
                             <span className="block">Algae: The Earth&apos;s</span>
                             <span className="block">Original Filter</span>
                         </h2>
-                        <div className="font-nimbus text-[14px] leading-[20px] text-[#686868]">
+                        <div className="font-nimbus text-[14px] leading-5 text-[#686868]">
                             <p>Long before trees, algae was the primary source of Earth&apos;s oxygen.</p>
                             <p>Through photosynthesis, these microscopic organisms consume CO2 up to 50 times faster than terrestrial plants.</p>
                         </div>
