@@ -7,7 +7,7 @@ export default function IntroducingSection() {
                 <div className="flex w-full flex-col gap-6">
                     <div className="relative h-[539px] w-full overflow-hidden rounded-[24px] bg-[#f3f4f6]">
                         <img
-                            src="/Intro Section Image.png"
+                            src="/Intro Section Image.webp"
                             alt="AlgaeTree product"
                             className="absolute left-1/2 top-0 h-[539px] w-[1146px] max-w-none -translate-x-1/2 object-cover"
                         />
@@ -31,7 +31,7 @@ export default function IntroducingSection() {
                 <div className="flex w-full max-w-[1488px] flex-col items-start gap-[56px]">
                     <div className="relative h-[700px] w-full overflow-hidden rounded-[24px] bg-[#f3f4f6]">
                         <Image
-                            src="/Intro Section Image.png"
+                            src="/Intro Section Image.webp"
                             alt="AlgaeTree product"
                             fill
                             sizes="1488px"

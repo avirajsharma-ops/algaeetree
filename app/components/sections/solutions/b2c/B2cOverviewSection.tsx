@@ -44,7 +44,7 @@ const contentBlocks = [
         mobileHeight: "649px",
         mobileTextHeight: "225px",
         bodyWrapperClassName: "min-w-full w-[min-content] whitespace-pre-wrap",
-        image: "/figma/solutions/b2c/Image 1.png",
+        image: "/figma/solutions/b2c/Image 1.webp",
         body: [
             "AlgaeTree combines microalgae carbon capture, air purification, and intelligent monitoring to create healthier environments.",
             "Instead of simply filtering air, the system actively regenerates it by absorbing carbon dioxide and releasing oxygen.",
@@ -56,7 +56,7 @@ const contentBlocks = [
         mobileHeight: "666px",
         mobileTextHeight: "242px",
         bodyWrapperClassName: "w-full",
-        image: "/figma/solutions/b2c/Image 2.png",
+        image: "/figma/solutions/b2c/Image 2.webp",
         body: [
             "AlgaeTree transforms ordinary environments into living climate infrastructure.",
             "Microalgae capture carbon, release oxygen, and help reduce particulate pollution while smart sensors monitor air quality continuously.",
@@ -124,7 +124,7 @@ export default function B2cOverviewSection() {
                         </div>
 
                         <OverviewImage
-                            src="/figma/solutions/b2c/Image 1.png"
+                            src="/figma/solutions/b2c/Image 1.webp"
                             alt="Microalgae Powered Clean Air for Everyday Spaces"
                             wrapperClassName="h-[650px] w-[650px] shrink-0"
                         />
@@ -132,7 +132,7 @@ export default function B2cOverviewSection() {
 
                     <motion.div className="flex items-center gap-12">
                         <OverviewImage
-                            src="/figma/solutions/b2c/Image 2.png"
+                            src="/figma/solutions/b2c/Image 2.webp"
                             alt="Living Climate Technology for People and Places"
                             wrapperClassName="h-[650px] w-[650px] shrink-0"
                             imageClassName="object-center"

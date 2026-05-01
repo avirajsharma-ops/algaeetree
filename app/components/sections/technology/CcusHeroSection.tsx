@@ -6,7 +6,7 @@ export default function CcusHeroSection() {
             <div className="page-px py-4 lg:py-10 xl:py-14">
                 <div className="relative mx-auto aspect-[816/1704] w-full max-w-[1488px] overflow-hidden rounded-[16px] bg-[#0f1514] sm:aspect-[2976/1616] md:rounded-[24px] xl:rounded-[40px]">
                     <Image
-                        src="/figma/technology/ccus/Hero Image - Mobile (1).png"
+                        src="/figma/technology/ccus/Hero Image - Mobile (1).webp"
                         alt="Urban CCUS Infrastructure with AlgaeTree"
                         fill
                         priority
@@ -16,7 +16,7 @@ export default function CcusHeroSection() {
                     />
 
                     <Image
-                        src="/figma/technology/ccus/Hero Image - Desktop.png"
+                        src="/figma/technology/ccus/Hero Image - Desktop.webp"
                         alt="Urban CCUS Infrastructure with AlgaeTree"
                         fill
                         priority

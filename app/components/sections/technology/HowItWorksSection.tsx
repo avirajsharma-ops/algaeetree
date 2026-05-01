@@ -3,31 +3,31 @@ import Image from "next/image";
 const STEPS = [
     {
         number: "1",
-        image: "/figma/technology/step-1.png",
+        image: "/figma/technology/step-1.webp",
         title: ["Air", "Intake"],
         description: "Urban air is drawn into the system through a controlled intake.",
     },
     {
         number: "2",
-        image: "/figma/technology/step-2.png",
+        image: "/figma/technology/step-2.webp",
         title: ["Particulate", "Filtration"],
         description: "PM2.5 and PM10 pollutants are filtered before entering the biological chamber.",
     },
     {
         number: "3",
-        image: "/figma/technology/step-3.png",
+        image: "/figma/technology/step-3.webp",
         title: ["Microalgae", "Carbon Capture"],
         description: "Microalgae absorb CO₂ through photosynthesis and convert it into biomass.",
     },
     {
         number: "4",
-        image: "/figma/technology/step-4.png",
+        image: "/figma/technology/step-4.webp",
         title: ["Oxygen", "Release"],
         description: "Cleaned air with oxygen is released back into the surrounding environment.",
     },
     {
         number: "5",
-        image: "/figma/technology/step-5.png",
+        image: "/figma/technology/step-5.webp",
         title: ["Continuous", "Monitoring"],
         description: "AI-driven sensors track air quality and optimize system performance.",
     },

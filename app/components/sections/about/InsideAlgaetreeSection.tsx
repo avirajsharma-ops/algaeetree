@@ -11,14 +11,14 @@ export default function InsideAlgaetreeSection() {
                     </h2>
                     <div className="relative mt-6 aspect-[408/272] w-full overflow-hidden rounded-[16px] bg-[#d9d9d9] md:mt-8 md:rounded-[24px] xl:aspect-[1488/831] xl:rounded-[40px]">
                         <Image
-                            src="/figma/about/mobile/photo-inside.jpg"
+                            src="/figma/about/mobile/photo-inside.webp"
                             alt="Inside the AlgaeTree"
                             fill
                             sizes="(max-width: 1279px) 100vw, 1488px"
                             className="object-cover"
                         />
                         <Image
-                            src="/figma/about/photo-inside.png"
+                            src="/figma/about/photo-inside.webp"
                             alt=""
                             aria-hidden
                             fill

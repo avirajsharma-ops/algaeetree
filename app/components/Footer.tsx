@@ -27,7 +27,7 @@ export default function Footer() {
                 <div className="bg-gradient-to-r from-white to-[#5e9357] px-4 py-6">
                     <div className="mx-auto flex w-full max-w-[440px] items-center justify-between md:max-w-[720px]">
                         <div className="relative h-10 w-[221.333px] overflow-hidden">
-                            <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
+                            <Image src="/Logo_Main 1.webp" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
                         </div>
                         <Link href="/contact" className="rounded-[32px] bg-[#2d5a27] px-4 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-white transition-colors hover:bg-[#234820]">
                             Get Involved
@@ -95,7 +95,7 @@ export default function Footer() {
                 <div className="w-full bg-gradient-to-r from-white to-[#5e9357]">
                     <div className="mx-auto flex w-full max-w-[1728px] items-center justify-between px-[120px] py-[24px]">
                         <div className="relative h-[45px] w-[249px] overflow-clip">
-                            <Image src="/Logo_Main 1.png" alt="AlgaeTree" width={209} height={45} className="absolute bottom-0 left-0 h-[45px] w-auto" />
+                            <Image src="/Logo_Main 1.webp" alt="AlgaeTree" width={209} height={45} className="absolute bottom-0 left-0 h-[45px] w-auto" />
                         </div>
                         <Button href="/contact">Get Involved</Button>
                     </div>

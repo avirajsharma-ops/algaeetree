@@ -129,31 +129,31 @@ export const DEPLOYMENT_ITEMS: DeploymentItem[] = [
     {
         title: "Corporate Campuses",
         description: "Transform offices into living sustainability hubs.",
-        image: "/figma/solutions/b2c/environment-corporate-v2.png",
+        image: "/figma/solutions/b2c/environment-corporate-v2.webp",
     },
     {
         title: "Transportation Hubs",
         description: "Improve air quality in airports and transit stations.",
-        image: "/figma/solutions/b2c/environment-transportation-v2.png",
+        image: "/figma/solutions/b2c/environment-transportation-v2.webp",
     },
     {
         title: "Healthcare Facilities",
         description: "Create cleaner environments for patients and staff.",
-        image: "/figma/solutions/b2c/environment-healthcare-v2.png",
+        image: "/figma/solutions/b2c/environment-healthcare-v2.webp",
     },
     {
         title: "Technology Parks",
         description: "Climate infrastructure for innovation campuses.",
-        image: "/figma/solutions/b2c/environment-technology-parks-v2.png",
+        image: "/figma/solutions/b2c/environment-technology-parks-v2.webp",
     },
     {
         title: "Retail and Hospitality",
         description: "Enhance customer experience with cleaner air.",
-        image: "/figma/solutions/b2c/environment-retail-v2.png",
+        image: "/figma/solutions/b2c/environment-retail-v2.webp",
     },
     {
         title: "Educational Institutions",
         description: "Integrate carbon capture into urban development.",
-        image: "/figma/solutions/b2c/environment-educational-v2.png",
+        image: "/figma/solutions/b2c/environment-educational-v2.webp",
     },
 ];

@@ -17,7 +17,7 @@ export default function NaturesGeniusSection() {
                             loop
                             muted
                             playsInline
-                            preload="auto"
+                            preload="none"
                             aria-hidden="true"
                         >
                             <source
@@ -60,7 +60,7 @@ export default function NaturesGeniusSection() {
                             loop
                             muted
                             playsInline
-                            preload="auto"
+                            preload="none"
                             aria-hidden="true"
                         >
                             <source

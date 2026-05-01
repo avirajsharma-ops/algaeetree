@@ -7,7 +7,7 @@ export default function CcusOverviewSection() {
                 <div className="mx-auto flex max-w-[408px] flex-col gap-4 py-10 md:hidden">
                     <div className="relative aspect-square w-full">
                         <Image
-                            src="/figma/technology/ccus/overview-shape.png"
+                            src="/figma/technology/ccus/overview-shape.webp"
                             alt="AlgaeTree unit illuminated on a city street at night"
                             fill
                             sizes="408px"
@@ -83,7 +83,7 @@ export default function CcusOverviewSection() {
 
                     <div className="relative hidden h-[360px] w-full md:block xl:h-[650px] xl:w-[650px]">
                         <Image
-                            src="/figma/technology/ccus/overview-shape.png"
+                            src="/figma/technology/ccus/overview-shape.webp"
                             alt="AlgaeTree unit illuminated on a city street at night"
                             fill
                             loading="eager"

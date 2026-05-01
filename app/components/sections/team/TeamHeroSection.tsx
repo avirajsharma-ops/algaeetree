@@ -47,13 +47,15 @@ export default function TeamHeroSection() {
                     </div>
 
                     <div className="relative h-[671px] w-full overflow-hidden bg-[#e0e0e0] md:h-[520px] xl:h-[600px]">
-                        <img
-                            src="/figma/team/mobile/hero.png"
+                        <Image
+                            src="/figma/team/mobile/hero.webp"
                             alt="The AlgaeTree team standing with the product prototype outdoors"
-                            className="absolute inset-0 h-full w-full object-cover object-center md:hidden"
+                            fill
+                            sizes="(max-width: 767px) 100vw"
+                            className="object-cover object-center md:hidden"
                         />
                         <Image
-                            src="/figma/team/hero.png"
+                            src="/figma/team/hero.webp"
                             alt=""
                             aria-hidden
                             fill

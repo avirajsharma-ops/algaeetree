@@ -31,13 +31,13 @@ export default function TeamInspirationSection() {
 
                 <motion.div className="relative h-[160px] w-full xl:mt-10 xl:h-[400px]">
                     <img
-                        src="/figma/team/mobile/inspiration-subtract.png"
+                        src="/figma/team/mobile/inspiration-subtract.webp"
                         alt=""
                         aria-hidden="true"
                         className="absolute inset-0 h-full w-full object-fill xl:hidden"
                     />
                     <img
-                        src="/figma/team/inspiration-shape.png"
+                        src="/figma/team/inspiration-shape.webp"
                         alt=""
                         aria-hidden="true"
                         className="absolute inset-0 hidden h-full w-full object-cover xl:block"

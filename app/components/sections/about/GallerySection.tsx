@@ -14,35 +14,35 @@ type GalleryTile = {
 const tiles: GalleryTile[] = [
     // Row 1
     {
-        src: "/figma/about/Frame 28.png",
+        src: "/figma/about/Frame 28.webp",
         alt: "AlgaeTree team gathered together outdoors",
         desktopSpan: 2,
         mobileSpan: 2,
         fitMode: "contain",
     },
     {
-        src: "/figma/about/Frame 29.png",
+        src: "/figma/about/Frame 29.webp",
         alt: "Team members presenting an AlgaeTree unit outdoors",
         objectPosition: "object-bottom",
     },
     {
-        src: "/figma/about/Frame 30.png",
+        src: "/figma/about/Frame 30.webp",
         alt: "Visitor posing beside an AlgaeTree prototype indoors",
         fitMode: "contain",
     },
     // Row 2
     {
-        src: "/figma/about/Frame 34.png",
+        src: "/figma/about/Frame 34.webp",
         alt: "AlgaeTree installation showcased outdoors",
         objectPosition: "object-center",
     },
     {
-        src: "/figma/about/Frame 33.png",
+        src: "/figma/about/Frame 33.webp",
         alt: "AlgaeTree unit at sunset",
         fitMode: "contain",
     },
     {
-        src: "/figma/about/Frame 31.png",
+        src: "/figma/about/Frame 31.webp",
         alt: "AlgaeTree team during an indoor presentation with partners",
         desktopSpan: 2,
         mobileSpan: 2,
@@ -50,32 +50,32 @@ const tiles: GalleryTile[] = [
     },
     // Row 3
     {
-        src: "/figma/about/Frame 37.png",
+        src: "/figma/about/Frame 37.webp",
         alt: "AlgaeTree team standing together indoors",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-[center_30%]",
     },
     {
-        src: "/figma/about/Frame 32.png",
+        src: "/figma/about/Frame 32.webp",
         alt: "Close view of an operating AlgaeTree device on display",
         fitMode: "contain",
     },
     {
-        src: "/figma/about/Frame 35.png",
+        src: "/figma/about/Frame 35.webp",
         alt: "AlgaeTree concept installed along an urban roadway",
         objectPosition: "object-center",
     },
     // Row 4
     {
-        src: "/figma/about/Frame 39.png",
+        src: "/figma/about/Frame 39.webp",
         alt: "Team gathered around a working AlgaeTree prototype indoors",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-[center_60%]",
     },
     {
-        src: "/figma/about/Frame 40.png",
+        src: "/figma/about/Frame 40.webp",
         alt: "Visitors looking closely at the AlgaeTree technology",
         desktopSpan: 2,
         mobileSpan: 2,
@@ -83,14 +83,14 @@ const tiles: GalleryTile[] = [
     },
     // Row 5
     {
-        src: "/figma/about/Frame 41.png",
+        src: "/figma/about/Frame 41.webp",
         alt: "AlgaeTree team photographed at night with the unit",
         desktopSpan: 2,
         mobileSpan: 2,
         objectPosition: "object-bottom",
     },
     {
-        src: "/figma/about/Frame 42.png",
+        src: "/figma/about/Frame 42.webp",
         alt: "Team members presenting an AlgaeTree unit at a public park",
         desktopSpan: 2,
         mobileSpan: 2,

@@ -1,4 +1,4 @@
-const HOMEPAGE_VIDEO_EMBED_URL = "https://www.youtube.com/embed/Uar9PYreEOQ?si=yuj0YpS2xKIlqHoN";
+const HOMEPAGE_VIDEO_EMBED_URL = "https://www.youtube-nocookie.com/embed/Uar9PYreEOQ?si=yuj0YpS2xKIlqHoN&rel=0";
 
 export default function InsideSection() {
     return (
@@ -16,6 +16,7 @@ export default function InsideSection() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
+                            loading="lazy"
                             className="block size-full border-0"
                         />
                     </div>
@@ -34,6 +35,7 @@ export default function InsideSection() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
+                            loading="lazy"
                             className="block size-full border-0"
                         />
                     </div>

@@ -7,31 +7,31 @@ const APPLICATIONS = [
     {
         title: "Roads & Traffic Corridors",
         description: "Capture carbon emissions from vehicles across busy city roads and intersections.",
-        image: "/figma/technology/ccus/application-roads-v2.png",
+        image: "/figma/technology/ccus/application-roads-v2.webp",
         desktopSpan: "xl:col-span-2",
     },
     {
         title: "Highways & Transport Networks",
         description: "Reduce pollution along high-traffic highways and logistics corridors.",
-        image: "/figma/technology/ccus/application-highways-v2.png",
+        image: "/figma/technology/ccus/application-highways-v2.webp",
         desktopSpan: "xl:col-span-2",
     },
     {
         title: "Industrial Zones",
         description: "Support carbon reduction near manufacturing plants, refineries, and industrial parks.",
-        image: "/figma/technology/ccus/application-industrial-v2.png",
+        image: "/figma/technology/ccus/application-industrial-v2.webp",
         desktopSpan: "xl:col-span-2",
     },
     {
         title: "Smart City Infrastructure",
         description: "Integrate AlgaeTree™ systems into smart city climate and sustainability initiatives.",
-        image: "/figma/technology/ccus/application-smart-city-v2.png",
+        image: "/figma/technology/ccus/application-smart-city-v2.webp",
         desktopSpan: "xl:col-span-3",
     },
     {
         title: "Public Spaces & Campuses",
         description: "Deploy in parks, public plazas, and university campuses to improve urban air quality.",
-        image: "/figma/technology/ccus/application-public-spaces-v2.png",
+        image: "/figma/technology/ccus/application-public-spaces-v2.webp",
         desktopSpan: "xl:col-span-3",
     },
 ];

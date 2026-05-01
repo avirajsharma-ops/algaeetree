@@ -19,7 +19,7 @@ const FEATURES: Feature[] = [
         subtitle: "Power Deck",
         bodyTop: "Solar integration for continuous,",
         bodyBottom: "autonomous operation in any environment.",
-        backgroundSrc: "/figma/bloom-micro-algae.png",
+        backgroundSrc: "/figma/bloom-micro-algae.webp",
         backgroundPosition: "center top",
         overlayColor: "rgba(6, 19, 0, 0.18)",
     },
@@ -82,7 +82,7 @@ function ArrowButton({
             className="relative block size-10 overflow-hidden rounded-sm border border-white bg-[#2d5a27]"
         >
             <Image
-                src="/figma/arrow-bg.png"
+                src="/figma/arrow-bg.webp"
                 alt=""
                 fill
                 sizes="40px"
@@ -107,7 +107,7 @@ export default function FeatureShowcaseSection() {
     const playAttemptRef = useRef(0);
     const productVideoSrc = "/Algae%20Cylender%20Shape%201800x2796.mp4";
     const current = FEATURES[index];
-    const backgroundSrc = current.backgroundSrc ?? "/figma/bloom-micro-algae.png";
+    const backgroundSrc = current.backgroundSrc ?? "/figma/bloom-micro-algae.webp";
     const backgroundPosition = current.backgroundPosition ?? "center center";
     const overlayColor = "rgba(0, 0, 0, 0.56)";
     const progressRatio = total > 1 ? index / (total - 1) : 0;

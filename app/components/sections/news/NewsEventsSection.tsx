@@ -15,7 +15,7 @@ const featureStory: StoryCard = {
     excerpt:
         "Backed by research and innovation, this breakthrough device captures 1.5 tons of carbon annually while generating oxygen sustainably.",
     date: "APRIL 05, 2026",
-    image: "/figma/news/news-3.jpeg",
+    image: "/figma/news/news-3.webp",
 };
 
 const cityGreenerStory: StoryCard = {
@@ -24,7 +24,7 @@ const cityGreenerStory: StoryCard = {
     excerpt:
         "A single unit absorbs up to 1.5 tons of carbon annually while enhancing urban livability, positioning Bhopal as a pioneer in clean air innovation.",
     date: "APRIL 12, 2026",
-    image: "/figma/news/news-1.png",
+    image: "/figma/news/news-1.webp",
 };
 
 const validatedStory: StoryCard = {
@@ -33,7 +33,7 @@ const validatedStory: StoryCard = {
     excerpt:
         "Powered by microalgae through photosynthesis, the system converts CO2 into oxygen, offering a scalable proven solution for urban pollution.",
     date: "APRIL 08, 2026",
-    image: "/figma/news/news-4.jpeg",
+    image: "/figma/news/news-4.webp",
 };
 
 const provenStory: StoryCard = {
@@ -42,7 +42,7 @@ const provenStory: StoryCard = {
     excerpt:
         "After two years of research, Algae Tree emerges as a reliable solution for AQI control and carbon emission reduction in cities.",
     date: "MARCH 29, 2026",
-    image: "/figma/news/news-5.jpeg",
+    image: "/figma/news/news-5.webp",
 };
 
 const crossroadsStory: StoryCard = {
@@ -51,7 +51,7 @@ const crossroadsStory: StoryCard = {
     excerpt:
         "One Algae Tree matches the carbon absorption power of 75 mature trees, delivering high-impact air purification in compact urban spaces.",
     date: "MARCH 25, 2026",
-    image: "/figma/news/news-2.jpeg",
+    image: "/figma/news/news-2.webp",
 };
 
 function StoryText({
@@ -99,7 +99,7 @@ function CardShell({ children, className = "" }: { children: ReactNode; classNam
             <div className="absolute inset-0 bg-linear-to-br from-[#1b2430]/95 via-[#111821]/98 to-[#10161d]" />
             <div className="absolute inset-0 opacity-[0.09]">
                 <Image
-                    src="/hero section slider resized.png"
+                    src="/hero section slider resized.webp"
                     alt=""
                     fill
                     sizes="100vw"
@@ -139,7 +139,7 @@ function HeroCard() {
     return (
         <article className="relative aspect-[816/1704] w-full overflow-hidden rounded-[16px] border border-[#d7dee7] bg-[#d9d9d9] sm:aspect-[4/3] sm:rounded-[20px] lg:aspect-[2976/1616] lg:rounded-[40px]">
             <Image
-                src="/figma/news/news-hero-mobile.png"
+                src="/figma/news/news-hero-mobile.webp"
                 alt="Latest updates mobile"
                 fill
                 priority
@@ -147,7 +147,7 @@ function HeroCard() {
                 className="object-cover object-center sm:hidden"
             />
             <Image
-                src="/figma/news/news-hero-desktop.png"
+                src="/figma/news/news-hero-desktop.webp"
                 alt="Latest updates"
                 fill
                 priority

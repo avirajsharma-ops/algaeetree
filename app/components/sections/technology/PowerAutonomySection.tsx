@@ -47,7 +47,7 @@ export default function PowerAutonomySection() {
             <div className="page-px py-4 lg:py-[60px]">
                 <div className="relative mx-auto w-full max-w-[1488px] overflow-hidden rounded-[16px] lg:h-[831px] lg:rounded-[40px]">
                     <Image
-                        src="/figma/technology/power-bg.png"
+                        src="/figma/technology/power-bg.webp"
                         alt=""
                         fill
                         sizes="(max-width: 1024px) calc(100vw - 32px), (max-width: 1279px) calc(100vw - 48px), 1488px"

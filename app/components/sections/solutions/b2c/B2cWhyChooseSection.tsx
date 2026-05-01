@@ -38,7 +38,7 @@ export default function B2cWhyChooseSection() {
 
                     <motion.div className="relative h-[326px] overflow-visible rounded-[12px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
                         <Image
-                            src="/figma/solutions/b2c/impact-case-v2.png"
+                            src="/figma/solutions/b2c/impact-case-v2.webp"
                             alt="AlgaeTree installation in a campus interior"
                             fill
                             loading="eager"
@@ -69,7 +69,7 @@ export default function B2cWhyChooseSection() {
                     <div className="grid grid-cols-2 gap-20">
                         <motion.div className="relative h-[568px] overflow-visible rounded-[12px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)]">
                             <Image
-                                src="/figma/solutions/b2c/impact-case-v2.png"
+                                src="/figma/solutions/b2c/impact-case-v2.webp"
                                 alt="AlgaeTree installation in a campus interior"
                                 fill
                                 loading="eager"

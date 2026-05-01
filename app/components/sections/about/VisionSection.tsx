@@ -51,14 +51,14 @@ export default function VisionSection() {
                     <div className="order-1 w-full xl:order-2 xl:w-[736px]">
                         <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileVisionMask}>
                             <img
-                                src="/figma/about/About Us Image 2.png"
+                                src="/figma/about/About Us Image 2.webp"
                                 alt="Vision"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         </div>
                         <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopVisionMask}>
                             <img
-                                src="/figma/about/About Us Image 2.png"
+                                src="/figma/about/About Us Image 2.webp"
                                 alt="Vision"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />

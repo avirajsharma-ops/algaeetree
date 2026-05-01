@@ -15,7 +15,7 @@ export default function B2cHeroSection() {
                     className="relative mx-auto aspect-[816/1704] w-full max-w-[1488px] overflow-hidden rounded-[16px] bg-[#0f1514] sm:aspect-[2976/1616] md:rounded-[40px]"
                 >
                     <Image
-                        src="/figma/solutions/b2c/Hero%20Mobile.png"
+                        src="/figma/solutions/b2c/Hero%20Mobile.webp"
                         alt="B2C climate solution photobioreactor in a nighttime urban setting"
                         fill
                         priority
@@ -24,7 +24,7 @@ export default function B2cHeroSection() {
                     />
 
                     <Image
-                        src="/figma/solutions/b2c/Hero%20Destop.png"
+                        src="/figma/solutions/b2c/Hero%20Destop.webp"
                         alt=""
                         aria-hidden
                         fill

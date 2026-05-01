@@ -159,7 +159,7 @@ export default function HeroSection() {
                                 muted
                                 loop
                                 playsInline
-                                preload="auto"
+                                preload="metadata"
                             >
                                 <source src="/Homepage BG Video.mp4" type="video/mp4" />
                             </video>
@@ -175,7 +175,7 @@ export default function HeroSection() {
                             className="absolute inset-0"
                         >
                             <Image
-                                src="/hero%20section%20slider%20resized.png"
+                                src="/hero%20section%20slider%20resized.webp"
                                 alt="Microscopic algae inspired visual"
                                 fill
                                 priority
@@ -257,7 +257,7 @@ export default function HeroSection() {
                         muted
                         loop
                         playsInline
-                        preload="auto"
+                        preload="metadata"
                     >
                         <source src="/Homepage BG Video.mp4" type="video/mp4" />
                     </video>

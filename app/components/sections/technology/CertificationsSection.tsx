@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 const CERTS = [
-    { src: "/figma/technology/PATENT eFiling_mushroom world_NPA_filing receipt (1).jpg", alt: "Patent eFiling — NPA filing receipt" },
-    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14064.jpg", alt: "Mushroom World Umbrella Ltd. 14064" },
-    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14001.jpg", alt: "Mushroom World Umbrella Ltd. 14001" },
-    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-10993.jpg", alt: "Mushroom World Umbrella Ltd. 10993" },
+    { src: "/figma/technology/PATENT eFiling_mushroom world_NPA_filing receipt (1).webp", alt: "Patent eFiling — NPA filing receipt" },
+    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14064.webp", alt: "Mushroom World Umbrella Ltd. 14064" },
+    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14001.webp", alt: "Mushroom World Umbrella Ltd. 14001" },
+    { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-10993.webp", alt: "Mushroom World Umbrella Ltd. 10993" },
 ];
 
 export default function CertificationsSection() {

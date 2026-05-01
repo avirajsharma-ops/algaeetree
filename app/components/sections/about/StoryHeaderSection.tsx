@@ -45,14 +45,14 @@ export default function StoryHeaderSection() {
                     <div className="relative w-full xl:-mt-14">
                         <div className="relative h-[160px] w-full overflow-hidden bg-transparent sm:h-[220px] xl:hidden" style={mobileStoryMask}>
                             <img
-                                src="/About%20Us%20Image%201%20(1).png"
+                                src="/About%20Us%20Image%201%20(1).webp"
                                 alt="Our story visual"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         </div>
                         <div className="relative hidden h-[400px] w-full overflow-hidden bg-transparent xl:block" style={desktopStoryMask}>
                             <img
-                                src="/About%20Us%20Image%201%20(1).png"
+                                src="/About%20Us%20Image%201%20(1).webp"
                                 alt="Our story visual"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />

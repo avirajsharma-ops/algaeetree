@@ -640,7 +640,7 @@ export default function CO2Section() {
 
                             <div className="relative w-full overflow-hidden rounded-xl bg-[#2D5A27] px-5 py-8">
                                 <Image
-                                    src="/figma/co2-card-bg.png"
+                                    src="/figma/co2-card-bg.webp"
                                     alt=""
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 987px"
@@ -669,7 +669,7 @@ export default function CO2Section() {
                             <div className="flex w-full flex-col items-stretch justify-between gap-4 lg:flex-row lg:gap-4">
                                 <div className="relative inline-flex h-auto min-h-84 w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-6 lg:w-[66.33%] xl:p-8">
                                     <Image
-                                        src="/figma/co2-card-bg.png"
+                                        src="/figma/co2-card-bg.webp"
                                         alt=""
                                         width={1302}
                                         height={869}

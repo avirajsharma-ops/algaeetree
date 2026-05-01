@@ -18,7 +18,7 @@ const SOCIAL_CARDS = [
     },
     {
         href: "https://youtube.com/@algaetree",
-        icon: "/figma/contact/g10.png",
+        icon: "/figma/contact/g10.webp",
         iconAlt: "YouTube icon",
         title: "YouTube · @AlgaeTree",
     },

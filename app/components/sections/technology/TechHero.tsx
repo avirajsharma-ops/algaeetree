@@ -6,7 +6,7 @@ export default function TechHero() {
             <div className="page-px py-4 lg:py-10 xl:py-14">
                 <div className="relative mx-auto aspect-[816/1704] w-full max-w-[1488px] overflow-hidden rounded-[16px] bg-[#d9d9d9] sm:aspect-[4/3] lg:aspect-[2976/1616] lg:rounded-[40px]">
                     <Image
-                        src="/figma/technology/Technology%20Hero%20Image%20Mobile.png"
+                        src="/figma/technology/Technology%20Hero%20Image%20Mobile.webp"
                         alt="AlgaeTree Technology"
                         fill
                         priority
@@ -14,7 +14,7 @@ export default function TechHero() {
                         className="object-cover object-center lg:hidden"
                     />
                     <Image
-                        src="/figma/technology/Technology%20Hero%20Image%20Desktop.png"
+                        src="/figma/technology/Technology%20Hero%20Image%20Desktop.webp"
                         alt=""
                         aria-hidden
                         fill

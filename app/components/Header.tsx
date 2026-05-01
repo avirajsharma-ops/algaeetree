@@ -224,7 +224,7 @@ export default function Header() {
                             <span className="inline-flex w-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] 
                             group-hover:w-10 group-focus-visible:w-10 sm:group-hover:w-11 sm:group-focus-visible:w-11">
                                 <Image
-                                    src="/Logo_Main_header.png"
+                                    src="/Logo_Main_header.webp"
                                     alt="AlgaeTree logo"
                                     width={50}
                                     height={50}
@@ -234,7 +234,7 @@ export default function Header() {
                         </span>
 
                         <Image
-                            src="/Logo_Main 1.png"
+                            src="/Logo_Main 1.webp"
                             alt="AlgaeTree"
                             width={209}
                             height={45}

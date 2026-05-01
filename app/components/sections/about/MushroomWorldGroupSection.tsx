@@ -108,7 +108,7 @@ export default function MushroomWorldGroupSection() {
                     <h2 className="sr-only">Mushroom World Group</h2>
                     <div className="mx-auto w-full max-w-[1222px]">
                         <Image
-                            src="/figma/about/Vector.png"
+                            src="/figma/about/Vector.webp"
                             alt="Mushroom World Group"
                             width={2444}
                             height={153}

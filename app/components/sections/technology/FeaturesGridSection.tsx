@@ -6,37 +6,37 @@ import { useState, useCallback, useEffect } from "react";
 const FEATURES = [
     {
         title: "Solar Powered",
-        image: "/figma/technology/Feature%20Image%201.png",
+        image: "/figma/technology/Feature%20Image%201.webp",
         description:
             "Runs on integrated solar energy, enabling clean and sustainable operation without constant external power.",
     },
     {
         title: "Biological Carbon Capture",
-        image: "/figma/technology/Feature%20Image%202.png",
+        image: "/figma/technology/Feature%20Image%202.webp",
         description:
             "Living microalgae naturally absorb carbon dioxide and transform it into oxygen through photosynthesis.",
     },
     {
         title: "Smart Air Purification",
-        image: "/figma/technology/Feature%20Image%203.png",
+        image: "/figma/technology/Feature%20Image%203.webp",
         description:
             "Multi-stage filtration reduces harmful airborne particles before air enters the system.",
     },
     {
         title: "Smart Environmental Monitoring",
-        image: "/figma/technology/Feature%20Image%204.png",
+        image: "/figma/technology/Feature%20Image%204.webp",
         description:
             "Advanced sensors continuously monitor air quality, temperature, and surrounding conditions.",
     },
     {
         title: "AI-Driven System Control",
-        image: "/figma/technology/Feature%20Image%206.png",
+        image: "/figma/technology/Feature%20Image%206.webp",
         description:
             "Adaptive algorithms optimize airflow, lighting, and nutrients for stable algae growth.",
     },
     {
         title: "Connected Monitoring Platform",
-        image: "/figma/technology/Feature%20Image%205.png",
+        image: "/figma/technology/Feature%20Image%205.webp",
         description:
             "Cloud connectivity enables remote performance tracking and environmental insights.",
     },

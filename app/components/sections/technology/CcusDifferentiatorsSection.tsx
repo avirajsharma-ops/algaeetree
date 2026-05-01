@@ -25,7 +25,7 @@ export default function CcusDifferentiatorsSection() {
                     >
                         <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                             <Image
-                                src="/figma/technology/ccus/low-energy-bg.png"
+                                src="/figma/technology/ccus/low-energy-bg.webp"
                                 alt=""
                                 aria-hidden
                                 fill
@@ -85,7 +85,7 @@ export default function CcusDifferentiatorsSection() {
                         <div className="relative h-[160px] overflow-hidden rounded-[16px] bg-white p-2 shadow-[0px_20px_40px_0px_rgba(1,45,29,0.06)]">
                             <div className="relative h-full w-full overflow-hidden rounded-[8px]">
                                 <Image
-                                    src="/figma/technology/ccus/smart-city.png"
+                                    src="/figma/technology/ccus/smart-city.webp"
                                     alt="Urban infrastructure integration"
                                     fill
                                     loading="eager"
@@ -118,7 +118,7 @@ export default function CcusDifferentiatorsSection() {
                     >
                         <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                             <Image
-                                src="/figma/technology/ccus/oxygen-bg.png"
+                                src="/figma/technology/ccus/oxygen-bg.webp"
                                 alt=""
                                 aria-hidden
                                 fill
@@ -157,7 +157,7 @@ export default function CcusDifferentiatorsSection() {
                         >
                             <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                                 <Image
-                                    src="/figma/technology/ccus/low-energy-bg.png"
+                                    src="/figma/technology/ccus/low-energy-bg.webp"
                                     alt=""
                                     aria-hidden
                                     fill
@@ -233,7 +233,7 @@ export default function CcusDifferentiatorsSection() {
                                 <div className="relative h-[180px] overflow-hidden rounded-[16px] bg-white p-2 shadow-[0px_20px_40px_0px_rgba(1,45,29,0.06)] xl:h-[224px] xl:w-full">
                                     <div className="relative h-full w-full overflow-hidden rounded-[8px]">
                                         <Image
-                                            src="/figma/technology/ccus/smart-city.png"
+                                            src="/figma/technology/ccus/smart-city.webp"
                                             alt="Urban infrastructure integration"
                                             fill
                                             loading="eager"
@@ -271,7 +271,7 @@ export default function CcusDifferentiatorsSection() {
                         >
                             <div className="absolute inset-y-0 left-1/2 right-0 opacity-20">
                                 <Image
-                                    src="/figma/technology/ccus/oxygen-bg.png"
+                                    src="/figma/technology/ccus/oxygen-bg.webp"
                                     alt=""
                                     aria-hidden
                                     fill
