@@ -14,23 +14,23 @@ const STATS: Stat[] = [
 
 function StatCircle({ stat }: { stat: Stat }) {
     return (
-        <div className="flex flex-col items-center gap-4 lg:gap-10">
-            <div className="relative size-[128px] sm:size-[148px] lg:size-[260px]">
+        <div className="flex flex-col items-center gap-4 lg:gap-8 xl:gap-10">
+            <div className="relative size-[100px] sm:size-[130px] lg:size-[170px] xl:size-[220px]">
                 <span
                     className="absolute inset-0 rounded-full border-[2px] border-white/85"
                     aria-hidden
                 />
                 <span
-                    className="absolute inset-[8px] rounded-full border border-white/55 sm:inset-[10px] lg:inset-[18px]"
+                    className="absolute inset-[6px] rounded-full border border-white/55 sm:inset-[8px] lg:inset-[12px] xl:inset-[16px]"
                     aria-hidden
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-nimbus text-[34px] leading-none text-white sm:text-[40px] lg:text-[64px]">
+                    <span className="font-nimbus text-[26px] leading-none text-white sm:text-[32px] lg:text-[44px] xl:text-[56px]">
                         {stat.display}
                     </span>
                 </div>
             </div>
-            <p className="font-nimbus text-center text-[14px] font-bold leading-tight tracking-[0.6px] text-white sm:text-[16px] lg:text-[26px] lg:leading-[32px] lg:tracking-[1px]">
+            <p className="font-nimbus text-center text-[11px] font-bold leading-tight tracking-[0.4px] text-white sm:text-[13px] lg:text-[16px] xl:text-[22px] xl:leading-[28px] xl:tracking-[1px]">
                 {stat.label.map((line) => (
                     <span key={line} className="block">
                         {line}
@@ -55,12 +55,12 @@ export default function PowerAutonomySection() {
                     />
                     <div className="absolute inset-0 bg-black/30" />
 
-                    <div className="relative flex flex-col items-center px-4 py-12 lg:items-center lg:px-[125px] lg:py-[92px]">
-                        <h2 className="font-space-grotesktext-center text-[28px] leading-tight text-white lg:text-[56px] lg:leading-[64px]">
+                    <div className="relative flex flex-col items-center px-4 py-12 lg:items-center lg:px-8 xl:px-[125px] lg:py-[92px]">
+                        <h2 className="font-space-grotesk text-center text-[28px] leading-tight text-white lg:text-[56px] lg:leading-[64px]">
                             Power & Autonomy
                         </h2>
 
-                        <div className="mt-12 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 lg:mt-[124px] lg:flex lg:w-full lg:items-center lg:justify-between lg:gap-[66px]">
+                        <div className="mt-12 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-6 lg:mt-[124px] lg:grid-cols-4 lg:gap-x-6 lg:gap-y-0 xl:gap-x-[66px]">
                             {STATS.map((stat) => (
                                 <StatCircle key={stat.label.join(" ")} stat={stat} />
                             ))}

@@ -206,16 +206,16 @@ function StatCard({
     showTrend?: boolean;
 }) {
     return (
-        <div className="inline-flex h-40 w-full flex-col items-start justify-between rounded-xl bg-white p-4 outline-1 -outline-offset-1 outline-[#D9D9D9]">
+        <div className="inline-flex h-full w-full flex-col items-start justify-between rounded-xl bg-white p-4 outline-1 -outline-offset-1 outline-[#D9D9D9]">
             <div className="inline-flex items-center justify-start gap-2 self-stretch">
                 <div className="font-nimbus flex flex-col justify-center" style={{ color }}>
                     {suffix ? (
-                        <p className="leading-14">
-                            <span className="text-[56px] font-bold leading-14">{value}</span>
-                            <span className="text-[24px] font-bold leading-14">{suffix}</span>
+                        <p className="leading-16">
+                            <span className="text-[56px] font-bold leading-16">{value}</span>
+                            <span className="text-[24px] font-bold leading-16">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[56px] font-bold leading-14">{value}</p>
+                        <p className="text-[56px] font-bold leading-16">{value}</p>
                     )}
                 </div>
                 {showTrend && (
@@ -666,7 +666,7 @@ export default function CO2Section() {
                         <div className="inline-flex w-full flex-col items-center justify-center gap-6 xl:gap-10">
                             <DesktopChart />
 
-                            <div className="flex w-full flex-col items-start justify-between gap-4 lg:flex-row lg:gap-4">
+                            <div className="flex w-full flex-col items-stretch justify-between gap-4 lg:flex-row lg:gap-4">
                                 <div className="relative inline-flex h-auto min-h-84 w-full flex-col items-start justify-center gap-4 overflow-hidden rounded-xl bg-[#2D5A27] p-6 lg:w-[66.33%] xl:p-8">
                                     <Image
                                         src="/figma/co2-card-bg.png"
@@ -676,14 +676,14 @@ export default function CO2Section() {
                                         sizes="987px"
                                         className="absolute -left-16.25 -top-66.5 h-217.25 w-325.5 max-w-none"
                                     />
-                                    <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-normal text-white">
+                                    <div className="relative font-nimbus flex flex-col justify-center text-[20px] font-medium text-white">
                                         Why This Matters
                                     </div>
-                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[40px] font-normal leading-11 text-white">
+                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[33px] font-normal leading-11 text-white">
                                         <p>Rising greenhouse gases such as CO₂ are</p>
                                         <p>driving climate change and warming the planet.</p>
                                     </div>
-                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[16px] font-normal text-white">
+                                    <div className="relative font-nimbus flex w-full flex-col justify-center text-[14px] font-normal text-white">
                                         <p>
                                             Global temperatures have already increased by about 1.2°C since the late 1800s, and emissions continue to rise.
                                             <br />
@@ -692,7 +692,7 @@ export default function CO2Section() {
                                     </div>
                                 </div>
 
-                                <div className="grid w-full grid-cols-2 gap-4 lg:w-[32.59%]">
+                                <div className="grid h-full w-full auto-rows-fr grid-cols-2 gap-4 lg:w-[34.59%]">
                                     <StatCard
                                         value="987.07"
                                         color="#2D5A27"
