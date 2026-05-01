@@ -112,27 +112,34 @@ export default function FeatureShowcaseSection() {
     const overlayColor = "rgba(0, 0, 0, 0.56)";
     const progressRatio = total > 1 ? index / (total - 1) : 0;
 
-    const move = useCallback(
-        (manualDirection?: 1 | -1) => {
+    const moveAuto = useCallback(() => {
+        setIndex((currentIndex) => {
+            if (total <= 1) {
+                return currentIndex;
+            }
+
+            let direction = directionRef.current;
+            let nextIndex = currentIndex + direction;
+
+            if (nextIndex >= total || nextIndex < 0) {
+                direction = direction === 1 ? -1 : 1;
+                directionRef.current = direction;
+                nextIndex = currentIndex + direction;
+            }
+
+            return nextIndex;
+        });
+    }, [total]);
+
+    const moveManual = useCallback(
+        (manualDirection: 1 | -1) => {
             setIndex((currentIndex) => {
                 if (total <= 1) {
                     return currentIndex;
                 }
 
-                if (manualDirection) {
-                    directionRef.current = manualDirection;
-                }
-
-                let direction = directionRef.current;
-                let nextIndex = currentIndex + direction;
-
-                if (nextIndex >= total || nextIndex < 0) {
-                    direction = direction === 1 ? -1 : 1;
-                    directionRef.current = direction;
-                    nextIndex = currentIndex + direction;
-                }
-
-                return nextIndex;
+                directionRef.current = manualDirection;
+                return (currentIndex + manualDirection + total) % total;
             });
         },
         [total],
@@ -199,17 +206,17 @@ export default function FeatureShowcaseSection() {
     const scheduleAutoplay = useCallback(() => {
         clearAutoplayTimer();
         autoplayTimeoutRef.current = window.setTimeout(() => {
-            move();
+            moveAuto();
         }, SLIDE_INTERVAL_MS);
-    }, [clearAutoplayTimer, move]);
+    }, [clearAutoplayTimer, moveAuto]);
 
     const prev = () => {
-        move(-1);
+        moveManual(-1);
         scheduleAutoplay();
     };
 
     const next = () => {
-        move(1);
+        moveManual(1);
         scheduleAutoplay();
     };
 
