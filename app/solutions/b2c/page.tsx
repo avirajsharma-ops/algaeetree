@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import B2cHeroSection from "../../components/sections/solutions/b2c/B2cHeroSection";
@@ -6,12 +7,15 @@ import B2cCoreTechnologySection from "../../components/sections/solutions/b2c/B2
 import B2cWhyChooseSection from "../../components/sections/solutions/b2c/B2cWhyChooseSection";
 import B2cDeploymentSection from "../../components/sections/solutions/b2c/B2cDeploymentSection";
 import B2cCallToActionSection from "../../components/sections/solutions/b2c/B2cCallToActionSection";
+import { buildPageMetadata } from "../../lib/seo";
 
-export const metadata = {
-    title: "Solutions — B2C | AlgaeTree",
+export const metadata: Metadata = buildPageMetadata({
+    title: "Solutions B2C",
     description:
-        "B2C climate solutions from AlgaeTree™ that bring microalgae powered clean air, carbon capture, and real-time environmental insight to everyday spaces.",
-};
+        "Discover AlgaeTree B2C solutions that deliver cleaner air, carbon capture, and measurable environmental impact for everyday spaces.",
+    path: "/solutions/b2c",
+    keywords: ["B2C clean air", "home air innovation", "consumer climate solutions"],
+});
 
 export default function B2cSolutionsPage() {
     return (

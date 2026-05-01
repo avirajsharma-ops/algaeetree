@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import AboutHero from "../components/sections/about/AboutHero";
@@ -8,12 +9,15 @@ import MissionSection from "../components/sections/about/MissionSection";
 import AlignmentSection from "../components/sections/about/AlignmentSection";
 // import InsideAlgaetreeSection from "../components/sections/about/InsideAlgaetreeSection";
 import GallerySection from "../components/sections/about/GallerySection";
+import { buildPageMetadata } from "../lib/seo";
 
-export const metadata = {
-    title: "About Us — AlgaeTree",
+export const metadata: Metadata = buildPageMetadata({
+    title: "About Us",
     description:
-        "AlgaeTree™ — a self-sustaining microalgae-based carbon capture system designed to clean urban air and accelerate India's climate goals.",
-};
+        "Learn the AlgaeTree story, mission, and vision to scale microalgae-based carbon capture and clean-air systems for sustainable cities.",
+    path: "/about",
+    keywords: ["about AlgaeTree", "company mission", "climate innovation team"],
+});
 
 export default function AboutPage() {
     return (

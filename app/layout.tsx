@@ -24,15 +24,66 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "AlgaeTree — Engineering biology to restore the air we breathe",
+  title: {
+    default: "AlgaeTree - Engineering biology to restore the air we breathe",
+    template: "%s | AlgaeTree",
+  },
   description:
     "AlgaeTree™ is a self-sustaining urban carbon capture system that uses microalgae to absorb CO₂ and release oxygen.",
   metadataBase: new URL("https://algaetree.com"),
+  keywords: [
+    "AlgaeTree",
+    "microalgae",
+    "carbon capture",
+    "CCUS",
+    "air purification",
+    "climate technology",
+    "sustainable cities",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+    shortcut: [{ url: "/favicon.ico" }],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "AlgaeTree — Engineering biology to restore the air we breathe",
+    title: "AlgaeTree - Engineering biology to restore the air we breathe",
     description:
       "AlgaeTree™ is a self-sustaining urban carbon capture system that uses microalgae to absorb CO₂ and release oxygen.",
     type: "website",
+    siteName: "AlgaeTree",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "AlgaeTree brand image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AlgaeTree - Engineering biology to restore the air we breathe",
+    description:
+      "AlgaeTree™ is a self-sustaining urban carbon capture system that uses microalgae to absorb CO₂ and release oxygen.",
+    images: ["/og-image.png"],
   },
 };
 

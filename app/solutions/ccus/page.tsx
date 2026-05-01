@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CcusHeroSection from "../../components/sections/technology/CcusHeroSection";
@@ -5,12 +6,15 @@ import CcusOverviewSection from "../../components/sections/technology/CcusOvervi
 import CcusDifferentiatorsSection from "../../components/sections/technology/CcusDifferentiatorsSection";
 import CcusApplicationsSection from "../../components/sections/technology/CcusApplicationsSection";
 import CcusImpactSection from "../../components/sections/technology/CcusImpactSection";
+import { buildPageMetadata } from "../../lib/seo";
 
-export const metadata = {
-    title: "Solutions — CCUS | AlgaeTree",
+export const metadata: Metadata = buildPageMetadata({
+    title: "Solutions CCUS",
     description:
-        "Urban CCUS infrastructure with AlgaeTree™ for distributed carbon capture, oxygen generation, and environmental monitoring.",
-};
+        "Explore AlgaeTree CCUS solutions for distributed urban carbon capture, oxygen generation, and advanced environmental monitoring.",
+    path: "/solutions/ccus",
+    keywords: ["CCUS solutions", "distributed carbon capture", "urban climate infrastructure"],
+});
 
 export default function CcusSolutionsPage() {
     return (

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import TechHero from "../components/sections/technology/TechHero";
@@ -6,12 +7,15 @@ import FeaturesGridSection from "../components/sections/technology/FeaturesGridS
 import PowerAutonomySection from "../components/sections/technology/PowerAutonomySection";
 import SustainabilitySection from "../components/sections/technology/SustainabilitySection";
 import CertificationsSection from "../components/sections/technology/CertificationsSection";
+import { buildPageMetadata } from "../lib/seo";
 
-export const metadata = {
-    title: "Technology — AlgaeTree",
+export const metadata: Metadata = buildPageMetadata({
+    title: "Technology",
     description:
-        "How the AlgaeTree system captures CO₂, purifies air, and operates autonomously using microalgae and renewable energy.",
-};   
+        "Understand how AlgaeTree uses microalgae biology, automation, and resilient engineering to capture carbon and improve urban air quality.",
+    path: "/technology",
+    keywords: ["microalgae technology", "air quality technology", "autonomous CCUS"],
+});
 
 export default function TechnologyPage() {
     return (
