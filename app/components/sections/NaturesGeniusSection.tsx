@@ -8,7 +8,7 @@ const algaeVisualMaskStyle = {
 export default function NaturesGeniusSection() {
     return (
         <section className="relative w-full overflow-hidden bg-white">
-            <div className="relative hidden h-279.25 w-full lg:flex lg:flex-col lg:items-center lg:justify-center">
+            <div className="relative hidden h-[51.75rem] w-full lg:flex lg:flex-col lg:items-center lg:justify-center">
                 <div className="absolute inset-x-0 top-8.5 flex justify-center">
                     <div className="relative h-190 w-7xl" style={algaeVisualMaskStyle}>
                         <video
@@ -51,7 +51,7 @@ export default function NaturesGeniusSection() {
                 </div>
             </div>
 
-            <div className="relative h-221 w-full overflow-hidden bg-white lg:hidden">
+            <div className="relative h-[36rem] w-full overflow-hidden bg-white lg:hidden">
                 <div className="absolute inset-x-0 top-21 flex justify-center">
                     <div className="relative h-130 w-130 max-w-[135vw]" style={algaeVisualMaskStyle}>
                         <video
