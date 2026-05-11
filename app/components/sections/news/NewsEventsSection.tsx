@@ -5,8 +5,10 @@ type StoryCard = {
     category: string;
     title: string;
     excerpt: string;
-    date: string;
-    image: string;
+    date?: string;
+    image?: string;
+    video?: string;
+    link?: string;
 };
 
 const featureStory: StoryCard = {
@@ -25,6 +27,22 @@ const cityGreenerStory: StoryCard = {
         "A single unit absorbs up to 1.5 tons of carbon annually while enhancing urban livability, positioning Bhopal as a pioneer in clean air innovation.",
     date: "APRIL 12, 2026",
     image: "/figma/news/news-1.webp",
+};
+const urbanCarbonCaptureStory: StoryCard = {
+    category: "VIRAL GREEN TECH",
+    title: "Bhopal’s Futuristic AlgaeTree Goes Viral as India Today Spotlights the Innovation",
+    excerpt:
+        "Featured by India Today, AlgaeTree gained nationwide attention as a futuristic microalgae-powered system designed to support carbon capture, oxygen release and urban pollution reduction.",
+    date: "MAY 11, 2026",
+    image: "/figma/news/India Today.png", link: "https://www.indiatoday.in/trending-news/story/bhopal-algae-tree-indias-first-carbon-capturing-unit-25-trees-2909744-2026-05-11",
+};
+const NewsVideoaajTak: StoryCard = {
+    category: "GREEN ON AIR",
+    title: "AlgaeTree Featured by Aaj Tak as a Futuristic Clean-Air Innovation",
+    excerpt:
+        "Aaj Tak spotlighted AlgaeTree as a microalgae-powered system designed to support carbon capture, oxygen release and cleaner urban spaces without replacing natural trees.",
+    date: "MAY 11, 2026",
+    video: "/figma/news/Aaj tak.mp4",
 };
 
 const validatedStory: StoryCard = {
@@ -84,9 +102,11 @@ function StoryText({
             >
                 {story.excerpt}
             </p>
-            <p className="mt-5 font-nimbus text-[10px] uppercase tracking-[1px] text-[#7d8b97] sm:text-[11px]">
-                {story.date}
-            </p>
+            {story.date && (
+                <p className="mt-5 font-nimbus text-[10px] uppercase tracking-[1px] text-[#7d8b97] sm:text-[11px]">
+                    {story.date}
+                </p>
+            )}
         </div>
     );
 }
@@ -180,7 +200,7 @@ function LeadStoryCard() {
              sm:gap-6 sm:p-7 lg:min-h-[420px] lg:grid-cols-[1fr_1fr] lg:p-7">
                 <div className="relative z-10 order-1 flex justify-center sm:order-2 sm:justify-end">
                     <NewspaperFrame
-                        src={featureStory.image}
+                        src={featureStory.image!}
                         alt={featureStory.title}
                         className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[410px] lg:w-[450px]"
                         imageClassName="object-contain object-center"
@@ -203,7 +223,7 @@ function WideStoryCard({ story }: { story: StoryCard }) {
              lg:p-5 xl:min-h-[400px]">
                 <div className="relative z-10 order-1 flex justify-center sm:order-2 sm:justify-end">
                     <NewspaperFrame
-                        src={story.image}
+                        src={story.image!}
                         alt={story.title}
                         className={isValidatedStory
                             ? "h-[340px] w-full sm:h-[360px] sm:w-[210px] lg:h-[380px] lg:w-[174px] xl:h-[400px] xl:w-[300px]"
@@ -211,8 +231,24 @@ function WideStoryCard({ story }: { story: StoryCard }) {
                         imageClassName={isValidatedStory ? "object-contain object-center" : "object-cover object-top"}
                         sizes="(max-width: 639px) 100vw, 220px"
                     />
+
                 </div>
-                <StoryText story={story} compact className="order-2 sm:order-1" />
+                <div className="order-2 sm:order-1">
+                    <StoryText story={story} compact />
+                    {story.link && (
+                        <a
+                            href={story.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-1 font-nimbus text-[12px] uppercase tracking-[1px] text-[#9fb40d] transition-opacity hover:opacity-70 sm:text-[13px]"
+                        >
+                            Read more
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-px">
+                                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="#9fb40d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </a>
+                    )}
+                </div>
             </div>
         </CardShell>
     );
@@ -220,22 +256,57 @@ function WideStoryCard({ story }: { story: StoryCard }) {
 
 function TallStoryCard() {
     return (
-        <CardShell>
-            <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
-                <div className="relative z-10 flex justify-center">
-                    <NewspaperFrame
-                        src={validatedStory.image}
-                        alt={validatedStory.title}
-                        className="h-[320px] w-full sm:h-[300px] sm:max-w-[260px] lg:h-[360px] lg:w-full lg:max-w-none xl:h-[420px]"
-                        imageClassName="object-contain object-center"
-                        sizes="(max-width: 1023px) 260px, 28vw"
-                    />
+        <div className="flex flex-col gap-3 sm:gap-4">
+            <CardShell>
+                <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
+                    <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
+                        <video
+                            className="w-full h-auto max-h-[680px] bg-black"
+                            controls
+                            loop
+                            playsInline
+                            preload="metadata"
+                        >
+                            <source src={NewsVideoaajTak.video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div>
+                        <StoryText story={NewsVideoaajTak} compact />
+                        <a
+                            href="https://www.aajtak.in/madhya-pradesh/story/bhopal-india-first-algae-tree-carbon-capturing-technology-purify-air-as-25-trees-know-its-features-lcly-strc-2549134-2026-05-11"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-1 font-nimbus text-[12px] uppercase tracking-[1px] text-[#9fb40d] transition-opacity hover:opacity-70 sm:text-[13px]"
+                        >
+                            Read more
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-px">
+                                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="#9fb40d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <StoryText story={validatedStory} compact />
+            </CardShell>
+            <CardShell>
+                <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
+                    <div className="relative z-10 flex justify-center">
+                        <NewspaperFrame
+                            src={validatedStory.image!}
+                            alt={validatedStory.title}
+                            className="h-[320px] w-full sm:h-[300px] sm:max-w-[260px] lg:h-[360px] lg:w-full lg:max-w-none xl:h-[420px]"
+                            imageClassName="object-contain object-center"
+                            sizes="(max-width: 1023px) 260px, 28vw"
+                        />
+
+                    </div>
+
+                    <div>
+                        <StoryText story={validatedStory} compact />
+                    </div>
                 </div>
-            </div>
-        </CardShell>
+
+            </CardShell>
+        </div>
     );
 }
 
@@ -249,6 +320,7 @@ export default function NewsEventsSection() {
                     <LeadStoryCard />
 
                     <div className="space-y-3 sm:space-y-4 lg:hidden">
+                        <WideStoryCard story={urbanCarbonCaptureStory} />
                         <WideStoryCard story={cityGreenerStory} />
                         <WideStoryCard story={validatedStory} />
                         <WideStoryCard story={provenStory} />
@@ -257,6 +329,7 @@ export default function NewsEventsSection() {
 
                     <div className="hidden space-y-3 sm:space-y-4 lg:grid lg:grid-cols-[1.95fr_0.95fr] lg:items-start lg:gap-3 lg:space-y-0 xl:gap-4">
                         <div className="space-y-3 sm:space-y-4">
+                            <WideStoryCard story={urbanCarbonCaptureStory} />
                             <WideStoryCard story={cityGreenerStory} />
                             <WideStoryCard story={provenStory} />
                             <WideStoryCard story={crossroadsStory} />

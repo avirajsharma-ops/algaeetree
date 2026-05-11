@@ -1,3 +1,5 @@
+"use client";
+
 export default function AboutHero() {
     return (
         <section className="w-full bg-white">
@@ -8,14 +10,19 @@ export default function AboutHero() {
                         <video
                             className="h-full w-full object-cover"
                             autoPlay
-                            muted
+
                             loop
                             playsInline
+                            preload="auto"
+                            onCanPlay={(e) => {
+                                const v = e.currentTarget;
+                                v.muted = false;
+                                v.volume = 1;
+                            }}
                         >
                             <source src="/figma/about/Hero Section Video.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
-
                     </div>
 
                     {/* Title + body */}
