@@ -1,4 +1,4 @@
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const IMAGE_CACHE = `images-${CACHE_VERSION}`;
 const FONT_CACHE = `fonts-${CACHE_VERSION}`;
@@ -13,7 +13,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(STATIC_CACHE).then((cache) =>
-      cache.addAll(PRECACHE_URLS).catch(() => {})
+      cache.addAll(PRECACHE_URLS).catch(() => { })
     )
   );
 });
@@ -60,9 +60,9 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Next.js static chunks — cache-first (they are content-hashed)
+  // Next.js static chunks — network-first to avoid stale client bundles causing hydration mismatches
   if (path.startsWith("/_next/static/")) {
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
+    event.respondWith(networkFirst(request, STATIC_CACHE));
     return;
   }
 

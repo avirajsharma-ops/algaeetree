@@ -12,7 +12,18 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore third-party node_modules from linting
+    "node_modules/**",
   ]),
+  {
+    rules: {
+      // Disable all Tailwind CSS lint suggestions (not functional errors)
+      "tailwindcss/enforces-shorthand": "off",
+      "tailwindcss/no-arbitrary-value": "off",
+      "tailwindcss/classnames-order": "off",
+      "tailwindcss/no-custom-classname": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Button from "./Button";
 
 type NavChild = {
     label: string;
@@ -251,7 +250,13 @@ export default function Header() {
                 </nav>
 
                 <div className="hidden items-center gap-8 xl:flex">
-                    <Button href="/contact">Contact Us</Button>
+                    <Link
+                        href="/contact"
+                        suppressHydrationWarning
+                        className="inline-flex items-center justify-center gap-2.5 rounded-4xl bg-[#2D5A27] px-5 py-4 text-[16px] font-medium uppercase leading-none tracking-[0.5px] text-white transition-colors hover:bg-[#234820]"
+                    >
+                        Contact Us
+                    </Link>
                 </div>
 
                 <button
@@ -284,7 +289,14 @@ export default function Header() {
                         />
                     ))}
                     <div className="pt-4">
-                        <Button href="/contact" className="w-full justify-center">Contact Us</Button>
+                        <Link
+                            href="/contact"
+                            suppressHydrationWarning
+                            className="inline-flex w-full items-center justify-center gap-2.5 rounded-4xl bg-[#2D5A27] px-5 py-4 text-[16px] font-medium uppercase leading-none tracking-[0.5px] text-white transition-colors hover:bg-[#234820]"
+                            onClick={() => setOpen(false)}
+                        >
+                            Contact Us
+                        </Link>
                     </div>
                 </div>
             )}

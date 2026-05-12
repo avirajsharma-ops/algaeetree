@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
+import { AnalyticsTracker } from "./components/AnalyticsTracker";
 import "./globals.css";
 
 const inter = Inter({
@@ -116,7 +118,35 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="bg-white text-neutral-900">{children}</body>
+      <body className="bg-white text-neutral-900">
+        <AnalyticsTracker />
+        {children}
+        <Script id="dev-sw-cleanup" strategy="afterInteractive">
+          {`
+            (function () {
+              var isLocalhost =
+                window.location.hostname === "localhost" ||
+                window.location.hostname === "127.0.0.1";
+
+              if (!isLocalhost || !("serviceWorker" in navigator)) return;
+
+              navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                registrations.forEach(function (registration) {
+                  registration.unregister();
+                });
+              });
+
+              if ("caches" in window) {
+                caches.keys().then(function (keys) {
+                  keys.forEach(function (key) {
+                    caches.delete(key);
+                  });
+                });
+              }
+            })();
+          `}
+        </Script>
+      </body>
     </html>
   );
 }

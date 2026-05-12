@@ -9,7 +9,7 @@ const QUICK_LINKS = [
     { label: "Reads", href: "/news-events" },
 ];
 const CONTACTS = [
-    { label: "algaetree@mushroomworldgroup.com", href: "mailto:algaetree@mushroomworldgroup.com" },
+    { label: "algae.tree@mushroomworldgroup.com", href: "mailto:algae.tree@mushroomworldgroup.com" },
     { label: "Bhopal, IN" },
     { label: "+91 989 310 6935, +91 882 300 6730" },
 ];
