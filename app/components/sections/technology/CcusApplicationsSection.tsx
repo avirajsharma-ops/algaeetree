@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 
 const APPLICATIONS = [
@@ -36,31 +37,84 @@ const APPLICATIONS = [
     },
 ];
 
-const MOBILE_STATS = [
-    { value: "12", label: ["Hours Backup", "(Battery)"] },
-    { value: "24/7", label: ["Telemetry &", "System Uptime"] },
-    { value: "2.5", label: ["KWh/day", "Typical Draw*"] },
-    { value: "1", label: ["Sources", "(Solar)"] },
-];
+function MobileSwiper() {
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-function MobileStatCircle({ value, label }: { value: string; label: string[] }) {
+    const scrollToIndex = useCallback((index: number) => {
+        const track = trackRef.current;
+        if (!track) return;
+        const card = track.children[index] as HTMLElement;
+        if (!card) return;
+        track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+    }, []);
+
+    useEffect(() => {
+        const track = trackRef.current;
+        if (!track) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(track.children).indexOf(entry.target as HTMLElement);
+                        if (index !== -1) setActiveIndex(index);
+                    }
+                });
+            },
+            { root: track, threshold: 0.6 }
+        );
+
+        Array.from(track.children).forEach((child) => observer.observe(child));
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <div className="flex flex-col items-center gap-[26px]">
-            <div className="relative size-[166px]">
-                <span className="absolute inset-0 rounded-full border border-white/85" aria-hidden />
-                <span className="absolute inset-[11px] rounded-full border border-white/50" aria-hidden />
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-nimbus text-[42px] leading-none text-white">{value}</span>
-                </div>
+        <div className="flex flex-col gap-5">
+            {/* Scrollable track */}
+            <div
+                ref={trackRef}
+                className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                style={{ paddingLeft: "var(--page-px, 1.25rem)", paddingRight: "var(--page-px, 1.25rem)" }}
+            >
+                {APPLICATIONS.map((application) => (
+                    <article
+                        key={application.title}
+                        className="w-[78vw] max-w-[300px] flex-none snap-start overflow-hidden rounded-[16px] bg-[#f3f4f6]"
+                    >
+                        <div className="relative h-[180px] w-full">
+                            <Image
+                                src={application.image}
+                                alt={application.title}
+                                fill
+                                sizes="78vw"
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-1.5 px-4 py-4">
+                            <h3 className="font-nimbus text-[17px] font-bold leading-[22px] text-black">
+                                {application.title}
+                            </h3>
+                            <p className="font-nimbus text-[14px] leading-[20px] text-black">
+                                {application.description}
+                            </p>
+                        </div>
+                    </article>
+                ))}
             </div>
 
-            <p className="font-nimbus text-center text-[16px] font-bold leading-[20px] tracking-[0.6416px] text-white">
-                {label.map((line) => (
-                    <span key={line} className="block">
-                        {line}
-                    </span>
+            {/* Dot indicators */}
+            <div className="flex items-center justify-center gap-2">
+                {APPLICATIONS.map((application, i) => (
+                    <button
+                        key={application.title}
+                        aria-label={`Go to ${application.title}`}
+                        onClick={() => scrollToIndex(i)}
+                        className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? "w-6 bg-white" : "w-2 bg-white/40"
+                            }`}
+                    />
                 ))}
-            </p>
+            </div>
         </div>
     );
 }
@@ -68,19 +122,16 @@ function MobileStatCircle({ value, label }: { value: string; label: string[] }) 
 export default function CcusApplicationsSection() {
     return (
         <section className="w-full bg-[#0f2200]">
-            <div className="page-px mx-auto flex w-full max-w-[440px] flex-col gap-20 py-12 md:hidden">
-                <h2 className="font-space-grotesk text-[28px] leading-[36px] text-white">
+            {/* ── Mobile: heading + swiper ── */}
+            <div className="flex flex-col gap-8 py-12 md:hidden">
+                <h2 className="page-px font-space-grotesk text-[28px] leading-[36px] text-white">
                     <span className="block">Urban Carbon</span>
                     <span className="block">Capture Applications</span>
                 </h2>
-
-                <div className="grid w-full max-w-[372px] grid-cols-2 gap-x-10 gap-y-10 self-center">
-                    {MOBILE_STATS.map((stat) => (
-                        <MobileStatCircle key={stat.value} value={stat.value} label={stat.label} />
-                    ))}
-                </div>
+                <MobileSwiper />
             </div>
 
+            {/* ── Tablet / Desktop: grid ── */}
             <div className="page-px hidden py-8 sm:py-10 md:block xl:py-[120px]">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-10 xl:gap-16">
                     <h2 className="font-space-grotesk text-[32px] leading-[40px] text-white md:max-w-[520px] md:text-[42px] md:leading-[50px] xl:max-w-[753px] xl:text-[56px] xl:leading-[72px]">
