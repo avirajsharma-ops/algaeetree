@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContactHeroSection from "../components/sections/contact/ContactHeroSection";
-import MediaPickerSection from "../components/sections/contact/MediaPickerSection";
 import SocialHandlesSection from "../components/sections/contact/SocialHandlesSection";
 import { buildPageMetadata } from "../lib/seo";
 
@@ -20,7 +19,6 @@ export default function ContactPage() {
             <Header />
             <main>
                 <ContactHeroSection />
-                <MediaPickerSection />
                 <SocialHandlesSection />
             </main>
             <Footer />
