@@ -251,18 +251,6 @@ export default function Header() {
                 </nav>
 
                 <div className="hidden items-center gap-8 xl:flex">
-                    <a
-                        href="https://www.algaetree.ai"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full border border-[#2d5a27]/30 bg-[#f6fbf6] px-5 py-4 text-[16px] font-semibold uppercase leading-none tracking-[0.04em] text-[#1f4d1f] transition-colors hover:border-[#2d5a27]/60 hover:bg-[#edf7ed]"
-                    >
-                        <span className="relative inline-flex size-2" aria-hidden>
-                            <span className="absolute inset-0 rounded-full bg-[#22c55e] opacity-70 animate-ping" />
-                            <span className="relative size-2 rounded-full bg-[#22c55e]" />
-                        </span>
-                        Live
-                    </a>
                     <Button href="/contact">Contact Us</Button>
                 </div>
 
@@ -295,20 +283,6 @@ export default function Header() {
                             onNavigate={() => setOpen(false)}
                         />
                     ))}
-
-                    <a
-                        href="https://www.algaetree.ai"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-[#2d5a27]/30 bg-[#f6fbf6] px-5 py-4 text-[16px] font-semibold uppercase leading-none tracking-[0.04em] text-[#1f4d1f] transition-colors hover:border-[#2d5a27]/60 hover:bg-[#edf7ed]"
-                    >
-                        <span className="relative inline-flex size-2" aria-hidden>
-                            <span className="absolute inset-0 rounded-full bg-[#22c55e] opacity-70 animate-ping" />
-                            <span className="relative size-2 rounded-full bg-[#22c55e]" />
-                        </span>
-                        Live
-                    </a>
-
                     <div className="pt-4">
                         <Button href="/contact" className="w-full justify-center">Contact Us</Button>
                     </div>
