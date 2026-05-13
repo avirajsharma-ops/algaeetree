@@ -75,7 +75,6 @@ function MobileSwiper() {
             <div
                 ref={trackRef}
                 className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                style={{ paddingLeft: "var(--page-px, 1.25rem)", paddingRight: "var(--page-px, 1.25rem)" }}
             >
                 {APPLICATIONS.map((application) => (
                     <article
@@ -123,8 +122,8 @@ export default function CcusApplicationsSection() {
     return (
         <section className="w-full bg-[#0f2200]">
             {/* ── Mobile: heading + swiper ── */}
-            <div className="flex flex-col gap-8 py-12 md:hidden">
-                <h2 className="page-px font-space-grotesk text-[28px] leading-[36px] text-white">
+            <div className="page-px flex flex-col gap-8 py-12 md:hidden">
+                <h2 className="font-space-grotesk text-[28px] leading-9 text-white">
                     <span className="block">Urban Carbon</span>
                     <span className="block">Capture Applications</span>
                 </h2>

@@ -24,19 +24,19 @@ export default function Footer() {
     return (
         <footer className="w-full">
             <div className="xl:hidden">
-                <div className="bg-gradient-to-r from-white to-[#5e9357] px-4 py-6">
-                    <div className="mx-auto flex w-full max-w-[440px] items-center justify-between md:max-w-[720px]">
-                        <div className="relative h-10 w-[221.333px] overflow-hidden">
-                            <Image src="/Logo_Main 1.webp" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto" />
+                <div className="bg-linear-to-r from-white to-[#5e9357] px-4 py-6">
+                    <div className="mx-auto flex w-full max-w-110 flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between md:max-w-180">
+                        <div className="relative h-10 w-full max-w-[221.333px] overflow-hidden">
+                            <Image src="/Logo_Main 1.webp" alt="AlgaeTree" width={186} height={40} className="absolute bottom-0 left-0 h-10 w-auto max-w-full" />
                         </div>
-                        <Link href="/contact" className="rounded-[32px] bg-[#2d5a27] px-4 py-3 text-[12px] font-medium uppercase tracking-[0.5px] text-white transition-colors hover:bg-[#234820]">
+                        <Link href="/contact" className="inline-flex min-h-12 w-full items-center justify-center rounded-4xl bg-[#2d5a27] px-4 py-3 text-center text-[12px] font-medium uppercase tracking-[0.5px] text-white transition-colors hover:bg-[#234820] sm:min-h-0 sm:w-auto">
                             Get Involved
                         </Link>
                     </div>
                 </div>
 
                 <div className="bg-[#0d1f00] px-4 py-8">
-                    <div className="mx-auto flex w-full max-w-[440px] flex-col gap-8 md:max-w-[720px]">
+                    <div className="mx-auto flex w-full max-w-110 flex-col gap-8 md:max-w-180">
                         <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8">
                             <div className="col-span-2 row-start-1 flex flex-col gap-6">
                                 <div className="w-full max-w-[384px] font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">

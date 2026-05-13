@@ -6,57 +6,32 @@ import { motion } from "motion/react";
 export default function B2cCallToActionSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px py-[60px] md:py-16 xl:py-[120px]">
-                <motion.div className="relative mx-auto h-[408px] max-w-[408px] overflow-hidden rounded-[32px] bg-[#151e26] p-[80px] md:h-auto md:max-w-[1488px] md:p-[80px]">
-                    <div className="absolute left-[-80px] top-[-80px] size-[256px] rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px]" />
-                    <div className="absolute bottom-[-80px] right-[-80px] size-[256px] rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px]" />
+            <div className="page-px py-15 md:py-16 xl:py-30">
+                <motion.div className="relative mx-auto max-w-372 overflow-hidden rounded-4xl bg-[#151e26] px-6 py-12 sm:px-10 sm:py-14 md:px-16 md:py-16 xl:px-20 xl:py-20">
+                    <div className="absolute -left-18 -top-18 size-45 rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px] sm:-left-20 sm:-top-20 sm:size-55 xl:size-64" />
+                    <div className="absolute -bottom-18 -right-18 size-45 rounded-full bg-[rgba(171,214,0,0.15)] opacity-40 blur-[50px] sm:-bottom-20 sm:-right-20 sm:size-55 xl:size-64" />
 
-                    <div className="relative flex h-full items-center justify-center md:hidden">
-                        <div className="relative h-[248px] w-[248px] overflow-visible">
-                            <h2 className="absolute left-1/2 top-0 w-[408.69px] -translate-x-1/2 text-center font-space-grotesk text-[48px] font-bold leading-[48px] text-white">
+                    <div className="relative flex min-h-70 flex-col items-center justify-center text-center sm:min-h-80 md:min-h-90">
+                        <div className="mx-auto flex w-full max-w-190 flex-col items-center gap-5 sm:gap-6 md:gap-8">
+                            <h2 className="font-space-grotesk text-[34px] font-bold leading-[1.05] text-white sm:text-[40px] md:text-[48px] md:leading-12">
                                 Ready to deploy?
                             </h2>
 
-                            <p className="absolute left-1/2 top-20 w-[692.82px] -translate-x-1/2 text-center font-manrope text-[20px] leading-[28px] text-white/90">
+                            <p className="max-w-173 text-balance font-manrope text-[16px] leading-6.5 text-white/90 sm:text-[18px] sm:leading-7 md:text-[20px] md:leading-7">
                                 Best For: Organizations and cities seeking visible climate infrastructure
                                 that captures carbon, improves air quality, and supports sustainability
                                 goals.
                             </p>
 
-                            <motion.div
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="absolute left-1/2 top-[184px] w-[285.64px] -translate-x-1/2"
-                            >
+                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
                                 <Link
                                     href="/contact"
-                                    className="inline-flex min-h-16 w-full items-center justify-center rounded-[9999px] bg-[#2d5a27] px-10 py-5 font-space-grotesk text-[16px] font-bold uppercase tracking-[1.6px] text-[#e8fff0] transition-colors hover:bg-[#234820]"
+                                    className="inline-flex min-h-14 w-full items-center justify-center rounded-[9999px] bg-[#2d5a27] px-8 py-4 text-center font-space-grotesk text-[14px] font-bold uppercase tracking-[1.4px] text-[#e8fff0] transition-colors hover:bg-[#234820] sm:min-h-16 sm:min-w-[285.64px] sm:px-10 sm:py-5 sm:text-[16px] sm:tracking-[1.6px]"
                                 >
                                     Start Collaboration
                                 </Link>
                             </motion.div>
                         </div>
-                    </div>
-
-                    <div className="relative hidden flex-col items-center gap-8 text-center md:flex">
-                        <h2 className="font-space-grotesk text-[48px] font-bold leading-[48px] text-white">
-                            Ready to deploy?
-                        </h2>
-
-                        <p className="max-w-[692px] font-manrope text-[20px] leading-[28px] text-white/90">
-                            Best For: Organizations and cities seeking visible climate infrastructure
-                            that captures carbon, improves air quality, and supports sustainability
-                            goals.
-                        </p>
-
-                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                            <Link
-                                href="/contact"
-                                className="inline-flex min-h-16 min-w-[285.64px] items-center justify-center rounded-[9999px] bg-[#2d5a27] px-10 py-5 font-space-grotesk text-[16px] font-bold uppercase tracking-[1.6px] text-[#e8fff0] transition-colors hover:bg-[#234820]"
-                            >
-                                Start Collaboration
-                            </Link>
-                        </motion.div>
                     </div>
                 </motion.div>
             </div>
