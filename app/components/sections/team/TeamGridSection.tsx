@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import TeamMemberCard from "./TeamMemberCard";
 
 const TEAM_MEMBERS = [
@@ -48,13 +49,45 @@ const TEAM_MEMBERS = [
 ];
 
 export default function TeamGridSection() {
+    const gridRef = useRef<HTMLDivElement>(null);
+    const [activeMobileIndex, setActiveMobileIndex] = useState<number | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const media = window.matchMedia("(max-width: 1023px)");
+        const syncIsMobile = () => setIsMobile(media.matches);
+
+        syncIsMobile();
+        media.addEventListener("change", syncIsMobile);
+
+        return () => media.removeEventListener("change", syncIsMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) {
+            setActiveMobileIndex(null);
+            return;
+        }
+
+        const onPointerDown = (event: PointerEvent) => {
+            if (!gridRef.current?.contains(event.target as Node)) {
+                setActiveMobileIndex(null);
+            }
+        };
+
+        document.addEventListener("pointerdown", onPointerDown);
+
+        return () => document.removeEventListener("pointerdown", onPointerDown);
+    }, [isMobile]);
+
     return (
         <section className="page-px w-full pt-4 pb-12 sm:pb-16 xl:py-15">
             <div
+                ref={gridRef}
                 className="mx-auto grid w-full max-w-372 grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3"
                 aria-label="AlgaeTree team portraits"
             >
-                {TEAM_MEMBERS.map((member) => (
+                {TEAM_MEMBERS.map((member, index) => (
                     <TeamMemberCard
                         key={member.src}
                         src={member.src}
@@ -62,6 +95,14 @@ export default function TeamGridSection() {
                         name={member.name}
                         designation={member.designation}
                         bio={member.bio}
+                        isActive={isMobile && activeMobileIndex === index}
+                        onToggle={() => {
+                            if (!isMobile) {
+                                return;
+                            }
+
+                            setActiveMobileIndex((prev) => (prev === index ? null : index));
+                        }}
                     />
                 ))}
             </div>

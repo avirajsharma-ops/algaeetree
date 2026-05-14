@@ -193,6 +193,7 @@ function formatBillion(value: number) {
 function StatCard({
     value,
     suffix,
+    unitText,
     color,
     labelTop,
     labelBottom,
@@ -200,6 +201,7 @@ function StatCard({
 }: {
     value: string;
     suffix?: string;
+    unitText?: string;
     color: string;
     labelTop: string;
     labelBottom: string;
@@ -215,7 +217,10 @@ function StatCard({
                             <span className="text-[24px] font-bold leading-16">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[56px] font-bold leading-16">{value}</p>
+                        <>
+                            <p className="text-[56px] font-bold leading-16">{value}</p>
+                            {unitText && <p className="-mt-1 text-[14px] font-bold leading-4">{unitText}</p>}
+                        </>
                     )}
                 </div>
                 {showTrend && (
@@ -239,6 +244,7 @@ function StatCard({
 function MobileStatCard({
     value,
     suffix,
+    unitText,
     color,
     labelTop,
     labelBottom,
@@ -246,11 +252,14 @@ function MobileStatCard({
 }: {
     value: string;
     suffix?: string;
+    unitText?: string;
     color: string;
     labelTop: string;
     labelBottom: string;
     showTrend?: boolean;
 }) {
+    const useCompactNumber = !suffix && value.length >= 6;
+
     return (
         <div className="flex w-full flex-col items-start gap-3 rounded-xl border border-[#D9D9D9] bg-white p-4.25">
             <div className="flex items-center gap-2">
@@ -261,7 +270,10 @@ function MobileStatCard({
                             <span className="text-[18px] font-bold leading-12">{suffix}</span>
                         </p>
                     ) : (
-                        <p className="text-[40px] font-bold leading-12">{value}</p>
+                        <>
+                            <p className={useCompactNumber ? "whitespace-nowrap text-[34px] font-bold leading-10" : "text-[40px] font-bold leading-12"}>{value}</p>
+                            {unitText && <p className={useCompactNumber ? "-mt-1 text-[12px] font-bold leading-4" : "-mt-1 text-[13px] font-bold leading-4"}>{unitText}</p>}
+                        </>
                     )}
                 </div>
                 {showTrend && (
@@ -512,7 +524,7 @@ function MobileChart() {
                             points={linePoints(DISPLAY_HISTORICAL_CO2_EMISSION_DATA, chartWidth, chartHeight)}
                             fill="none"
                             stroke="#14B8A6"
-                            strokeWidth="1.8"
+                            strokeWidth="1.4"
                             strokeLinejoin="round"
                             strokeLinecap="round"
                         />
@@ -521,7 +533,7 @@ function MobileChart() {
                             points={linePoints(PROJECTED_LINE_DATA, chartWidth, chartHeight)}
                             fill="none"
                             stroke="#EF4444"
-                            strokeWidth="1.8"
+                            strokeWidth="1.4"
                             strokeDasharray="4 3"
                             strokeLinejoin="round"
                             strokeLinecap="round"
@@ -612,12 +624,14 @@ export default function CO2Section() {
                             <div className="grid grid-cols-2 gap-4">
                                 <MobileStatCard
                                     value="987.07"
+                                    unitText="Million Tons"
                                     color="#2D5A27"
                                     labelTop="CO2 Emission"
                                     labelBottom="In Year 2000"
                                 />
                                 <MobileStatCard
                                     value="3.19"
+                                    unitText="Billion Tons"
                                     color="#CA0000"
                                     labelTop="CO2 Emission"
                                     labelBottom="In Year 2025"
@@ -695,12 +709,14 @@ export default function CO2Section() {
                                 <div className="grid h-full w-full auto-rows-fr grid-cols-2 gap-4 lg:w-[34.59%]">
                                     <StatCard
                                         value="987.07"
+                                        unitText="Million Tons"
                                         color="#2D5A27"
                                         labelTop="CO2 Emission"
                                         labelBottom="In Year 2000"
                                     />
                                     <StatCard
                                         value="3.19"
+                                        unitText="Billion Tons"
                                         color="#CA0000"
                                         labelTop="CO2 Emission"
                                         labelBottom="In Year 2025"

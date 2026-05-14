@@ -28,8 +28,6 @@ export default function NaturesGeniusSection() {
                     </div>
                 </div>
 
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(227,240,217,0.45)_0%,rgba(255,255,255,0.85)_48%,rgba(255,255,255,1)_75%)]" />
-
                 <div className="page-px absolute inset-x-0 top-8.5 h-190 flex flex-col items-center justify-center">
                     <div className="mx-auto flex max-w-372 flex-col items-center gap-4 text-center text-black">
                         <p className="font-nimbus text-[18px] font-bold leading-normal">
@@ -38,7 +36,7 @@ export default function NaturesGeniusSection() {
                         <h2 className="font-space-grotesk text-[56px] font-normal leading-16 text-black">
                             Algae: The Earth&apos;s Original Filter
                         </h2>
-                        <div className="font-nimbus max-w-195 text-[16px] leading-6 text-[#686868]">
+                        <div className="font-nimbus max-w-195 text-[16px] leading-6 text-black">
                             <p>
                                 Long before trees, algae was the primary source of Earth&apos;s oxygen. Through photosynthesis,
                             </p>
@@ -71,8 +69,6 @@ export default function NaturesGeniusSection() {
                     </div>
                 </div>
 
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_26%,rgba(227,240,217,0.44)_0%,rgba(255,255,255,0.84)_46%,rgba(255,255,255,1)_72%)]" />
-
                 <div className="page-px absolute inset-x-0 top-21 h-130 flex flex-col items-center justify-center">
                     <div className="mx-auto flex w-full max-w-102 flex-col items-center gap-2 text-center text-black">
                         <p className="font-nimbus text-[18px] font-bold leading-normal">Nature&apos;s Genius</p>
@@ -80,7 +76,7 @@ export default function NaturesGeniusSection() {
                             <span className="block">Algae: The Earth&apos;s</span>
                             <span className="block">Original Filter</span>
                         </h2>
-                        <div className="font-nimbus text-[14px] leading-5 text-[#686868]">
+                        <div className="font-nimbus text-[14px] leading-5 text-black">
                             <p>Long before trees, algae was the primary source of Earth&apos;s oxygen.</p>
                             <p>Through photosynthesis, these microscopic organisms consume CO2 up to 50 times faster than terrestrial plants.</p>
                         </div>

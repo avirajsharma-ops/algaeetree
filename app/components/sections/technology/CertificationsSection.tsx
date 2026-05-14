@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const CERTS = [
+    { src: "/figma/technology/Mushroomwordlcetrificate.png", alt: "Mushroom World Certificate" },
     { src: "/figma/technology/PATENT eFiling_mushroom world_NPA_filing receipt (1).webp", alt: "Patent eFiling — NPA filing receipt" },
     { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14064.webp", alt: "Mushroom World Umbrella Ltd. 14064" },
     { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14001.webp", alt: "Mushroom World Umbrella Ltd. 14001" },
@@ -16,7 +17,7 @@ export default function CertificationsSection() {
                         Our Certifications
                     </h2>
 
-                    <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:mt-12 lg:grid-cols-4 lg:gap-10">
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:mt-12 lg:grid-cols-5 lg:gap-6">
                         {CERTS.map((cert) => (
                             <div
                                 key={cert.alt}
@@ -27,7 +28,7 @@ export default function CertificationsSection() {
                                         src={cert.src}
                                         alt={cert.alt}
                                         fill
-                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 40vw, 342px"
+                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 40vw, 20vw"
                                         className="object-cover"
                                     />
                                 </div>
