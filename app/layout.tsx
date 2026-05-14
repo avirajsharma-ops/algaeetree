@@ -50,11 +50,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/Favicon.png", type: "image/png", sizes: "any" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
-    shortcut: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/Favicon.png", type: "image/png", sizes: "any" }],
+    shortcut: [{ url: "/Favicon.png" }],
   },
   robots: {
     index: true,
