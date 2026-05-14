@@ -11,12 +11,14 @@ const QUICK_LINKS = [
 const CONTACTS = [
     { label: "algae.tree@mushroomworldgroup.com", href: "mailto:algae.tree@mushroomworldgroup.com" },
     { label: "Bhopal, IN" },
-    { label: "+91 989 310 6935, +91 882 300 6730" },
+    { label: "+91 989 310 6935" },
+    { label: "+91 882 300 6730" },
 ];
 const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
     { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algaetree_official/" },
+    { src: "/figma/x.svg", alt: "X", href: "https://x.com/TreeAlgae" },
     { src: "/figma/youtube.svg", alt: "YouTube", href: "https://youtube.com/@algaetree" },
 ];
 
@@ -37,8 +39,8 @@ export default function Footer() {
 
                 <div className="bg-[#0d1f00] px-4 py-8">
                     <div className="mx-auto flex w-full max-w-110 flex-col gap-8 md:max-w-180">
-                        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8">
-                            <div className="col-span-2 row-start-1 flex flex-col gap-6">
+                        <div className="grid w-full grid-cols-2 gap-x-6 gap-y-8">
+                            <div className="col-span-full row-start-1 flex flex-col gap-6">
                                 <div className="w-full max-w-[384px] font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
                                     <p>Engineering biology to restore the air we breathe.</p>
                                     <p className="font-bold">Together, we can restore the air we share.</p>
@@ -46,46 +48,62 @@ export default function Footer() {
                                 <div className="flex items-center gap-2">
                                     {SOCIALS.map((social) => (
                                         <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
-                                            <Image src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
+                                            <img src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
                                         </a>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="col-start-1 row-start-2 flex flex-col gap-4 self-start">
-                                <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Quick Links</h4>
-                                <div className="flex flex-col items-start">
-                                    {QUICK_LINKS.map((link) => (
-                                        <a key={link.label} href={link.href} className="py-[6px] text-[16px] leading-[25.6px] text-[#94a3b8]">{link.label}</a>
-                                    ))}
+                            <div className="col-span-full flex flex-col gap-6">
+                                <div className="min-w-0 flex flex-col gap-3 self-start">
+                                    <h4 className="font-nimbus text-[15px] leading-6.5 text-white sm:text-[16px]">Quick Links</h4>
+                                    <div className="grid min-w-0 grid-cols-2 gap-x-26 gap-y-2">
+                                        <div className="flex min-w-0 flex-col gap-2">
+                                            {QUICK_LINKS.slice(0, 2).map((link) => (
+                                                <a key={link.label} href={link.href} className="py-1 text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-[25.6px]">{link.label}</a>
+                                            ))}
+                                        </div>
+                                        <div className="flex min-w-0 flex-col gap-2">
+                                            {QUICK_LINKS.slice(2).map((link) => (
+                                                <a key={link.label} href={link.href} className="py-1 text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-[25.6px]">{link.label}</a>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="col-start-2 row-start-2 flex flex-col gap-4 self-start">
-                                <h4 className="font-nimbus text-[16px] leading-[26px] text-white">Contact</h4>
-                                <div className="flex flex-col gap-2">
-                                    {CONTACTS.map((contact) => (
-                                        contact.href ? (
-                                            <a key={contact.label} href={contact.href} className="font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">
-                                                {contact.label}
+                                <div className="min-w-0 flex flex-col gap-3 self-start">
+                                    <h4 className="font-nimbus text-[15px] leading-6.5 text-white sm:text-[16px]">Contact</h4>
+                                    <div className="grid min-w-0 grid-cols-2 gap-x-3 gap-y-2">
+                                        <div className="col-span-2 min-w-0">
+                                            <a href={CONTACTS[0].href} className="block whitespace-nowrap font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
+                                                {CONTACTS[0].label}
                                             </a>
-                                        ) : (
-                                            <p key={contact.label} className="font-nimbus text-[16px] leading-[26px] text-[#94a3b8]">{contact.label}</p>
-                                        )
-                                    ))}
+                                        </div>
+                                        <div className="flex min-w-0 flex-col gap-2">
+                                            <a href="tel:+919893106935" className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
+                                                {CONTACTS[2].label}
+                                            </a>
+                                            <a href="tel:+918823006730" className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
+                                                {CONTACTS[3].label}
+                                            </a>
+                                        </div>
+                                        <div className="flex min-w-0 flex-col gap-2">
+                                            <p className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">{CONTACTS[1].label}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div className="h-px w-full bg-[#5e5e5e]" />
 
-                        <div className="flex flex-col items-center gap-3">
-                            <div className="flex w-full flex-wrap items-center justify-between gap-x-2 gap-y-1 text-[12px] leading-[18px] text-[#94a3b8]">
+                        <div className="flex flex-col items-start gap-3 sm:items-center">
+                            <div className="grid w-full grid-cols-2 gap-x-4 gap-y-1 text-[12px] leading-[18px] text-[#94a3b8] sm:grid-cols-4">
                                 {LEGAL.map((item) => (
-                                    <a key={item} href="#" className="whitespace-nowrap py-1">{item}</a>
+                                    <a key={item} href="#" className="py-1 text-left sm:text-center">{item}</a>
                                 ))}
                             </div>
-                            <p className="w-full text-[14px] leading-[20px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
+                            <p className="w-full text-[13px] leading-[20px] text-[#94a3b8] sm:text-[14px]">© 2026 Algae Tree Technologies. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
@@ -114,7 +132,7 @@ export default function Footer() {
                                 <div className="flex items-center gap-[8px]">
                                     {SOCIALS.map((social) => (
                                         <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-[32px] items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
-                                            <Image src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
+                                            <img src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
                                         </a>
                                     ))}
                                 </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type NavChild = {
@@ -59,11 +60,32 @@ function ChevronIcon() {
     );
 }
 
-function DesktopNavLink({ item }: { item: NavItem }) {
-    const linkClassName =
-        "inline-flex items-center gap-1 text-[14px] font-normal uppercase leading-[21px] text-[#212121] transition-colors hover:text-[#2D5A27]";
+function normalizePathname(path: string) {
+    if (path.length > 1 && path.endsWith("/")) {
+        return path.slice(0, -1);
+    }
+
+    return path;
+}
+
+function isPathActive(pathname: string, href?: string) {
+    if (!href || href === "#") {
+        return false;
+    }
+
+    const normalizedPathname = normalizePathname(pathname);
+    const normalizedHref = normalizePathname(href);
+
+    return normalizedPathname === normalizedHref || normalizedPathname.startsWith(`${normalizedHref}/`);
+}
+
+function DesktopNavLink({ item, pathname }: { item: NavItem; pathname: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const isItemActive =
+        (item.children?.some((child) => isPathActive(pathname, child.href)) ?? false) ||
+        isPathActive(pathname, item.href);
+    const linkClassName = `inline-flex items-center gap-1 text-[14px] uppercase leading-[21px] transition-all duration-200 hover:-translate-y-0.5 hover:text-[#2D5A27] active:translate-y-0 active:scale-[0.98] ${isItemActive ? "font-semibold text-[#2D5A27]" : "font-normal text-[#212121]"}`;
 
     useEffect(() => {
         if (!isOpen) {
@@ -113,7 +135,7 @@ function DesktopNavLink({ item }: { item: NavItem }) {
         <div ref={containerRef} className="relative">
             <button
                 type="button"
-                className={`${linkClassName} ${isOpen ? "text-[#2D5A27]" : ""}`}
+                className={`${linkClassName} ${isOpen ? "-translate-y-0.5 text-[#2D5A27]" : ""}`}
                 aria-expanded={isOpen}
                 aria-haspopup="menu"
                 onClick={() => setIsOpen((value) => !value)}
@@ -133,7 +155,7 @@ function DesktopNavLink({ item }: { item: NavItem }) {
                             key={child.href}
                             href={child.href}
                             onClick={() => setIsOpen(false)}
-                            className="block rounded-[10px] px-3 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27] xl:whitespace-nowrap"
+                            className={`block rounded-[10px] px-3 py-2 text-[13px] uppercase leading-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f4f7f6] hover:text-[#2D5A27] active:translate-y-0 active:scale-[0.98] xl:whitespace-nowrap ${isPathActive(pathname, child.href) ? "bg-[#f4f7f6] font-semibold text-[#2D5A27]" : "font-medium text-[#212121]"}`}
                         >
                             {child.label}
                         </Link>
@@ -144,16 +166,18 @@ function DesktopNavLink({ item }: { item: NavItem }) {
     );
 }
 
-function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
-    const itemClassName =
-        "flex items-center justify-between rounded-lg border border-[#2d5a27]/50 bg-white px-3 py-2.5";
+function MobileNavLink({ item, onNavigate, pathname }: { item: NavItem; onNavigate: () => void; pathname: string }) {
     const [isExpanded, setIsExpanded] = useState(false);
+    const isItemActive =
+        (item.children?.some((child) => isPathActive(pathname, child.href)) ?? false) ||
+        isPathActive(pathname, item.href);
+    const itemClassName = `flex items-center justify-between rounded-lg border px-3 py-2.5 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] ${isItemActive ? "border-[#2d5a27] bg-[#eef6ed]" : "border-[#2d5a27]/50 bg-white"}`;
 
     if (!item.children?.length) {
         if (!item.href || item.href === "#") {
             return (
                 <a href="#" className={itemClassName} onClick={onNavigate}>
-                    <span className="text-[14px] font-medium uppercase leading-5.25 text-[#212121]">
+                    <span className={`text-[14px] uppercase leading-5.25 ${isItemActive ? "font-semibold text-[#2D5A27]" : "font-medium text-[#212121]"}`}>
                         {item.label}
                     </span>
                 </a>
@@ -162,7 +186,7 @@ function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => 
 
         return (
             <Link href={item.href} className={itemClassName} onClick={onNavigate}>
-                <span className="text-[14px] font-medium uppercase leading-5.25 text-[#212121]">
+                <span className={`text-[14px] uppercase leading-5.25 ${isItemActive ? "font-semibold text-[#2D5A27]" : "font-medium text-[#212121]"}`}>
                     {item.label}
                 </span>
             </Link>
@@ -170,15 +194,15 @@ function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => 
     }
 
     return (
-        <div className="rounded-lg border border-[#2d5a27]/50 bg-white">
+        <div className={`rounded-lg border transition-all duration-200 ${isItemActive ? "border-[#2d5a27] bg-[#eef6ed]" : "border-[#2d5a27]/50 bg-white"}`}>
             <button
                 type="button"
-                className="flex w-full items-center justify-between px-3 py-2.5"
+                className="flex w-full items-center justify-between px-3 py-2.5 transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
                 aria-expanded={isExpanded}
                 aria-haspopup="menu"
                 onClick={() => setIsExpanded((value) => !value)}
             >
-                <span className="text-[14px] font-medium uppercase leading-5.25 text-[#212121]">
+                <span className={`text-[14px] uppercase leading-5.25 ${isItemActive ? "font-semibold text-[#2D5A27]" : "font-medium text-[#212121]"}`}>
                     {item.label}
                 </span>
                 <span className={`transition-transform duration-150 ${isExpanded ? "rotate-180" : ""}`}>
@@ -192,7 +216,7 @@ function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => 
                         <Link
                             key={child.href}
                             href={child.href}
-                            className="block rounded-lg px-2 py-2 text-[13px] font-medium uppercase leading-5 text-[#212121] transition-colors hover:bg-[#f4f7f6] hover:text-[#2D5A27]"
+                            className={`block rounded-lg px-2 py-2 text-[13px] uppercase leading-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#f4f7f6] hover:text-[#2D5A27] active:translate-y-0 active:scale-[0.98] ${isPathActive(pathname, child.href) ? "bg-[#f4f7f6] font-semibold text-[#2D5A27]" : "font-medium text-[#212121]"}`}
                             onClick={onNavigate}
                         >
                             {child.label}
@@ -206,6 +230,11 @@ function MobileNavLink({ item, onNavigate }: { item: NavItem; onNavigate: () => 
 
 export default function Header() {
     const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setOpen(false);
+    }, [pathname]);
 
     return (
         <header className="relative z-50 w-full border-b border-[#055453]/15 bg-white shadow-[0_2px_10px_rgba(5,84,83,0.08)]">
@@ -245,7 +274,7 @@ export default function Header() {
 
                 <nav className="hidden items-center gap-10 xl:flex">
                     {DESKTOP_NAV_ITEMS.map((item) => (
-                        <DesktopNavLink key={item.label} item={item} />
+                        <DesktopNavLink key={item.label} item={item} pathname={pathname} />
                     ))}
                 </nav>
 
@@ -286,6 +315,7 @@ export default function Header() {
                             key={item.label}
                             item={item}
                             onNavigate={() => setOpen(false)}
+                            pathname={pathname}
                         />
                     ))}
                     <div className="pt-4">

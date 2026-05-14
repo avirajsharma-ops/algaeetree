@@ -88,14 +88,14 @@ function MobileCarousel() {
 
     return (
         <div
-            className="flex w-full flex-col items-center gap-4"
+            className="flex w-full flex-col items-stretch gap-4"
             onMouseEnter={pause}
             onMouseLeave={resume}
             onTouchStart={pause}
             onTouchEnd={resume}
         >
-            <article className="flex h-[436px] w-full flex-col items-start gap-6 overflow-hidden rounded-[16px] bg-white px-4 pb-6 shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
-                <div className="relative h-[256px] w-full overflow-hidden rounded-[16px]">
+            <article className="flex h-[436px] w-full flex-col overflow-hidden rounded-[16px] bg-white pb-6 shadow-[0px_2px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="relative h-[256px] w-full overflow-hidden">
                     <Image
                         src={card.image}
                         alt={card.title}
@@ -104,7 +104,7 @@ function MobileCarousel() {
                         className="object-cover object-center"
                     />
                 </div>
-                <div className="flex w-full flex-col gap-2 text-black">
+                <div className="flex w-full flex-col gap-2 px-4 pt-6 text-black">
                     <h3 className="font-nimbus text-[24px] font-bold leading-tight">
                         {card.title}
                     </h3>
@@ -176,9 +176,9 @@ export default function FeaturesGridSection() {
                         {FEATURES.map((feature) => (
                             <article
                                 key={feature.title}
-                                className="flex flex-col items-center gap-10 overflow-hidden rounded-[16px] bg-[#f3f4f6] px-8 pb-10"
+                                className="flex flex-col items-stretch gap-8 overflow-hidden rounded-[16px] bg-[#f3f4f6] pb-10"
                             >
-                                <div className="relative h-[280px] w-full overflow-hidden rounded-[16px]">
+                                <div className="relative h-[280px] w-full overflow-hidden">
                                     <Image
                                         src={feature.image}
                                         alt={feature.title}
@@ -187,7 +187,7 @@ export default function FeaturesGridSection() {
                                         className="object-cover object-center"
                                     />
                                 </div>
-                                <div className="flex w-full flex-col gap-2">
+                                <div className="flex w-full flex-col gap-2 px-8">
                                     <h3 className="font-nimbus text-[26px] font-bold leading-[34px] text-black">
                                         {feature.title}
                                     </h3>

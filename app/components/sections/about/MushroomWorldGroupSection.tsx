@@ -38,7 +38,7 @@ const ventures: Venture[] = [
     {
         title: ["Homeopathy", "Medicine"],
         company: ["Meethic Golee Homeo-Care", "Pvt. Ltd."],
-        image: `${ICON_BASE}/homeopathy-medicine.svg`,
+        image: `/figma/about/Frame 427318480.svg`,
     },
     {
         title: ["Treasure", "Hunt"],
@@ -53,7 +53,7 @@ const ventures: Venture[] = [
     {
         title: ["Winery &", "Vineyard"],
         company: ["SAVI, Mushroom World", "Wines Pvt. Ltd."],
-        image: `${ICON_BASE}/winery-vineyard.svg`,
+        image: `/figma/about/Frame 427318496.svg`,
     },
     {
         title: ["Welfare", "Foundation"],
@@ -121,29 +121,29 @@ export default function MushroomWorldGroupSection() {
                         {ventures.map(({ title, company, image, variant = "default" }, index) => (
                             <div
                                 key={title.join(" ")}
-                                className={`flex min-h-44 flex-col items-center justify-center px-4 py-6 text-center sm:min-h-[190px] sm:px-5 lg:min-h-49 lg:px-6 ${getTileClasses(index)}`}
+                                className={`flex min-h-36 flex-col items-center justify-center px-3 py-4 text-center sm:min-h-40 sm:px-4 sm:py-5 lg:min-h-44 lg:px-6 ${getTileClasses(index)}`}
                             >
                                 {variant === "signature" ? (
                                     <>
-                                        <div className="relative size-[62px] sm:size-[72px]">
+                                        <div className="relative size-12 sm:size-13 lg:size-14">
                                             <Image
                                                 src={image}
                                                 alt={title.join(" ")}
                                                 fill
-                                                sizes="72px"
+                                                sizes="(min-width: 1024px) 56px, 52px"
                                                 className="object-contain"
                                             />
                                         </div>
-                                        <p className="mt-3 font-nimbus text-[12px] leading-[15px] text-[#343434] sm:text-[13px] sm:leading-4">
+                                        <p className="mt-2 font-nimbus text-[11px] leading-4 text-[#343434] sm:text-[12px] sm:leading-3.75 lg:text-[13px] lg:leading-4">
                                             {company.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
                                                 </span>
                                             ))}
                                         </p>
-                                        <h3 className="mt-2 font-space-grotesk text-[24px] leading-6 text-[#0d646a] sm:text-[28px] sm:leading-7">
+                                        <h3 className="mt-1.5 font-space-grotesk text-[18px] leading-5 text-[#0d646a] sm:text-[22px] sm:leading-6 lg:text-[26px] lg:leading-7">
                                             {title.map((line) => (
-                                                <span key={line} className="block">
+                                                <span key={line} className="block wrap-break-word">
                                                     {line}
                                                 </span>
                                             ))}
@@ -151,23 +151,23 @@ export default function MushroomWorldGroupSection() {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="relative size-12 sm:size-[52px]">
+                                        <div className="relative size-12 sm:size-13 lg:size-14">
                                             <Image
                                                 src={image}
                                                 alt={title.join(" ")}
                                                 fill
-                                                sizes="52px"
+                                                sizes="(min-width: 1024px) 56px, 52px"
                                                 className="object-contain"
                                             />
                                         </div>
-                                        <h3 className="mt-3 font-space-grotesk text-[24px] leading-6 text-[#2a2a2a] sm:text-[28px] sm:leading-7">
+                                        <h3 className="mt-2 font-space-grotesk text-[18px] font-semibold leading-5 text-[#2a2a2a] sm:text-[22px] sm:leading-6 lg:text-[26px] lg:leading-7">
                                             {title.map((line) => (
-                                                <span key={line} className="block">
+                                                <span key={line} className="block wrap-break-word">
                                                     {line}
                                                 </span>
                                             ))}
                                         </h3>
-                                        <p className="mt-3 font-nimbus text-[12px] leading-[15px] text-[#3f3f3f] sm:text-[13px] sm:leading-4">
+                                        <p className="mt-2 font-nimbus text-[11px] font-medium leading-4 text-[#3f3f3f] sm:text-[12px] sm:leading-3.75 lg:text-[13px] lg:leading-4">
                                             {company.map((line) => (
                                                 <span key={line} className="block">
                                                     {line}
@@ -180,9 +180,9 @@ export default function MushroomWorldGroupSection() {
                         ))}
                     </div>
 
-                    <div className="mt-8  pt-8 sm:mt-10 sm:pt-10 lg:mt-12 lg:pt-12">
+                    <div className="mt-6 pt-6 sm:mt-8 sm:pt-8 lg:mt-10 lg:pt-10">
                         <div className="flex items-start gap-4 sm:gap-5 lg:gap-7">
-                            <div className="mt-1 h-40 w-1 shrink-0 rounded-full bg-[#346633] sm:h-48 lg:h-[420px] " />
+                            <div className="mt-1 w-1 shrink-0 self-stretch rounded-full bg-[#346633]" />
                             <div className="flex-1">
                                 <h3 className="font-space-grotesk text-[28px] leading-8 text-[#346633] uppercase tracking-[-0.03em] sm:text-[40px] sm:leading-[42px] lg:max-w-[860px] lg:text-[56px] lg:leading-[58px]">
                                     <span className="block font-medium ">AlgaeTree - A Green Vision</span>

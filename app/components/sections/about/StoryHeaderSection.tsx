@@ -23,7 +23,7 @@ const desktopStoryMask = {
 export default function StoryHeaderSection() {
     return (
         <section className="w-full bg-white">
-            <div className="page-px flex flex-col gap-4 pt-8 pb-12 sm:pt-10 xl:gap-0 xl:pt-[60px] xl:pb-12">
+            <div className="page-px flex flex-col gap-4 pt-8 pb-4 sm:pt-10 sm:pb-6 xl:gap-0 xl:pt-[60px] xl:pb-8">
                 <div className="mx-auto w-full max-w-[1488px]">
                     {/* Heading row */}
                     <div className="flex flex-col items-start gap-4 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
