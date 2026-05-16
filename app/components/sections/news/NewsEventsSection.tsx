@@ -240,8 +240,8 @@ function NewspaperFrame({
     sizes?: string;
 }) {
     return (
-        <div className={`relative overflow-hidden rounded-[8px] ${className}`}>
-            <Image src={src} alt={alt} fill sizes={sizes} quality={100} className={imageClassName} />
+        <div className={`relative overflow-hidden rounded-[8px] min-h-[270px] sm:min-h-0 ${className}`}>
+            <Image src={src} alt={alt} fill sizes={sizes} quality={100} className={`${imageClassName} absolute inset-0`} />
         </div>
     );
 }
