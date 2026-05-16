@@ -2,7 +2,7 @@ export default function CcusImpactSection() {
     const stats = [
         {
             label: "Carbon Capture",
-            value: "~1.5 TON",
+            value: "~1.5 Ton",
             description: ["CO₂ Captured Per Year per active", "unit."],
         },
         {

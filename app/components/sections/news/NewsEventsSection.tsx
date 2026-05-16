@@ -72,6 +72,100 @@ const crossroadsStory: StoryCard = {
     image: "/figma/news/news-2.webp",
 };
 
+const featuredCoverageStories: StoryCard[] = [
+    {
+        category: "GREEN TECH LAUNCH",
+        title: "AlgaeTree Launch Marks a New Green Chapter for Bhopal",
+        excerpt:
+            "The coverage highlighted AlgaeTree as a futuristic microalgae-powered system designed to support carbon capture, oxygen release, and cleaner city spaces.",
+        image: "/figma/news-events/Instagram Slide 02.png",
+    },
+    {
+        category: "INDIA'S FIRST GREEN REVOLUTION",
+        title: "Dainik Sanpark Highlights India's First AlgaeTree Launch in Bhopal",
+        excerpt:
+            "Dainik Sanpark featured AlgaeTree as a microalgae-powered clean-air innovation that supports carbon capture, oxygen release, and urban pollution reduction, marking Bhopal as a pioneer in India's green technology movement.",
+        image: "/figma/news-events/Instagram Slide 10.png",
+    },
+    {
+        category: "GLOBAL GREEN REVOLUTION",
+        title: "India's First AlgaeTree Launch Marks a New Era in Clean-Air Innovation",
+        excerpt:
+            "Pradesh Today featured AlgaeTree as a microalgae-powered technology launched in Bhopal to support smart environment goals, carbon absorption, oxygen release, and cleaner urban spaces.",
+        image: "/figma/news-events/Instagram Slide 11.png",
+    },
+    {
+        category: "FUTURE OF URBAN OXYGEN",
+        title: "Haribhoomi Covers the Historic Launch of India's First AlgaeTree in Bhopal",
+        excerpt:
+            "Haribhoomi featured the inauguration of India's first AlgaeTree by Minister Shri Vishwas Kailash Sarang Ji, highlighting it as a microalgae-powered clean-air support system developed for carbon capture and urban pollution reduction.",
+        image: "/figma/news-events/Instagram Slide 12.png",
+    },
+    {
+        category: "BHOPAL TO BHARAT GREEN MISSION",
+        title: "Deshbandhu Highlights India's First AlgaeTree as a New Step Toward Cleaner Cities",
+        excerpt:
+            "Deshbandhu covered AlgaeTree as a Made-in-India green innovation designed to support oxygen generation, carbon capture, and cleaner air in traffic-heavy urban spaces.",
+        image: "/figma/news-events/Instagram Slide 02.png",
+    },
+    {
+        category: "BIO TECH",
+        title: "Dabang Story Covers the Launch of India's First AlgaeTree in Bhopal",
+        excerpt:
+            "Dabang Story highlighted AlgaeTree as a microalgae-powered clean-air support system inaugurated in Bhopal, designed to help reduce carbon, support oxygen release, and strengthen urban green innovation.",
+        image: "/figma/news-events/Instagram Slide 03.png",
+    },
+    {
+        category: "ALGAE CARBON CAPTURE",
+        title: "People's Samachar Showcases AlgaeTree as Bhopal's First Carbon-Capturing Green Tech",
+        excerpt:
+            "The report highlights AlgaeTree as a microalgae-driven innovation that captures carbon through natural photosynthesis and brings compact clean-air support to high-pollution urban locations.",
+        image: "/figma/news-events/Instagram Slide 04.png",
+    },
+    {
+        category: "LIVING TECH",
+        title: "AlgaeTree Launch Brings a New Clean-Air Technology to Bhopal",
+        excerpt:
+            "Express News highlighted AlgaeTree as a futuristic climate-tech solution designed for urban pollution hotspots and sustainable city development.",
+        image: "/figma/news-events/Instagram Slide 14.png",
+    },
+    {
+        category: "TREES PLUS TECHNOLOGY",
+        title: "Swaraj Express Features AlgaeTree as a Smart Environment Technology from Bhopal",
+        excerpt:
+            "The coverage presents AlgaeTree as a first-of-its-kind carbon capturing green technology, built to support smart city environments through microalgae-based CO2 absorption and oxygen release.",
+        image: "/figma/news-events/Instagram Slide 13.png",
+    },
+    {
+        category: "BIO-POWERED AIR TECH",
+        title: "BHEL Samachar Covers AlgaeTree as a Living Clean-Air Innovation",
+        excerpt:
+            "The coverage explains how AlgaeTree uses live microalgae to convert carbon dioxide into oxygen through photosynthesis, bringing nature-based technology into city pollution hotspots.",
+        image: "/figma/news-events/Instagram Slide 08.png",
+    },
+    {
+        category: "ALGAE-BASED AIR REVOLUTION",
+        title: "Raj Express Highlights AlgaeTree Launch as a New Step to Cut Urban Carbon",
+        excerpt:
+            "Raj Express covered the launch of AlgaeTree as an innovative system that brings biological carbon capture into city spaces, helping urban areas respond to rising emissions with smarter green infrastructure.",
+        image: "/figma/news-events/Instagram Slide 07.png",
+    },
+    {
+        category: "LIVING CLIMATE TECH",
+        title: "Headlines24 News Reports Bhopal's First AlgaeTree as a Major Carbon Capture Innovation",
+        excerpt:
+            "The coverage highlights AlgaeTree as a compact microalgae-powered unit with carbon absorption impact comparable to 25 trees, bringing clean-air technology into public urban spaces.",
+        image: "/figma/news-events/Instagram Slide 06.png",
+    },
+    {
+        category: "BIO-CLIMATE INNOVATION",
+        title: "Lokdesh Features AlgaeTree as a New Green Technology for City Pollution",
+        excerpt:
+            "The coverage describes AlgaeTree as a nature-inspired system where microalgae help convert CO2 into oxygen, supporting cities in their clean-air journey.",
+        image: "/figma/news-events/Instagram Slide 05.png",
+    },
+];
+
 function StoryText({
     story,
     compact = false,
@@ -310,6 +404,30 @@ function TallStoryCard() {
     );
 }
 
+function FeaturedCoverageCard({ story }: { story: StoryCard }) {
+    return (
+        <CardShell>
+            <div className="relative flex min-h-[260px] flex-col gap-4 p-4 sm:min-h-[280px] sm:p-5 lg:min-h-[300px] lg:p-6">
+                {story.image && (
+                    <div className="relative z-10">
+                        <NewspaperFrame
+                            src={story.image}
+                            alt={story.title}
+                            className="h-[380px] w-full sm:h-[430px] lg:h-[460px]"
+                            imageClassName="object-cover object-center"
+                            sizes="(max-width: 1023px) 100vw, 33vw"
+                        />
+                    </div>
+                )}
+                <p className="font-nimbus text-[11px] uppercase tracking-[1.3px] text-[#9fb40d] sm:text-[12px]">
+                    Featured On
+                </p>
+                <StoryText story={story} compact className="pt-1" />
+            </div>
+        </CardShell>
+    );
+}
+
 export default function NewsEventsSection() {
     return (
         <section className="page-px font-nimbus w-full bg-[#07131d] py-4 sm:bg-white lg:py-10 xl:py-14">
@@ -317,26 +435,46 @@ export default function NewsEventsSection() {
                 <HeroCard />
 
                 <div className="mt-3 space-y-3 pb-6 sm:mt-12 sm:space-y-4 sm:pb-0 lg:mt-16">
-                    <LeadStoryCard />
+                    <div className="pt-3 sm:pt-6 lg:pt-8">
 
-                    <div className="space-y-3 sm:space-y-4 lg:hidden">
-                        <WideStoryCard story={urbanCarbonCaptureStory} />
-                        <WideStoryCard story={cityGreenerStory} />
-                        <WideStoryCard story={validatedStory} />
-                        <WideStoryCard story={provenStory} />
-                        <WideStoryCard story={crossroadsStory} />
-                    </div>
 
-                    <div className="hidden space-y-3 sm:space-y-4 lg:grid lg:grid-cols-[1.95fr_0.95fr] lg:items-start lg:gap-3 lg:space-y-0 xl:gap-4">
-                        <div className="space-y-3 sm:space-y-4">
-                            <WideStoryCard story={urbanCarbonCaptureStory} />
-                            <WideStoryCard story={cityGreenerStory} />
-                            <WideStoryCard story={provenStory} />
-                            <WideStoryCard story={crossroadsStory} />
+                        <div className="mt-3 sm:mt-4">
+                            <CardShell>
+                                <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-6">
+                                    <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
+                                        <video
+                                            className="h-auto max-h-[680px] w-full bg-black"
+                                            controls
+                                            loop
+                                            playsInline
+                                            preload="metadata"
+                                        >
+                                            <source src={NewsVideoaajTak.video} type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div>
+                                        <StoryText story={NewsVideoaajTak} compact />
+                                        <a
+                                            href="https://www.aajtak.in/madhya-pradesh/story/bhopal-india-first-algae-tree-carbon-capturing-technology-purify-air-as-25-trees-know-its-features-lcly-strc-2549134-2026-05-11"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-4 inline-flex items-center gap-1 font-nimbus text-[12px] uppercase tracking-[1px] text-[#9fb40d] transition-opacity hover:opacity-70 sm:text-[13px]"
+                                        >
+                                            Read more
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-px">
+                                                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="#9fb40d" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </CardShell>
                         </div>
 
-                        <div>
-                            <TallStoryCard />
+                        <div className="mt-3 grid grid-cols-1 gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+                            {featuredCoverageStories.map((story) => (
+                                <FeaturedCoverageCard key={`${story.category}-${story.title}`} story={story} />
+                            ))}
                         </div>
                     </div>
                 </div>

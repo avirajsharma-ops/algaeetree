@@ -28,14 +28,14 @@ export default function MissionSection() {
                     <div className="w-full xl:w-[736px]">
                         <div className="relative aspect-square w-full overflow-hidden bg-[#d9d9d9] xl:hidden" style={mobileMissionMask}>
                             <img
-                                src="/About%20Us%20Image%203%20(1).webp"
+                                src="/figma/about/About%20Us%20Image%203%20(2).png"
                                 alt="Mission"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         </div>
                         <div className="relative hidden h-[800px] w-full overflow-hidden bg-[#d9d9d9] xl:block" style={desktopMissionMask}>
                             <img
-                                src="/About%20Us%20Image%203%20(1).webp"
+                                src="/figma/about/About%20Us%20Image%203%20(2).png"
                                 alt="Mission"
                                 className="absolute inset-0 h-full w-full object-cover"
                             />

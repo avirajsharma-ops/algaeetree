@@ -1,10 +1,24 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function AboutHero() {
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [isMuted, setIsMuted] = useState(true);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) {
+            return;
+        }
+
+        const playPromise = video.play();
+        if (playPromise) {
+            playPromise.catch(() => {
+                // Browser autoplay policies can still block playback in rare cases.
+            });
+        }
+    }, []);
 
     const handleToggleMute = () => {
         const video = videoRef.current;
@@ -36,6 +50,15 @@ export default function AboutHero() {
                                 const v = e.currentTarget;
                                 v.muted = isMuted;
                                 v.volume = isMuted ? 0 : 1;
+
+                                if (v.paused) {
+                                    const playPromise = v.play();
+                                    if (playPromise) {
+                                        playPromise.catch(() => {
+                                            // Ignore play errors caused by browser policy restrictions.
+                                        });
+                                    }
+                                }
                             }}
                         >
                             <source src="/figma/about/Hero Section Video.mp4" type="video/mp4" />
