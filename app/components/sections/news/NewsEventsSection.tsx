@@ -85,42 +85,42 @@ const featuredCoverageStories: StoryCard[] = [
         title: "Dainik Sanpark Highlights India's First AlgaeTree Launch in Bhopal",
         excerpt:
             "Dainik Sanpark featured AlgaeTree as a microalgae-powered clean-air innovation that supports carbon capture, oxygen release, and urban pollution reduction, marking Bhopal as a pioneer in India's green technology movement.",
-        image: "/figma/news-events/Instagram Slide 10.png",
+        image: "/figma/news-events/Instagram Slide 03.png",
     },
     {
         category: "GLOBAL GREEN REVOLUTION",
         title: "India's First AlgaeTree Launch Marks a New Era in Clean-Air Innovation",
         excerpt:
             "Pradesh Today featured AlgaeTree as a microalgae-powered technology launched in Bhopal to support smart environment goals, carbon absorption, oxygen release, and cleaner urban spaces.",
-        image: "/figma/news-events/Instagram Slide 11.png",
+        image: "/figma/news-events/Instagram Slide 04.png",
     },
     {
         category: "FUTURE OF URBAN OXYGEN",
         title: "Haribhoomi Covers the Historic Launch of India's First AlgaeTree in Bhopal",
         excerpt:
             "Haribhoomi featured the inauguration of India's first AlgaeTree by Minister Shri Vishwas Kailash Sarang Ji, highlighting it as a microalgae-powered clean-air support system developed for carbon capture and urban pollution reduction.",
-        image: "/figma/news-events/Instagram Slide 12.png",
+        image: "/figma/news-events/Instagram Slide 05.png",
     },
     {
         category: "BHOPAL TO BHARAT GREEN MISSION",
         title: "Deshbandhu Highlights India's First AlgaeTree as a New Step Toward Cleaner Cities",
         excerpt:
             "Deshbandhu covered AlgaeTree as a Made-in-India green innovation designed to support oxygen generation, carbon capture, and cleaner air in traffic-heavy urban spaces.",
-        image: "/figma/news-events/Instagram Slide 02.png",
+        image: "/figma/news-events/Instagram Slide 06.png"
     },
     {
         category: "BIO TECH",
-        title: "Dabang Story Covers the Launch of India's First AlgaeTree in Bhopal",
+        title: "Dangal Story Covers the Launch of India's First AlgaeTree in Bhopal",
         excerpt:
-            "Dabang Story highlighted AlgaeTree as a microalgae-powered clean-air support system inaugurated in Bhopal, designed to help reduce carbon, support oxygen release, and strengthen urban green innovation.",
-        image: "/figma/news-events/Instagram Slide 03.png",
+            "Dangal Story highlighted AlgaeTree as a microalgae-powered clean-air support system inaugurated in Bhopal, designed to help reduce carbon, support oxygen release, and strengthen urban green innovation.",
+        image: "/figma/news-events/Instagram Slide 07.png"
     },
     {
         category: "ALGAE CARBON CAPTURE",
         title: "People's Samachar Showcases AlgaeTree as Bhopal's First Carbon-Capturing Green Tech",
         excerpt:
             "The report highlights AlgaeTree as a microalgae-driven innovation that captures carbon through natural photosynthesis and brings compact clean-air support to high-pollution urban locations.",
-        image: "/figma/news-events/Instagram Slide 04.png",
+        image: "/figma/news-events/Instagram Slide 08.png",
     },
     {
         category: "LIVING TECH",
@@ -131,7 +131,7 @@ const featuredCoverageStories: StoryCard[] = [
     },
     {
         category: "TREES PLUS TECHNOLOGY",
-        title: "Swaraj Express Features AlgaeTree as a Smart Environment Technology from Bhopal",
+        title: "Sach Express Features AlgaeTree as a Smart Environment Technology from Bhopal",
         excerpt:
             "The coverage presents AlgaeTree as a first-of-its-kind carbon capturing green technology, built to support smart city environments through microalgae-based CO2 absorption and oxygen release.",
         image: "/figma/news-events/Instagram Slide 13.png",
@@ -141,28 +141,28 @@ const featuredCoverageStories: StoryCard[] = [
         title: "BHEL Samachar Covers AlgaeTree as a Living Clean-Air Innovation",
         excerpt:
             "The coverage explains how AlgaeTree uses live microalgae to convert carbon dioxide into oxygen through photosynthesis, bringing nature-based technology into city pollution hotspots.",
-        image: "/figma/news-events/Instagram Slide 08.png",
+        image: "/figma/news-events/Instagram Slide 12.png",
     },
     {
         category: "ALGAE-BASED AIR REVOLUTION",
         title: "Raj Express Highlights AlgaeTree Launch as a New Step to Cut Urban Carbon",
         excerpt:
             "Raj Express covered the launch of AlgaeTree as an innovative system that brings biological carbon capture into city spaces, helping urban areas respond to rising emissions with smarter green infrastructure.",
-        image: "/figma/news-events/Instagram Slide 07.png",
+        image: "/figma/news-events/Instagram Slide 11.png",
     },
     {
         category: "LIVING CLIMATE TECH",
         title: "Headlines24 News Reports Bhopal's First AlgaeTree as a Major Carbon Capture Innovation",
         excerpt:
             "The coverage highlights AlgaeTree as a compact microalgae-powered unit with carbon absorption impact comparable to 25 trees, bringing clean-air technology into public urban spaces.",
-        image: "/figma/news-events/Instagram Slide 06.png",
+        image: "/figma/news-events/Instagram Slide 10.png",
     },
     {
         category: "BIO-CLIMATE INNOVATION",
         title: "Lokdesh Features AlgaeTree as a New Green Technology for City Pollution",
         excerpt:
             "The coverage describes AlgaeTree as a nature-inspired system where microalgae help convert CO2 into oxygen, supporting cities in their clean-air journey.",
-        image: "/figma/news-events/Instagram Slide 05.png",
+        image: "/figma/news-events/Instagram Slide 9.png",
     },
 ];
 
@@ -417,9 +417,6 @@ function FeaturedCoverageCard({ story }: { story: StoryCard }) {
                     </div>
                 )}
                 <div className="relative z-10">
-                    <p className="font-nimbus text-[11px] uppercase tracking-[1.3px] text-[#9fb40d] sm:text-[12px]">
-                        Featured On
-                    </p>
                     <StoryText story={story} compact className="pt-1" />
                 </div>
             </div>
