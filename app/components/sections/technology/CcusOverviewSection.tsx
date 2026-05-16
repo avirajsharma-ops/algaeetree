@@ -16,7 +16,7 @@ export default function CcusOverviewSection() {
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <h2 className="font-space-grotesktext-[28px] leading-[36px] text-black">
+                        <h2 className="font-space-grotesk text-[28px] font-medium leading-[32px] uppercase text-black">
                             <span className="block">Advanced Microalgae</span>
                             <span className="block">Carbon Capture for</span>
                             <span className="block">Urban Emission Sources</span>
@@ -49,7 +49,7 @@ export default function CcusOverviewSection() {
 
                 <div className="mx-auto hidden w-full max-w-[1488px] gap-6 md:grid md:grid-cols-[minmax(0,1fr)_220px] md:items-start xl:grid-cols-[806px_650px] xl:gap-8">
                     <div className="md:block xl:self-center">
-                        <h2 className="font-space-grotesktext-[40px] leading-[48px] text-black xl:text-[48px] xl:leading-[72px]">
+                        <h2 className="font-space-grotesk text-[40px] font-medium leading-[44px] uppercase text-black xl:text-[56px] xl:leading-[64px]">
                             <span className="block">Advanced Microalgae</span>
                             <span className="block">Carbon Capture for</span>
                             <span className="block">Urban Emission Sources</span>

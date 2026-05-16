@@ -1,6 +1,23 @@
 "use client";
 
+import { useRef, useState } from "react";
+
 export default function AboutHero() {
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const [isMuted, setIsMuted] = useState(true);
+
+    const handleToggleMute = () => {
+        const video = videoRef.current;
+        if (!video) {
+            return;
+        }
+
+        const nextMuted = !isMuted;
+        video.muted = nextMuted;
+        video.volume = nextMuted ? 0 : 1;
+        setIsMuted(nextMuted);
+    };
+
     return (
         <section className="w-full bg-white">
             <div className="page-px py-4 lg:py-10 xl:py-14">
@@ -8,21 +25,32 @@ export default function AboutHero() {
                     {/* Video */}
                     <div className="relative aspect-video w-full overflow-hidden bg-[#e0e0e0]">
                         <video
+                            ref={videoRef}
                             className="h-full w-full object-cover"
                             autoPlay
-
+                            muted={isMuted}
                             loop
                             playsInline
                             preload="auto"
                             onCanPlay={(e) => {
                                 const v = e.currentTarget;
-                                v.muted = false;
-                                v.volume = 1;
+                                v.muted = isMuted;
+                                v.volume = isMuted ? 0 : 1;
                             }}
                         >
                             <source src="/figma/about/Hero Section Video.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
+
+                        <button
+                            type="button"
+                            onClick={handleToggleMute}
+                            className="absolute right-3 bottom-3 rounded-full bg-black/65 px-4 py-2 font-nimbus text-[12px] leading-4 text-white backdrop-blur-sm transition-colors hover:bg-black/75"
+                            aria-label={isMuted ? "Unmute video" : "Mute video"}
+                            aria-pressed={!isMuted}
+                        >
+                            {isMuted ? "Unmute" : "Mute"}
+                        </button>
                     </div>
 
                     {/* Title + body */}

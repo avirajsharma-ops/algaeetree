@@ -6,7 +6,7 @@ import CO2Section from "./components/sections/CO2Section";
 import NaturesGeniusSection from "./components/sections/NaturesGeniusSection";
 import IntroducingSection from "./components/sections/IntroducingSection";
 import FeatureShowcaseClientOnly from "./components/sections/FeatureShowcaseClientOnly";
-import FeaturePackSection from "./components/sections/FeaturePackSection";
+// import FeaturePackSection from "./components/sections/FeaturePackSection";
 import InsideSection from "./components/sections/InsideSection";
 import { buildPageMetadata } from "./lib/seo";
 
@@ -28,7 +28,7 @@ export default function HomePage() {
         <NaturesGeniusSection />
         <IntroducingSection />
         <FeatureShowcaseClientOnly />
-        <FeaturePackSection />
+        {/* <FeaturePackSection /> */}
         <InsideSection />
       </main>
       <Footer />

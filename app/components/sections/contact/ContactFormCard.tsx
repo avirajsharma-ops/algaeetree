@@ -292,6 +292,8 @@ const labelClassName = "flex flex-col gap-2 font-nimbus text-[13px] leading-4 te
 
 export default function ContactFormCard() {
     const [formState, setFormState] = useState(initialFormState);
+    const [phoneError, setPhoneError] = useState("");
+    const [phoneTouched, setPhoneTouched] = useState(false);
     const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
     const countryCodeDropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -314,6 +316,22 @@ export default function ContactFormCard() {
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
     ) => {
         const { name, value } = event.target;
+
+        if (name === "phone") {
+            const digitsOnly = value.replace(/\D/g, "");
+
+            if (digitsOnly.length > 10) {
+                setPhoneError("Phone number cannot be more than 10 digits.");
+            } else if (phoneTouched && digitsOnly.length > 0 && digitsOnly.length < 10) {
+                setPhoneError("Phone number must be exactly 10 digits.");
+            } else {
+                setPhoneError("");
+            }
+
+            setFormState((current) => ({ ...current, phone: digitsOnly.slice(0, 10) }));
+            return;
+        }
+
         setFormState((current) => ({ ...current, [name]: value }));
     };
 
@@ -323,6 +341,12 @@ export default function ContactFormCard() {
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        if (formState.phone.length !== 10) {
+            setPhoneTouched(true);
+            setPhoneError("Phone number must be exactly 10 digits.");
+            return;
+        }
 
         if (!canSubmit) {
             return;
@@ -348,6 +372,8 @@ export default function ContactFormCard() {
         }
 
         setFormState(initialFormState);
+        setPhoneError("");
+        setPhoneTouched(false);
     };
 
     const canSubmit =
@@ -355,7 +381,7 @@ export default function ContactFormCard() {
         formState.fullName.trim() !== "" &&
         formState.email.trim() !== "" &&
         formState.company.trim() !== "" &&
-        formState.phone.trim() !== "" &&
+        formState.phone.length === 10 &&
         formState.topic !== "" &&
         formState.message.trim() !== "";
 
@@ -456,12 +482,25 @@ export default function ContactFormCard() {
                             name="phone"
                             value={formState.phone}
                             onChange={handleChange}
-                            placeholder="12345 67890"
+                            onBlur={() => {
+                                setPhoneTouched(true);
+                                if (formState.phone.length > 0 && formState.phone.length < 10) {
+                                    setPhoneError("Phone number must be exactly 10 digits.");
+                                }
+                            }}
+                            placeholder="Type only 10-digit phone number (without country code)"
                             className="min-w-0 flex-1 rounded-r-[6px] border border-[#cfcfcf] bg-white px-3 font-nimbus text-[15px] leading-5 text-[#6d6d6d] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#2d5a27] focus:ring-1 focus:ring-[#2d5a27]/15"
                             autoComplete="tel"
+                            inputMode="numeric"
+                            maxLength={10}
+                            pattern="[0-9]{10}"
+                            aria-invalid={phoneError !== ""}
                             required
                         />
                     </div>
+                    {phoneError && (
+                        <p className="font-nimbus text-[12px] leading-4 text-[#b42318]">{phoneError}</p>
+                    )}
                 </div>
 
                 <label className={labelClassName}>

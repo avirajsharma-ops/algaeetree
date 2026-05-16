@@ -50,35 +50,35 @@ const TEAM_MEMBERS = [
 
 export default function TeamGridSection() {
     const gridRef = useRef<HTMLDivElement>(null);
-    const [activeMobileIndex, setActiveMobileIndex] = useState<number | null>(null);
-    const [isMobile, setIsMobile] = useState(false);
+    const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null);
+    const [supportsHover, setSupportsHover] = useState(true);
 
     useEffect(() => {
-        const media = window.matchMedia("(max-width: 1023px)");
-        const syncIsMobile = () => setIsMobile(media.matches);
+        const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+        const syncSupportsHover = () => setSupportsHover(media.matches);
 
-        syncIsMobile();
-        media.addEventListener("change", syncIsMobile);
+        syncSupportsHover();
+        media.addEventListener("change", syncSupportsHover);
 
-        return () => media.removeEventListener("change", syncIsMobile);
+        return () => media.removeEventListener("change", syncSupportsHover);
     }, []);
 
     useEffect(() => {
-        if (!isMobile) {
-            setActiveMobileIndex(null);
+        if (supportsHover) {
+            setActiveCardIndex(null);
             return;
         }
 
         const onPointerDown = (event: PointerEvent) => {
             if (!gridRef.current?.contains(event.target as Node)) {
-                setActiveMobileIndex(null);
+                setActiveCardIndex(null);
             }
         };
 
         document.addEventListener("pointerdown", onPointerDown);
 
         return () => document.removeEventListener("pointerdown", onPointerDown);
-    }, [isMobile]);
+    }, [supportsHover]);
 
     return (
         <section className="page-px w-full pt-4 pb-12 sm:pb-16 xl:py-15">
@@ -95,13 +95,13 @@ export default function TeamGridSection() {
                         name={member.name}
                         designation={member.designation}
                         bio={member.bio}
-                        isActive={isMobile && activeMobileIndex === index}
+                        isActive={!supportsHover && activeCardIndex === index}
                         onToggle={() => {
-                            if (!isMobile) {
+                            if (supportsHover) {
                                 return;
                             }
 
-                            setActiveMobileIndex((prev) => (prev === index ? null : index));
+                            setActiveCardIndex((prev) => (prev === index ? null : index));
                         }}
                     />
                 ))}

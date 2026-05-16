@@ -14,7 +14,7 @@ const CONTACTS = [
     { label: "+91 989 310 6935" },
     { label: "+91 882 300 6730" },
 ];
-const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
+// const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
     { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algaetree_official/" },
@@ -98,11 +98,11 @@ export default function Footer() {
                         <div className="h-px w-full bg-[#5e5e5e]" />
 
                         <div className="flex flex-col items-start gap-3 sm:items-center">
-                            <div className="grid w-full grid-cols-2 gap-x-4 gap-y-1 text-[12px] leading-[18px] text-[#94a3b8] sm:grid-cols-4">
+                            {/* <div className="grid w-full grid-cols-2 gap-x-4 gap-y-1 text-[12px] leading-[18px] text-[#94a3b8] sm:grid-cols-4">
                                 {LEGAL.map((item) => (
                                     <a key={item} href="#" className="py-1 text-left sm:text-center">{item}</a>
                                 ))}
-                            </div>
+                            </div> */}
                             <p className="w-full text-[13px] leading-[20px] text-[#94a3b8] sm:text-[14px]">© 2026 Algae Tree Technologies. All rights reserved.</p>
                         </div>
                     </div>
@@ -171,7 +171,7 @@ export default function Footer() {
                             <div className="relative h-[20px] min-w-px flex-[1_0_0]">
                                 <p className="absolute inset-y-0 left-0 text-[16px] leading-[25.6px] text-[#94a3b8]">© 2026 Algae Tree Technologies. All rights reserved.</p>
                             </div>
-                            <div className="flex h-[48px] items-center justify-end">
+                            {/* <div className="flex h-[48px] items-center justify-end">
                                 <div className="flex items-center gap-[16px]">
                                     {LEGAL.map((item) => (
                                         <a key={item} href="#" className="flex h-[48px] items-center justify-center rounded-[40px] px-[8px] py-[16px] text-[14px] leading-[21px] text-[#94a3b8]">
@@ -179,7 +179,7 @@ export default function Footer() {
                                         </a>
                                     ))}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

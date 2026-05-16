@@ -14,6 +14,16 @@ export async function POST(request: Request) {
             );
         }
 
+        const phone = String(body.phone || "").trim();
+        const phoneEndsWithTenDigits = /\d{10}$/.test(phone);
+
+        if (!phoneEndsWithTenDigits) {
+            return NextResponse.json(
+                { error: "Phone number must be exactly 10 digits" },
+                { status: 400 }
+            );
+        }
+
         // Save contact to Firebase Realtime Database
         const contactsRef = ref(database, "contacts");
         const newContactRef = await push(contactsRef, {

@@ -57,18 +57,6 @@ export default function StoryHeaderSection() {
                                 className="absolute inset-0 h-full w-full object-cover"
                             />
                         </div>
-                        <img
-                            src="/figma/about/mobile/story-arrow.svg"
-                            alt=""
-                            aria-hidden="true"
-                            className="pointer-events-none absolute right-0 bottom-0 size-9 translate-x-1/2 translate-y-1/2 xl:hidden"
-                        />
-                        <img
-                            src="/figma/about/mobile/story-arrow.svg"
-                            alt=""
-                            aria-hidden="true"
-                            className="pointer-events-none absolute right-0 bottom-0 hidden size-[72px] translate-x-1/2 translate-y-1/2 xl:block"
-                        />
                     </div>
                 </div>
             </div>
