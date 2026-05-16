@@ -353,7 +353,7 @@ export default function ContactFormCard() {
         }
 
         try {
-            await fetch("/api/contact-to-firebase", {
+            const response = await fetch("/api/contact-to-firebase", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -367,13 +367,24 @@ export default function ContactFormCard() {
                     consent: formState.consent,
                 }),
             });
-        } catch {
-            // silently fail — form still resets
-        }
 
-        setFormState(initialFormState);
-        setPhoneError("");
-        setPhoneTouched(false);
+            if (!response.ok) {
+                const result = await response.json().catch(() => null);
+                const errorMessage =
+                    result?.error || result?.message || "Form submission failed. Please try again.";
+                throw new Error(errorMessage);
+            }
+
+            setFormState(initialFormState);
+            setPhoneError("");
+            setPhoneTouched(false);
+        } catch (error) {
+            const message =
+                error instanceof Error
+                    ? error.message
+                    : "Unable to submit right now. Please check email config and try again.";
+            alert(message);
+        }
     };
 
     const canSubmit =
