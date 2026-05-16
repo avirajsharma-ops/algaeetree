@@ -241,7 +241,7 @@ export default function Header() {
             <div className="mx-auto flex h-18 w-full items-center justify-between px-4 sm:px-6 xl:h-20.75 xl:px-8">
                 <Link
                     href="/"
-                    className="group ml-1 inline-flex items-center justify-center rounded-xl bg-white px-1 py-1.5 transition-colors duration-300 hover:border-[#055453]/30 focus-visible:border-[#055453]/40 focus-visible:outline-none sm:ml-2"
+                    className="group ml-1 inline-flex items-center justify-center rounded-xl px-1 py-1.5 transition-colors duration-300 hover:border-[#055453]/30 focus-visible:border-[#055453]/40 focus-visible:outline-none sm:ml-2"
                 >
                     <span className="relative inline-flex  gap-0 items-center">
                         <span className="absolute -left-12 top-1/2 inline-flex 
@@ -252,11 +252,11 @@ export default function Header() {
                             <span className="inline-flex w-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] 
                             group-hover:w-10 group-focus-visible:w-10 sm:group-hover:w-11 sm:group-focus-visible:w-11">
                                 <Image
-                                    src="/Logo_Main_header.webp"
+                                    src="/LOGO.png"
                                     alt="AlgaeTree logo"
                                     width={50}
                                     height={50}
-                                    className="h-12 w-12 object-contain drop-shadow-[0_2px_8px_rgba(0,90,90,0.24)] sm:h-11 sm:w-11"
+                                    className="h-12 w-12 object-contain sm:h-11 sm:w-11"
                                 />
                             </span>
                         </span>

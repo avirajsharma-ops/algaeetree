@@ -241,10 +241,10 @@ function NewspaperFrame({
 }) {
     return (
         <div
-            className={`relative overflow-hidden rounded-[8px] border-2 border-[#3d4650] bg-white shadow-[0_6px_14px_rgba(0,0,0,0.26)] ${className}`}
+            className={`relative overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)] ${className}`}
         >
-            <div className="absolute inset-0 rounded-[4px] border border-[#c7ced7]" />
             <Image src={src} alt={alt} fill sizes={sizes} quality={100} className={imageClassName} />
+            <div className="absolute inset-0 rounded-[4px] border border-[#c7ced7]" />
         </div>
     );
 }
@@ -296,7 +296,7 @@ function LeadStoryCard() {
                     <NewspaperFrame
                         src={featureStory.image!}
                         alt={featureStory.title}
-                        className="h-[380px] w-full sm:h-[378px] sm:w-full sm:max-w-none lg:h-[410px] lg:w-[450px]"
+                        className="h-[420px] w-full sm:h-[420px] sm:w-full sm:max-w-none lg:h-[480px] lg:w-[520px]"
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 56vw, 48vw"
                     />
@@ -320,10 +320,10 @@ function WideStoryCard({ story }: { story: StoryCard }) {
                         src={story.image!}
                         alt={story.title}
                         className={isValidatedStory
-                            ? "h-[340px] w-full sm:h-[360px] sm:w-[210px] lg:h-[380px] lg:w-[174px] xl:h-[400px] xl:w-[300px]"
-                            : "h-[480px] w-full sm:h-[360px] sm:w-[210px] lg:h-[380px] lg:w-[174px] xl:h-[400px] xl:w-[300px]"}
-                        imageClassName={isValidatedStory ? "object-contain object-center" : "object-cover object-top"}
-                        sizes="(max-width: 639px) 100vw, 220px"
+                            ? "h-[380px] w-full sm:h-[400px] sm:w-[250px] lg:h-[440px] lg:w-[280px] xl:h-[480px] xl:w-[340px]"
+                            : "h-[500px] w-full sm:h-[400px] sm:w-[250px] lg:h-[440px] lg:w-[280px] xl:h-[480px] xl:w-[340px]"}
+                        imageClassName="object-contain object-center"
+                        sizes="(max-width: 639px) 100vw, (max-width: 1023px) 240px, 280px"
                     />
 
                 </div>
@@ -355,7 +355,7 @@ function TallStoryCard() {
                 <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
                     <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
                         <video
-                            className="w-full h-auto max-h-[680px] bg-black"
+                            className="w-full h-auto max-h-[720px] bg-black"
                             controls
                             loop
                             playsInline
@@ -387,9 +387,9 @@ function TallStoryCard() {
                         <NewspaperFrame
                             src={validatedStory.image!}
                             alt={validatedStory.title}
-                            className="h-[320px] w-full sm:h-[300px] sm:max-w-[260px] lg:h-[360px] lg:w-full lg:max-w-none xl:h-[420px]"
+                            className="h-[360px] w-full sm:h-[340px] sm:max-w-[300px] lg:h-[400px] lg:w-full lg:max-w-none xl:h-[460px]"
                             imageClassName="object-contain object-center"
-                            sizes="(max-width: 1023px) 260px, 28vw"
+                            sizes="(max-width: 1023px) 300px, 32vw"
                         />
 
                     </div>
@@ -407,22 +407,24 @@ function TallStoryCard() {
 function FeaturedCoverageCard({ story }: { story: StoryCard }) {
     return (
         <CardShell>
-            <div className="relative flex min-h-[260px] flex-col gap-4 p-4 sm:min-h-[280px] sm:p-5 lg:min-h-[300px] lg:p-6">
+            <div className="relative flex min-h-[260px] flex-col gap-2 p-3 sm:min-h-[280px] sm:p-4 lg:min-h-[300px] lg:p-5">
                 {story.image && (
-                    <div className="relative z-10">
+                    <div className="relative z-10 flex-1">
                         <NewspaperFrame
                             src={story.image}
                             alt={story.title}
-                            className="h-[380px] w-full sm:h-[430px] lg:h-[460px]"
-                            imageClassName="object-cover object-center"
-                            sizes="(max-width: 1023px) 100vw, 33vw"
+                            className="h-full w-full sm:h-[500px] lg:h-[440px]"
+                            imageClassName="object-contain object-center"
+                            sizes="(max-width: 1023px) 100vw, 35vw"
                         />
                     </div>
                 )}
-                <p className="font-nimbus text-[11px] uppercase tracking-[1.3px] text-[#9fb40d] sm:text-[12px]">
-                    Featured On
-                </p>
-                <StoryText story={story} compact className="pt-1" />
+                <div className="relative z-10">
+                    <p className="font-nimbus text-[11px] uppercase tracking-[1.3px] text-[#9fb40d] sm:text-[12px]">
+                        Featured On
+                    </p>
+                    <StoryText story={story} compact className="pt-1" />
+                </div>
             </div>
         </CardShell>
     );
@@ -443,7 +445,7 @@ export default function NewsEventsSection() {
                                 <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-6">
                                     <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
                                         <video
-                                            className="h-auto max-h-[680px] w-full bg-black"
+                                            className="h-auto max-h-[720px] w-full bg-black"
                                             controls
                                             loop
                                             playsInline

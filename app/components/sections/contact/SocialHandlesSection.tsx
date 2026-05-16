@@ -17,6 +17,12 @@ const SOCIAL_CARDS = [
         title: "Instagram · algaetree_official",
     },
     {
+        href: "https://x.com/TreeAlgae",
+        icon: "/figma/X Logo Big.svg",
+        iconAlt: "X icon",
+        title: "X · TreeAlgae",
+    },
+    {
         href: "https://youtube.com/@algaetree",
         icon: "/figma/contact/g10.webp",
         iconAlt: "YouTube icon",
@@ -41,7 +47,7 @@ export default function SocialHandlesSection() {
                     </p>
                 </div>
 
-                <div className="grid w-full grid-cols-1 gap-4 bg-gradient-to-b from-white to-[#5e9357] px-4 py-8 sm:grid-cols-2 sm:px-8 sm:py-12 xl:grid-cols-3 xl:gap-[24px] xl:px-[64px] xl:py-[120px]">
+                <div className="flex w-full flex-nowrap gap-4 bg-gradient-to-b from-white to-[#5e9357] px-4 py-8 overflow-x-auto sm:justify-between sm:flex-wrap sm:overflow-visible xl:gap-[24px] xl:px-[64px] xl:py-[120px]">
                     {SOCIAL_CARDS.map((card, index) => (
                         <motion.a
                             key={card.title}
@@ -50,17 +56,19 @@ export default function SocialHandlesSection() {
                             rel="noreferrer"
                             whileHover={{ y: -6, scale: 1.015 }}
                             transition={{ duration: 0.35, ease: "easeOut", delay: index * 0.06 }}
-                            className={`${index === SOCIAL_CARDS.length - 1 ? "sm:col-span-2 xl:col-span-1" : ""} flex h-[240px] items-center justify-center rounded-[16px] bg-white p-6 sm:h-[280px] xl:h-[304px]`}
+                            className="flex min-w-[240px] flex-0 h-[240px] items-center justify-center rounded-[16px] bg-white p-6 sm:flex-1 sm:h-[280px] xl:h-[304px]"
                         >
-                            <div className="flex flex-col items-center gap-4">
-                                <Image
-                                    src={card.icon}
-                                    alt={card.iconAlt}
-                                    width={120}
-                                    height={120}
-                                    loading="eager"
-                                    className="h-[96px] w-[96px] object-contain xl:h-[120px] xl:w-[120px]"
-                                />
+                            <div className="flex flex-col items-center gap-4 w-full">
+                                <div className="flex-0">
+                                    <Image
+                                        src={card.icon}
+                                        alt={card.iconAlt}
+                                        width={120}
+                                        height={120}
+                                        loading="eager"
+                                        className="h-[96px] w-[96px] object-contain xl:h-[120px] xl:w-[120px]"
+                                    />
+                                </div>
                                 <p className="font-nimbus text-center text-[20px] leading-[24px] text-black xl:text-[24px] xl:leading-[29px]">
                                     {card.title}
                                 </p>

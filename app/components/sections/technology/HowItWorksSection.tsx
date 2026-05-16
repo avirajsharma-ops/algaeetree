@@ -14,22 +14,22 @@ const STEPS = [
         description: "PM2.5 and PM10 pollutants are filtered before entering the biological chamber.",
     },
     {
-        number: "3",
-        image: "/figma/technology/step-3.webp",
-        title: ["Microalgae", "Carbon Capture"],
-        description: "Microalgae absorb CO₂ through photosynthesis and convert it into biomass.",
+    number: "3",
+    image: "/figma/technology/How it Works Image 3 (2).png",
+    title: ["Microalgae", "Carbon Capture"],
+    description: "Microalgae absorb CO₂ through photosynthesis and convert it into biomass.",
     },
-    {
-        number: "4",
-        image: "/figma/technology/step-4.webp",
-        title: ["Oxygen", "Release"],
-        description: "Cleaned air with oxygen is released back into the surrounding environment.",
+{
+    number: "4",
+        image: "/figma/technology/How it Works Image 4 (1).png",
+            title: ["Oxygen", "Release"],
+                description: "Cleaned air with oxygen is released back into the surrounding environment.",
     },
-    {
-        number: "5",
+{
+    number: "5",
         image: "/figma/technology/step-5.webp",
-        title: ["Continuous", "Monitoring"],
-        description: "AI-driven sensors track air quality and optimize system performance.",
+            title: ["Continuous", "Monitoring"],
+                description: "AI-driven sensors track air quality and optimize system performance.",
     },
 ];
 

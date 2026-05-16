@@ -2,6 +2,7 @@ import Image from "next/image";
 
 const CERTS = [
     { src: "/figma/technology/Mushroomwordlcetrificate.png", alt: "Mushroom World Certificate" },
+    { src: "/figma/technology/DAVV Certificate.jpg", alt: "DAVV Certificate" },
     { src: "/figma/technology/PATENT eFiling_mushroom world_NPA_filing receipt (1).webp", alt: "Patent eFiling — NPA filing receipt" },
     { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14064.webp", alt: "Mushroom World Umbrella Ltd. 14064" },
     { src: "/figma/technology/Mushroom-World-Umbrella-Ltd-14001.webp", alt: "Mushroom World Umbrella Ltd. 14001" },

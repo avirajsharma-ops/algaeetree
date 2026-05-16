@@ -18,9 +18,9 @@ const CONTACTS = [
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
     { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algaetree_official/" },
-    { src: "/figma/x.svg", alt: "X", href: "https://x.com/TreeAlgae" },
+    { src: "/figma/X Icon.svg", alt: "X", href: "https://x.com/TreeAlgae" },
     { src: "/figma/youtube.svg", alt: "YouTube", href: "https://youtube.com/@algaetree" },
-];
+]
 
 export default function Footer() {
     return (
