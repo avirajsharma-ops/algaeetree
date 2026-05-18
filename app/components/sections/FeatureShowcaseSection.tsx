@@ -64,161 +64,84 @@ const FEATURES: Feature[] = [
     },
 ];
 
-const SLIDE_INTERVAL_MS = 3500;
+const FRAME_COUNT = 420;
+const FRAME_DIR = "/Cylender Animation 420 frames";
+const FRAME_BATCHES = [
+    { start: 1, end: 105, prefix: 344 },
+    { start: 106, end: 161, prefix: 345 },
+    { start: 162, end: 242, prefix: 346 },
+    { start: 243, end: 358, prefix: 348 },
+    { start: 359, end: 420, prefix: 349 },
+] as const;
 
-function ArrowButton({
-    direction,
-    onClick,
-}: {
-    direction: "left" | "right";
-    onClick: () => void;
-}) {
-    const iconSrc = direction === "left" ? "/figma/arrow-left-1.svg" : "/figma/arrow-right.svg";
+function getFrameSrc(frameNumber: number) {
+    const batch = FRAME_BATCHES.find(({ start, end }) => frameNumber >= start && frameNumber <= end);
 
-    return (
-        <button
-            onClick={onClick}
-            aria-label={direction === "left" ? "Previous" : "Next"}
-            className="relative block size-10 overflow-hidden rounded-sm border border-white bg-[#2d5a27]"
-        >
-            <Image
-                src="/figma/arrow-bg.webp"
-                alt=""
-                fill
-                sizes="40px"
-                className="object-cover"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-                <img src={iconSrc} alt="" className="block size-6 max-w-none" />
-            </div>
-        </button>
-    );
+    if (!batch) {
+        return encodeURI(`${FRAME_DIR}/Cylender Animation.344.1.png`);
+    }
+
+    return encodeURI(`${FRAME_DIR}/Cylender Animation.${batch.prefix}.${frameNumber}.png`);
+}
+
+function clamp(value: number, min: number, max: number) {
+    return Math.min(max, Math.max(min, value));
 }
 
 export default function FeatureShowcaseSection() {
-    const [index, setIndex] = useState(0);
+    const [frameIndex, setFrameIndex] = useState(0);
     const [isDesktopViewport, setIsDesktopViewport] = useState(false);
-    const total = FEATURES.length;
-    const directionRef = useRef<1 | -1>(1);
-    const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
-    const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
-    const autoplayTimeoutRef = useRef<number | null>(null);
-    const videoPauseTimeoutRef = useRef<number | null>(null);
-    const playAttemptRef = useRef(0);
-    const productVideoSrc = "/Algae%20Cylender%20Shape%201800x2796.mp4";
-    const current = FEATURES[index];
-    const backgroundSrc = current.backgroundSrc ?? "/figma/bloom-micro-algae.webp";
-    const backgroundPosition = current.backgroundPosition ?? "center center";
-    const overlayColor = "rgba(0, 0, 0, 0.56)";
-    const progressRatio = total > 1 ? index / (total - 1) : 0;
+    const [isPinned, setIsPinned] = useState(false);
+    const sectionRef = useRef<HTMLElement | null>(null);
+    const contentRef = useRef<HTMLDivElement | null>(null);
+    const rafRef = useRef<number | null>(null);
+    const preloadedFramesRef = useRef<Set<number>>(new Set());
+    const currentFrame = frameIndex + 1;
+    const currentFeature = FEATURES[clamp(Math.floor(frameIndex / (FRAME_COUNT / FEATURES.length)), 0, FEATURES.length - 1)];
+    const frameSrc = getFrameSrc(currentFrame);
+    const backgroundSrc = currentFeature.backgroundSrc ?? "/figma/bloom-micro-algae.webp";
+    const backgroundPosition = currentFeature.backgroundPosition ?? "center center";
+    const overlayColor = currentFeature.overlayColor ?? "rgba(0, 0, 0, 0.58)";
+    const scrollStep = isDesktopViewport ? 20 : 14;
+    const progressRatio = FRAME_COUNT > 1 ? frameIndex / (FRAME_COUNT - 1) : 0;
 
-    const moveAuto = useCallback(() => {
-        setIndex((currentIndex) => {
-            if (total <= 1) {
-                return currentIndex;
-            }
+    const updateScrollState = useCallback(() => {
+        const section = sectionRef.current;
+        const content = contentRef.current;
 
-            let direction = directionRef.current;
-            let nextIndex = currentIndex + direction;
-
-            if (nextIndex >= total || nextIndex < 0) {
-                direction = direction === 1 ? -1 : 1;
-                directionRef.current = direction;
-                nextIndex = currentIndex + direction;
-            }
-
-            return nextIndex;
-        });
-    }, [total]);
-
-    const moveManual = useCallback(
-        (manualDirection: 1 | -1) => {
-            setIndex((currentIndex) => {
-                if (total <= 1) {
-                    return currentIndex;
-                }
-
-                directionRef.current = manualDirection;
-                return (currentIndex + manualDirection + total) % total;
-            });
-        },
-        [total],
-    );
-
-    const clearAutoplayTimer = useCallback(() => {
-        if (autoplayTimeoutRef.current !== null) {
-            window.clearTimeout(autoplayTimeoutRef.current);
-            autoplayTimeoutRef.current = null;
+        if (!section || !content) {
+            return;
         }
+
+        const sectionTop = section.offsetTop;
+        const currentScrollY = window.scrollY;
+
+        // Section is visible if it enters viewport
+        const animationScrollDistance = (FRAME_COUNT - 1) * scrollStep;
+        const scrolledSinceSectionTop = currentScrollY - sectionTop;
+        const progress = clamp(scrolledSinceSectionTop / animationScrollDistance, 0, 1);
+
+        // Pin if we're within the animation scroll range (works both directions)
+        const shouldPin = scrolledSinceSectionTop >= 0 && scrolledSinceSectionTop <= animationScrollDistance;
+
+        setIsPinned(shouldPin);
+
+        // Calculate frame index based on scroll progress (reversible)
+        if (scrolledSinceSectionTop >= 0) {
+            const nextFrame = clamp(Math.floor(progress * FRAME_COUNT), 0, FRAME_COUNT - 1);
+            setFrameIndex(nextFrame);
+        }
+    }, [scrollStep]);
+
+    const preloadFrame = useCallback((frameNumber: number) => {
+        if (frameNumber < 1 || frameNumber > FRAME_COUNT || preloadedFramesRef.current.has(frameNumber)) {
+            return;
+        }
+
+        preloadedFramesRef.current.add(frameNumber);
+        const image = new window.Image();
+        image.src = getFrameSrc(frameNumber);
     }, []);
-
-    const clearVideoPauseTimer = useCallback(() => {
-        if (videoPauseTimeoutRef.current !== null) {
-            window.clearTimeout(videoPauseTimeoutRef.current);
-            videoPauseTimeoutRef.current = null;
-        }
-    }, []);
-
-    const playVideoForCurrentSlide = useCallback(
-        (video: HTMLVideoElement) => {
-            if (!Number.isFinite(video.duration) || video.duration <= 0) {
-                return;
-            }
-
-            const attemptId = ++playAttemptRef.current;
-            clearVideoPauseTimer();
-            video.pause();
-
-            const segmentDuration = video.duration / total;
-            const segmentStart = index * segmentDuration;
-            const segmentEnd = Math.min(video.duration, segmentStart + segmentDuration);
-
-            video.currentTime = Math.min(segmentStart + 0.01, segmentEnd);
-
-            const segmentMs = Math.max(1, (segmentEnd - segmentStart) * 1000);
-            video.playbackRate = Math.max(0.5, Math.min(segmentMs / SLIDE_INTERVAL_MS, 2.5));
-            const playPromise = video.play();
-            if (playPromise && typeof playPromise.catch === "function") {
-                playPromise.catch(() => {
-                    // Ignore expected interruption errors from rapid slide changes.
-                });
-            }
-
-            const pauseAfterMs = Math.max(300, Math.min(SLIDE_INTERVAL_MS - 30, (segmentMs / video.playbackRate)));
-            videoPauseTimeoutRef.current = window.setTimeout(() => {
-                if (playAttemptRef.current !== attemptId) {
-                    return;
-                }
-                video.currentTime = segmentEnd;
-                video.pause();
-            }, pauseAfterMs);
-        },
-        [clearVideoPauseTimer, index, total],
-    );
-
-    const syncVideosWithSlide = useCallback(() => {
-        const activeVideo = isDesktopViewport ? desktopVideoRef.current : mobileVideoRef.current;
-        if (activeVideo) {
-            playVideoForCurrentSlide(activeVideo);
-        }
-    }, [isDesktopViewport, playVideoForCurrentSlide]);
-
-    const scheduleAutoplay = useCallback(() => {
-        clearAutoplayTimer();
-        autoplayTimeoutRef.current = window.setTimeout(() => {
-            moveAuto();
-        }, SLIDE_INTERVAL_MS);
-    }, [clearAutoplayTimer, moveAuto]);
-
-    const prev = () => {
-        moveManual(-1);
-        scheduleAutoplay();
-    };
-
-    const next = () => {
-        moveManual(1);
-        scheduleAutoplay();
-    };
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -235,124 +158,135 @@ export default function FeatureShowcaseSection() {
     }, []);
 
     useEffect(() => {
-        syncVideosWithSlide();
-        scheduleAutoplay();
-    }, [index, scheduleAutoplay, syncVideosWithSlide]);
+        const onScroll = () => {
+            if (rafRef.current !== null) {
+                return;
+            }
+
+            rafRef.current = window.requestAnimationFrame(() => {
+                rafRef.current = null;
+                updateScrollState();
+            });
+        };
+
+        updateScrollState();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+
+            if (rafRef.current !== null) {
+                window.cancelAnimationFrame(rafRef.current);
+                rafRef.current = null;
+            }
+        };
+    }, [updateScrollState]);
 
     useEffect(() => {
-        return () => {
-            clearAutoplayTimer();
-            clearVideoPauseTimer();
-        };
-    }, [clearAutoplayTimer, clearVideoPauseTimer]);
+        updateScrollState();
+    }, [isDesktopViewport, updateScrollState]);
+
+    useEffect(() => {
+        const preloadWindow = isDesktopViewport ? 8 : 5;
+
+        for (let offset = -preloadWindow; offset <= preloadWindow; offset += 1) {
+            preloadFrame(currentFrame + offset);
+        }
+
+        if (currentFrame <= preloadWindow + 1) {
+            for (let frameNumber = 1; frameNumber <= Math.min(24, FRAME_COUNT); frameNumber += 1) {
+                preloadFrame(frameNumber);
+            }
+        }
+    }, [currentFrame, isDesktopViewport, preloadFrame]);
+
+    // Calculate spacer height to maintain scroll distance
+    const spacerHeight = (FRAME_COUNT - 1) * scrollStep;
 
     return (
-        <section className="relative w-full overflow-hidden bg-[#193100]">
-            <div className="relative h-218.75 w-full lg:h-284">
-                <div className="absolute inset-0 lg:hidden">
-                    <div className="absolute -left-133 top-0 h-210.75 w-376">
-                        <img src={backgroundSrc} alt="" className="block size-full max-w-none object-cover" />
-                    </div>
-                    <div className="absolute inset-x-0 top-0 h-210.75 bg-black/56" />
+        <section ref={sectionRef} className="relative w-full overflow-visible bg-[#071700]">
+            <div
+                ref={contentRef}
+                className={`transition-[position] duration-300 ${isPinned ? "fixed inset-0 z-10 h-screen overflow-hidden" : "relative w-full"}`}
+                style={isPinned ? {
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: "100%",
+                    height: "100vh",
+                    zIndex: 10,
+                    overflow: "hidden",
+                } : {
+                    position: "relative",
+                }}
+            >
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        backgroundImage: `url(${backgroundSrc})`,
+                        backgroundPosition,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                    }}
+                />
+                <div className="absolute inset-0" style={{ backgroundColor: overlayColor }} />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(159,232,132,0.22),transparent_30%),radial-gradient(circle_at_80%_30%,rgba(87,179,52,0.18),transparent_28%),linear-gradient(180deg,rgba(6,16,0,0.7)_0%,rgba(5,12,0,0.88)_100%)]" />
 
-                    <div className="page-px relative flex h-full flex-col items-center gap-6 py-6">
-                        <div className="relative h-134.75 w-full max-w-102 overflow-hidden rounded-3xl bg-[#f3f4f6]">
-                            <video
-                                key={productVideoSrc}
-                                ref={mobileVideoRef}
-                                src={productVideoSrc}
-                                muted
-                                playsInline
-                                preload="metadata"
-                                onLoadedMetadata={syncVideosWithSlide}
-                                className="h-full w-full transform-gpu object-contain"
-                            />
+                <div className="page-px relative mx-auto flex h-full w-full max-w-372 flex-col-reverse items-stretch justify-center gap-6 py-6 lg:flex-row lg:items-center lg:gap-14 xl:gap-20 xl:py-10">
+                    <div className="w-full max-w-160 text-left text-white lg:flex-1">
+                        <h2 className="font-space-grotesk text-[44px] font-bold leading-[0.92] text-white">
+                            <span
+                                className="block"
+                            >
+                                {currentFeature.title}
+                            </span>
+                            {currentFeature.subtitle && (
+                                <span className="mt-1 block text-[44px] leading-[0.92]">
+                                    {currentFeature.subtitle}
+                                </span>
+                            )}
+                        </h2>
+
+                        <div className="mt-4 max-w-136 font-nimbus text-[15px] leading-[1.55] text-white/92 sm:text-[16px] lg:mt-6 lg:text-[24px] lg:leading-7">
+                            <p className="max-w-none text-balance whitespace-normal">
+                                {currentFeature.bodyTop}
+                                {currentFeature.bodyBottom ? ` ${currentFeature.bodyBottom}` : ""}
+                            </p>
                         </div>
 
-                        <div className="flex w-full max-w-102 items-center gap-2">
-                            <ArrowButton direction="left" onClick={prev} />
-                            <ArrowButton direction="right" onClick={next} />
-                        </div>
-
-                        <div className="relative h-1.5 w-[calc(100%+32px)] overflow-hidden">
-                            <div className="absolute left-0 right-0 top-1/2 h-0 border-t border-dashed border-white/90 -translate-y-1/2" />
-                            <div className="absolute left-0 top-1/2 h-0.5 -translate-y-1/2 bg-[#9fe884]" style={{ width: `${progressRatio * 100}%` }} />
-                        </div>
-
-                        <div className="min-h-34.5 w-full max-w-102 text-left text-white">
-                            <h2 className="font-space-grotesk text-[clamp(34px,10vw,40px)] font-bold leading-none">
-                                <span className="block">{current.title}</span>
-                                {current.subtitle && <span className="block">{current.subtitle}</span>}
-                            </h2>
-                            <div className="mt-2 font-nimbus text-[14px] leading-normal">
-                                <p>{current.bodyTop}</p>
-                                {current.bodyBottom && <p>{current.bodyBottom}</p>}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="absolute inset-0 hidden lg:block">
-                    <div
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `url(${backgroundSrc})`,
-                            backgroundPosition,
-                            backgroundRepeat: "no-repeat",
-                            backgroundSize: "cover",
-                        }}
-                    />
-                    <div className="absolute inset-0" style={{ backgroundColor: overlayColor }} />
-
-                    <div className="absolute left-30.5 top-0 flex h-284 w-0 items-center justify-center">
-                        <div className="-rotate-90">
-                            <div className="relative h-0 w-284">
-                                <div className="absolute inset-[-2px_0_0_0]">
-                                    <img src="/figma/line1.svg" alt="" className="block size-full max-w-none" />
-                                </div>
+                        <div className="mt-6 flex max-w-136 items-center gap-4 text-white/75 lg:mt-8">
+                            <div className="h-px flex-1 bg-white/20">
+                                <div className="h-px bg-[#9fe884] transition-[width] duration-75 ease-linear" style={{ width: `${progressRatio * 100}%` }} />
                             </div>
                         </div>
                     </div>
 
-                    <div
-                        className="absolute left-29.25 h-20 w-2 rounded-lg bg-white transition-all duration-500 ease-in-out"
-                        style={{ top: `${80 + progressRatio * 976}px` }}
-                    />
-
-                    <div className="absolute left-[calc(50%+376px)] top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[40px]">
-                        <video
-                            key={`${productVideoSrc}-desktop`}
-                            ref={desktopVideoRef}
-                            src={productVideoSrc}
-                            muted
-                            playsInline
-                            preload="metadata"
-                            onLoadedMetadata={syncVideosWithSlide}
-                            className="h-full w-full transform-gpu object-contain"
-                        />
-                    </div>
-
-                    <div className="absolute left-47.25 top-1/2 h-50 w-164.75 -translate-y-1/2 overflow-hidden">
-                        <div className="absolute left-0 top-0 flex w-169.5 flex-col items-start gap-14 text-left text-white">
-                            <div className="flex w-full flex-col items-start justify-center gap-4">
-                                <h2 className="font-space-grotesk flex flex-col justify-center text-[56px] font-bold text-white">
-                                    <span className="leading-16">{current.title}</span>
-                                    {current.subtitle && <span className="leading-16">{current.subtitle}</span>}
-                                </h2>
-                                <div className="font-nimbus flex min-w-full flex-col justify-center text-[24px] text-white">
-                                    <p className={`leading-7 ${current.bodyBottom ? "mb-0" : ""}`}>{current.bodyTop}</p>
-                                    {current.bodyBottom && <p className="leading-7">{current.bodyBottom}</p>}
-                                </div>
+                    <div className="w-full lg:flex-[0_0_min(40vw,560px)]">
+                        <div className="mx-auto w-full max-w-90 overflow-hidden rounded-[28px] border border-white/10 bg-[#f3f4f0] shadow-[0_30px_90px_rgba(0,0,0,0.38)] sm:max-w-100 lg:max-w-115">
+                            <div className="relative aspect-4/5 w-full">
+                                <Image
+                                    src={frameSrc}
+                                    alt={`Cylinder animation frame ${frameIndex + 1} of ${FRAME_COUNT}`}
+                                    fill
+                                    unoptimized
+                                    sizes="(max-width: 1023px) 100vw, 48vw"
+                                    draggable={false}
+                                    className="object-cover"
+                                    style={{ transform: "scaleX(1.08)", transformOrigin: "center center" }}
+                                />
                             </div>
                         </div>
-                    </div>
 
-                    <div className="absolute left-47.25 top-187 flex items-center gap-4">
-                        <ArrowButton direction="left" onClick={prev} />
-                        <ArrowButton direction="right" onClick={next} />
                     </div>
                 </div>
             </div>
+
+            {/* Spacer to maintain scroll distance and allow next section to appear */}
+            <div style={{ height: `${spacerHeight}px` }} />
         </section>
     );
 }
