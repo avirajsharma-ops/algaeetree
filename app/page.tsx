@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/sections/HeroSection";
+import HomeMapSection from "./components/sections/HomeMapSection";
 import CO2Section from "./components/sections/CO2Section";
 import NaturesGeniusSection from "./components/sections/NaturesGeniusSection";
 import IntroducingSection from "./components/sections/IntroducingSection";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <Header />
       <main className="home-page-typography flex w-full flex-col bg-white">
         <HeroSection />
+        <HomeMapSection />
         <CO2Section />
         <NaturesGeniusSection />
         <IntroducingSection />

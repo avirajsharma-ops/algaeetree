@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 @font-face {
   font-family: "Nevera";
@@ -95,6 +96,45 @@ body {
     to {
       opacity: 1;
     }
+  }
+
+  @keyframes algae-pulse {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.9;
+    }
+
+    80% {
+      transform: scale(1.9);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1.9);
+      opacity: 0;
+    }
+  }
+
+  @keyframes algae-wave-ring {
+    0% {
+      transform: scale(0.55);
+      opacity: 0.65;
+    }
+
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .algae-wave {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: algae-wave-ring 2s ease-out infinite;
+  }
+
+  .algae-wave-delayed {
+    animation-delay: 1s;
   }
 
   .animate-fadeIn {
