@@ -153,6 +153,7 @@ export default function HomeMapWidget() {
     return (
         <div className="relative h-105 w-full md:h-130">
             <MapContainer
+                key="algaetree-india-map"
                 center={INDIA_CENTER}
                 zoom={4}
                 minZoom={4}
@@ -172,22 +173,11 @@ export default function HomeMapWidget() {
                 <ZoomTracker onZoom={setZoom} />
                 <InMapZoomControls />
 
-                {isSatellite ? (
-                    <TileLayer
-                        attribution="Tiles &copy; Esri"
-                        url={satelliteTile}
-                    />
-                ) : isDark ? (
-                    <TileLayer
-                        attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                        url={darkTile}
-                    />
-                ) : (
-                    <TileLayer
-                        attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                        url={lightTile}
-                    />
-                )}
+                <TileLayer
+                    key={isSatellite ? "satellite" : isDark ? "dark" : "light"}
+                    attribution={isSatellite ? "Tiles &copy; Esri" : '&copy; <a href="https://carto.com/">CARTO</a>'}
+                    url={isSatellite ? satelliteTile : isDark ? darkTile : lightTile}
+                />
 
                 {indiaGeoJson && !isSatellite && (
                     <GeoJSON data={indiaGeoJson} style={indiaStyle} />
