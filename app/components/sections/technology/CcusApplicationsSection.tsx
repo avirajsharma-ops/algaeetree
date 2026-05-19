@@ -123,7 +123,7 @@ export default function CcusApplicationsSection() {
         <section className="w-full bg-[#0f2200]">
             {/* ── Mobile: heading + swiper ── */}
             <div className="page-px flex flex-col gap-8 py-12 md:hidden">
-                <h2 className="font-space-grotesk text-[28px] leading-9 text-white">
+                <h2 className="font-space-grotesk text-[28px] font-medium uppercase leading-9 text-white">
                     <span className="block">Urban Carbon</span>
                     <span className="block">Capture Applications</span>
                 </h2>
@@ -133,7 +133,7 @@ export default function CcusApplicationsSection() {
             {/* ── Tablet / Desktop: grid ── */}
             <div className="page-px hidden py-8 sm:py-10 md:block xl:py-[120px]">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col gap-10 xl:gap-16">
-                    <h2 className="font-space-grotesk text-[32px] leading-[40px] text-white md:max-w-[520px] md:text-[42px] md:leading-[50px] xl:max-w-[753px] xl:text-[56px] xl:leading-[72px]">
+                    <h2 className="font-space-grotesk text-[32px] font-medium uppercase leading-[40px] text-white md:max-w-[520px] md:text-[42px] md:leading-[50px] xl:max-w-[753px] xl:text-[56px] xl:leading-[72px]">
                         <span className="block">Urban Carbon</span>
                         <span className="block">Capture Applications</span>
                     </h2>

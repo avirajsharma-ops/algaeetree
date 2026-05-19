@@ -21,10 +21,26 @@ const STATS = [
     },
 ];
 
+function SustainabilityDataHeader() {
+    return (
+        <div className="flex w-full items-start gap-6 lg:gap-20 mt-8 mb-8">
+            <div className="self-stretch w-[5px] shrink-0 rounded-[8px] bg-white lg:w-[7px]" />
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-16">
+                <h2 className="font-space-grotesk shrink-0 text-[32px] font-medium uppercase leading-[1.1] text-white lg:w-[420px] lg:text-[56px] lg:leading-[64px]">
+                    Sustainability Data
+                </h2>
+                <p className="font-nimbus text-[14px] leading-[22px] text-white/80 lg:text-[18px] lg:leading-[28px]">
+                    AlgaeTree™ uses microalgae, one of nature's most efficient carbon-capturing organisms to reduce atmospheric carbon and improve urban air quality. Through continuous photosynthesis, the system converts carbon dioxide into oxygen and biomass while operating on renewable energy and a closed-loop nutrient system. This enables long-term carbon capture with minimal environmental footprint.
+                </p>
+            </div>
+        </div>
+    );
+}
+
 function RealLifeDataCard() {
     return (
         <div className="mx-auto flex w-full max-w-[1520px] flex-col items-center rounded-3xl bg-white px-5 py-6 text-center sm:px-8 lg:rounded-[32px] lg:px-20 lg:py-8">
-            <h2 className="font-space-grotesk text-[28px] font-bold uppercase leading-none text-black lg:text-[56px]">
+            <h2 className="font-space-grotesk text-[28px] font-medium uppercase leading-none text-black lg:text-[56px]">
                 Real Life Data
             </h2>
             <p className="font-nimbus mt-3 max-w-[980px] text-[13px] leading-5 text-[#686868] sm:text-[14px] sm:leading-5.5 lg:mt-4 lg:text-[15px] lg:leading-6">
@@ -80,6 +96,7 @@ export default function SustainabilitySection() {
             />
             <div className="page-px relative py-6 lg:py-12">
                 <div className="mx-auto flex w-full max-w-372 flex-col gap-6 lg:gap-8">
+                    <SustainabilityDataHeader />
                     <RealLifeDataCard />
                     <StatGrid />
                 </div>

@@ -14,7 +14,7 @@ export default function IntroducingSection() {
                     </div>
 
                     <div className="font-nimbus flex w-full flex-col items-start gap-4">
-                        <h2 className="font-space-grotesk text-[40px] leading-[1] text-[#2d5a27]">
+                        <h2 className="font-space-grotesk text-[40px] font-medium uppercase leading-[1] text-[#2d5a27]">
                             <span className="block">Introducing</span>
                             <span className="block">the Algae Tree™</span>
                         </h2>
@@ -40,7 +40,7 @@ export default function IntroducingSection() {
                     </div>
 
                     <div className="font-nimbus flex w-full max-w-[1488px] flex-col items-start justify-center gap-4">
-                        <h2 className="font-space-grotesk text-[56px] font-normal leading-[64px] text-[#2d5a27]">
+                        <h2 className="font-space-grotesk text-[56px] font-medium uppercase leading-[64px] text-[#2d5a27]">
                             Introducing the Algae Tree™
                         </h2>
                         <div className="flex min-w-full flex-col justify-center gap-3 text-[20px] font-normal leading-[28px] text-[#686868]">

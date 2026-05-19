@@ -33,7 +33,9 @@ export default function B2cHeroSection() {
                         className="hidden object-cover object-bottom sm:block"
                     />
 
-                    <div className="absolute inset-y-0 left-0 hidden w-[62%] bg-gradient-to-r from-black/40 via-black/8 to-transparent md:block" />
+                    <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black/90 via-black/45 to-transparent md:hidden" />
+
+                    <div className="absolute inset-y-0 left-0 hidden w-[62%] bg-gradient-to-r from-black/90 via-black/8 to-transparent md:block" />
 
                     <div className="absolute inset-x-4 bottom-6 flex max-w-[372px] items-start gap-4 md:hidden">
                         <div className="w-[7px] shrink-0 self-stretch rounded-[8px] bg-white" />
@@ -58,8 +60,8 @@ export default function B2cHeroSection() {
                         </div>
                     </div>
 
-                    <div className="absolute left-[clamp(24px,5vw,106px)] top-1/2 hidden w-[min(72vw,702px)] -translate-y-1/2 items-start gap-8 md:flex">
-                        <div className="w-[7px] shrink-0 self-stretch rounded-[8px] bg-white" />
+                    <div className="absolute left-[clamp(24px,5vw,106px)] top-1/2 hidden w-[min(72vw,702px)] -translate-y-1/2 items-start  gap-8 md:flex">
+                        <div className="w-[7px]  shrink-0 self-stretch rounded-[8px] bg-white" />
 
                         <div className="flex w-full flex-col gap-4">
                             <h1 className="font-nimbus text-[40px] font-bold leading-[56px] text-white">

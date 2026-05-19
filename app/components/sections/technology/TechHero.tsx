@@ -26,8 +26,8 @@ export default function TechHero() {
                     <div className="absolute inset-0 hidden to-transparent lg:block" />
                     {/* Mobile heading */}
                     <h1 className="font-nimbus absolute left-4 top-6 text-[26px] font-bold leading-[32px] text-[#2D5A27] lg:hidden">
-                        <span className="block">Living hardware for</span>
-                        <span className="block">real-time atmospheric repair.</span>
+                        <span className="block">A SOLUTION THIS</span>
+                        <span className="block">PLANET IS LOOKING FOR!</span>
                     </h1>
                     {/* Desktop heading */}
                     <h1 className="font-nimbus absolute left-[clamp(24px,5vw,106px)] top-1/2 hidden max-w-[min(68vw,564px)] -translate-y-1/2 text-[clamp(30px,2.8vw,40px)] font-bold leading-[1.25] text-white lg:block">
