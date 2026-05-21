@@ -303,7 +303,12 @@ function DesktopChart() {
 
     return (
         <div className="relative aspect-1488/640 w-full max-w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
-            <div className="absolute left-[3.763%] top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
+            <div className="absolute -left-24 top-[380px] -translate-y-1/2">
+                <div className="origin-center -rotate-90 whitespace-nowrap bg-white px-1 text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
+                    CO2 Emission (Billion Tonnes)
+                </div>
+            </div>
+            <div className="absolute left-[3.763%]   top-[6.25%] inline-flex w-[62.231%] flex-col items-start justify-start gap-2">
                 <div className="flex w-full flex-col items-start justify-start">
                     <h2 className="font-space-grotesk flex w-full flex-col justify-center text-[30px] font-bold leading-9 text-[#1E293B]">
                         Atmospheric CO2 Concentration (1960 - 2050)
@@ -439,11 +444,7 @@ function DesktopChart() {
                 </div>
             ))}
 
-            <div className="absolute left-0 top-1/2 -translate-y-1/2">
-                <div className="origin-center -rotate-90 whitespace-nowrap bg-white px-1 text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
-                    CO2 Emission (Billion Tonnes)
-                </div>
-            </div>
+           
 
             <div className="absolute bottom-[3.4375%] left-1/2 -translate-x-1/2">
                 <div className="whitespace-nowrap text-center text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
