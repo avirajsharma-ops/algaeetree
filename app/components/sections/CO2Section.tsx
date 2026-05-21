@@ -303,7 +303,7 @@ function DesktopChart() {
 
     return (
         <div className="relative aspect-1488/640 w-full max-w-372 rounded-2xl bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.25)] outline-1 -outline-offset-1 outline-[#F3F4F6]">
-            <div className="absolute -left-24 top-[380px] -translate-y-1/2">
+            <div className="absolute -left-24 top-[320px] -translate-y-1/2">
                 <div className="origin-center -rotate-90 whitespace-nowrap bg-white px-1 text-[12px] font-bold uppercase leading-none tracking-[1.2px] text-[#9CA3AF] lg:text-[13px]">
                     CO2 Emission (Billion Tonnes)
                 </div>
