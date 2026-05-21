@@ -88,7 +88,7 @@ function MarkerWaves({ position }: { position: [number, number] }) {
         <>
             <CircleMarker
                 center={position}
-                radius={18}
+                radius={24}
                 pathOptions={{
                     className: "algae-wave",
                     color: "#12a61a",
@@ -100,7 +100,7 @@ function MarkerWaves({ position }: { position: [number, number] }) {
             />
             <CircleMarker
                 center={position}
-                radius={18}
+                radius={24}
                 pathOptions={{
                     className: "algae-wave algae-wave-delayed",
                     color: "#12a61a",
@@ -122,9 +122,9 @@ export default function HomeMapWidget() {
     const algaeIcon = useMemo(
         () =>
             L.icon({
-                iconUrl: "/LOGO.png",
-                iconSize: [34, 34],
-                iconAnchor: [17, 17],
+                iconUrl: "/Icon.png",
+                iconSize: [47, 64],
+                iconAnchor: [24, 32],
             }),
         [],
     );

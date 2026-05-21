@@ -80,7 +80,7 @@ export default function AboutHero() {
                     <div className="flex min-h-[303px] w-full items-center gap-4 px-4 sm:px-6 xl:min-h-0 xl:gap-12 xl:px-16">
                         <div className="h-full min-h-[303px] w-[6px] shrink-0 rounded-[8px] bg-[#2d5a27] xl:min-h-[270px] xl:w-[7px]" />
                         <div className="flex flex-1 flex-col gap-4 py-1">
-                            <h1 className="font-space-grotesktext-[28px] leading-[32px] text-[#2d5a27] md:text-[40px] md:leading-[44px] xl:text-[56px] xl:leading-[64px]">
+                            <h1 className="font-space-grotesk text-[28px] font-medium leading-[32px] uppercase text-[#2d5a27] md:text-[40px] md:leading-[44px] xl:text-[40px] xl:leading-[64px]">
                                 About Us
                             </h1>
                             <div className="font-nimbus text-[14px] leading-[normal] text-[#686868] md:text-[16px] md:leading-[24px] xl:text-[20px] xl:leading-[28px]">

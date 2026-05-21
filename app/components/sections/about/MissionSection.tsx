@@ -42,10 +42,10 @@ export default function MissionSection() {
                         </div>
                     </div>
                     <div className="flex w-full flex-col gap-0 xl:w-[678px]">
-                        <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
+                        <h2 className="font-nimbus text-[40px] font-medium uppercase leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
                             Mission
                         </h2>
-                        <div className="font-nimbus space-y-3 text-[14px] leading-[normal] text-[#686868] md:text-[16px] md:leading-[24px] xl:text-[20px] xl:leading-[28px]">
+                        <div className="font-nimbus space-y-3 text-[14px] leading-[normal] text-[#686868] md:text-[16px] md:leading-[24px] xl:text-[20px] xl:mt-[24px] xl:leading-[28px]">
                             <p>
                                 Our mission is to bring the power of microalgae into the heart of our
                                 cities: building self-sustaining systems that capture carbon, restore

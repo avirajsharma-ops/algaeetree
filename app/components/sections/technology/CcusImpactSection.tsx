@@ -31,7 +31,7 @@ export default function CcusImpactSection() {
                 >
                     <div className="absolute -right-20 -top-20 size-[384px] rounded-full bg-[rgba(171,214,0,0.05)] blur-[50px]" />
 
-                    <h2 className="font-space-groteskrelative text-[28px] leading-[32px] text-white md:text-[42px] md:leading-[50px] xl:text-[56px] xl:leading-[72px]">
+                    <h2 className="font-space-groteskrelative text-[28px] font-medium leading-[32px] uppercase text-white md:text-[42px] md:leading-[50px] xl:text-[56px] xl:leading-[72px]">
                         <span className="block md:inline">Environmental</span>
                         <span className="block md:ml-2 md:inline">Impact</span>
                     </h2>

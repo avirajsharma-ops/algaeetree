@@ -26,10 +26,10 @@ export default function VisionSection() {
             <div className="page-px pb-12 xl:pb-12">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center gap-4 md:gap-6 xl:flex-row xl:justify-between xl:gap-12">
                     <div className="order-2 flex w-full flex-col gap-0 xl:order-1 xl:w-[678px]">
-                        <h2 className="font-nimbus text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
+                        <h2 className="font-nimbus text-[40px] font-medium uppercase leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
                             Vision
                         </h2>
-                        <div className="font-nimbus space-y-3 text-[14px] leading-[normal] text-[#686868] md:text-[16px] md:leading-[24px] xl:text-[20px] xl:leading-[28px]">
+                        <div className="font-nimbus space-y-3 text-[14px] leading-[normal] text-[#686868] md:text-[16px] md:leading-[24px] xl:text-[20px] xl:mt-[24px] xl:leading-[28px]">
                             <p>
                                 Take a moment and look around. Every city street, every highway, every
                                 industrial corridor all quietly releasing carbon into the atmosphere. In

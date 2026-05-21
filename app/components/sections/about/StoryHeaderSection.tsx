@@ -27,7 +27,7 @@ export default function StoryHeaderSection() {
                 <div className="mx-auto w-full max-w-[1488px]">
                     {/* Heading row */}
                     <div className="flex flex-col items-start gap-4 xl:flex-row xl:items-start xl:justify-between xl:gap-8">
-                        <h2 className="font-nimbus whitespace-nowrap text-[40px] font-normal leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
+                        <h2 className="font-nimbus whitespace-nowrap text-[40px] font-medium uppercase leading-[40px] text-black md:text-[48px] md:leading-[52px] xl:font-space-groteskxl:text-[56px] xl:leading-[72px]">
                             {/* Mobile: "Our Story," / "Vision, and Value" */}
                             <span className="block xl:hidden">Our Story,</span>
                             <span className="block xl:hidden">Vision, and Value</span>

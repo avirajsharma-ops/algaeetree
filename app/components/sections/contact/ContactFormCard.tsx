@@ -288,7 +288,7 @@ const initialFormState: ContactFormState = {
 const fieldClassName =
     "h-[40px] w-full rounded-[6px] border border-[#cfcfcf] bg-white px-3 font-nimbus text-[15px] leading-5 text-[#6d6d6d] outline-none transition-colors placeholder:text-[#9b9b9b] focus:border-[#2d5a27] focus:ring-1 focus:ring-[#2d5a27]/15";
 
-const labelClassName = "flex flex-col gap-2 font-nimbus text-[13px] leading-4 text-[#7f7f7f]";
+const labelClassName = "flex flex-col gap-2 font-nimbus text-[13px] font-bold leading-4 text-[#1f1f1f]";
 
 export default function ContactFormCard() {
     const [formState, setFormState] = useState(initialFormState);
@@ -448,10 +448,10 @@ export default function ContactFormCard() {
                     />
                 </label>
 
-                <div className="flex flex-col gap-2 font-nimbus text-[13px] leading-4 text-[#7f7f7f]">
+                <div className="flex flex-col gap-2 font-nimbus text-[13px] font-bold leading-4 text-[#1f1f1f]">
                     <span>Phone</span>
                     <div className="flex items-stretch">
-                        <div ref={countryCodeDropdownRef} className="relative w-[94px]">
+                        <div ref={countryCodeDropdownRef} className="relative w-[58px]">
                             <button
                                 type="button"
                                 onClick={() => setIsCountryCodeOpen((current) => !current)}
@@ -605,8 +605,8 @@ export default function ContactFormCard() {
                     whileHover={canSubmit ? { y: -2 } : undefined}
                     whileTap={canSubmit ? { scale: 0.98 } : undefined}
                     className={`h-12 min-w-[172px] rounded-[10px] px-6 font-space-grotesk text-[14px] font-medium uppercase tracking-[0.04em] transition-colors ${canSubmit
-                        ? "bg-[#2f7d32] text-white hover:bg-[#276a2a]"
-                        : "bg-[#2f7d32] text-white/85 opacity-70"
+                        ? "bg-[#2d5a27] text-white hover:bg-[#264d21]"
+                        : "bg-[#2d5a27] text-white/85 opacity-80"
                         }`}
                 >
                     Lets Connect

@@ -113,7 +113,7 @@ export default function GallerySection() {
         <section className="w-full bg-white">
             <div className="page-px py-10 sm:py-14 xl:py-18">
                 <div className="mx-auto flex w-full max-w-[1488px] flex-col items-center">
-                    <h2 className="font-space-grotesktext-center text-[24px] leading-none font-normal uppercase tracking-[0.12em] text-black sm:text-[30px] md:text-[38px] xl:text-[48px]">
+                    <h2 className="font-space-grotesk text-center text-[40px] leading-none font-medium uppercase text-black sm:text-[30px] md:text-[38px] xl:text-[48px]">
                         Gallery
                     </h2>
 

@@ -270,7 +270,7 @@ function HeroCard() {
                 <div className="flex items-start gap-4 lg:gap-5">
                     <span className="mt-1 block h-14 w-[3px] rounded-full bg-white/90 sm:h-16 lg:h-[130px]" />
                     <div>
-                        <h2 className="font-nimbus text-[24px] leading-[28px] text-white sm:text-[36px] sm:leading-[40px] lg:text-[40px] lg:leading-[44px] lg:font-medium">
+                        <h2 className="font-nimbus text-[24px] font-medium leading-[28px] uppercase text-white sm:text-[36px] sm:leading-[40px] lg:text-[40px] lg:leading-[44px]">
                             Latest Updates
                         </h2>
                         <p className="mt-2 font-nimbus text-[12px] leading-[18px] text-white/82 sm:mt-3 sm:text-[14px] sm:leading-[22px] lg:text-[16px] lg:leading-[24px]">

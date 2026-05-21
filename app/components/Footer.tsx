@@ -18,7 +18,7 @@ const CONTACTS = [
 const SOCIALS = [
     { src: "/figma/linkedin.svg", alt: "LinkedIn", href: "https://in.linkedin.com/company/algaetree" },
     { src: "/figma/instagram.svg", alt: "Instagram", href: "https://www.instagram.com/algaetree_official/" },
-    { src: "/figma/X Icon.svg", alt: "X", href: "https://x.com/TreeAlgae" },
+    { src: "/social_x-with-circle.svg", alt: "X", href: "https://x.com/TreeAlgae" },
     { src: "/figma/youtube.svg", alt: "YouTube", href: "https://youtube.com/@algaetree" },
 ]
 
@@ -47,7 +47,7 @@ export default function Footer() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     {SOCIALS.map((social) => (
-                                        <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size-8 items-center justify-center rounded-[19.2px] border-[0.32px] border-[#94a3b8]">
+                                        <a key={social.alt} href={social.href} target="_blank" rel="noreferrer" aria-label={social.alt} className="flex size- items-center justify-center rounded-[19.2px] ">
                                             <img src={social.src} alt="" width={27} height={27} className="size-[26.88px]" />
                                         </a>
                                     ))}
