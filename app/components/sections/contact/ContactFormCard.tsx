@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 
 const TOPIC_OPTIONS = [
@@ -291,6 +292,7 @@ const fieldClassName =
 const labelClassName = "flex flex-col gap-2 font-nimbus text-[13px] font-bold leading-4 text-[#1f1f1f]";
 
 export default function ContactFormCard() {
+    const router = useRouter();
     const [formState, setFormState] = useState(initialFormState);
     const [phoneError, setPhoneError] = useState("");
     const [phoneTouched, setPhoneTouched] = useState(false);
@@ -339,7 +341,7 @@ export default function ContactFormCard() {
         setFormState((current) => ({ ...current, consent: event.target.checked }));
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (formState.phone.length !== 10) {
@@ -352,39 +354,27 @@ export default function ContactFormCard() {
             return;
         }
 
-        try {
-            const response = await fetch("/api/contact-to-firebase", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    fullName: formState.fullName,
-                    email: formState.email,
-                    company: formState.company,
-                    phone: `${formState.countryCode} ${formState.phone}`,
-                    topic: formState.topic,
-                    urgency: formState.urgency,
-                    message: formState.message,
-                    consent: formState.consent,
-                }),
-            });
+        // Navigate immediately — API call runs in the background
+        router.push("/thank-you");
 
-            if (!response.ok) {
-                const result = await response.json().catch(() => null);
-                const errorMessage =
-                    result?.error || result?.message || "Form submission failed. Please try again.";
-                throw new Error(errorMessage);
-            }
+        const payload = JSON.stringify({
+            fullName: formState.fullName,
+            email: formState.email,
+            company: formState.company,
+            phone: `${formState.countryCode} ${formState.phone}`,
+            topic: formState.topic,
+            urgency: formState.urgency,
+            message: formState.message,
+            consent: formState.consent,
+        });
 
-            setFormState(initialFormState);
-            setPhoneError("");
-            setPhoneTouched(false);
-        } catch (error) {
-            const message =
-                error instanceof Error
-                    ? error.message
-                    : "Unable to submit right now. Please check email config and try again.";
-            alert(message);
-        }
+        fetch("/api/contact-to-firebase", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: payload,
+        }).catch(() => {
+            // silently ignore — data already saved client-side if needed
+        });
     };
 
     const canSubmit =
