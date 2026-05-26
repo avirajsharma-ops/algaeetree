@@ -11,8 +11,8 @@ const QUICK_LINKS = [
 const CONTACTS = [
     { label: "algae.tree@mushroomworldgroup.com", href: "mailto:algae.tree@mushroomworldgroup.com" },
     { label: "Bhopal, IN" },
-    { label: "+91 989 310 6935" },
-    { label: "+91 882 300 6730" },
+    { label: "+91 7223871153", href: "tel:+917223871153" },
+    { label: "+91 989 310 6935", href: "tel:+919893106935" },
 ];
 // const LEGAL = ["Privacy Policy", "Disclaimer", "Terms of use", "Raise a Grievance"];
 const SOCIALS = [
@@ -80,10 +80,10 @@ export default function Footer() {
                                             </a>
                                         </div>
                                         <div className="flex min-w-0 flex-col gap-2">
-                                            <a href="tel:+919893106935" className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
+                                            <a href={CONTACTS[2].href} className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
                                                 {CONTACTS[2].label}
                                             </a>
-                                            <a href="tel:+918823006730" className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
+                                            <a href={CONTACTS[3].href} className="font-nimbus text-[14px] leading-5 text-[#94a3b8] sm:text-[16px] sm:leading-6.5">
                                                 {CONTACTS[3].label}
                                             </a>
                                         </div>
