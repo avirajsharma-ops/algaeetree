@@ -1,4 +1,4 @@
 export { ContactsSection } from "./ContactsSection";
-export { BlogsSection } from "./BlogsSection";
+export { NewsEventsSection } from "./NewsEventsSection";
 export { AnalyticsSection } from "./AnalyticsSection";
 export { UsersSection } from "./UsersSection";

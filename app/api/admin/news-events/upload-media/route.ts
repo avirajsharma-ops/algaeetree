@@ -11,18 +11,20 @@ function getExtension(fileName: string, mimeType: string): string {
     const fromName = path.extname(fileName).replace(".", "").toLowerCase();
     if (fromName) return fromName;
 
-    const typeMap: Record<string, string> = {
-        "image/jpeg": "jpg",
-        "image/png": "png",
-        "image/webp": "webp",
-        "image/gif": "gif",
-        "video/mp4": "mp4",
-        "video/webm": "webm",
-        "video/ogg": "ogv",
-        "video/quicktime": "mov",
+    const subtype = mimeType.split("/")[1]?.toLowerCase();
+    if (!subtype) return "bin";
+
+    const normalized = subtype.split("+")[0];
+    const aliasMap: Record<string, string> = {
+        "jpeg": "jpg",
+        "quicktime": "mov",
+        "x-matroska": "mkv",
+        "x-msvideo": "avi",
+        "x-ms-wmv": "wmv",
+        "svg+xml": "svg",
     };
 
-    return typeMap[mimeType] ?? "bin";
+    return aliasMap[normalized] ?? normalized;
 }
 
 export async function POST(request: Request) {
@@ -48,7 +50,14 @@ export async function POST(request: Request) {
 
         const extension = getExtension(file.name, file.type);
         const fileName = `${Date.now()}-${randomUUID()}.${extension}`;
-        const relativeDir = path.join("uploads", "blogs");
+        const now = new Date();
+        const relativeDir = path.join(
+            "uploads",
+            "news-events",
+            mediaType === "image" ? "images" : "videos",
+            String(now.getFullYear()),
+            String(now.getMonth() + 1).padStart(2, "0")
+        );
         const absoluteDir = path.join(process.cwd(), "public", relativeDir);
         await mkdir(absoluteDir, { recursive: true });
 
@@ -59,6 +68,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json({
             url: `/${path.join(relativeDir, fileName).replaceAll(path.sep, "/")}`,
+            mediaPath: path.join(relativeDir, fileName).replaceAll(path.sep, "/"),
         });
     } catch {
         return NextResponse.json({ error: "Upload failed" }, { status: 500 });

@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { onValue, ref } from "firebase/database";
+import { database } from "@/lib/firebase";
 
 type StoryCard = {
     category: string;
@@ -9,7 +13,50 @@ type StoryCard = {
     image?: string;
     video?: string;
     link?: string;
+    createdAt?: number;
 };
+
+type NewsEventRecord = {
+    category?: string;
+    title?: string;
+    excerpt?: string;
+    mediaType?: "image" | "video";
+    mediaUrl?: string;
+    link?: string;
+    createdAt?: number;
+};
+
+const IMAGE_EXTENSIONS = new Set([
+    "jpg",
+    "jpeg",
+    "png",
+    "webp",
+    "gif",
+    "avif",
+    "bmp",
+    "svg",
+    "heic",
+    "heif",
+    "tif",
+    "tiff",
+    "ico",
+]);
+
+const VIDEO_EXTENSIONS = new Set([
+    "mp4",
+    "webm",
+    "mov",
+    "ogv",
+    "ogg",
+    "m4v",
+    "avi",
+    "mkv",
+    "wmv",
+    "flv",
+    "mpeg",
+    "mpg",
+    "3gp",
+]);
 
 const featureStory: StoryCard = {
     category: "CLIMATE TECH",
@@ -166,6 +213,50 @@ const featuredCoverageStories: StoryCard[] = [
     },
 ];
 
+const fallbackStories: StoryCard[] = [
+    ...featuredCoverageStories,
+];
+
+function inferMediaType(value: string): "image" | "video" {
+    const lower = value.toLowerCase();
+    if (lower.startsWith("data:video")) {
+        return "video";
+    }
+
+    if (lower.startsWith("data:image")) {
+        return "image";
+    }
+
+    try {
+        const url = new URL(value);
+        const extension = url.pathname.split(".").pop()?.toLowerCase() ?? "";
+        if (VIDEO_EXTENSIONS.has(extension)) return "video";
+        if (IMAGE_EXTENSIONS.has(extension)) return "image";
+    } catch {
+        const extension = lower.split("?")[0].split("#")[0].split(".").pop() ?? "";
+        if (VIDEO_EXTENSIONS.has(extension)) return "video";
+        if (IMAGE_EXTENSIONS.has(extension)) return "image";
+    }
+
+    return "image";
+}
+
+function toStoryCard(record: NewsEventRecord): StoryCard | null {
+    if (!record.category || !record.title || !record.excerpt || !record.mediaUrl) {
+        return null;
+    }
+
+    return {
+        category: record.category,
+        title: record.title,
+        excerpt: record.excerpt,
+        image: record.mediaType === "video" ? undefined : record.mediaUrl,
+        video: record.mediaType === "video" ? record.mediaUrl : undefined,
+        link: record.link,
+        createdAt: record.createdAt,
+    };
+}
+
 function StoryText({
     story,
     compact = false,
@@ -182,16 +273,16 @@ function StoryText({
             </p>
             <h3
                 className={`mt-2 font-space-grotesk font-bold text-[#e8fff0] ${compact
-                    ? "text-[24px] leading-[30px] sm:text-[26px] sm:leading-[32px] lg:text-[30px] lg:leading-[36px]"
-                    : "text-[26px] leading-[32px] sm:text-[30px] sm:leading-[36px] lg:text-[36px] lg:leading-[42px] xl:text-[40px] xl:leading-[46px]"
+                    ? "text-[24px] leading-7.5 sm:text-[26px] sm:leading-8 lg:text-[30px] lg:leading-9"
+                    : "text-[26px] leading-8 sm:text-[30px] sm:leading-9 lg:text-[36px] lg:leading-10.5 xl:text-[40px] xl:leading-11.5"
                     }`}
             >
                 {story.title}
             </h3>
             <p
-                className={`mt-2 max-w-[420px] font-nimbus text-[#bcc8d4] ${compact
-                    ? "text-[12px] leading-[18px] sm:text-[13px] sm:leading-[19px]"
-                    : "text-[13px] leading-[19px] sm:text-[14px] sm:leading-[20px] xl:text-[15px] xl:leading-[22px]"
+                className={`mt-2 max-w-105 font-nimbus text-[#bcc8d4] ${compact
+                    ? "text-[12px] leading-4.5 sm:text-[13px] sm:leading-4.75"
+                    : "text-[13px] leading-4.75 sm:text-[14px] sm:leading-5 xl:text-[15px] xl:leading-5.5"
                     }`}
             >
                 {story.excerpt}
@@ -240,7 +331,7 @@ function NewspaperFrame({
     sizes?: string;
 }) {
     return (
-        <div className={`relative overflow-hidden rounded-[8px] min-h-[270px] sm:min-h-0 ${className}`}>
+        <div className={`relative overflow-hidden rounded-lg min-h-67.5 sm:min-h-0 ${className}`}>
             <Image src={src} alt={alt} fill sizes={sizes} quality={100} className={`${imageClassName} absolute inset-0`} />
         </div>
     );
@@ -248,7 +339,7 @@ function NewspaperFrame({
 
 function HeroCard() {
     return (
-        <article className="relative aspect-[816/1704] w-full overflow-hidden rounded-[16px] border border-[#d7dee7] bg-[#d9d9d9] sm:aspect-[4/3] sm:rounded-[20px] lg:aspect-[2976/1616] lg:rounded-[40px]">
+        <article className="relative aspect-816/1704 w-full overflow-hidden rounded-2xl border border-[#d7dee7] bg-[#d9d9d9] sm:aspect-4/3 sm:rounded-[20px] lg:aspect-2976/1616 lg:rounded-[40px]">
             <Image
                 src="/figma/news/news-hero-mobile.webp"
                 alt="Latest updates mobile"
@@ -266,14 +357,14 @@ function HeroCard() {
                 className="hidden object-cover object-center sm:block"
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#07111bea] via-[#09131ea6] to-transparent sm:bg-linear-to-r sm:from-[#09131ee8] sm:via-[#09131e91] sm:to-transparent" />
-            <div className="absolute inset-y-0 left-0 flex max-w-[420px] items-end px-4 pb-6 sm:inset-0 sm:max-w-[540px] sm:items-center sm:px-12 sm:pb-0 lg:left-[clamp(24px,5vw,106px)] lg:max-w-[min(68vw,564px)] lg:px-0">
+            <div className="absolute inset-y-0 left-0 flex max-w-105 items-end px-4 pb-6 sm:inset-0 sm:max-w-135 sm:items-center sm:px-12 sm:pb-0 lg:left-[clamp(24px,5vw,106px)] lg:max-w-[min(68vw,564px)] lg:px-0">
                 <div className="flex items-start gap-4 lg:gap-5">
-                    <span className="mt-1 block h-14 w-[3px] rounded-full bg-white/90 sm:h-16 lg:h-[130px]" />
+                    <span className="mt-1 block h-14 w-0.75 rounded-full bg-white/90 sm:h-16 lg:h-32.5" />
                     <div>
-                        <h2 className="font-nimbus text-[24px] font-medium leading-[28px] uppercase text-white sm:text-[36px] sm:leading-[40px] lg:text-[40px] lg:leading-[44px]">
+                        <h2 className="font-nimbus text-[24px] font-medium leading-7 uppercase text-white sm:text-[36px] sm:leading-10 lg:text-[40px] lg:leading-11">
                             Latest Updates
                         </h2>
-                        <p className="mt-2 font-nimbus text-[12px] leading-[18px] text-white/82 sm:mt-3 sm:text-[14px] sm:leading-[22px] lg:text-[16px] lg:leading-[24px]">
+                        <p className="mt-2 font-nimbus text-[12px] leading-4.5 text-white/82 sm:mt-3 sm:text-[14px] sm:leading-5.5 lg:text-[16px] lg:leading-6">
                             Stay updated with the latest breakthroughs in microalgae-powered carbon capture, clean air innovation, and real-world deployments transforming urban environments.
                         </p>
                     </div>
@@ -286,14 +377,14 @@ function HeroCard() {
 function LeadStoryCard() {
     return (
         <CardShell>
-            <div className="relative flex min-h-[440px] flex-col gap-4 p-3 sm:min-h-[380px]
+            <div className="relative flex min-h-110 flex-col gap-4 p-3 sm:min-h-95
              sm:grid sm:grid-cols-[0.98fr_1.02fr] sm:items-center
-             sm:gap-6 sm:p-7 lg:min-h-[420px] lg:grid-cols-[1fr_1fr] lg:p-7">
+             sm:gap-6 sm:p-7 lg:min-h-105 lg:grid-cols-[1fr_1fr] lg:p-7">
                 <div className="relative z-10 order-1 flex justify-center sm:order-2 sm:justify-end">
                     <NewspaperFrame
                         src={featureStory.image!}
                         alt={featureStory.title}
-                        className="h-[420px] w-full sm:h-[420px] sm:w-full sm:max-w-none lg:h-[480px] lg:w-[520px]"
+                        className="h-105 w-full sm:h-105 sm:w-full sm:max-w-none lg:h-120 lg:w-130"
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 56vw, 48vw"
                     />
@@ -309,16 +400,16 @@ function WideStoryCard({ story }: { story: StoryCard }) {
 
     return (
         <CardShell>
-            <div className="relative grid min-h-[430px] grid-cols-1 gap-4 p-3 sm:grid-cols-[1.6fr_0.65fr] 
-            sm:items-center sm:gap-4 sm:p-6 lg:min-h-[400px] lg:grid-cols-[1.58fr_0.7fr]
-             lg:p-5 xl:min-h-[400px]">
+            <div className="relative grid min-h-107.5 grid-cols-1 gap-4 p-3 sm:grid-cols-[1.6fr_0.65fr] 
+            sm:items-center sm:gap-4 sm:p-6 lg:min-h-100 lg:grid-cols-[1.58fr_0.7fr]
+             lg:p-5 xl:min-h-100">
                 <div className="relative z-10 order-1 flex justify-center sm:order-2 sm:justify-end">
                     <NewspaperFrame
                         src={story.image!}
                         alt={story.title}
                         className={isValidatedStory
-                            ? "h-[380px] w-full sm:h-[400px] sm:w-[250px] lg:h-[440px] lg:w-[280px] xl:h-[480px] xl:w-[340px]"
-                            : "h-[500px] w-full sm:h-[400px] sm:w-[250px] lg:h-[440px] lg:w-[280px] xl:h-[480px] xl:w-[340px]"}
+                            ? "h-95 w-full sm:h-100 sm:w-62.5 lg:h-110 lg:w-70 xl:h-120 xl:w-85"
+                            : "h-125 w-full sm:h-100 sm:w-62.5 lg:h-110 lg:w-70 xl:h-120 xl:w-85"}
                         imageClassName="object-contain object-center"
                         sizes="(max-width: 639px) 100vw, (max-width: 1023px) 240px, 280px"
                     />
@@ -350,9 +441,9 @@ function TallStoryCard() {
         <div className="flex flex-col gap-3 sm:gap-4">
             <CardShell>
                 <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-4 xl:p-5">
-                    <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
+                    <div className="relative z-10 overflow-hidden rounded-lg border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
                         <video
-                            className="w-full h-auto max-h-[720px] bg-black"
+                            className="w-full h-auto max-h-180 bg-black"
                             controls
                             loop
                             playsInline
@@ -384,7 +475,7 @@ function TallStoryCard() {
                         <NewspaperFrame
                             src={validatedStory.image!}
                             alt={validatedStory.title}
-                            className="h-[360px] w-full sm:h-[340px] sm:max-w-[300px] lg:h-[400px] lg:w-full lg:max-w-none xl:h-[460px]"
+                            className="h-90 w-full sm:h-85 sm:max-w-75 lg:h-100 lg:w-full lg:max-w-none xl:h-115"
                             imageClassName="object-contain object-center"
                             sizes="(max-width: 1023px) 300px, 32vw"
                         />
@@ -404,16 +495,31 @@ function TallStoryCard() {
 function FeaturedCoverageCard({ story }: { story: StoryCard }) {
     return (
         <CardShell>
-            <div className="relative flex min-h-[260px] flex-col gap-2 p-3 sm:min-h-[280px] sm:p-4 lg:min-h-[300px] lg:p-5">
-                {story.image && (
+            <div className="relative flex min-h-65 flex-col gap-2 p-3 sm:min-h-70 sm:p-4 lg:min-h-75 lg:p-5">
+                {(story.image || story.video) && (
                     <div className="relative z-10 flex-1">
-                        <NewspaperFrame
-                            src={story.image}
-                            alt={story.title}
-                            className="h-full w-full sm:h-[500px] lg:h-[440px]"
-                            imageClassName="object-contain object-center"
-                            sizes="(max-width: 1023px) 100vw, 35vw"
-                        />
+                        {story.video ? (
+                            <div className="overflow-hidden rounded-lg border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
+                                <video
+                                    className="h-full w-full bg-black object-contain object-center"
+                                    controls
+                                    loop
+                                    playsInline
+                                    preload="metadata"
+                                >
+                                    <source src={story.video} />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        ) : (
+                            <NewspaperFrame
+                                src={story.image!}
+                                alt={story.title}
+                                className="h-full w-full sm:h-125 lg:h-110"
+                                imageClassName="object-contain object-center"
+                                sizes="(max-width: 1023px) 100vw, 35vw"
+                            />
+                        )}
                     </div>
                 )}
                 <div className="relative z-10">
@@ -425,9 +531,41 @@ function FeaturedCoverageCard({ story }: { story: StoryCard }) {
 }
 
 export default function NewsEventsSection() {
+    const [liveStories, setLiveStories] = useState<StoryCard[] | null>(null);
+
+    useEffect(() => {
+        const newsEventsRef = ref(database, "newsEvents");
+        const unsubscribe = onValue(newsEventsRef, (snapshot) => {
+            const data = snapshot.val() as Record<string, NewsEventRecord> | null;
+            if (!data) {
+                setLiveStories(null);
+                return;
+            }
+
+            const mapped = Object.values(data)
+                .map((record) => {
+                    const mediaType = record.mediaType ?? inferMediaType(record.mediaUrl || "");
+                    return toStoryCard({ ...record, mediaType });
+                })
+                .filter((story): story is StoryCard => Boolean(story));
+
+            mapped.sort((a, b) => {
+                const aTime = a.createdAt ?? (a.date ? Date.parse(a.date) : 0);
+                const bTime = b.createdAt ?? (b.date ? Date.parse(b.date) : 0);
+                return bTime - aTime;
+            });
+
+            setLiveStories(mapped);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const stories = liveStories && liveStories.length > 0 ? liveStories : fallbackStories;
+
     return (
         <section className="page-px font-nimbus w-full bg-[#07131d] py-4 sm:bg-white lg:py-10 xl:py-14">
-            <div className="mx-auto w-full max-w-[1488px]">
+            <div className="mx-auto w-full max-w-372">
                 <HeroCard />
 
                 <div className="mt-3 space-y-3 pb-6 sm:mt-12 sm:space-y-4 sm:pb-0 lg:mt-16">
@@ -437,9 +575,9 @@ export default function NewsEventsSection() {
                         <div className="mt-3 sm:mt-4">
                             <CardShell>
                                 <div className="relative flex flex-col gap-3 p-3 sm:gap-4 sm:p-5 lg:gap-4 lg:p-6">
-                                    <div className="relative z-10 overflow-hidden rounded-[8px] border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
+                                    <div className="relative z-10 overflow-hidden rounded-lg border-2 border-[#3d4650] shadow-[0_6px_14px_rgba(0,0,0,0.26)]">
                                         <video
-                                            className="h-auto max-h-[720px] w-full bg-black"
+                                            className="h-auto max-h-180 w-full bg-black"
                                             controls
                                             loop
                                             playsInline
@@ -468,7 +606,7 @@ export default function NewsEventsSection() {
                         </div>
 
                         <div className="mt-3 grid grid-cols-1 gap-3 sm:mt-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-                            {featuredCoverageStories.map((story) => (
+                            {stories.map((story) => (
                                 <FeaturedCoverageCard key={`${story.category}-${story.title}`} story={story} />
                             ))}
                         </div>
