@@ -1,9 +1,6 @@
-import { unlink } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
 
 const DB_URL = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL;
-const MEDIA_ROOT = path.join(process.cwd(), "public", "uploads", "news-events");
 
 type MediaType = "image" | "video";
 
@@ -26,34 +23,6 @@ function isValidPayload(payload: NewsEventPayload) {
         payload.mediaType &&
         payload.mediaUrl
     );
-}
-
-function deriveMediaPath(mediaPath?: string, mediaUrl?: string) {
-    if (mediaPath) return mediaPath;
-    if (!mediaUrl?.startsWith("/uploads/news-events/")) return null;
-    return mediaUrl.replace(/^\//, "");
-}
-
-async function deleteMediaFile(mediaPath?: string | null, mediaUrl?: string) {
-    const resolvedPath = deriveMediaPath(mediaPath ?? undefined, mediaUrl);
-    if (!resolvedPath) return;
-
-    const absolutePath = path.join(process.cwd(), "public", resolvedPath);
-    const normalizedRoot = path.normalize(MEDIA_ROOT + path.sep);
-    const normalizedTarget = path.normalize(absolutePath);
-
-    if (!normalizedTarget.startsWith(normalizedRoot)) {
-        return;
-    }
-
-    try {
-        await unlink(normalizedTarget);
-    } catch (error) {
-        const nodeError = error as NodeJS.ErrnoException;
-        if (nodeError.code !== "ENOENT") {
-            throw error;
-        }
-    }
 }
 
 async function getNewsEvent(newsEventId: string) {
@@ -113,7 +82,7 @@ export async function PATCH(request: Request) {
             return NextResponse.json({ error: "Firebase database is not configured" }, { status: 500 });
         }
 
-        const existing = await getNewsEvent(newsEventId);
+        await getNewsEvent(newsEventId);
 
         const response = await fetch(`${DB_URL}/newsEvents/${newsEventId}.json`, {
             method: "PUT",
@@ -123,13 +92,6 @@ export async function PATCH(request: Request) {
 
         if (!response.ok) {
             return NextResponse.json({ error: "Failed to update news item" }, { status: 500 });
-        }
-
-        const previousPath = deriveMediaPath(existing?.mediaPath, existing?.mediaUrl);
-        const nextPath = deriveMediaPath(payload.mediaPath, payload.mediaUrl);
-
-        if (previousPath && previousPath !== nextPath) {
-            await deleteMediaFile(previousPath, existing?.mediaUrl);
         }
 
         return NextResponse.json({ success: true });
@@ -151,7 +113,7 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: "Firebase database is not configured" }, { status: 500 });
         }
 
-        const existing = await getNewsEvent(newsEventId);
+        await getNewsEvent(newsEventId);
 
         const response = await fetch(`${DB_URL}/newsEvents/${newsEventId}.json`, {
             method: "DELETE",
@@ -160,8 +122,6 @@ export async function DELETE(request: Request) {
         if (!response.ok) {
             return NextResponse.json({ error: "Failed to delete news item" }, { status: 500 });
         }
-
-        await deleteMediaFile(existing?.mediaPath, existing?.mediaUrl);
 
         return NextResponse.json({ success: true });
     } catch {
