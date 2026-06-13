@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AdminHeader } from "./AdminHeader";
-import { ContactsSection, NewsEventsSection, AnalyticsSection, UsersSection } from "./sections";
+import { ContactsSection, NewsEventsSection, BlogsSection, AnalyticsSection, UsersSection } from "./sections";
 
 interface AdminUser {
     userId: string;
@@ -16,7 +16,7 @@ interface AdminDashboardProps {
     onLogout: () => void;
 }
 
-type Tab = "contacts" | "news-events" | "analytics" | "users";
+type Tab = "contacts" | "news-events" | "blogs" | "analytics" | "users";
 
 export function AdminDashboard({ user, onLogout }: AdminDashboardProps) {
     const [activeTab, setActiveTab] = useState<Tab>("contacts");
@@ -24,6 +24,7 @@ export function AdminDashboard({ user, onLogout }: AdminDashboardProps) {
     const tabs: { id: Tab; label: string; superadminOnly?: boolean }[] = [
         { id: "contacts", label: "Contacts" },
         { id: "news-events", label: "News & Events" },
+        { id: "blogs", label: "Blogs" },
         { id: "analytics", label: "Analytics" },
         { id: "users", label: "Users", superadminOnly: true },
     ];
@@ -58,6 +59,7 @@ export function AdminDashboard({ user, onLogout }: AdminDashboardProps) {
                 <div className="animate-fadeIn">
                     {activeTab === "contacts" && <ContactsSection />}
                     {activeTab === "news-events" && <NewsEventsSection />}
+                    {activeTab === "blogs" && <BlogsSection />}
                     {activeTab === "analytics" && <AnalyticsSection />}
                     {activeTab === "users" && user.role === "superadmin" && (
                         <UsersSection currentUserId={user.userId} />

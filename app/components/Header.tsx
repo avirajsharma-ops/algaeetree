@@ -28,6 +28,7 @@ const DESKTOP_NAV_ITEMS = [
     },
     { label: "About Us", href: "/about" },
     { label: "News & Events", href: "/news-events" },
+    { label: "Blog", href: "/blog" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];
 
@@ -43,6 +44,7 @@ const MOBILE_NAV_ITEMS = [
     },
     { label: "About Us", href: "/about" },
     { label: "News & Events", href: "/news-events" },
+    { label: "Blog", href: "/blog" },
     { label: "Team", href: "/team" },
 ] satisfies NavItem[];
 

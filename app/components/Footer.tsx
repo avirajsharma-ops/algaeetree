@@ -7,6 +7,7 @@ const QUICK_LINKS = [
     { label: "About Us", href: "/about" },
     { label: "Team", href: "/team" },
     { label: "News & Events", href: "/news-events" },
+    { label: "Blog", href: "/blog" },
 ];
 const CONTACTS = [
     { label: "algae.tree@mushroomworldgroup.com", href: "mailto:algae.tree@mushroomworldgroup.com" },
