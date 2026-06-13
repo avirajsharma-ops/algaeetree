@@ -243,6 +243,26 @@ export default function BlogDetailSection({ blogId }: BlogDetailSectionProps) {
                                     </div>
                                 </div>
                             </div>
+
+                            <aside className="h-fit rounded-[18px] bg-[#081320] px-5 py-5 text-white lg:hidden">
+                                <p className="font-space-grotesk text-[15px] font-semibold text-[#9fb40d]">In This Article</p>
+                                <ul className="mt-4 space-y-3">
+                                    {toc.length === 0 ? (
+                                        <li className="font-nimbus text-[12px] text-[#b8c4d0]">No headings available</li>
+                                    ) : (
+                                        toc.map((item, index) => (
+                                            <li
+                                                key={`${item}-${index}`}
+                                                className="flex flex-nowrap items-center gap-2 whitespace-nowrap font-nimbus text-[12px] font-medium text-white"
+                                            >
+                                                <span className="shrink-0 text-white">•</span>
+                                                <span className="min-w-0">{item}</span>
+                                            </li>
+                                        ))
+                                    )}
+                                </ul>
+                            </aside>
+
                             {sections.map((section, index) => (
                                 <div key={index} className="space-y-5 mt-16">
                                     <div
@@ -289,7 +309,7 @@ export default function BlogDetailSection({ blogId }: BlogDetailSectionProps) {
                             ))}
                         </article>
 
-                        <aside className="h-fit rounded-[18px] bg-[#081320] px-5 py-5 text-white lg:sticky lg:top-20">
+                        <aside className="hidden h-fit rounded-[18px] bg-[#081320] px-5 py-5 text-white lg:sticky lg:top-20 lg:block">
                             <p className="font-space-grotesk text-[15px] font-semibold text-[#9fb40d]">In This Article</p>
                             <ul className="mt-4 space-y-3">
                                 {toc.length === 0 ? (
