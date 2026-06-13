@@ -1,10 +1,10 @@
-import { unlink } from "fs/promises";
-import path from "path";
+import { del } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import type { BlogContentSection, BlogRecord } from "@/app/components/sections/blog/types";
 
+export const runtime = "nodejs";
+
 const DB_URL = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL;
-const MEDIA_ROOT = path.join(process.cwd(), "public", "uploads", "blogs");
 
 function parseId(value: string | null | undefined): number | null {
     if (!value) return null;
@@ -13,9 +13,9 @@ function parseId(value: string | null | undefined): number | null {
     return id;
 }
 
-function normalizeSections(sections?: BlogContentSection[]) {
+function normalizeSections(sections?: BlogContentSection[]): BlogContentSection[] {
     return (sections ?? [])
-        .map((section) => ({
+        .map<BlogContentSection>((section) => ({
             heading: String(section.heading ?? "").trim(),
             subHeading: String(section.subHeading ?? "").trim(),
             paragraph: String(section.paragraph ?? "").trim(),
@@ -164,31 +164,26 @@ function isValidPayload(payload: BlogRecord) {
     );
 }
 
-function deriveMediaPath(mediaPath?: string, mediaUrl?: string) {
-    if (mediaPath) return mediaPath;
-    if (!mediaUrl?.startsWith("/uploads/blogs/")) return null;
-    return mediaUrl.replace(/^\//, "");
+function isBlobUrl(value?: string | null) {
+    if (!value) return false;
+    if (!value.startsWith("https://")) return false;
+    return value.includes(".blob.vercel-storage.com");
+}
+
+function deriveBlobUrl(mediaPath?: string | null, mediaUrl?: string) {
+    if (isBlobUrl(mediaPath)) return mediaPath as string;
+    if (isBlobUrl(mediaUrl)) return mediaUrl as string;
+    return null;
 }
 
 async function deleteMediaFile(mediaPath?: string | null, mediaUrl?: string) {
-    const resolvedPath = deriveMediaPath(mediaPath ?? undefined, mediaUrl);
-    if (!resolvedPath) return;
-
-    const absolutePath = path.join(process.cwd(), "public", resolvedPath);
-    const normalizedRoot = path.normalize(MEDIA_ROOT + path.sep);
-    const normalizedTarget = path.normalize(absolutePath);
-
-    if (!normalizedTarget.startsWith(normalizedRoot)) {
-        return;
-    }
+    const blobUrl = deriveBlobUrl(mediaPath, mediaUrl);
+    if (!blobUrl) return;
 
     try {
-        await unlink(normalizedTarget);
-    } catch (error) {
-        const nodeError = error as NodeJS.ErrnoException;
-        if (nodeError.code !== "ENOENT") {
-            throw error;
-        }
+        await del(blobUrl);
+    } catch {
+        // Ignore blob deletion failures so blog updates/deletes don't fail for stale media URLs.
     }
 }
 
@@ -269,14 +264,14 @@ export async function PATCH(request: Request) {
             return NextResponse.json({ error: "Failed to update blog" }, { status: 500 });
         }
 
-        const previousHeroPath = deriveMediaPath(existing?.heroMediaPath ?? existing?.mediaPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
-        const nextHeroPath = deriveMediaPath(input.heroMediaPath, input.heroMediaUrl);
+        const previousHeroPath = deriveBlobUrl(existing?.heroMediaPath ?? existing?.mediaPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
+        const nextHeroPath = deriveBlobUrl(input.heroMediaPath, input.heroMediaUrl);
         if (previousHeroPath && previousHeroPath !== nextHeroPath) {
             await deleteMediaFile(previousHeroPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
         }
 
-        const previousPagePath = deriveMediaPath(existing?.pageMediaPath ?? existing?.mediaPath, existing?.pageMediaUrl ?? existing?.mediaUrl);
-        const nextPagePath = deriveMediaPath(input.pageMediaPath, input.pageMediaUrl);
+        const previousPagePath = deriveBlobUrl(existing?.pageMediaPath ?? existing?.mediaPath, existing?.pageMediaUrl ?? existing?.mediaUrl);
+        const nextPagePath = deriveBlobUrl(input.pageMediaPath, input.pageMediaUrl);
         if (previousPagePath && previousPagePath !== nextPagePath && previousPagePath !== nextHeroPath) {
             await deleteMediaFile(previousPagePath, existing?.pageMediaUrl ?? existing?.mediaUrl);
         }
@@ -306,8 +301,8 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: "Failed to delete blog" }, { status: 500 });
         }
 
-        const heroPath = deriveMediaPath(existing?.heroMediaPath ?? existing?.mediaPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
-        const pagePath = deriveMediaPath(existing?.pageMediaPath ?? existing?.mediaPath, existing?.pageMediaUrl ?? existing?.mediaUrl);
+        const heroPath = deriveBlobUrl(existing?.heroMediaPath ?? existing?.mediaPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
+        const pagePath = deriveBlobUrl(existing?.pageMediaPath ?? existing?.mediaPath, existing?.pageMediaUrl ?? existing?.mediaUrl);
 
         await deleteMediaFile(heroPath, existing?.heroMediaUrl ?? existing?.mediaUrl);
         if (pagePath && pagePath !== heroPath) {

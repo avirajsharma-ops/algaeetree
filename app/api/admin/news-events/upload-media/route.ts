@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { mkdir, writeFile } from "fs/promises";
+import { put } from "@vercel/blob";
 import path from "path";
 import { NextResponse } from "next/server";
 
@@ -58,17 +58,19 @@ export async function POST(request: Request) {
             String(now.getFullYear()),
             String(now.getMonth() + 1).padStart(2, "0")
         );
-        const absoluteDir = path.join(process.cwd(), "public", relativeDir);
-        await mkdir(absoluteDir, { recursive: true });
 
         const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        const absolutePath = path.join(absoluteDir, fileName);
-        await writeFile(absolutePath, buffer);
+        const mediaPath = path.join(relativeDir, fileName).replaceAll(path.sep, "/");
+
+        const blob = await put(mediaPath, bytes, {
+            access: "public",
+            addRandomSuffix: false,
+            contentType: file.type,
+        });
 
         return NextResponse.json({
-            url: `/${path.join(relativeDir, fileName).replaceAll(path.sep, "/")}`,
-            mediaPath: path.join(relativeDir, fileName).replaceAll(path.sep, "/"),
+            url: blob.url,
+            mediaPath: blob.url,
         });
     } catch {
         return NextResponse.json({ error: "Upload failed" }, { status: 500 });

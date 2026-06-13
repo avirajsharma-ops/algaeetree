@@ -20,6 +20,7 @@
     "@tiptap/pm": "^3.26.1",
     "@tiptap/react": "^3.26.1",
     "@tiptap/starter-kit": "^3.26.1",
+    "@vercel/blob": "^2.4.0",
     "axios": "^1.15.2",
     "critters": "^0.0.23",
     "firebase": "^10.14.1",

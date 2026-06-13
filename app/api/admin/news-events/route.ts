@@ -1,4 +1,7 @@
+import { del } from "@vercel/blob";
 import { NextResponse } from "next/server";
+
+export const runtime = "nodejs";
 
 const DB_URL = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL;
 
@@ -23,6 +26,29 @@ function isValidPayload(payload: NewsEventPayload) {
         payload.mediaType &&
         payload.mediaUrl
     );
+}
+
+function isBlobUrl(value?: string | null) {
+    if (!value) return false;
+    if (!value.startsWith("https://")) return false;
+    return value.includes(".blob.vercel-storage.com");
+}
+
+function deriveBlobUrl(mediaPath?: string | null, mediaUrl?: string) {
+    if (isBlobUrl(mediaPath)) return mediaPath as string;
+    if (isBlobUrl(mediaUrl)) return mediaUrl as string;
+    return null;
+}
+
+async function deleteMediaFile(mediaPath?: string | null, mediaUrl?: string) {
+    const blobUrl = deriveBlobUrl(mediaPath, mediaUrl);
+    if (!blobUrl) return;
+
+    try {
+        await del(blobUrl);
+    } catch {
+        // Ignore blob deletion failures so record updates/deletes don't fail for stale media URLs.
+    }
 }
 
 async function getNewsEvent(newsEventId: string) {
@@ -82,7 +108,7 @@ export async function PATCH(request: Request) {
             return NextResponse.json({ error: "Firebase database is not configured" }, { status: 500 });
         }
 
-        await getNewsEvent(newsEventId);
+        const existing = await getNewsEvent(newsEventId);
 
         const response = await fetch(`${DB_URL}/newsEvents/${newsEventId}.json`, {
             method: "PUT",
@@ -92,6 +118,13 @@ export async function PATCH(request: Request) {
 
         if (!response.ok) {
             return NextResponse.json({ error: "Failed to update news item" }, { status: 500 });
+        }
+
+        const previousPath = deriveBlobUrl(existing?.mediaPath, existing?.mediaUrl);
+        const nextPath = deriveBlobUrl(payload.mediaPath, payload.mediaUrl);
+
+        if (previousPath && previousPath !== nextPath) {
+            await deleteMediaFile(previousPath, existing?.mediaUrl);
         }
 
         return NextResponse.json({ success: true });
@@ -113,7 +146,7 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: "Firebase database is not configured" }, { status: 500 });
         }
 
-        await getNewsEvent(newsEventId);
+        const existing = await getNewsEvent(newsEventId);
 
         const response = await fetch(`${DB_URL}/newsEvents/${newsEventId}.json`, {
             method: "DELETE",
@@ -122,6 +155,8 @@ export async function DELETE(request: Request) {
         if (!response.ok) {
             return NextResponse.json({ error: "Failed to delete news item" }, { status: 500 });
         }
+
+        await deleteMediaFile(existing?.mediaPath, existing?.mediaUrl);
 
         return NextResponse.json({ success: true });
     } catch {
