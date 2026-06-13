@@ -168,8 +168,8 @@ export default function BlogDetailSection({ blogId }: BlogDetailSectionProps) {
 
     if (isLoading) {
         return (
-            <section className="page-px w-full bg-[#f4f4f4] py-8 sm:py-12">
-                <div className="w-full space-y-6">
+            <section className="page-px w-full bg-[#f4f4f4] py-4 lg:py-10 xl:py-14">
+                <div className="mx-auto w-full max-w-372 space-y-6">
                     <div className="h-105 animate-pulse rounded-[28px] bg-[#dcdcdc]" />
                     <div className="h-10 w-2/3 animate-pulse rounded bg-[#e7e7e7]" />
                     <div className="h-5 w-1/3 animate-pulse rounded bg-[#ececec]" />
@@ -185,8 +185,8 @@ export default function BlogDetailSection({ blogId }: BlogDetailSectionProps) {
 
     if (error || !blog) {
         return (
-            <section className="page-px w-full bg-[#f4f4f4] py-14">
-                <div className="w-full rounded-2xl border border-red-200 bg-red-50 px-6 py-5 text-red-700">
+            <section className="page-px w-full bg-[#f4f4f4] py-4 lg:py-10 xl:py-14">
+                <div className="mx-auto w-full max-w-372 rounded-2xl border border-red-200 bg-red-50 px-6 py-5 text-red-700">
                     {error || "Blog not found"}
                 </div>
             </section>
@@ -194,8 +194,8 @@ export default function BlogDetailSection({ blogId }: BlogDetailSectionProps) {
     }
 
     return (
-        <section className="page-px w-full bg-[#f4f4f4] py-8 sm:py-12">
-            <div className="w-full">
+        <section className="page-px w-full bg-[#f4f4f4] py-4 lg:py-10 xl:py-14">
+            <div className="mx-auto w-full max-w-372">
                 <div className="overflow-hidden rounded-[28px] border border-[#d8d8d8]">
                     {heroMediaType === "video" ? (
                         <video className="h-auto max-h-155 w-full bg-black object-cover" controls>

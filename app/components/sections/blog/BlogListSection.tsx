@@ -57,8 +57,8 @@ export default function BlogListSection() {
     }, []);
 
     return (
-        <section className="page-px w-full bg-[#f4f4f4] py-8 sm:py-12 lg:py-14">
-            <div className="w-full">
+        <section className="page-px w-full bg-[#f4f4f4] py-4 lg:py-10 xl:py-14">
+            <div className="mx-auto w-full max-w-372">
                 <article className="relative aspect-816/1704 w-full overflow-hidden rounded-2xl border border-[#d7dee7] bg-[#d9d9d9] sm:aspect-4/3 sm:rounded-[20px] lg:aspect-2976/1616 lg:rounded-[40px] mb-8">
                     <Image
                         src="/figma/news/news-hero-mobile.webp"
