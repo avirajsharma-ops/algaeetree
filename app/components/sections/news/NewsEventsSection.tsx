@@ -493,6 +493,7 @@ function TallStoryCard() {
 }
 
 function FeaturedCoverageCard({ story }: { story: StoryCard }) {
+    console.log("Rendering FeaturedCoverageCard for story:", story);
     return (
         <CardShell>
             <div className="relative flex min-h-65 flex-col gap-2 p-3 sm:min-h-70 sm:p-4 lg:min-h-75 lg:p-5">

@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
 
   // Power-mode image optimisation
   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "p0wgezr7qnmvopap.public.blob.vercel-storage.com",
+      },
+    ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
     deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920, 2048],
