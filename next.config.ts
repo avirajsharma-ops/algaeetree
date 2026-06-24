@@ -6,20 +6,23 @@ const nextConfig: NextConfig = {
   // Compress responses with gzip/brotli
   compress: true,
 
-  // Power-mode image optimisation
+  // Image optimisation
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "p0wgezr7qnmvopap.public.blob.vercel-storage.com",
+        pathname: "/**",
       },
     ],
+    // Next.js requires every quality value used by next/image to be
+    // explicitly allow-listed. We use quality={100} in several places
+    // (NewspaperFrame, CardShell background) plus the default of 75.
+    qualities: [75, 100],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year
     deviceSizes: [375, 640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
   // HTTP caching headers for static assets
@@ -81,10 +84,8 @@ const nextConfig: NextConfig = {
 
   // Enable experimental features for maximum performance
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ["lucide-react", "motion"],
   },
 };
 
 export default nextConfig;
-

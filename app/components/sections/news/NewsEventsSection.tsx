@@ -81,7 +81,8 @@ const urbanCarbonCaptureStory: StoryCard = {
     excerpt:
         "Featured by India Today, AlgaeTree gained nationwide attention as a futuristic microalgae-powered system designed to support carbon capture, oxygen release and urban pollution reduction.",
     date: "MAY 11, 2026",
-    image: "/figma/news/India Today.png", link: "https://www.indiatoday.in/trending-news/story/bhopal-algae-tree-indias-first-carbon-capturing-unit-25-trees-2909744-2026-05-11",
+    image: "/figma/news/India Today.png",
+    link: "https://www.indiatoday.in/trending-news/story/bhopal-algae-tree-indias-first-carbon-capturing-unit-25-trees-2909744-2026-05-11",
 };
 const NewsVideoaajTak: StoryCard = {
     category: "GREEN ON AIR",
@@ -153,14 +154,14 @@ const featuredCoverageStories: StoryCard[] = [
         title: "Deshbandhu Highlights India's First AlgaeTree as a New Step Toward Cleaner Cities",
         excerpt:
             "Deshbandhu covered AlgaeTree as a Made-in-India green innovation designed to support oxygen generation, carbon capture, and cleaner air in traffic-heavy urban spaces.",
-        image: "/figma/news-events/Instagram Slide 06.png"
+        image: "/figma/news-events/Instagram Slide 06.png",
     },
     {
         category: "BIO TECH",
         title: "Dangal Story Covers the Launch of India's First AlgaeTree in Bhopal",
         excerpt:
             "Dangal Story highlighted AlgaeTree as a microalgae-powered clean-air support system inaugurated in Bhopal, designed to help reduce carbon, support oxygen release, and strengthen urban green innovation.",
-        image: "/figma/news-events/Instagram Slide 07.png"
+        image: "/figma/news-events/Instagram Slide 07.png",
     },
     {
         category: "ALGAE CARBON CAPTURE",
@@ -213,9 +214,7 @@ const featuredCoverageStories: StoryCard[] = [
     },
 ];
 
-const fallbackStories: StoryCard[] = [
-    ...featuredCoverageStories,
-];
+const fallbackStories: StoryCard[] = [...featuredCoverageStories];
 
 function inferMediaType(value: string): "image" | "video" {
     const lower = value.toLowerCase();
@@ -308,6 +307,7 @@ function CardShell({ children, className = "" }: { children: ReactNode; classNam
                     alt=""
                     fill
                     sizes="100vw"
+                    quality={100}
                     className="object-cover object-center"
                 />
             </div>
@@ -332,7 +332,21 @@ function NewspaperFrame({
 }) {
     return (
         <div className={`relative overflow-hidden rounded-lg min-h-67.5 sm:min-h-0 ${className}`}>
-            <Image src={src} alt={alt} fill sizes={sizes} quality={100} className={`${imageClassName} absolute inset-0`} />
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes={sizes}
+                quality={100}
+                // Next's image optimizer's SSRF guard treats NAT64-synthesized
+                // addresses (64:ff9b::/96) as "private" even though the real
+                // destination is a public Vercel Blob URL. This only shows up
+                // on networks/containers that route DNS through NAT64 locally.
+                // Skipping optimization in dev avoids that false positive;
+                // production traffic is unaffected and still gets optimized.
+                unoptimized={process.env.NODE_ENV !== "production"}
+                className={`${imageClassName} absolute inset-0`}
+            />
         </div>
     );
 }
@@ -493,7 +507,6 @@ function TallStoryCard() {
 }
 
 function FeaturedCoverageCard({ story }: { story: StoryCard }) {
-    console.log("Rendering FeaturedCoverageCard for story:", story);
     return (
         <CardShell>
             <div className="relative flex min-h-65 flex-col gap-2 p-3 sm:min-h-70 sm:p-4 lg:min-h-75 lg:p-5">
@@ -508,7 +521,7 @@ function FeaturedCoverageCard({ story }: { story: StoryCard }) {
                                     playsInline
                                     preload="metadata"
                                 >
-                                    <source src={story.video} />
+                                    <source src={story.video} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
                             </div>
@@ -571,7 +584,6 @@ export default function NewsEventsSection() {
 
                 <div className="mt-3 space-y-3 pb-6 sm:mt-12 sm:space-y-4 sm:pb-0 lg:mt-16">
                     <div className="pt-3 sm:pt-6 lg:pt-8">
-
 
                         <div className="mt-3 sm:mt-4">
                             <CardShell>
